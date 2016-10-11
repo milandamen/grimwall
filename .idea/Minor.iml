@@ -4,9 +4,9 @@
     <content url="file://$MODULE_DIR$">
       <sourceFolder url="file://$MODULE_DIR$/main.cpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/CMakeLists.txt" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/source/Gui/GUI.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/source/Gui/GUI.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/source/Gui/IUIComponent.h" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/source/gui/GUI.h" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/source/gui/GUI.cpp" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/source/gui/IUIComponent.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/source/game/IVisitable.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/source/game/Game.cpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/source/game/Game.h" isTestSource="false" />
@@ -20,15 +20,15 @@
       <sourceFolder url="file://$MODULE_DIR$/source/game/AUnit.cpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/source/game/LevelBuilder.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/source/game/UnitFactory.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/source/Input/KeyboardMapper.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/source/Input/ICallback.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/source/Input/KeyboardMapper.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/source/Input/MouseMapper.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/source/Input/KeypressCallback.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/source/Input/MouseCallback.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/source/Input/MouseCallback.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/source/Input/KeypressCallback.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/source/Input/MouseMapper.cpp" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/source/input/KeyboardMapper.cpp" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/source/input/ICallback.h" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/source/input/KeyboardMapper.h" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/source/input/MouseMapper.h" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/source/input/KeypressCallback.h" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/source/input/MouseCallback.cpp" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/source/input/MouseCallback.h" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/source/input/KeypressCallback.cpp" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/source/input/MouseMapper.cpp" isTestSource="false" />
     </content>
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="module-library">
