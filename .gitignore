@@ -32,3 +32,5 @@
 .idea/
 _build/
 build/
+.kdev4/
+grimwall.kdev4
