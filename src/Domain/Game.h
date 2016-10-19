@@ -4,7 +4,8 @@
 
 
 class Game {
-
+public:
+    Game();
 };
 
 
