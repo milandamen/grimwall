@@ -2,6 +2,9 @@
 #include "../IEngineFacade.h"
 
 #include "fife/core/controller/engine.h"
+#include "boost/filesystem.hpp"
+
+namespace fs = boost::filesystem;
 
 // TODO Remove unnecesary
 namespace FIFE
