@@ -9,6 +9,10 @@ int AHero::getMoveSpeed() {
     return this->moveSpeed;
 }
 
+void AHero::doDamage(int power) {
+    //do the attack
+}
+
 
 
 

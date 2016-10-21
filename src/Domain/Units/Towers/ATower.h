@@ -7,6 +7,7 @@
 class ATower : AUnit {
 private:
 public:
+    virtual void doDamage(int power);
 };
 
 

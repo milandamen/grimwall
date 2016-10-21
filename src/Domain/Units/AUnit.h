@@ -21,7 +21,7 @@ public:
     virtual int getAttackDelay();
     virtual int getPower();
     virtual int getHitPoints();
-    virtual void doDamage(int power);
+    virtual void doDamage(int power) = 0;
 };
 
 

@@ -11,6 +11,7 @@ private:
 public:
     virtual std::string getWeapon() = 0;
     virtual int getMoveSpeed() = 0;
+    virtual void doDamage(int power);
 };
 
 #endif //GRIMWALL_AHERO_H
