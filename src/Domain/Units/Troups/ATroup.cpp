@@ -1,5 +1,10 @@
-//
-// Created by joost on 10/21/16.
-//
 
 #include "ATroup.h"
+
+int ATroup::getMoveSpeed() {
+    return this->moveSpeed;
+}
+
+int ATroup::getPrice() {
+    return this->price;
+}
