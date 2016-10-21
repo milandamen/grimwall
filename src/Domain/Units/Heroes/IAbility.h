@@ -6,7 +6,7 @@
 
 class IAbility{
 public:
-    // return reduce amount of energy???
+    // return the reducing amount of energy???
     virtual int execute() = 0;
 private:
 };

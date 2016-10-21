@@ -12,11 +12,15 @@ private:
     int power;
     int hitPoints;
 public:
-    virtual std::string getName() = 0;
-    virtual int getReach() = 0;
-    virtual int getAttackDelay() = 0;
-    virtual int getPower() = 0;
-    virtual int getHitPoints() = 0;
+    AUnit(std::string name, int reach, int attackDelay, int power, int hitPoints);
+    AUnit();
+    ~AUnit();
+
+    virtual std::string getName();
+    virtual int getReach();
+    virtual int getAttackDelay();
+    virtual int getPower();
+    virtual int getHitPoints();
     virtual void doDamage(int power);
 };
 

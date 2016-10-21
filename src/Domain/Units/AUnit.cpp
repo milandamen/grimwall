@@ -1,6 +1,20 @@
 
 #include "AUnit.h"
 
+AUnit::AUnit() {
+
+}
+
+AUnit::AUnit(std::string name, int reach, int attackDelay, int power, int hitPoints)
+        : name{name}, reach{reach}, attackDelay{attackDelay}, power{power}, hitPoints{hitPoints}
+{
+
+}
+
+AUnit::~AUnit() {
+
+}
+
 std::string AUnit::getName() {
     return this->name;
 }
