@@ -1,5 +1,0 @@
-
-#ifndef GRIMWALL_IABILITY_H
-#define GRIMWALL_IABILITY_H
-
-#endif
