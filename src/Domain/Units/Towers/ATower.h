@@ -1,7 +1,7 @@
 #ifndef GRIMWALL_TOWER_H
 #define GRIMWALL_TOWER_H
 
-class Tower {
+class ATower {
 private:
     int doesDamage;
     int hitPoints;

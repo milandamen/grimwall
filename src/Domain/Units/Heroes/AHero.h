@@ -6,8 +6,9 @@
 #define GRIMWALL_AHERO_H
 
 #include <iostream>
+#include "../AUnit.h"
 
-class AHero {
+class AHero : AUnit {
 private:
     virtual std::string name;
     virtual std::string weapon;
