@@ -3,6 +3,7 @@
 
 #include "fife/core/controller/engine.h"
 
+// TODO Remove unnecesary
 namespace FIFE
 {
     class Engine;
@@ -13,29 +14,38 @@ namespace FIFE
 }
 
 class FIFEFacade : public IEngineFacade {
+private:
+    FIFE::Engine* engine;
 public:
     FIFEFacade();
     ~FIFEFacade();
     
-    // Initializing
+    /** Settings **/
     
-    void setRenderBackend(std::string engine);
-    void setScreenWidth(int width);
-    void setScreenHeight(int height);
-    void setFullScreen(bool fullScreen);
-    void setWindowTitle(std::string title);
+    void setRenderBackend(std::string engine) override;
+    void setScreenWidth(int width) override;
+    void setScreenHeight(int height) override;
+    void setFullScreen(bool fullScreen) override;
+    void setWindowTitle(std::string title) override;
     
-    // Map
+    /** Initializing **/
+    
+    /**
+     * Applies settings to engine and initializes it.
+     */
+    void init() override;
+    
+    /** Map **/
     
     /**
      * Load a map specified by the path into the engine.
      */
-    void loadMap(std::string path);
+    void loadMap(std::string path) override;
     
-    // Running
+    /** Running **/
     
     /**
      * Method to render current frame. To be run every game tick.
      */
-    void render();
+    void render() override;
 };

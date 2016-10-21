@@ -3,13 +3,12 @@
 
 FIFEFacade::FIFEFacade()
 {
-    FIFE::Engine* m_engine = new FIFE::Engine();
-    delete m_engine;
+    engine = new FIFE::Engine();
 }
 
 FIFEFacade::~FIFEFacade()
 {
-
+    delete engine;
 }
 
 void FIFEFacade::setRenderBackend(std::string engine)
@@ -33,6 +32,11 @@ void FIFEFacade::setFullScreen(bool fullScreen)
 }
 
 void FIFEFacade::setWindowTitle(std::__cxx11::string title)
+{
+
+}
+
+void FIFEFacade::init()
 {
 
 }
