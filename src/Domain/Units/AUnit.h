@@ -5,7 +5,7 @@
 #include <iostream>
 
 class AUnit {
-private:
+protected:
     std::string name;
     int reach;
     int attackDelay;
