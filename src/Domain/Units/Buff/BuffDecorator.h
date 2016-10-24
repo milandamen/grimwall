@@ -1,7 +1,3 @@
-//
-// Created by roel on 24-10-16.
-//
-
 #ifndef GRIMWALL_UNITDECORATOR_H
 #define GRIMWALL_UNITDECORATOR_H
 
