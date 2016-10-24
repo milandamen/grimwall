@@ -9,6 +9,7 @@ protected:
     std::string weapon;
     int moveSpeed;
 public:
+    AHero();
     AHero(std::string name, int reach, int attackDelay, int moveSpeed, int power, int hitPoints) : AUnit(name, reach, attackDelay, power, hitPoints){};
     ~AHero();
     virtual std::string getWeapon() = 0;

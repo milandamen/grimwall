@@ -3,3 +3,10 @@
 //
 
 #include "Dralas.h"
+
+
+Dralas::Dralas() {
+
+}
+
+void Dralas::doDamage(int power) {
