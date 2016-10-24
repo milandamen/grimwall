@@ -1,11 +1,15 @@
 #ifndef GRIMWALL_IABILITY_H
 #define GRIMWALL_IABILITY_H
 
-#endif
-
-class IAbility{
-public:
-    // return the reducing amount of energy???
-    virtual int execute() = 0;
+class AAbility{
 private:
+    int cost;
+public:
+    AAbility(int cost);
+    ~AAbility();
+    // return the reducing amount of energy???
+    int getCost();
+    virtual int execute() = 0;
 };
+
+#endif
