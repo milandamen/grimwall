@@ -8,6 +8,7 @@ public:
     AAbility(int cost);
     ~AAbility();
     // return the reducing amount of energy???
+    int getCost();
     virtual int execute() = 0;
 };
 

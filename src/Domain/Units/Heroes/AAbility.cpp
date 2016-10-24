@@ -5,3 +5,7 @@ AAbility::AAbility(int cost)
 {
 
 }
+
+int AAbility::getCost() {
+    return this->cost;
+}
