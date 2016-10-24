@@ -8,13 +8,13 @@
 #include <iostream>
 #include "./AHero.h"
 
-class Dralas : AHero {
+class Dralas : public AHero {
 
 public:
-    Dralas() : AHero("Dralas", 3, 350, 7, 100, 200) {};
+    Dralas();
     ~Dralas();
 
-    void doDamage(int power);
+    void doDamage(int power) override;
 };
 
 

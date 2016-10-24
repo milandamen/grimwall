@@ -2,7 +2,7 @@
 #include "AHero.h"
 
 AHero::AHero(std::string name, int reach, int attackDelay, int moveSpeed, int power, int hitPoints)
-        : moveSpeed{moveSpeed}
+        : AUnit(name, reach, attackDelay, power, hitPoints), moveSpeed{moveSpeed}
 {
 
 }

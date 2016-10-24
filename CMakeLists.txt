@@ -109,7 +109,7 @@ file(GLOB_RECURSE Grimwall_SRC
 )
 
 # Add list of files to executable
-add_executable(Grimwall ${Grimwall_SRC} src/Domain/Units/Heroes/Dralas.cpp src/Domain/Units/Heroes/Dralas.h src/Domain/Units/Heroes/Abilities/DeathStrike.cpp src/Domain/Units/Heroes/Abilities/DeathStrike.h src/Domain/Units/Heroes/Abilities/BoneStorm.cpp src/Domain/Units/Heroes/Abilities/BoneStorm.h src/Domain/Units/Heroes/Abilities/RaiseUndead.cpp src/Domain/Units/Heroes/Abilities/RaiseUndead.h src/Domain/Units/Heroes/Abilities/RageOfTheUndead.cpp src/Domain/Units/Heroes/Abilities/RageOfTheUndead.h)
+add_executable(Grimwall ${Grimwall_SRC} src/Domain/Units/Heroes/Dralas.cpp src/Domain/Units/Heroes/Dralas.h src/Domain/Units/Heroes/Abilities/DeathStrike.cpp src/Domain/Units/Heroes/Abilities/DeathStrike.h src/Domain/Units/Heroes/Abilities/BoneStorm.cpp src/Domain/Units/Heroes/Abilities/BoneStorm.h src/Domain/Units/Heroes/Abilities/RaiseUndead.cpp src/Domain/Units/Heroes/Abilities/RaiseUndead.h src/Domain/Units/Heroes/Abilities/RageOfTheUndead.cpp src/Domain/Units/Heroes/Abilities/RageOfTheUndead.h src/Domain/Units/Buff/BuffDecorator.cpp src/Domain/Units/Buff/BuffDecorator.h src/Domain/Units/IUnit.cpp src/Domain/Units/IUnit.h)
 
 if(APPLE)
   find_package(Xcursor REQUIRED)
