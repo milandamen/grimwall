@@ -3,9 +3,10 @@
 #define GRIMWALL_AUNIT_H
 
 #include <iostream>
+#include "IUnit.h"
 
-class AUnit {
-private:
+class AUnit : public IUnit {
+protected:
     std::string name;
     int reach;
     int attackDelay;
@@ -13,7 +14,6 @@ private:
     int hitPoints;
 public:
     AUnit(std::string name, int reach, int attackDelay, int power, int hitPoints);
-    AUnit();
     ~AUnit();
 
     virtual std::string getName();
