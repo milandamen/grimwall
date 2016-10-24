@@ -1,0 +1,10 @@
+#ifndef GRIMWALL_RAISEUNDEAD_H
+#define GRIMWALL_RAISEUNDEAD_H
+
+
+class RaiseUndead {
+
+};
+
+
+#endif //GRIMWALL_RAISEUNDEAD_H

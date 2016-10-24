@@ -4,13 +4,15 @@
 #include <iostream>
 #include "../AUnit.h"
 
-class AHero : AUnit {
-private:
+class AHero : public AUnit {
+protected:
     std::string weapon;
     int moveSpeed;
 public:
-    virtual std::string getWeapon() = 0;
-    virtual int getMoveSpeed() = 0;
+    AHero(std::string name, int reach, int attackDelay, int moveSpeed, int power, int hitPoints);
+    ~AHero();
+    std::string getWeapon();
+    int getMoveSpeed();
     virtual void doDamage(int power);
 };
 

@@ -1,14 +1,14 @@
 #------------------------------------------------------------------------------
-#                                 Grimwall                                     
+#                                 Grimwall
 #------------------------------------------------------------------------------
-# Note: This CMakeLists is based on fifengine/cpp-tutorials                    
+# Note: This CMakeLists is based on fifengine/cpp-tutorials
 #------------------------------------------------------------------------------
 
 cmake_minimum_required(VERSION 2.6)
 project(Grimwall)
 
 #------------------------------------------------------------------------------
-#                                 Configure                                    
+#                                 Configure
 #------------------------------------------------------------------------------
 
 # set path to our custom CMAKE scripts
@@ -25,7 +25,7 @@ endif(NOT CMAKE_BUILD_TYPE)
 
 # Do not allow an in-source-tree build, request an out-of-source-tree build.
 if (CMAKE_SOURCE_DIR STREQUAL CMAKE_BINARY_DIR)
-  message(FATAL_ERROR "#Please build outside of the source tree!\n                        
+  message(FATAL_ERROR "#Please build outside of the source tree!\n
                        Make a separate folder for building and run CMake there:\n
                        mkdir _build; cd _build; cmake ..\n
                        Before that, be sure to cleanup:\nrm -rf CMakeCache.txt CMakeFiles")
@@ -36,7 +36,7 @@ set(CMAKE_DISABLE_SOURCE_CHANGES ON)
 set(CMAKE_DISABLE_IN_SOURCE_BUILD ON)
 
 #------------------------------------------------------------------------------
-#                                 Display Status                               
+#                                 Display Status
 #------------------------------------------------------------------------------
 
 message("")
@@ -49,14 +49,14 @@ message(STATUS "    Dependencies folder: '${PROJECT_SOURCE_DIR}/dependencies'.")
 message("")
 
 #------------------------------------------------------------------------------
-#                                 Compiler Options                             
+#                                 Compiler Options
 #------------------------------------------------------------------------------
 
 if(WIN32)
 
   if(MSVC)
 
-    # ensure we use minimal "windows.h" lib without the crazy min max macros    
+    # ensure we use minimal "windows.h" lib without the crazy min max macros
     SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} /D \"WIN32_LEAN_AND_MEAN\"")
     SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} /D \"NOMINMAX\"")
 
@@ -71,7 +71,7 @@ if(WIN32)
 endif(WIN32)
 
 #------------------------------------------------------------------------------
-#                           Find Dependencies - Windows                        
+#                           Find Dependencies - Windows
 #------------------------------------------------------------------------------
 
 # Tell CMake where to search for binaries (dlls), includes and libs on Windows
@@ -83,23 +83,23 @@ if(WIN32)
     "${PROJECT_SOURCE_DIR}/dependencies/include/OpenAL"
     "${PROJECT_SOURCE_DIR}/dependencies/lib/x86"
     "${PROJECT_SOURCE_DIR}/dependencies/lib"
-    "${PROJECT_SOURCE_DIR}/dependencies/lib/boost" 
+    "${PROJECT_SOURCE_DIR}/dependencies/lib/boost"
   )
   set(CMAKE_INCLUDE_PATH ${CMAKE_INCLUDE_PATH} ${CMAKE_PREFIX_PATH})
 endif(WIN32)
 
 #------------------------------------------------------------------------------
-#                                 Configure Boost                              
+#                                 Configure Boost
 #------------------------------------------------------------------------------
 
 add_definitionS(-DBOOST_ALL_NO_LIB)
 
 # use static libs
-set(Boost_USE_STATIC_LIBS ON)     
+set(Boost_USE_STATIC_LIBS ON)
 set(Boost_USE_MULTITHREADED ON)
 
 #------------------------------------------------------------------------------
-#                                Confifure Grimwall                            
+#                                Confifure Grimwall
 #------------------------------------------------------------------------------
 
 # Add all files in src to be builded
@@ -124,7 +124,7 @@ if(UNIX)
 endif()
 
 find_package(Fife REQUIRED)
-find_package(FifeChan COMPONENTS opengl sdl REQUIRED)  
+find_package(FifeChan COMPONENTS opengl sdl REQUIRED)
 find_package(Boost 1.33.1 COMPONENTS system filesystem regex)
 find_package(Vorbis REQUIRED)
 find_package(ZLIB REQUIRED)

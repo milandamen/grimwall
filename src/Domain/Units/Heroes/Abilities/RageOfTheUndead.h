@@ -1,0 +1,10 @@
+#ifndef GRIMWALL_RAGEOFTHEUNDEAD_H
+#define GRIMWALL_RAGEOFTHEUNDEAD_H
+
+
+class RageOfTheUndead {
+
+};
+
+
+#endif //GRIMWALL_RAGEOFTHEUNDEAD_H
