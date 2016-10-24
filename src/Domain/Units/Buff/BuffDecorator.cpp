@@ -1,7 +1,7 @@
 #include "BuffDecorator.h"
 
-BuffDecorator::BuffDecorator(IUnit *inner)
-    : m_wrappee{inner}
+BuffDecorator::BuffDecorator(IUnit *inner, int duration)
+    : m_wrappee{inner}, duration{duration}
 {}
 
 std::string BuffDecorator::getName() {
