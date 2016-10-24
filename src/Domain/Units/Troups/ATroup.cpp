@@ -8,3 +8,7 @@ int ATroup::getMoveSpeed() {
 int ATroup::getPrice() {
     return this->price;
 }
+
+void ATroup::doDamage(int power) {
+    //do the attack
+}
