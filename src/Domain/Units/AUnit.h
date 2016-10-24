@@ -14,6 +14,7 @@ protected:
     int hitPoints;
 public:
     AUnit(std::string name, int reach, int attackDelay, int power, int hitPoints);
+    AUnit();
     ~AUnit();
 
     virtual std::string getName();

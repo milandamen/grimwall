@@ -1,0 +1,10 @@
+#ifndef GRIMWALL_RANGEDTOWER_H
+#define GRIMWALL_RANGEDTOWER_H
+
+
+class RangedTower {
+
+};
+
+
+#endif //GRIMWALL_RANGEDTOWER_H
