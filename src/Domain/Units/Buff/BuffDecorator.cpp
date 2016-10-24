@@ -1,7 +1,3 @@
-//
-// Created by roel on 24-10-16.
-//
-
 #include "BuffDecorator.h"
 
 BuffDecorator::BuffDecorator(IUnit *inner)
