@@ -9,6 +9,9 @@
 
 class ShieldOfJustice : IAbility{
 
+public:
+    ShieldOfJustice();
+    ~ShieldOfJustice();
 };
 
 #endif //GRIMWALL_SHIELDOFJUSTICE_H

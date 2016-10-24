@@ -10,6 +10,9 @@
 
 class Execution : IAbility{
 
+public:
+    Execution();
+    ~Execution();
 };
 
 #endif //GRIMWALL_EXECUTION_H

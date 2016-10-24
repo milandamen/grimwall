@@ -9,6 +9,9 @@
 
 class StrikeOfReflection : IAbility {
 
+public:
+    StrikeOfReflection();
+    ~StrikeOfReflection();
 };
 
 

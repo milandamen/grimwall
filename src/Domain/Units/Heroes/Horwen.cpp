@@ -13,5 +13,5 @@ Horwen::~Horwen(){
 }
 
 void Horwen::doDamage(int power) {
-
+    
 }

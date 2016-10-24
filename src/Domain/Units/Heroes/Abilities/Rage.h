@@ -9,6 +9,9 @@
 
 class Rage : IAbility {
 
+public:
+    Rage();
+    ~Rage();
 };
 
 
