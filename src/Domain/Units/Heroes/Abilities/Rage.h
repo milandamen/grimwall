@@ -5,10 +5,13 @@
 #ifndef GRIMWALL_RAGE_H
 #define GRIMWALL_RAGE_H
 
-#include "../IAbility.h"
+#include "../AAbility.h"
 
-class Rage : IAbility {
+class Rage : AAbility {
 
+    Rage();
+
+    int execute() override;
 };
 
 

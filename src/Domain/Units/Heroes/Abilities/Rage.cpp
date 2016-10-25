@@ -3,3 +3,10 @@
 //
 
 #include "Rage.h"
+
+Rage::Rage()
+        : AAbility(40){}
+
+int Rage::execute() {
+    return 0;
+}

@@ -15,6 +15,8 @@ public:
     Horwen();
     ~Horwen();
 
+    void activateRage();
+
     void doDamage(int power) override;
 };
 

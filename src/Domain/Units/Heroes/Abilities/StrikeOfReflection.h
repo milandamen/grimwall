@@ -5,9 +5,9 @@
 #ifndef GRIMWALL_STRIKEOFREFLECTION_H
 #define GRIMWALL_STRIKEOFREFLECTION_H
 
-#include "../IAbility.h"
+#include "../AAbility.h"
 
-class StrikeOfReflection : IAbility {
+class StrikeOfReflection : AAbility {
 
 };
 

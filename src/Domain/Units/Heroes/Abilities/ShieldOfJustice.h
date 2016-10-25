@@ -5,9 +5,9 @@
 #ifndef GRIMWALL_SHIELDOFJUSTICE_H
 #define GRIMWALL_SHIELDOFJUSTICE_H
 
-#include "../IAbility.h"
+#include "../AAbility.h"
 
-class ShieldOfJustice : IAbility{
+class ShieldOfJustice : AAbility{
 
 };
 
