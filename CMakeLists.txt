@@ -109,7 +109,7 @@ file(GLOB_RECURSE Grimwall_SRC
 )
 
 # Add list of files to executable
-add_executable(Grimwall ${Grimwall_SRC})
+add_executable(Grimwall ${Grimwall_SRC} src/Domain/Units/Troups/Catapult.cpp src/Domain/Units/Troups/Catapult.h src/Domain/Units/Troups/Longbowman.cpp src/Domain/Units/Troups/Longbowman.h src/Domain/Units/Troups/Crossbowman.cpp src/Domain/Units/Troups/Crossbowman.h src/Domain/Units/Troups/Swordsman.cpp src/Domain/Units/Troups/Swordsman.h src/Domain/Units/Troups/Horseman.cpp src/Domain/Units/Troups/Horseman.h)
 
 if(APPLE)
   find_package(Xcursor REQUIRED)

@@ -8,20 +8,23 @@
 class AUnit : public IUnit {
 protected:
     std::string name;
-    int reach;
+    int range;
     int attackDelay;
     int power;
     int hitPoints;
+    bool is_alive = false;
 public:
-    AUnit(std::string name, int reach, int attackDelay, int power, int hitPoints);
+    AUnit(std::string name, int range, int attackDelay, int power, int hitPoints);
     ~AUnit();
 
     virtual std::string getName();
-    virtual int getReach();
+    virtual int getRange();
     virtual int getAttackDelay();
     virtual int getPower();
     virtual int getHitPoints();
-    virtual void doDamage(int power) = 0;
+    virtual bool isAlive() = 0;
+    virtual void attack(AUnit* unit);
+    virtual void inflictDamage(int hitPoints);
 };
 
 

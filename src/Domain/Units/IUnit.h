@@ -10,7 +10,9 @@ public:
     virtual int getAttackDelay() = 0;
     virtual int getPower() = 0;
     virtual int getHitPoints() = 0;
-    virtual void doDamage(int power) = 0;
+
+    virtual void attack(IUnit* unit) = 0;
+    virtual void inflictDamage(int hitPoints) = 0;
 };
 
 
