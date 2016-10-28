@@ -2,8 +2,12 @@
 #define GRIMWALL_RANGEDTOWER_H
 
 
-class RangedTower {
+#include "ATower.h"
 
+class RangedTower : public ATower{
+    RangedTower();
+    ~RangedTower();
+    virtual void doDamage(int power);
 };
 
 

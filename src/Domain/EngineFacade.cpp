@@ -14,7 +14,7 @@ void EngineFacade::setEngine(std::string engine)
     if (engine == "FIFE" && currentEngineName != engine)
     {
         destroy();
-        _engine = new FIFEFacade();
+//        _engine = new FIFEFacade();
     }
 }
 
