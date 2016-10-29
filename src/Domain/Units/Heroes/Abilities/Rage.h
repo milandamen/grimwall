@@ -7,9 +7,11 @@
 
 #include "../AAbility.h"
 
-class Rage : AAbility {
+class Rage : public AAbility {
 
+public:
     Rage();
+    ~Rage();
 
     int execute() override;
 };

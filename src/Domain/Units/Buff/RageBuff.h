@@ -13,8 +13,10 @@ private:
 
 public:
     RageBuff(IUnit *inner, int multiplier);
+    ~RageBuff();
 
     int getAttackDelay();
+
 };
 
 #endif //GRIMWALL_RAGEBUFF_H

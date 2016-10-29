@@ -4,6 +4,10 @@ BuffDecorator::BuffDecorator(IUnit *inner, int duration)
     : m_wrappee{inner}, duration{duration}
 {}
 
+BuffDecorator::~BuffDecorator() {
+
+}
+
 std::string BuffDecorator::getName() {
     return this->m_wrappee->getName();
 }
@@ -22,6 +26,10 @@ int BuffDecorator::getPower() {
 
 int BuffDecorator::getHitPoints() {
     return this->m_wrappee->getHitPoints();
+}
+
+int BuffDecorator::getOriginalHitPoints() {
+    return this->m_wrappee->getOriginalHitPoints();
 }
 
 void BuffDecorator::doDamage(int power) {

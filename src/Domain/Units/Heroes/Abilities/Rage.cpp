@@ -7,6 +7,8 @@
 Rage::Rage()
         : AAbility(40){}
 
+Rage::~Rage(){}
+
 int Rage::execute() {
     return 0;
 }

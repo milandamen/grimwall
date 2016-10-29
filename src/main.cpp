@@ -9,10 +9,10 @@ int main() {
 
     Horwen *hero = new Horwen();
 
-    std::cout << hero->getAttackDelay() << std::endl;
+    std::cout << "Horwen Attack Delay: " << hero->getAttackDelay() << std::endl;
     hero->activateRage();
     std::cout << "Rage activated!" << std::endl;
-    std::cout << hero->getAttackDelay() << std::endl;
+    std::cout << "Horwen Attack Delay: " << hero->getAttackDelay() << std::endl;
 
 
 

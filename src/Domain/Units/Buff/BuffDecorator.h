@@ -10,13 +10,14 @@ protected:
     int duration;
 public:
     BuffDecorator(IUnit *inner, int duration);
-    ~BuffDecorator(){};
+    ~BuffDecorator();
 
     std::string getName();
     int getReach();
     int getAttackDelay();
     int getPower();
     int getHitPoints();
+    int getOriginalHitPoints();
     void doDamage(int power);
 
     void remove();

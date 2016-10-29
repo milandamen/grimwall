@@ -1,13 +1,14 @@
 
 #include "AUnit.h"
+#include "IUnit.h"
 
 AUnit::AUnit(std::string name, int reach, int attackDelay, int power, int hitPoints)
-        : name{name}, reach{reach}, attackDelay{attackDelay}, power{power}, hitPoints{hitPoints}
+        : name{name}, reach{reach}, attackDelay{attackDelay}, power{power}, hitPoints{hitPoints}, originalHitPoints{hitPoints}
 {
 
 }
 
-AUnit::~AUnit() {
+AUnit::~AUnit(){
 
 }
 
@@ -29,6 +30,10 @@ int AUnit::getPower() {
 
 int AUnit::getHitPoints() {
     return this->hitPoints;
+}
+
+int AUnit::getOriginalHitPoints() {
+    return this->originalHitPoints;
 }
 
 void AUnit::doDamage(int power) {
