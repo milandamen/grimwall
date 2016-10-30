@@ -2,7 +2,7 @@
 #define GRIMWALL_BOMB_H
 
 
-#include "../AHero.h"
+
 #include "../AAbility.h"
 
 class Bomb : AAbility{

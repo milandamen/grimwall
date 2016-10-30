@@ -11,7 +11,7 @@ private:
 
 public:
     Zarrku();
-    ~Zarrku();
+//    ~Zarrku();
     void doDamage(int power) override;
 
 };

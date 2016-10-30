@@ -3,8 +3,8 @@
 
 
 #include <vector>
-#include "../../Towers/ATower.h"
 #include "../AAbility.h"
+#include "../../IUnit.h"
 
 class SmokeBomb : AAbility{
 

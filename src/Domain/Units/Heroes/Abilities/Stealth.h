@@ -2,8 +2,9 @@
 #define GRIMWALL_STEALTH_H
 
 
-#include "../AHero.h"
+
 #include "../AAbility.h"
+#include "../../IUnit.h"
 
 class Stealth : AAbility{
 

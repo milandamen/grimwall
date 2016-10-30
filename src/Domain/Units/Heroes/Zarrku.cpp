@@ -8,6 +8,6 @@ Zarrku::Zarrku()
 
 }
 
-Zarrku::~Zarrku() {};
+//Zarrku::~Zarrku() {};
 
 void Zarrku::doDamage(int power) {}
