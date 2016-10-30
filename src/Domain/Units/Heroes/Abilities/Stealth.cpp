@@ -1,7 +1,13 @@
-//
-// Created by fjs on 10/24/16.
-//
-
 #include "Stealth.h"
+#include "../../Buff/StealthSpeedBuff.h"
 
-void Stealth::use(AHero hero) {}
+Stealth::Stealth(IUnit *hero)
+        : AAbility(40), hero{hero}
+{}
+
+int Stealth::execute()
+{
+    hero = new StealthSpeedBuff(this->hero, 2);
+
+    return 1;
+}

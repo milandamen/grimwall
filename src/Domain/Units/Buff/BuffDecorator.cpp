@@ -24,6 +24,11 @@ int BuffDecorator::getHitPoints() {
     return this->m_wrappee->getHitPoints();
 }
 
+int BuffDecorator::getSpeed()
+{
+    return this->m_wrappee->getSpeed();
+}
+
 void BuffDecorator::doDamage(int power) {
     // do damage
 }

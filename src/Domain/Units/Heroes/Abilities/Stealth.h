@@ -1,20 +1,19 @@
-//
-// Created by fjs on 10/24/16.
-//
-
 #ifndef GRIMWALL_STEALTH_H
 #define GRIMWALL_STEALTH_H
 
 
 #include "../AHero.h"
+#include "../AAbility.h"
 
-class Stealth {
+class Stealth : AAbility{
 
 private:
-    int energy;
+    IUnit *hero;
 
 public:
-    void use(AHero hero);
+    Stealth(IUnit *hero);
+
+    int execute();
 
 };
 

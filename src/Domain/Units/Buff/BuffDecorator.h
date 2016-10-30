@@ -17,6 +17,7 @@ public:
     int getAttackDelay();
     int getPower();
     int getHitPoints();
+    int getSpeed();
     void doDamage(int power);
 
     void remove();

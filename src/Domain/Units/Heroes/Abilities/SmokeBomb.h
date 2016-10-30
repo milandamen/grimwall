@@ -1,20 +1,20 @@
-//
-// Created by fjs on 10/24/16.
-//
-
 #ifndef GRIMWALL_SMOKEBOMB_H
 #define GRIMWALL_SMOKEBOMB_H
 
 
-#include "../AHero.h"
+#include <vector>
+#include "../../Towers/ATower.h"
+#include "../AAbility.h"
 
-class SmokeBomb {
+class SmokeBomb : AAbility{
 
 private:
-    int energy;
+    std::vector<IUnit*> towers;
 
 public:
-    void use(AHero hero);
+    SmokeBomb(std::vector<IUnit*> towers);
+
+    int execute();
 };
 
 

@@ -1,21 +1,17 @@
-//
-// Created by fjs on 10/24/16.
-//
-
 #ifndef GRIMWALL_BOMB_H
 #define GRIMWALL_BOMB_H
 
 
 #include "../AHero.h"
+#include "../AAbility.h"
 
-class Bomb {
+class Bomb : AAbility{
 
 private:
-    int energy;
 
 public:
-    void use(AHero hero);
-
+    Bomb();
+    int execute();
 };
 
 
