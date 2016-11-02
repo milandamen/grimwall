@@ -9,8 +9,8 @@ private:
     IUnit* hero;
 public:
     DeathStrike(IUnit* hero);
-
     int execute();
+    IUnit* getHero();
 };
 
 
