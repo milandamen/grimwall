@@ -1,7 +1,3 @@
-//
-// Created by roel on 2-11-16.
-//
-
 #include "RageOfTheUndeadBuff.h"
 
 RageOfTheUndeadBuff::RageOfTheUndeadBuff(IUnit *inner, int multiplier)

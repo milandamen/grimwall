@@ -1,7 +1,3 @@
-//
-// Created by roel on 2-11-16.
-//
-
 #ifndef GRIMWALL_RAGEOFTHEUNDEADBUFF_H
 #define GRIMWALL_RAGEOFTHEUNDEADBUFF_H
 
