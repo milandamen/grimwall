@@ -4,7 +4,7 @@
 #include "../AUnit.h"
 
 
-class ATower : AUnit {
+class ATower : public AUnit {
 private:
 public:
     virtual void doDamage(int power);

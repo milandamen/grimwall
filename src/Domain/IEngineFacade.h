@@ -39,6 +39,16 @@ public:
      * Method to render current frame. To be run every game tick.
      */
     virtual void render() = 0;
+    
+    /**
+     * Get the amount of frames per second
+     */
+    virtual int getFPS() = 0;
+    
+    /**
+     * Get the current time in milliseconds
+     */
+    virtual int getTime() = 0;
 };
 
 #endif
