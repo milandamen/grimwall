@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="ascii" ?>
+<map id="level1" format="1.0">
+    <layer id="layer1" x_offset="0" y_offset="0" z_offset="0" x_scale="1" y_scale="1" rotation="0" grid_type="square" transparency="0" pathing="cell_edges_only" sorting="camera">
+        <instances />
+    </layer>
+    <cellcaches />
+    <camera id="main" ref_layer_id="layer1" zoom="1" tilt="60" rotation="45" viewport="0,0,1024,768" ref_cell_width="98" ref_cell_height="48" />
+</map>
