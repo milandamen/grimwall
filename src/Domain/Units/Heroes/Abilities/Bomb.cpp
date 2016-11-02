@@ -6,5 +6,6 @@ Bomb::Bomb()
 
 int Bomb::execute()
 {
+    //TODO implement bomb usage
     return 1;
 }

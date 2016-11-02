@@ -29,6 +29,11 @@ int BuffDecorator::getSpeed()
     return this->m_wrappee->getSpeed();
 }
 
+int BuffDecorator::getVisibility()
+{
+    return this->m_wrappee->getSpeed();
+}
+
 void BuffDecorator::doDamage(int power) {
     // do damage
 }

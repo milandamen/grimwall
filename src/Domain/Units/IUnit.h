@@ -11,6 +11,7 @@ public:
     virtual int getPower() = 0;
     virtual int getHitPoints() = 0;
     virtual int getSpeed() = 0;
+    virtual int getVisibility() = 0;
     virtual void doDamage(int power) = 0;
 };
 

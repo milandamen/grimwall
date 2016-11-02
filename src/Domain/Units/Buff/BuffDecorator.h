@@ -18,6 +18,7 @@ public:
     int getPower();
     int getHitPoints();
     int getSpeed();
+    int getVisibility();
     void doDamage(int power);
 
     void remove();
