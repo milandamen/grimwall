@@ -2,14 +2,14 @@
 # FindGoogleTest.cmake
 #------------------------------------------------------------------------------
 #
-# Find the native fife includes and libraries. Detect Fife version.
+# Find the native gtest includes and libraries.
 #
-# GTEST_INCLUDE_DIR  - where to find fife/core/version.h, etc.
-# GTEST_LIBRARIES    - List of libraries when using fife.
-# GTEST_FOUND        - True, if fife found.
+# GTEST_INCLUDE_DIR  - where to find gtest/gtest.h, etc.
+# GTEST_LIBRARIES    - List of libraries when using gtest.
+# GTEST_FOUND        - True, if gtest found.
 #
 #------------------------------------------------------------------------------
-# Authot: Groep B, Avans 2016
+# Author: Groep B, Avans 2016
 # Original Author: Jens A. Koch <jakoch@web.de> for FIFE
 #------------------------------------------------------------------------------
 
@@ -20,11 +20,10 @@ endif(GTEST_INCLUDE_DIR)
 
 find_path(GTEST_INCLUDE_DIR gtest/gtest.h)
 
-# append "fife/core" to "include" path
+# append "gtest" to "include" path
 set(GTEST_INCLUDE_DIR ${GTEST_INCLUDE_DIR}/gtest)
 
 
-# MSVC built fife may be named fife_static.
 # The provided project files name the library with the lib prefix.
 find_library(GTEST_LIBRARY NAMES gtest)
 
