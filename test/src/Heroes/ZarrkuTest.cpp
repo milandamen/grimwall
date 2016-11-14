@@ -2,7 +2,6 @@
 #include <gtest/gtest.h>
 #include "../../../src/Domain/Units/IUnit.h"
 #include "../../../src/Domain/Units/Heroes/Zarrku.h"
-//#include "../../../src/Domain/Units/Heroes/Dralas.h"
 #include "../../../src/Domain/Units/Heroes/AHero.h"
 
 class ZarrkuTest : public ::testing::Test
