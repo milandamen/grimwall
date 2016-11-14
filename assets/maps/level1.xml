@@ -8,6 +8,7 @@
     <import file="../objects/tiles/water.xml" />
     <import file="../objects/tiles/grass.xml" />
     <import file="../objects/tiles/gravell.xml" />
+    <import file="../objects/towers/tree.xml" />
     <layer id="layer1" x_offset="0" y_offset="0" z_offset="0" x_scale="1" y_scale="1" rotation="0" grid_type="square" transparency="0" pathing="cell_edges_only" sorting="camera">
         <instances>
             <i ns="grimwall" o="grass" x="2" y="2" z="0" r="0" blocking="1" stackpos="0" />
@@ -407,6 +408,7 @@
         <instances>
             <i ns="grimwall" o="tower" x="3" y="-3" z="0" r="0" blocking="1" stackpos="0" />
             <i o="tower" x="2" y="-7" z="0" r="0" blocking="1" stackpos="0" />
+	    <i o="tree" x="6" y="-7" z="0" r="0" blocking="1" stackpos="0" />
             <i o="tower" x="-3" y="-9" z="0" r="0" blocking="1" stackpos="0" />
             <i o="tower" x="10" y="-9" z="0" r="0" blocking="1" stackpos="0" />
             <i o="tower" x="14" y="-8" z="0" r="0" blocking="1" stackpos="0" />
