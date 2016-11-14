@@ -8,7 +8,7 @@ RageOfTheUndead::RageOfTheUndead(vector<IUnit*> troups)
 }
 
 int RageOfTheUndead::execute() {
-    for (int i = 0; i < this->troups.size(); ++i)
+    for (size_t i = 0; i < this->troups.size(); ++i)
         this->troups[i] = new RageOfTheUndeadBuff(this->troups[i], 2);
     return 1;
 }
