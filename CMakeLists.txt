@@ -207,9 +207,20 @@ install(TARGETS Grimwall
 #                        Copy assets
 #------------------------------------------------------------------------------
 
-add_custom_command(TARGET Grimwall POST_BUILD
-                   COMMAND ${CMAKE_COMMAND} -E copy_directory
-                       ${CMAKE_SOURCE_DIR}/assets $<TARGET_FILE_DIR:Grimwall>/assets)
+# Based on http://stackoverflow.com/a/31518137
+
+# Add custom target that always runs (it tries to find the file "${CMAKE_CURRENT_BINARY_DIR}/asset files" that doesn't exist)
+add_custom_target(
+    copy_assets ALL
+    DEPENDS "${CMAKE_CURRENT_BINARY_DIR}/asset files"
+)
+
+# Copy the assets
+add_custom_command(
+    OUTPUT "${CMAKE_CURRENT_BINARY_DIR}/asset files"
+    COMMAND ${CMAKE_COMMAND} -E copy_directory
+        ${CMAKE_SOURCE_DIR}/assets $<TARGET_FILE_DIR:Grimwall>/assets
+)
 
 
 
