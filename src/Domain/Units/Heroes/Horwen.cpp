@@ -1,7 +1,3 @@
-//
-// Created by baksteen on 10/24/16.
-//
-
 #include "Horwen.h"
 #include "Abilities/Rage.h"
 #include "../Buff/RageBuff.h"
