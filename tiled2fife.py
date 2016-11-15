@@ -69,10 +69,9 @@ for gid, obj in objects.items():
     imp.set("file", obj[2])
 
 # Layers
-layerCount = 0
 for layer in layers:
     lay = ET.SubElement(fiferoot, "layer")
-    lay.set("id", layer[layerCount])
+    lay.set("id", layer[0])
     lay.set("x_offset", "0")
     lay.set("y_offset", "0")
     lay.set("z_offset", "0")
@@ -112,8 +111,6 @@ for layer in layers:
         count += 1
         x = count % width
         y = int(count / width)
-        
-    layerCount += 1
 
 # Cellcaches
 ET.SubElement(fiferoot, "cellcaches")
