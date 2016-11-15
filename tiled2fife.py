@@ -22,7 +22,8 @@ for child in root:
     if child.tag == "tileset":
         gid = child.attrib["firstgid"]
         name = child.attrib["name"]
-        source = child[0].attrib["source"]
+        source = child[0].attrib["source"][:-4] + ".xml"
+        
         objects[gid] = (gid, name, source)
     elif child.tag == "layer":
         name = child.attrib["name"]
@@ -68,9 +69,10 @@ for gid, obj in objects.items():
     imp.set("file", obj[2])
 
 # Layers
+layerCount = 0
 for layer in layers:
     lay = ET.SubElement(fiferoot, "layer")
-    lay.set("id", layer[0])
+    lay.set("id", layer[layerCount])
     lay.set("x_offset", "0")
     lay.set("y_offset", "0")
     lay.set("z_offset", "0")
@@ -110,6 +112,8 @@ for layer in layers:
         count += 1
         x = count % width
         y = int(count / width)
+        
+    layerCount += 1
 
 # Cellcaches
 ET.SubElement(fiferoot, "cellcaches")
