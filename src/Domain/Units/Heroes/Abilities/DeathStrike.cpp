@@ -2,9 +2,9 @@
 #include "../../Buff/DeathStrikeBuff.h"
 
 DeathStrike::DeathStrike(IUnit* hero)
-        : hero{hero}, AAbility(25)
+        : AAbility(25), hero{hero}
 {
-
+    
 }
 
 int DeathStrike::execute() {

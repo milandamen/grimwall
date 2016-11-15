@@ -7,7 +7,7 @@ RaiseUndead::RaiseUndead(vector<IUnit *> troups)
 }
 
 int RaiseUndead::execute() {
-    for (int i = 0; i < this->troups.size(); ++i) {
+    for (size_t i = 0; i < this->troups.size(); ++i) {
         // TODO: Troup is alive
     }
 
