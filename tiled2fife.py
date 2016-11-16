@@ -20,11 +20,20 @@ root = ET.parse("assets/tiled/" + levelname + ".tmx").getroot()
 
 for child in root:
     if child.tag == "tileset":
-        gid = child.attrib["firstgid"]
-        name = child.attrib["name"]
-        source = child[0].attrib["source"][:-4] + ".xml"
+        firstgid = child.attrib["firstgid"]
+        if child.attrib["tilecount"] == "1":
+            source = child[0].attrib["source"][:-4] + ".xml"
+            sourceSplitted = source.split("/")
+            name = sourceSplitted[len(sourceSplitted)-1][:-4]
+            objects[firstgid] = (firstgid, name, source)
+        else:
+            for tile in child:
+                source = tile[0].attrib["source"][:-4] + ".xml"
+                sourceSplitted = source.split("/")
+                name = sourceSplitted[len(sourceSplitted)-1][:-4]
+                gid = str(int(firstgid) + int(tile.attrib["id"]))
+                objects[gid] = (gid, name, source)
         
-        objects[gid] = (gid, name, source)
     elif child.tag == "layer":
         name = child.attrib["name"]
         width = child.attrib["width"]
@@ -89,9 +98,10 @@ for layer in layers:
     startY = 0 - int(height / 2)     # Make the map centered
     
     # Tiles
+    # Tiled maps have x and y rotated clockwise 90deg in comparison to FIFE maps
     instances = ET.SubElement(lay, "instances")
     count = 0
-    x = 0
+    x = width
     y = 0
     firstReal = True
     for tile in layer[3]:
@@ -109,8 +119,8 @@ for layer in layers:
             t.set("stackpos", "0")
         
         count += 1
-        x = count % width
-        y = int(count / width)
+        x = width - int(count / width)
+        y = count % width
 
 # Cellcaches
 ET.SubElement(fiferoot, "cellcaches")

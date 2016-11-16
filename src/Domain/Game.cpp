@@ -8,7 +8,7 @@ Game::Game()
     EngineFacade::engine()->setRenderBackend("OpenGL");
     
     EngineFacade::engine()->init();
-    EngineFacade::engine()->loadMap("assets/maps/level1_conv.xml");
+    EngineFacade::engine()->loadMap("assets/maps/level1_remake_conv.xml");
     
     // Game loop
     int lastTime = 0;
