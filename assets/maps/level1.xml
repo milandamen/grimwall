@@ -408,7 +408,7 @@
         <instances>
             <i ns="grimwall" o="tower" x="3" y="-3" z="0" r="0" blocking="1" stackpos="0" />
             <i o="tower" x="2" y="-7" z="0" r="0" blocking="1" stackpos="0" />
-	    <i o="tree" x="6" y="-7" z="0" r="0" blocking="1" stackpos="0" />
+	        <i o="tree" x="6" y="-7" z="0" r="0" blocking="1" stackpos="0" />
             <i o="tower" x="-3" y="-9" z="0" r="0" blocking="1" stackpos="0" />
             <i o="tower" x="10" y="-9" z="0" r="0" blocking="1" stackpos="0" />
             <i o="tower" x="14" y="-8" z="0" r="0" blocking="1" stackpos="0" />
