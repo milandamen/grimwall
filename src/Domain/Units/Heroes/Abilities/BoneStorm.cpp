@@ -2,14 +2,15 @@
 #include "../../Buff/BoneStormBuff.h"
 
 BoneStorm::BoneStorm(vector<IUnit*> towers)
-        : towers{towers}, AAbility(40)
+        : AAbility(40), towers{towers}
 {
+    
 }
 
 
 int BoneStorm::execute()
 {
-    for (int i = 0; i < this->towers.size(); ++i)
+    for (size_t i = 0; i < this->towers.size(); ++i)
         this->towers[i] = new BoneStormBuff(this->towers[i], 2);
     return 1;
 }

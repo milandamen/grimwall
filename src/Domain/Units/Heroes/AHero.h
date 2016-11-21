@@ -7,12 +7,10 @@
 class AHero : public AUnit {
 protected:
     std::string weapon;
-    int moveSpeed;
 public:
-    AHero(std::string name, int reach, int attackDelay, int moveSpeed, int power, int hitPoints);
+    AHero(std::string name, int reach, int attackDelay, int moveSpeed, int power, int hitPoints, int visibility);
     ~AHero();
     std::string getWeapon();
-    int getMoveSpeed();
     virtual void doDamage(int power);
 };
 
