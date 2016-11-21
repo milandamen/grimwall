@@ -1,14 +1,12 @@
-//
-// Created by joost on 10/11/2016.
-//
+#ifndef KEYBOARD_MAPPER_H
+#define KEYBOARD_MAPPER_H
 
-#ifndef GRIMWALL_KEYBOARDMAPPER_H
-#define GRIMWALL_KEYBOARDMAPPER_H
+#include "../Domain/EngineFacade.h"
 
-
-class KeyboardMapper {
-
+class KeyboardMapper
+{
+public:
+    KeyboardMapper();
 };
 
-
-#endif //GRIMWALL_KEYBOARDMAPPER_H
+#endif
