@@ -4,3 +4,5 @@
 
 #include "ShieldOfJustice.h"
 
+ShieldOfJustice::ShieldOfJustice() : AAbility(60) {}
+

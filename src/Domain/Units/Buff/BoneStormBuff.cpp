@@ -1,7 +1,7 @@
 #include "BoneStormBuff.h"
 
 BoneStormBuff::BoneStormBuff(IUnit* inner, int multiplier)
-        : BuffDecorator(inner, 300), multiplier{multiplier}
+        : BuffDecorator(inner), multiplier{multiplier}
 {}
 
 int BoneStormBuff::getAttackDelay()

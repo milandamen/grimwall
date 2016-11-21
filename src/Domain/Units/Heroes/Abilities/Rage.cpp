@@ -3,3 +3,6 @@
 //
 
 #include "Rage.h"
+
+Rage::Rage() : AAbility(40) {}
+

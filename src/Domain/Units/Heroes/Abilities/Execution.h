@@ -5,10 +5,13 @@
 #ifndef GRIMWALL_EXECUTION_H
 #define GRIMWALL_EXECUTION_H
 
-#include "../IAbility.h"
+#include "../AAbility.h"
 
 
-class Execution : IAbility{
+class Execution : public AAbility{
+
+public:
+    Execution();
 
 };
 

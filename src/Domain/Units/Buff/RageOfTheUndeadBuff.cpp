@@ -1,7 +1,7 @@
 #include "RageOfTheUndeadBuff.h"
 
 RageOfTheUndeadBuff::RageOfTheUndeadBuff(IUnit *inner, int multiplier)
-        : BuffDecorator(inner, 300), multiplier{multiplier}
+        : BuffDecorator(inner), multiplier{multiplier}
 {
 }
 

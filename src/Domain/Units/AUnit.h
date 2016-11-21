@@ -4,6 +4,7 @@
 
 #include <iostream>
 #include "IUnit.h"
+#include "Buff/BuffDecorator.h"
 
 class AUnit : public IUnit {
 protected:
@@ -14,9 +15,11 @@ protected:
     int hitPoints;
     int speed;
     int visibility;
+
+    BuffDecorator *buffDecorator;
 public:
     AUnit(std::string name, int reach, int attackDelay, int power, int hitPoints, int speed,
-    int visibility);
+    int visibility, BuffDecorator *decorator);
     ~AUnit();
 
     virtual std::string getName();

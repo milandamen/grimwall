@@ -2,8 +2,8 @@
 #include "AUnit.h"
 
 AUnit::AUnit(std::string name, int reach, int attackDelay, int power, int hitPoints, int speed,
-             int visibility)
-        : name{name}, reach{reach}, attackDelay{attackDelay}, power{power}, hitPoints{hitPoints}, speed{speed}, visibility{visibility}
+             int visibility, BuffDecorator *decorator)
+        : name{name}, reach{reach}, attackDelay{attackDelay}, power{power}, hitPoints{hitPoints}, speed{speed}, visibility{visibility}, buffDecorator{decorator}
 {
 
 }

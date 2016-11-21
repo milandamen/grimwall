@@ -3,13 +3,11 @@
 
 #include "../IUnit.h"
 
-class BuffDecorator : public IUnit {
+class BuffDecorator{
 private:
     IUnit *m_wrappee;
-protected:
-    int duration;
 public:
-    BuffDecorator(IUnit *inner, int duration);
+    BuffDecorator(IUnit *inner);
     ~BuffDecorator(){};
 
     std::string getName();

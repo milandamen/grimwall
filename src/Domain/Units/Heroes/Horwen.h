@@ -6,12 +6,17 @@
 #define GRIMWALL_HORWEN_H
 
 #include <iostream>
+#include <vector>
 #include "./AHero.h"
+#include "AAbility.h"
 
 class Horwen: public AHero {
 
-public:
+private:
+    std::vector<AAbility*> abilities;
+    
 
+public:
     Horwen();
     ~Horwen();
 

@@ -3,3 +3,5 @@
 //
 
 #include "Execution.h"
+
+Execution::Execution() : AAbility(40) {}

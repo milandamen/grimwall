@@ -1,13 +1,12 @@
-//
-// Created by baksteen on 10/24/16.
-//
-
 #ifndef GRIMWALL_STRIKEOFREFLECTION_H
 #define GRIMWALL_STRIKEOFREFLECTION_H
 
-#include "../IAbility.h"
+#include "../AAbility.h"
 
-class StrikeOfReflection : IAbility {
+class StrikeOfReflection : public AAbility {
+
+public:
+    StrikeOfReflection();
 
 };
 
