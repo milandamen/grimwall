@@ -19,6 +19,10 @@ private:
     FIFE::Engine* engine {nullptr};
     FIFE::Map* map {nullptr};
     FIFE::Camera* mainCamera {nullptr};
+
+    double zoomIncrement;
+    double maxZoom;
+    double minZoom;
     
     bool pumpingInitialized {false};
     
@@ -87,4 +91,14 @@ public:
      * Get the current time in milliseconds
      */
     int getTime() override;
+
+    /**
+     * Zoom in
+     */
+    void zoomIn() override;
+
+    /**
+     * Zoom out
+     */
+    void zoomOut() override;
 };

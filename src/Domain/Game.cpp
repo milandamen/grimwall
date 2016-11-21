@@ -27,6 +27,11 @@ Game::Game()
             
             // Update the last time FPS was calculated
             lastTime = EngineFacade::engine()->getTime();
+
+            //zoom in and out
+            //EngineFacade::engine()->zoomIn();
+            //EngineFacade::engine()->zoomOut();
+            
         }
         
         // Render a frame

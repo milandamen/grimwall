@@ -49,6 +49,16 @@ public:
      * Get the current time in milliseconds
      */
     virtual int getTime() = 0;
+
+    /**
+     * Zoom in
+     */
+    virtual void zoomIn() = 0;
+
+    /**
+     * Zoom out
+     */
+    virtual void zoomOut() = 0;
 };
 
 #endif

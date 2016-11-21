@@ -11,6 +11,10 @@ FIFEFacade::FIFEFacade()
     settings.setWindowTitle("Grimwall v0.1");
     settings.setDefaultFontGlyphs("abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789.,!?-+/():;%&amp;`'*#=[]\"");
     settings.setDefaultFontPath(defaultFontPath.string());
+
+    zoomIncrement = 0.75;
+    maxZoom = 4;
+    minZoom = 0.25;
 }
 
 FIFEFacade::~FIFEFacade()
@@ -141,5 +145,31 @@ int FIFEFacade::getFPS()
 int FIFEFacade::getTime()
 {
     return engine->getTimeManager()->getTime();
+}
+
+void FIFEFacade::zoomIn() {
+    if (mainCamera)
+    {
+        // calculate the zoom in level
+        double zoom = mainCamera->getZoom() / zoomIncrement;
+
+        if (zoom <= maxZoom)
+        {
+            mainCamera->setZoom(zoom);
+        }
+    }
+}
+
+void FIFEFacade::zoomOut() {
+    if (mainCamera)
+    {
+        // calculate the zoom out level
+        double zoom = mainCamera->getZoom() * zoomIncrement;
+
+        if (zoom >= minZoom)
+        {
+            mainCamera->setZoom(zoom);
+        }
+    }
 }
 
