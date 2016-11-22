@@ -1,0 +1,10 @@
+<?fife type="atlas"?>
+
+
+<atlas name="waterL.png" namespace="grimwall" width="98" height="48">
+	<image source="waterL.png" xpos="0" ypos="0" width="98" height="48"/>
+</atlas>
+<object id="waterL" namespace="grimwall" blocking="1" static="1">
+	<image source="waterL.png" direction="0" />
+</object>
+

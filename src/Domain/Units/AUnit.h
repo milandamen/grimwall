@@ -12,8 +12,11 @@ protected:
     int attackDelay;
     int power;
     int hitPoints;
+    int speed;
+    int visibility;
 public:
-    AUnit(std::string name, int reach, int attackDelay, int power, int hitPoints);
+    AUnit(std::string name, int reach, int attackDelay, int power, int hitPoints, int speed,
+    int visibility);
     ~AUnit();
 
     virtual std::string getName();
@@ -21,6 +24,8 @@ public:
     virtual int getAttackDelay();
     virtual int getPower();
     virtual int getHitPoints();
+    virtual int getSpeed();
+    virtual int getVisibility();
     virtual void doDamage(int power) = 0;
 };
 
