@@ -1,7 +1,7 @@
  
 #include "FIFEFacade.h"
 
-FIFEFacade::FIFEFacade(Game* game)
+FIFEFacade::FIFEFacade(IGame* game)
 {
     this->game = game;
     engine = new FIFE::Engine();

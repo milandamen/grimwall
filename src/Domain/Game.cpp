@@ -8,6 +8,7 @@ Game::Game()
     EngineFacade::engine()->setRenderBackend("OpenGL");
     
     EngineFacade::engine()->init();
+    initInput();
     EngineFacade::engine()->loadMap("assets/maps/level1_remake_conv.xml");
     
     // Game loop
@@ -41,4 +42,9 @@ Game::Game()
 void Game::quit()
 {
     running = false;
+}
+
+void Game::initInput()
+{
+    keyboardMapper = new KeyboardMapper(this);
 }

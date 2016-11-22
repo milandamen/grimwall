@@ -2,11 +2,13 @@
 #define KEYBOARD_MAPPER_H
 
 #include "../Domain/EngineFacade.h"
+#include "Callbacks/QuitCallback.h"
+#include "../Domain/IGame.h"
 
 class KeyboardMapper
 {
 public:
-    KeyboardMapper();
+    KeyboardMapper(IGame* game);
 };
 
 #endif

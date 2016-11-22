@@ -15,11 +15,8 @@
 
 #include "../IEngineFacade.h"
 #include "FIFEKeyListener.h"
-#include "../Game.h"
+#include "../IGame.h"
 #include "../../Input/ICallback.h"
-
-class Game;
-class FIFEKeyListener;
 
 namespace fs = boost::filesystem;
 
@@ -29,7 +26,7 @@ private:
     FIFE::Map* map {nullptr};
     FIFE::Camera* mainCamera {nullptr};
     
-    Game* game {nullptr};
+    IGame* game {nullptr};
     FIFEKeyListener* keyListener {nullptr};
     
     bool pumpingInitialized {false};
@@ -37,7 +34,7 @@ private:
     void initView();
     void initInput();
 public:
-    FIFEFacade(Game* game);
+    FIFEFacade(IGame* game);
     ~FIFEFacade();
     
     

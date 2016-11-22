@@ -8,22 +8,26 @@
 #include <unordered_map>
 #include <iostream>
 #include <memory>
+#include <string>
+#include <sstream>
+#include <vector>
+#include <algorithm>
+#include <functional>
+#include <cctype>
 
-#include "../Game.h"
+#include "../IGame.h"
 #include "../../Input/ICallback.h"
-
-class Game;
 
 //! handler for listening to keyboard input
 class FIFEKeyListener : public FIFE::IKeyListener
 {
 private:
-    Game* game;
+    IGame* game;
     std::unordered_map<std::string, FIFE::Key::KeyType>* keyMap {nullptr};
     std::unordered_map<std::string, ICallback*> callbackMap;
     void setKeyMap();
 public:
-    FIFEKeyListener(Game* game);
+    FIFEKeyListener(IGame* game);
     ~FIFEKeyListener();
     
     void registerCallback(std::string keys, ICallback* callback);

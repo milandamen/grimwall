@@ -9,7 +9,7 @@ IEngineFacade* EngineFacade::engine()
     return _engine;
 }
 
-void EngineFacade::setEngine(std::__cxx11::string engine, Game* game)
+void EngineFacade::setEngine(std::__cxx11::string engine, IGame* game)
 {
     if (engine == "FIFE" && currentEngineName != engine)
     {
