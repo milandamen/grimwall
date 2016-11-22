@@ -23,9 +23,7 @@ class FIFEKeyListener : public FIFE::IKeyListener
 {
 private:
     IGame* game;
-    std::unordered_map<std::string, FIFE::Key::KeyType>* keyMap {nullptr};
     std::unordered_map<std::string, ICallback*> callbackMap;
-    void setKeyMap();
 public:
     FIFEKeyListener(IGame* game);
     ~FIFEKeyListener();

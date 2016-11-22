@@ -5,5 +5,5 @@ class QuitCallback : public KeypressCallback
 {
 public:
     QuitCallback(IGame* game);
-    virtual void execute();
+    virtual void execute() override;
 };

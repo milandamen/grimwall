@@ -37,6 +37,7 @@ Game::Game()
     }
     
     EngineFacade::destroy();     // TODO Currently crashes (SEGFAULT), problem not in my code.
+    delete keyboardMapper;
 }
 
 void Game::quit()
