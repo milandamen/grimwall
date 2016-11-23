@@ -98,7 +98,6 @@ void FIFEFacade::initView()
     {
         // get the main camera for this map
         mainCamera = map->getCamera("main");
-
         if (mainCamera)
         {
             // attach the controller to the camera

@@ -79,8 +79,7 @@ public:
      * Load a map specified by the path into the engine.
      */
     void loadMap(std::string path) override;
-    
-    
+
     /**** Running ****/
     
     /**
