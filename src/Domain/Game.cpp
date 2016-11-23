@@ -4,16 +4,17 @@
 
 Game::Game()
 {
-    EngineFacade::setEngine("FIFE");
+    EngineFacade::setEngine("FIFE", this);
     EngineFacade::engine()->setRenderBackend("OpenGL");
     
     EngineFacade::engine()->init();
+    initInput();
     EngineFacade::engine()->loadMap("assets/maps/level1_remake_conv.xml");
     
     // Game loop
     int lastTime = 0;
     int curTime = 0;
-    while (!quit)
+    while (running)
     {
         // Update FPS reading approx. every second
         if ((curTime > 0) && (curTime - lastTime >= 1000))
@@ -35,5 +36,16 @@ Game::Game()
         curTime = EngineFacade::engine()->getTime();
     }
     
-//     EngineFacade::destroy();     // TODO Currently crashes (SEGFAULT), problem not in my code.
+    EngineFacade::destroy();     // TODO Currently crashes (SEGFAULT), problem not in my code.
+    delete keyboardMapper;
+}
+
+void Game::quit()
+{
+    running = false;
+}
+
+void Game::initInput()
+{
+    keyboardMapper = new KeyboardMapper(this);
 }

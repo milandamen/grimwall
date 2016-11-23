@@ -1,16 +1,22 @@
+#ifndef FIFE_FACADE_H
+#define FIFE_FACADE_H
 
-#include "../IEngineFacade.h"
-
-#include "fife/core/controller/engine.h"
-#include "fife/core/controller/enginesettings.h"
-#include "fife/core/loaders/native/map/maploader.h"
+#include "controller/engine.h"
+#include "controller/enginesettings.h"
+#include "loaders/native/map/maploader.h"
 #include "model/structures/map.h"
 #include "model/structures/layer.h"
-#include "fife/core/view/camera.h"
+#include "view/camera.h"
 #include "util/time/timemanager.h"
+#include "eventchannel/eventmanager.h"
 
 #include "boost/filesystem.hpp"
 #include "SDL.h"
+
+#include "../IEngineFacade.h"
+#include "FIFEKeyListener.h"
+#include "../IGame.h"
+#include "../../Input/ICallback.h"
 
 namespace fs = boost::filesystem;
 
@@ -20,11 +26,15 @@ private:
     FIFE::Map* map {nullptr};
     FIFE::Camera* mainCamera {nullptr};
     
+    IGame* game {nullptr};
+    FIFEKeyListener* keyListener {nullptr};
+    
     bool pumpingInitialized {false};
     
     void initView();
+    void initInput();
 public:
-    FIFEFacade();
+    FIFEFacade(IGame* game);
     ~FIFEFacade();
     
     
@@ -91,5 +101,12 @@ public:
     /**
      * Get layer by name
      */
-    void setInstanceLocation(std::string name, int x, int y);
+    void setInstanceLocation(std::string name, int x, int y) override;
+    
+    /**
+     * Register a callback with a key combination
+     */
+    void registerCallback(std::string, ICallback* callback) override;
 };
+
+#endif

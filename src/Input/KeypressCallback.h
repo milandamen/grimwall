@@ -1,14 +1,15 @@
-//
-// Created by joost on 10/11/2016.
-//
+#ifndef KEYPRESS_CALLBACK_H
+#define KEYPRESS_CALLBACK_H
 
-#ifndef GRIMWALL_KEYPRESSCALLBACK_H
-#define GRIMWALL_KEYPRESSCALLBACK_H
+#include "ICallback.h"
+#include "../Domain/IGame.h"
 
-
-class KeypressCallback {
-
+class KeypressCallback : public ICallback
+{
+protected:
+    IGame* game;
+    
+    KeypressCallback(IGame* game);
 };
 
-
-#endif //GRIMWALL_KEYPRESSCALLBACK_H
+#endif

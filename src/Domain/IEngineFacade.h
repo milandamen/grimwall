@@ -3,6 +3,8 @@
 
 #include <iostream>
 
+#include "../Input/ICallback.h"
+
 /**
  * Class to be extended by classes like FIFEFacade
  */
@@ -50,6 +52,11 @@ public:
      * Get the current time in milliseconds
      */
     virtual int getTime() = 0;
+    
+    /**
+     * Register a callback with a key combination
+     */
+    virtual void registerCallback(std::string, ICallback* callback) = 0;
 };
 
 #endif
