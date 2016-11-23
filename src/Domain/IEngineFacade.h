@@ -20,7 +20,7 @@ public:
     virtual void setScreenHeight(int height) = 0;
     virtual void setFullScreen(bool fullScreen) = 0;
     virtual void setWindowTitle(std::string title) = 0;
-    virtual void setInstanceLocation(std::string name, int x, int y) = 0;
+    virtual void setInstanceLocation(std::string name, double x, double y) = 0;
     
     /** Initializing **/
     

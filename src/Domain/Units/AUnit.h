@@ -14,6 +14,9 @@ protected:
     int hitPoints;
     int speed;
     int visibility;
+
+    double x = 0;
+    double y = 0;
 public:
     AUnit(std::string name, int reach, int attackDelay, int power, int hitPoints, int speed,
     int visibility);
@@ -27,6 +30,11 @@ public:
     virtual int getSpeed();
     virtual int getVisibility();
     virtual void doDamage(int power) = 0;
+
+    double getX() override;
+    void setX(double x) override;
+    double getY() override;
+    void setY(double y) override;
 };
 
 
