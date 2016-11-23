@@ -19,7 +19,7 @@ private:
     FIFE::Engine* engine {nullptr};
     FIFE::Map* map {nullptr};
     FIFE::Camera* mainCamera {nullptr};
-    
+
     bool pumpingInitialized {false};
     
     void initView();
@@ -87,4 +87,11 @@ public:
      * Get the current time in milliseconds
      */
     int getTime() override;
+
+    /**
+     *  load towers from map
+     */
+    std::vector<std::string> loadTowers() override;
+
+
 };

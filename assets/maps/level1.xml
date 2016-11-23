@@ -407,13 +407,13 @@
     <layer id="layer2" x_offset="0" y_offset="0" z_offset="0" x_scale="1" y_scale="1" rotation="0" grid_type="square" transparency="0" pathing="cell_edges_only" sorting="camera">
         <instances>
             <i ns="grimwall" o="tower" x="3" y="-3" z="0" r="0" blocking="1" stackpos="0" />
-            <i o="tower" x="2" y="-7" z="0" r="0" blocking="1" stackpos="0" />
+            <i o="tower" x="2" y="-7" z="0" r="0" id="defaultTower1" blocking="1" stackpos="0" />
 	        <i o="tree" x="6" y="-7" z="0" r="0" blocking="1" stackpos="0" />
-            <i o="tower" x="-3" y="-9" z="0" r="0" blocking="1" stackpos="0" />
-            <i o="tower" x="10" y="-9" z="0" r="0" blocking="1" stackpos="0" />
-            <i o="tower" x="14" y="-8" z="0" r="0" blocking="1" stackpos="0" />
-            <i o="tower" x="10" y="-1" z="0" r="0" blocking="1" stackpos="0" />
-            <i o="tower" x="17" y="-2" z="0" r="0" blocking="1" stackpos="0" />
+            <i o="tower" x="-3" y="-9" z="0" r="0" id="defaultTower2" blocking="1" stackpos="0" />
+            <i o="tower" x="10" y="-9" z="0" r="0" id="defaultTower3" blocking="1" stackpos="0" />
+            <i o="tower" x="14" y="-8" z="0" r="0" id="defaultTower4" blocking="1" stackpos="0" />
+            <i o="tower" x="10" y="-1" z="0" r="0" id="defaultTower5" blocking="1" stackpos="0" />
+            <i o="tower" x="17" y="-2" z="0" r="0" id="defaultTower6" blocking="1" stackpos="0" />
         </instances>
     </layer>
     <cellcaches />

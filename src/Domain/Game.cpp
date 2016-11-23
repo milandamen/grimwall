@@ -8,8 +8,9 @@ Game::Game()
     EngineFacade::engine()->setRenderBackend("OpenGL");
     
     EngineFacade::engine()->init();
-    EngineFacade::engine()->loadMap("assets/maps/level1_remake_conv.xml");
-    
+    EngineFacade::engine()->loadMap("assets/maps/level1.xml");
+    loadTowers();
+
     // Game loop
     int lastTime = 0;
     int curTime = 0;
@@ -36,4 +37,32 @@ Game::Game()
     }
     
 //     EngineFacade::destroy();     // TODO Currently crashes (SEGFAULT), problem not in my code.
+}
+
+void Game::loadTowers()
+{
+    std::vector<std::string> towerIds = EngineFacade::engine()->loadTowers();
+
+    for (unsigned int i = 0; i < towerIds.size(); ++i)
+    {
+        ATower* tower = new DefaultTower();
+        tower->setId(towerIds.at(i));
+
+        this->towers.push_back(tower);
+    }
+
+    std::cout << "Nr of towers:  "<< this->towers.size() << std::endl;
+    for (unsigned int i = 0; i < towerIds.size(); ++i)
+    {
+        std::cout << this->towers.at(i)->getId() << std::endl;
+    }
+}
+
+void Game::deleteTowers()
+{
+    for (unsigned int i = 0; i < this->towers.size(); ++i)
+    {
+        delete this->towers.at(i);
+    }
+    this->towers.clear();
 }

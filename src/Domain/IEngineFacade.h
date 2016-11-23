@@ -2,6 +2,7 @@
 #define IENGINEFACADE_H
 
 #include <iostream>
+#include <vector>
 
 /**
  * Class to be extended by classes like FIFEFacade
@@ -49,6 +50,11 @@ public:
      * Get the current time in milliseconds
      */
     virtual int getTime() = 0;
+
+    /**
+     *  load towers from map
+     */
+    virtual std::vector<std::string> loadTowers() = 0;
 };
 
 #endif

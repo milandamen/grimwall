@@ -1,6 +1,7 @@
  
 #include "FIFEFacade.h"
 
+
 FIFEFacade::FIFEFacade()
 {
     engine = new FIFE::Engine();
@@ -142,4 +143,32 @@ int FIFEFacade::getTime()
 {
     return engine->getTimeManager()->getTime();
 }
+
+std::vector<std::string> FIFEFacade::loadTowers()
+{
+    FIFE::Layer* layer = map->getLayer("layer2");
+    std::vector<std::string> idList;
+    if(layer)
+    {
+        std::vector<FIFE::Instance*> instances = layer->getInstances();
+
+        //get the towers
+        for (unsigned int i = 0; i < instances.size(); ++i)
+        {
+            //select instances with tower in their id
+            std::string id = instances.at(i)->getId();
+
+            if(id.find("Tower")  != std::string::npos)
+            {
+                idList.push_back(id);
+            }
+        }
+    }
+
+    return idList;
+
+
+}
+
+
 
