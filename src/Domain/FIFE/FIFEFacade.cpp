@@ -1,8 +1,9 @@
  
 #include "FIFEFacade.h"
 
-FIFEFacade::FIFEFacade()
+FIFEFacade::FIFEFacade(IGame* game)
 {
+    this->game = game;
     engine = new FIFE::Engine();
     fs::path defaultFontPath("assets/fonts/FreeSans.ttf");
     FIFE::EngineSettings& settings = engine->getSettings();
@@ -15,9 +16,10 @@ FIFEFacade::FIFEFacade()
 
 FIFEFacade::~FIFEFacade()
 {
-    delete mainCamera;
-    delete map;
-    delete engine;
+    delete keyListener;
+//     delete mainCamera;
+//     delete map;
+//     delete engine;
 }
 
 void FIFEFacade::setRenderBackend(std::string engine)
@@ -55,6 +57,7 @@ void FIFEFacade::setWindowTitle(std::string title)
 void FIFEFacade::init()
 {
     engine->init();
+    initInput();
 }
 
 void FIFEFacade::loadMap(std::string path)
@@ -126,6 +129,16 @@ void FIFEFacade::initView()
     }
 }
 
+void FIFEFacade::initInput()
+{
+    if(engine->getEventManager() && engine->getModel())
+    {
+        // attach our key listener to the engine
+        keyListener = new FIFEKeyListener(game);
+        engine->getEventManager()->addKeyListener(keyListener);
+    }
+}
+
 void FIFEFacade::render()
 {
     engine->pump();
@@ -141,5 +154,10 @@ int FIFEFacade::getFPS()
 int FIFEFacade::getTime()
 {
     return engine->getTimeManager()->getTime();
+}
+
+void FIFEFacade::registerCallback(std::string keys, ICallback* callback)
+{
+    keyListener->registerCallback(keys, callback);
 }
 
