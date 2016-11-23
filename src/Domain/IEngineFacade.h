@@ -4,6 +4,8 @@
 #include <iostream>
 #include <vector>
 
+#include "../Input/ICallback.h"
+
 /**
  * Class to be extended by classes like FIFEFacade
  */
@@ -19,7 +21,8 @@ public:
     virtual void setScreenHeight(int height) = 0;
     virtual void setFullScreen(bool fullScreen) = 0;
     virtual void setWindowTitle(std::string title) = 0;
-    
+    virtual void setInstanceLocation(std::string name, int x, int y) = 0;
+
     /** Initializing **/
     
     /**
@@ -50,6 +53,11 @@ public:
      * Get the current time in milliseconds
      */
     virtual int getTime() = 0;
+
+    /**
+     * Register a callback with a key combination
+     */
+    virtual void registerCallback(std::string, ICallback* callback) = 0;
 
     /**
      *  load towers from map

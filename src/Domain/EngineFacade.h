@@ -4,6 +4,7 @@
 
 #include <iostream>
 #include "IEngineFacade.h"
+#include "IGame.h"
 #include "FIFE/FIFEFacade.h"
 
 /**
@@ -18,7 +19,7 @@ private:
     ~EngineFacade();
 public:
     static IEngineFacade* engine();
-    static void setEngine(std::string engine);
+    static void setEngine(std::string engine, IGame* game);
     static void destroy();
 };
 

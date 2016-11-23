@@ -1,9 +1,9 @@
  
 #include "FIFEFacade.h"
 
-
-FIFEFacade::FIFEFacade()
+FIFEFacade::FIFEFacade(IGame* game)
 {
+    this->game = game;
     engine = new FIFE::Engine();
     fs::path defaultFontPath("assets/fonts/FreeSans.ttf");
     FIFE::EngineSettings& settings = engine->getSettings();
@@ -16,9 +16,10 @@ FIFEFacade::FIFEFacade()
 
 FIFEFacade::~FIFEFacade()
 {
-    delete mainCamera;
-    delete map;
-    delete engine;
+    delete keyListener;
+//     delete mainCamera;
+//     delete map;
+//     delete engine;
 }
 
 void FIFEFacade::setRenderBackend(std::string engine)
@@ -56,6 +57,7 @@ void FIFEFacade::setWindowTitle(std::string title)
 void FIFEFacade::init()
 {
     engine->init();
+    initInput();
 }
 
 void FIFEFacade::loadMap(std::string path)
@@ -127,6 +129,16 @@ void FIFEFacade::initView()
     }
 }
 
+void FIFEFacade::initInput()
+{
+    if(engine->getEventManager() && engine->getModel())
+    {
+        // attach our key listener to the engine
+        keyListener = new FIFEKeyListener(game);
+        engine->getEventManager()->addKeyListener(keyListener);
+    }
+}
+
 void FIFEFacade::render()
 {
     engine->pump();
@@ -142,6 +154,39 @@ int FIFEFacade::getFPS()
 int FIFEFacade::getTime()
 {
     return engine->getTimeManager()->getTime();
+}
+
+void FIFEFacade::setInstanceLocation(std::string name, int x, int y) {
+    if (map) {
+        std::cout << "map, ";
+        FIFE::Layer *layer = map->getLayer("unitLayer");
+
+        if (layer) {
+            std::cout << "layer, ";
+            FIFE::Instance *instance = layer->getInstance(name);
+
+            if (instance) {
+                std::cout << "instance, ";
+
+                // Get the current location of the instance
+                FIFE::Location destination(instance->getLocation());
+
+                FIFE::ScreenPoint screenPoint(x, y);
+                FIFE::ExactModelCoordinate mapCoords{};
+                mapCoords.x = x;
+                mapCoords.y = y;
+                mapCoords.z = 0.0;
+                destination.setMapCoordinates(mapCoords);
+
+                instance->setLocation(destination);
+            }
+        }
+    }
+}
+
+void FIFEFacade::registerCallback(std::string keys, ICallback* callback)
+{
+    keyListener->registerCallback(keys, callback);
 }
 
 std::vector<std::string> FIFEFacade::loadTowers()
