@@ -1,6 +1,3 @@
-//
-// Created by roel on 14-11-16.
-//
 
 #ifndef GRIMWALL_IVISITOR_H
 #define GRIMWALL_IVISITOR_H
