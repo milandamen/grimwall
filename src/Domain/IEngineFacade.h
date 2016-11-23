@@ -3,6 +3,7 @@
 
 #include <iostream>
 
+#include "eventchannel/mouse/ec_mouseevent.h"
 #include "../Input/ICallback.h"
 
 /**
@@ -66,6 +67,12 @@ public:
      * Zoom out
      */
     virtual void zoomOut() = 0;
+
+    /**
+     * update screen camera
+     */
+    virtual void updateLocation(/*FIFE::MouseEvent& evt*/ int x, int y) = 0;
+
 };
 
 #endif

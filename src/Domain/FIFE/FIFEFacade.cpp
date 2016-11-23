@@ -77,7 +77,7 @@ void FIFEFacade::loadMap(std::string path)
         if (mapLoader) {
             // load the map
             map = mapLoader->load(mapPath.string());
-            fifeCamera = new FIFECamera(map);
+            fifeCamera = new FIFECamera(map, engine->getEventManager(), engine->getTimeManager());
         }
 
         // done with map loader safe to delete
@@ -136,5 +136,9 @@ void FIFEFacade::zoomIn() {
 
 void FIFEFacade::zoomOut() {
     fifeCamera->zoomOut();
+}
+
+void FIFEFacade::updateLocation(/*FIFE::MouseEvent &evt*/ int x, int y) {
+    fifeCamera->updateLocation(x, y);
 }
 

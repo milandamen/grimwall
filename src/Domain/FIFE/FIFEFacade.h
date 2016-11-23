@@ -17,7 +17,7 @@
 #include "FIFEKeyListener.h"
 #include "../IGame.h"
 #include "../../Input/ICallback.h"
-#include "FIFECamera.h"
+#include "Camera/FIFECamera.h"
 
 namespace fs = boost::filesystem;
 
@@ -113,6 +113,12 @@ public:
      * Zoom out
      */
     void zoomOut() override;
+
+    /**
+     * Update location
+     */
+    void updateLocation(/*FIFE::MouseEvent& evt*/ int x, int y) override;
+
 };
 
 #endif

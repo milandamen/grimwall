@@ -1,10 +1,6 @@
-//
-// Created by joost on 11/23/16.
-//
-
 #include "FIFECamera.h"
 
-FIFECamera::FIFECamera(FIFE::Map *map) {
+FIFECamera::FIFECamera(FIFE::Map *map, FIFE::EventManager* eventManager, FIFE::TimeManager* timeManager) : eventManager{eventManager}, timeManager{timeManager}{
     this->map = map;
 
     zoomIncrement = 0.75;
@@ -33,17 +29,8 @@ void FIFECamera::initView() {
                 // for this map, this must be done to see anything
                 renderer->activateAllLayers(map);
             }
-
-//             // get the mini camera attached to the map
-//             FIFE::Camera* miniCamera = map->getCamera("small");
-//
-//             // default the small camera to off, we will revisit the
-//             // mini camera in a later demo
-//             if (miniCamera)
-//             {
-//                 miniCamera->setEnabled(false);
-//             }
         }
+        cameraScroller = new FIFECameraScroller(mainCamera, eventManager, timeManager);
     }
 
 }
@@ -72,4 +59,8 @@ void FIFECamera::zoomOut(){
             mainCamera->setZoom(zoom);
         }
     }
+}
+
+void FIFECamera::updateLocation(int x, int y) {
+    cameraScroller->updateLocation(x,y);
 }
