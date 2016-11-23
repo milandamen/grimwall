@@ -101,6 +101,11 @@ public:
      * Get the current time in milliseconds
      */
     int getTime() override;
+
+    /**
+     * Get layer by name
+     */
+    void setInstanceLocation(std::string name, int x, int y) override;
     
     /**
      * Register a callback with a key combination
