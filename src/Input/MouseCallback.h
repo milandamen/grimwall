@@ -12,7 +12,7 @@ protected:
     
     MouseCallback(IGame* game);
 public:
-    void execute(IMouseEvent* event);
+    virtual void execute(IMouseEvent* event);
 };
 
 #endif
