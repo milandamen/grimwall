@@ -17,6 +17,7 @@
 #include "FIFEKeyListener.h"
 #include "../IGame.h"
 #include "../../Input/ICallback.h"
+#include "FIFECamera.h"
 
 namespace fs = boost::filesystem;
 
@@ -24,11 +25,7 @@ class FIFEFacade : public IEngineFacade {
 private:
     FIFE::Engine* engine {nullptr};
     FIFE::Map* map {nullptr};
-    FIFE::Camera* mainCamera {nullptr};
-
-    double zoomIncrement;
-    double maxZoom;
-    double minZoom;
+    FIFECamera* fifeCamera {nullptr};
     
     IGame* game {nullptr};
     FIFEKeyListener* keyListener {nullptr};
