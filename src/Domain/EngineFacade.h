@@ -17,6 +17,7 @@ private:
     
     EngineFacade();
     ~EngineFacade();
+
 public:
     static IEngineFacade* engine();
     static void setEngine(std::string engine, IGame* game);

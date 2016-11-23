@@ -1,0 +1,434 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6"/>
+	<Project>
+		<Option title="Grimwall"/>
+		<Option makefile_is_custom="1"/>
+		<Option compiler="gcc"/>
+		<Option virtualFolders="CMake Files\;CMake Files\CMake\;CMake Files\CMake\Modules\;"/>
+		<Build>
+			<Target title="all">
+				<Option working_dir="/home/baksteen/Project/grimwall/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/home/baksteen/Project/grimwall/cmake-build-debug/Makefile&quot;  VERBOSE=1 all"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/baksteen/Project/grimwall/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/home/baksteen/Project/grimwall/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/home/baksteen/Project/grimwall/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="rebuild_cache">
+				<Option working_dir="/home/baksteen/Project/grimwall/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/home/baksteen/Project/grimwall/cmake-build-debug/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/baksteen/Project/grimwall/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/home/baksteen/Project/grimwall/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/home/baksteen/Project/grimwall/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="list_install_components">
+				<Option working_dir="/home/baksteen/Project/grimwall/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/home/baksteen/Project/grimwall/cmake-build-debug/Makefile&quot;  VERBOSE=1 list_install_components"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/baksteen/Project/grimwall/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/home/baksteen/Project/grimwall/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/home/baksteen/Project/grimwall/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="install">
+				<Option working_dir="/home/baksteen/Project/grimwall/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/home/baksteen/Project/grimwall/cmake-build-debug/Makefile&quot;  VERBOSE=1 install"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/baksteen/Project/grimwall/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/home/baksteen/Project/grimwall/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/home/baksteen/Project/grimwall/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="install/local">
+				<Option working_dir="/home/baksteen/Project/grimwall/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/home/baksteen/Project/grimwall/cmake-build-debug/Makefile&quot;  VERBOSE=1 install/local"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/baksteen/Project/grimwall/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/home/baksteen/Project/grimwall/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/home/baksteen/Project/grimwall/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="install/strip">
+				<Option working_dir="/home/baksteen/Project/grimwall/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/home/baksteen/Project/grimwall/cmake-build-debug/Makefile&quot;  VERBOSE=1 install/strip"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/baksteen/Project/grimwall/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/home/baksteen/Project/grimwall/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/home/baksteen/Project/grimwall/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="edit_cache">
+				<Option working_dir="/home/baksteen/Project/grimwall/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/home/baksteen/Project/grimwall/cmake-build-debug/Makefile&quot;  VERBOSE=1 edit_cache"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/baksteen/Project/grimwall/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/home/baksteen/Project/grimwall/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/home/baksteen/Project/grimwall/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="copy_assets">
+				<Option working_dir="/home/baksteen/Project/grimwall/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/home/baksteen/Project/grimwall/cmake-build-debug/Makefile&quot;  VERBOSE=1 copy_assets"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/baksteen/Project/grimwall/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/home/baksteen/Project/grimwall/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/home/baksteen/Project/grimwall/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="Grimwall">
+				<Option output="/home/baksteen/Project/grimwall/cmake-build-debug/Grimwall" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/baksteen/Project/grimwall/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add option="-DBOOST_ALL_NO_LIB"/>
+					<Add directory="/usr/include/SDL2"/>
+					<Add directory="/usr/local/include/fife/core"/>
+					<Add directory="/home/baksteen/Project/grimwall/FIFECHAN_INCLUDE_DIR-NOTFOUND/fifechan"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/6/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/6/include-fixed"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+					<Add directory="/usr/include/c++/6"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/6"/>
+					<Add directory="/usr/include/c++/6/backward"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/home/baksteen/Project/grimwall/cmake-build-debug/Makefile&quot;  VERBOSE=1 Grimwall"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/baksteen/Project/grimwall/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/home/baksteen/Project/grimwall/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/home/baksteen/Project/grimwall/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="Grimwall/fast">
+				<Option output="/home/baksteen/Project/grimwall/cmake-build-debug/Grimwall" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/baksteen/Project/grimwall/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add option="-DBOOST_ALL_NO_LIB"/>
+					<Add directory="/usr/include/SDL2"/>
+					<Add directory="/usr/local/include/fife/core"/>
+					<Add directory="/home/baksteen/Project/grimwall/FIFECHAN_INCLUDE_DIR-NOTFOUND/fifechan"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/6/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/6/include-fixed"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+					<Add directory="/usr/include/c++/6"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/6"/>
+					<Add directory="/usr/include/c++/6/backward"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/home/baksteen/Project/grimwall/cmake-build-debug/Makefile&quot;  VERBOSE=1 Grimwall/fast"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/baksteen/Project/grimwall/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/home/baksteen/Project/grimwall/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/home/baksteen/Project/grimwall/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+		</Build>
+		<Unit filename="/home/baksteen/Project/grimwall/src/Domain/EngineFacade.cpp">
+			<Option target="Grimwall"/>
+		</Unit>
+		<Unit filename="/home/baksteen/Project/grimwall/src/Domain/EngineFacade.h">
+			<Option target="Grimwall"/>
+		</Unit>
+		<Unit filename="/home/baksteen/Project/grimwall/src/Domain/FIFE/FIFEFacade.cpp">
+			<Option target="Grimwall"/>
+		</Unit>
+		<Unit filename="/home/baksteen/Project/grimwall/src/Domain/FIFE/FIFEFacade.h">
+			<Option target="Grimwall"/>
+		</Unit>
+		<Unit filename="/home/baksteen/Project/grimwall/src/Domain/FIFE/FIFEKeyListener.cpp">
+			<Option target="Grimwall"/>
+		</Unit>
+		<Unit filename="/home/baksteen/Project/grimwall/src/Domain/FIFE/FIFEKeyListener.h">
+			<Option target="Grimwall"/>
+		</Unit>
+		<Unit filename="/home/baksteen/Project/grimwall/src/Domain/FIFE/FIFEMouseListener.cpp">
+			<Option target="Grimwall"/>
+		</Unit>
+		<Unit filename="/home/baksteen/Project/grimwall/src/Domain/FIFE/FIFEMouseListener.h">
+			<Option target="Grimwall"/>
+		</Unit>
+		<Unit filename="/home/baksteen/Project/grimwall/src/Domain/Game.cpp">
+			<Option target="Grimwall"/>
+		</Unit>
+		<Unit filename="/home/baksteen/Project/grimwall/src/Domain/Game.h">
+			<Option target="Grimwall"/>
+		</Unit>
+		<Unit filename="/home/baksteen/Project/grimwall/src/Domain/IEngineFacade.cpp">
+			<Option target="Grimwall"/>
+		</Unit>
+		<Unit filename="/home/baksteen/Project/grimwall/src/Domain/IEngineFacade.h">
+			<Option target="Grimwall"/>
+		</Unit>
+		<Unit filename="/home/baksteen/Project/grimwall/src/Domain/IGame.h">
+			<Option target="Grimwall"/>
+		</Unit>
+		<Unit filename="/home/baksteen/Project/grimwall/src/Domain/IMovable.h">
+			<Option target="Grimwall"/>
+		</Unit>
+		<Unit filename="/home/baksteen/Project/grimwall/src/Domain/IVisitable.h">
+			<Option target="Grimwall"/>
+		</Unit>
+		<Unit filename="/home/baksteen/Project/grimwall/src/Domain/LevelBuilder.cpp">
+			<Option target="Grimwall"/>
+		</Unit>
+		<Unit filename="/home/baksteen/Project/grimwall/src/Domain/LevelBuilder.h">
+			<Option target="Grimwall"/>
+		</Unit>
+		<Unit filename="/home/baksteen/Project/grimwall/src/Domain/UnitFactory.cpp">
+			<Option target="Grimwall"/>
+		</Unit>
+		<Unit filename="/home/baksteen/Project/grimwall/src/Domain/UnitFactory.h">
+			<Option target="Grimwall"/>
+		</Unit>
+		<Unit filename="/home/baksteen/Project/grimwall/src/Domain/Units/AUnit.cpp">
+			<Option target="Grimwall"/>
+		</Unit>
+		<Unit filename="/home/baksteen/Project/grimwall/src/Domain/Units/AUnit.h">
+			<Option target="Grimwall"/>
+		</Unit>
+		<Unit filename="/home/baksteen/Project/grimwall/src/Domain/Units/Buff/BoneStormBuff.cpp">
+			<Option target="Grimwall"/>
+		</Unit>
+		<Unit filename="/home/baksteen/Project/grimwall/src/Domain/Units/Buff/BoneStormBuff.h">
+			<Option target="Grimwall"/>
+		</Unit>
+		<Unit filename="/home/baksteen/Project/grimwall/src/Domain/Units/Buff/BuffDecorator.cpp">
+			<Option target="Grimwall"/>
+		</Unit>
+		<Unit filename="/home/baksteen/Project/grimwall/src/Domain/Units/Buff/BuffDecorator.h">
+			<Option target="Grimwall"/>
+		</Unit>
+		<Unit filename="/home/baksteen/Project/grimwall/src/Domain/Units/Buff/DeathStrikeBuff.cpp">
+			<Option target="Grimwall"/>
+		</Unit>
+		<Unit filename="/home/baksteen/Project/grimwall/src/Domain/Units/Buff/DeathStrikeBuff.h">
+			<Option target="Grimwall"/>
+		</Unit>
+		<Unit filename="/home/baksteen/Project/grimwall/src/Domain/Units/Buff/RageOfTheUndeadBuff.cpp">
+			<Option target="Grimwall"/>
+		</Unit>
+		<Unit filename="/home/baksteen/Project/grimwall/src/Domain/Units/Buff/RageOfTheUndeadBuff.h">
+			<Option target="Grimwall"/>
+		</Unit>
+		<Unit filename="/home/baksteen/Project/grimwall/src/Domain/Units/Buff/SmokeBombBuff.cpp">
+			<Option target="Grimwall"/>
+		</Unit>
+		<Unit filename="/home/baksteen/Project/grimwall/src/Domain/Units/Buff/SmokeBombBuff.h">
+			<Option target="Grimwall"/>
+		</Unit>
+		<Unit filename="/home/baksteen/Project/grimwall/src/Domain/Units/Buff/StealthSpeedBuff.cpp">
+			<Option target="Grimwall"/>
+		</Unit>
+		<Unit filename="/home/baksteen/Project/grimwall/src/Domain/Units/Buff/StealthSpeedBuff.h">
+			<Option target="Grimwall"/>
+		</Unit>
+		<Unit filename="/home/baksteen/Project/grimwall/src/Domain/Units/Buff/StealthVisibilityBuff.cpp">
+			<Option target="Grimwall"/>
+		</Unit>
+		<Unit filename="/home/baksteen/Project/grimwall/src/Domain/Units/Buff/StealthVisibilityBuff.h">
+			<Option target="Grimwall"/>
+		</Unit>
+		<Unit filename="/home/baksteen/Project/grimwall/src/Domain/Units/Heroes/AAbility.cpp">
+			<Option target="Grimwall"/>
+		</Unit>
+		<Unit filename="/home/baksteen/Project/grimwall/src/Domain/Units/Heroes/AAbility.h">
+			<Option target="Grimwall"/>
+		</Unit>
+		<Unit filename="/home/baksteen/Project/grimwall/src/Domain/Units/Heroes/AHero.cpp">
+			<Option target="Grimwall"/>
+		</Unit>
+		<Unit filename="/home/baksteen/Project/grimwall/src/Domain/Units/Heroes/AHero.h">
+			<Option target="Grimwall"/>
+		</Unit>
+		<Unit filename="/home/baksteen/Project/grimwall/src/Domain/Units/Heroes/Abilities/Bomb.cpp">
+			<Option target="Grimwall"/>
+		</Unit>
+		<Unit filename="/home/baksteen/Project/grimwall/src/Domain/Units/Heroes/Abilities/Bomb.h">
+			<Option target="Grimwall"/>
+		</Unit>
+		<Unit filename="/home/baksteen/Project/grimwall/src/Domain/Units/Heroes/Abilities/BoneStorm.cpp">
+			<Option target="Grimwall"/>
+		</Unit>
+		<Unit filename="/home/baksteen/Project/grimwall/src/Domain/Units/Heroes/Abilities/BoneStorm.h">
+			<Option target="Grimwall"/>
+		</Unit>
+		<Unit filename="/home/baksteen/Project/grimwall/src/Domain/Units/Heroes/Abilities/DeathStrike.cpp">
+			<Option target="Grimwall"/>
+		</Unit>
+		<Unit filename="/home/baksteen/Project/grimwall/src/Domain/Units/Heroes/Abilities/DeathStrike.h">
+			<Option target="Grimwall"/>
+		</Unit>
+		<Unit filename="/home/baksteen/Project/grimwall/src/Domain/Units/Heroes/Abilities/EvasiveManeuvers.cpp">
+			<Option target="Grimwall"/>
+		</Unit>
+		<Unit filename="/home/baksteen/Project/grimwall/src/Domain/Units/Heroes/Abilities/EvasiveManeuvers.h">
+			<Option target="Grimwall"/>
+		</Unit>
+		<Unit filename="/home/baksteen/Project/grimwall/src/Domain/Units/Heroes/Abilities/RageOfTheUndead.cpp">
+			<Option target="Grimwall"/>
+		</Unit>
+		<Unit filename="/home/baksteen/Project/grimwall/src/Domain/Units/Heroes/Abilities/RageOfTheUndead.h">
+			<Option target="Grimwall"/>
+		</Unit>
+		<Unit filename="/home/baksteen/Project/grimwall/src/Domain/Units/Heroes/Abilities/RaiseUndead.cpp">
+			<Option target="Grimwall"/>
+		</Unit>
+		<Unit filename="/home/baksteen/Project/grimwall/src/Domain/Units/Heroes/Abilities/RaiseUndead.h">
+			<Option target="Grimwall"/>
+		</Unit>
+		<Unit filename="/home/baksteen/Project/grimwall/src/Domain/Units/Heroes/Abilities/SmokeBomb.cpp">
+			<Option target="Grimwall"/>
+		</Unit>
+		<Unit filename="/home/baksteen/Project/grimwall/src/Domain/Units/Heroes/Abilities/SmokeBomb.h">
+			<Option target="Grimwall"/>
+		</Unit>
+		<Unit filename="/home/baksteen/Project/grimwall/src/Domain/Units/Heroes/Abilities/Stealth.cpp">
+			<Option target="Grimwall"/>
+		</Unit>
+		<Unit filename="/home/baksteen/Project/grimwall/src/Domain/Units/Heroes/Abilities/Stealth.h">
+			<Option target="Grimwall"/>
+		</Unit>
+		<Unit filename="/home/baksteen/Project/grimwall/src/Domain/Units/Heroes/Dralas.cpp">
+			<Option target="Grimwall"/>
+		</Unit>
+		<Unit filename="/home/baksteen/Project/grimwall/src/Domain/Units/Heroes/Dralas.h">
+			<Option target="Grimwall"/>
+		</Unit>
+		<Unit filename="/home/baksteen/Project/grimwall/src/Domain/Units/Heroes/Zarrku.cpp">
+			<Option target="Grimwall"/>
+		</Unit>
+		<Unit filename="/home/baksteen/Project/grimwall/src/Domain/Units/Heroes/Zarrku.h">
+			<Option target="Grimwall"/>
+		</Unit>
+		<Unit filename="/home/baksteen/Project/grimwall/src/Domain/Units/IUnit.cpp">
+			<Option target="Grimwall"/>
+		</Unit>
+		<Unit filename="/home/baksteen/Project/grimwall/src/Domain/Units/IUnit.h">
+			<Option target="Grimwall"/>
+		</Unit>
+		<Unit filename="/home/baksteen/Project/grimwall/src/Domain/Units/Towers/ATower.cpp">
+			<Option target="Grimwall"/>
+		</Unit>
+		<Unit filename="/home/baksteen/Project/grimwall/src/Domain/Units/Towers/ATower.h">
+			<Option target="Grimwall"/>
+		</Unit>
+		<Unit filename="/home/baksteen/Project/grimwall/src/Domain/Units/Troups/ATroup.cpp">
+			<Option target="Grimwall"/>
+		</Unit>
+		<Unit filename="/home/baksteen/Project/grimwall/src/Domain/Units/Troups/ATroup.h">
+			<Option target="Grimwall"/>
+		</Unit>
+		<Unit filename="/home/baksteen/Project/grimwall/src/GUI/GUI.cpp">
+			<Option target="Grimwall"/>
+		</Unit>
+		<Unit filename="/home/baksteen/Project/grimwall/src/GUI/GUI.h">
+			<Option target="Grimwall"/>
+		</Unit>
+		<Unit filename="/home/baksteen/Project/grimwall/src/GUI/IUIComponent.h">
+			<Option target="Grimwall"/>
+		</Unit>
+		<Unit filename="/home/baksteen/Project/grimwall/src/Input/Callbacks/QuitCallback.cpp">
+			<Option target="Grimwall"/>
+		</Unit>
+		<Unit filename="/home/baksteen/Project/grimwall/src/Input/Callbacks/QuitCallback.h">
+			<Option target="Grimwall"/>
+		</Unit>
+		<Unit filename="/home/baksteen/Project/grimwall/src/Input/Callbacks/ZoomInCallback.cpp">
+			<Option target="Grimwall"/>
+		</Unit>
+		<Unit filename="/home/baksteen/Project/grimwall/src/Input/Callbacks/ZoomInCallback.h">
+			<Option target="Grimwall"/>
+		</Unit>
+		<Unit filename="/home/baksteen/Project/grimwall/src/Input/ICallback.cpp">
+			<Option target="Grimwall"/>
+		</Unit>
+		<Unit filename="/home/baksteen/Project/grimwall/src/Input/ICallback.h">
+			<Option target="Grimwall"/>
+		</Unit>
+		<Unit filename="/home/baksteen/Project/grimwall/src/Input/IMouseEvent.cpp">
+			<Option target="Grimwall"/>
+		</Unit>
+		<Unit filename="/home/baksteen/Project/grimwall/src/Input/IMouseEvent.h">
+			<Option target="Grimwall"/>
+		</Unit>
+		<Unit filename="/home/baksteen/Project/grimwall/src/Input/KeyboardMapper.cpp">
+			<Option target="Grimwall"/>
+		</Unit>
+		<Unit filename="/home/baksteen/Project/grimwall/src/Input/KeyboardMapper.h">
+			<Option target="Grimwall"/>
+		</Unit>
+		<Unit filename="/home/baksteen/Project/grimwall/src/Input/KeypressCallback.cpp">
+			<Option target="Grimwall"/>
+		</Unit>
+		<Unit filename="/home/baksteen/Project/grimwall/src/Input/KeypressCallback.h">
+			<Option target="Grimwall"/>
+		</Unit>
+		<Unit filename="/home/baksteen/Project/grimwall/src/Input/MouseCallback.cpp">
+			<Option target="Grimwall"/>
+		</Unit>
+		<Unit filename="/home/baksteen/Project/grimwall/src/Input/MouseCallback.h">
+			<Option target="Grimwall"/>
+		</Unit>
+		<Unit filename="/home/baksteen/Project/grimwall/src/Input/MouseEvent.cpp">
+			<Option target="Grimwall"/>
+		</Unit>
+		<Unit filename="/home/baksteen/Project/grimwall/src/Input/MouseEvent.h">
+			<Option target="Grimwall"/>
+		</Unit>
+		<Unit filename="/home/baksteen/Project/grimwall/src/Input/MouseMapper.cpp">
+			<Option target="Grimwall"/>
+		</Unit>
+		<Unit filename="/home/baksteen/Project/grimwall/src/Input/MouseMapper.h">
+			<Option target="Grimwall"/>
+		</Unit>
+		<Unit filename="/home/baksteen/Project/grimwall/src/main.cpp">
+			<Option target="Grimwall"/>
+		</Unit>
+		<Unit filename="/home/baksteen/Project/grimwall/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\"/>
+		</Unit>
+		<Unit filename="/home/baksteen/Project/grimwall/CMake/Modules/FindFife.cmake">
+			<Option virtualFolder="CMake Files\CMake\Modules\"/>
+		</Unit>
+		<Unit filename="/home/baksteen/Project/grimwall/CMake/Modules/FindFifeChan.cmake">
+			<Option virtualFolder="CMake Files\CMake\Modules\"/>
+		</Unit>
+		<Unit filename="/home/baksteen/Project/grimwall/CMake/Modules/FindVorbis.cmake">
+			<Option virtualFolder="CMake Files\CMake\Modules\"/>
+		</Unit>
+		<Unit filename="/home/baksteen/Project/grimwall/CMake/Modules/FindOgg.cmake">
+			<Option virtualFolder="CMake Files\CMake\Modules\"/>
+		</Unit>
+		<Unit filename="/home/baksteen/Project/grimwall/CMake/Modules/FindSDL2.cmake">
+			<Option virtualFolder="CMake Files\CMake\Modules\"/>
+		</Unit>
+		<Unit filename="/home/baksteen/Project/grimwall/CMake/Modules/FindSDL2_image.cmake">
+			<Option virtualFolder="CMake Files\CMake\Modules\"/>
+		</Unit>
+		<Unit filename="/home/baksteen/Project/grimwall/CMake/Modules/FindSDL2_ttf.cmake">
+			<Option virtualFolder="CMake Files\CMake\Modules\"/>
+		</Unit>
+		<Unit filename="/home/baksteen/Project/grimwall/CMake/Modules/FindTinyXML.cmake">
+			<Option virtualFolder="CMake Files\CMake\Modules\"/>
+		</Unit>
+	</Project>
+</CodeBlocks_project_file>

@@ -14,9 +14,11 @@
 #include "SDL.h"
 
 #include "../IEngineFacade.h"
+#include "FIFEMouseListener.h"
 #include "FIFEKeyListener.h"
 #include "../IGame.h"
 #include "../../Input/ICallback.h"
+
 
 namespace fs = boost::filesystem;
 
@@ -28,6 +30,8 @@ private:
     
     IGame* game {nullptr};
     FIFEKeyListener* keyListener {nullptr};
+
+    FIFEMouseListener* mouseListener;
     
     bool pumpingInitialized {false};
     

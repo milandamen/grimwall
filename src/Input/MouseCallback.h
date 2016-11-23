@@ -1,8 +1,11 @@
 #ifndef MOUSE_CALLBACK_H
 #define MOUSE_CALLBACK_H
 
+
 #include "ICallback.h"
+#include "IMouseEvent.h"
 #include "../Domain/IGame.h"
+
 
 class MouseCallback : public ICallback
 {

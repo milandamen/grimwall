@@ -17,6 +17,7 @@ FIFEFacade::FIFEFacade(IGame* game)
 FIFEFacade::~FIFEFacade()
 {
     delete keyListener;
+    delete mouseListener;
 //     delete mainCamera;
 //     delete map;
 //     delete engine;
@@ -135,8 +136,11 @@ void FIFEFacade::initInput()
     {
         // attach our key listener to the engine
         keyListener = new FIFEKeyListener(game);
+        mouseListener = new FIFEMouseListener(game);
         engine->getEventManager()->addKeyListener(keyListener);
+        engine->getEventManager()->addMouseListener(mouseListener);
     }
+
 }
 
 void FIFEFacade::render()

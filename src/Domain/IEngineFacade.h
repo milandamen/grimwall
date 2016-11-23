@@ -56,6 +56,8 @@ public:
      * Register a callback with a key combination
      */
     virtual void registerCallback(std::string, ICallback* callback) = 0;
+
+    //TODO: register Callback for mouse listener
 };
 
 #endif
