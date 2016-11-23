@@ -156,6 +156,34 @@ int FIFEFacade::getTime()
     return engine->getTimeManager()->getTime();
 }
 
+void FIFEFacade::setInstanceLocation(std::string name, int x, int y) {
+    if (map) {
+        std::cout << "map, ";
+        FIFE::Layer *layer = map->getLayer("unitLayer");
+
+        if (layer) {
+            std::cout << "layer, ";
+            FIFE::Instance *instance = layer->getInstance(name);
+
+            if (instance) {
+                std::cout << "instance, ";
+
+                // Get the current location of the instance
+                FIFE::Location destination(instance->getLocation());
+
+                FIFE::ScreenPoint screenPoint(x, y);
+                FIFE::ExactModelCoordinate mapCoords{};
+                mapCoords.x = x;
+                mapCoords.y = y;
+                mapCoords.z = 0.0;
+                destination.setMapCoordinates(mapCoords);
+
+                instance->setLocation(destination);
+            }
+        }
+    }
+}
+
 void FIFEFacade::registerCallback(std::string keys, ICallback* callback)
 {
     keyListener->registerCallback(keys, callback);
