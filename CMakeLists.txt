@@ -137,7 +137,10 @@ find_package(OpenAL REQUIRED)
 find_package(OpenGL REQUIRED)
 find_package(TinyXML REQUIRED)
 
-include_directories( 
+message("==> ZLIB_INCLUDE_DIR ${ZLIB_INCLUDE_DIR}")
+message("==> ZLIB_LIBRARIES ${ZLIB_LIBRARIES}")
+
+include_directories(
     ${ZLIB_INCLUDE_DIR}
     ${Boost_INCLUDE_DIR}
     ${OGG_INCLUDE_DIR}

@@ -35,10 +35,6 @@ bool AUnit::isAlive() {
     return this->is_alive;
 }
 
-void AUnit::attack(AUnit* unit) {
-    unit->inflictDamage(this->power);
-}
-
 void AUnit::inflictDamage(int hitPoints) {
     // Decrease hitpoints
     this->hitPoints -= hitPoints;

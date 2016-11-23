@@ -18,7 +18,6 @@ public:
     virtual int getMoveSpeed() = 0;
     virtual int getPrice() = 0;
     virtual int getRange() = 0;
-    virtual int getAttackDelay = 0;
     virtual int getPower() = 0;
     virtual int getHitpoints() = 0;
     virtual bool isAlive() = 0;
