@@ -56,6 +56,16 @@ public:
      * Register a callback with a key combination
      */
     virtual void registerCallback(std::string, ICallback* callback) = 0;
+
+    /**
+     * Zoom in
+     */
+    virtual void zoomIn() = 0;
+
+    /**
+     * Zoom out
+     */
+    virtual void zoomOut() = 0;
 };
 
 #endif

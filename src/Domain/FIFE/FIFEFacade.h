@@ -25,6 +25,10 @@ private:
     FIFE::Engine* engine {nullptr};
     FIFE::Map* map {nullptr};
     FIFE::Camera* mainCamera {nullptr};
+
+    double zoomIncrement;
+    double maxZoom;
+    double minZoom;
     
     IGame* game {nullptr};
     FIFEKeyListener* keyListener {nullptr};
@@ -102,6 +106,16 @@ public:
      * Register a callback with a key combination
      */
     void registerCallback(std::string, ICallback* callback) override;
+
+    /**
+     * Zoom in
+     */
+    void zoomIn() override;
+
+    /**
+     * Zoom out
+     */
+    void zoomOut() override;
 };
 
 #endif
