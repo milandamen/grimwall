@@ -14,6 +14,7 @@ Game::Game()
     // Game loop
     int lastTime = 0;
     int curTime = 0;
+
     while (running)
     {
         // Update FPS reading approx. every second
@@ -32,7 +33,7 @@ Game::Game()
             //zoom in and out
             //EngineFacade::engine()->zoomIn();
             //EngineFacade::engine()->zoomOut();
-            
+            //EngineFacade::engine()->updateLocation(+1, -1);
         }
         
         // Render a frame

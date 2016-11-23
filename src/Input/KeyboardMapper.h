@@ -3,6 +3,8 @@
 
 #include "../Domain/EngineFacade.h"
 #include "Callbacks/QuitCallback.h"
+#include "Callbacks/MoveCameraCallback.h"
+#include "Callbacks/ZoomCameraCallback.h"
 #include "../Domain/IGame.h"
 
 class KeyboardMapper

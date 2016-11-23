@@ -2,7 +2,9 @@
 #define IENGINEFACADE_H
 
 #include <iostream>
+#include <util/structures/rect.h>
 
+#include "eventchannel/mouse/ec_mouseevent.h"
 #include "../Input/ICallback.h"
 
 /**
@@ -67,6 +69,12 @@ public:
      * Zoom out
      */
     virtual void zoomOut() = 0;
+
+    /**
+     * update screen camera
+     */
+    virtual void updateLocation(std::string location) = 0;
+
 };
 
 #endif
