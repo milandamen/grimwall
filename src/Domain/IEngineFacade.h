@@ -4,6 +4,8 @@
 #include <iostream>
 #include <gui/guimanager.h>
 
+#include "../Input/ICallback.h"
+
 /**
  * Class to be extended by classes like FIFEFacade
  */
@@ -23,6 +25,7 @@ public:
     virtual void setScreenHeight(int height) = 0;
     virtual void setFullScreen(bool fullScreen) = 0;
     virtual void setWindowTitle(std::string title) = 0;
+    virtual void setInstanceLocation(std::string name, int x, int y) = 0;
     
     /** Initializing **/
     
@@ -44,6 +47,21 @@ public:
      * Method to render current frame. To be run every game tick.
      */
     virtual void render() = 0;
+    
+    /**
+     * Get the amount of frames per second
+     */
+    virtual int getFPS() = 0;
+    
+    /**
+     * Get the current time in milliseconds
+     */
+    virtual int getTime() = 0;
+    
+    /**
+     * Register a callback with a key combination
+     */
+    virtual void registerCallback(std::string, ICallback* callback) = 0;
 };
 
 #endif

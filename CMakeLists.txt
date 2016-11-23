@@ -102,14 +102,24 @@ set(Boost_USE_MULTITHREADED ON)
 #                                Confifure Grimwall
 #------------------------------------------------------------------------------
 
-# Add all files in src to be builded
-file(GLOB_RECURSE Grimwall_SRC
-    "src/*.h"
-    "src/*.cpp"
+# Add all files in src/Domain to be builded
+file(GLOB_RECURSE Grimwall_SRC_Domain
+    "src/Domain/*.h"
+    "src/Domain/*.cpp"
+)
+# Add all files in src/GUI to be builded
+file(GLOB_RECURSE Grimwall_SRC_GUI
+    "src/GUI/*.h"
+    "src/GUI/*.cpp"
+)
+# Add all files in src/Input to be builded
+file(GLOB_RECURSE Grimwall_SRC_Input
+    "src/Input/*.h"
+    "src/Input/*.cpp"
 )
 
 # Add list of files to executable
-add_executable(Grimwall ${Grimwall_SRC})
+add_executable(Grimwall ${Grimwall_SRC_Domain} ${Grimwall_SRC_GUI} ${Grimwall_SRC_Input} "src/main.cpp")
 
 if(APPLE)
   find_package(Xcursor REQUIRED)
@@ -207,9 +217,20 @@ install(TARGETS Grimwall
 #                        Copy assets
 #------------------------------------------------------------------------------
 
-add_custom_command(TARGET Grimwall POST_BUILD
-                   COMMAND ${CMAKE_COMMAND} -E copy_directory
-                       ${CMAKE_SOURCE_DIR}/assets $<TARGET_FILE_DIR:Grimwall>/assets)
+# Based on http://stackoverflow.com/a/31518137
+
+# Add custom target that always runs (it tries to find the file "${CMAKE_CURRENT_BINARY_DIR}/asset files" that doesn't exist)
+add_custom_target(
+    copy_assets ALL
+    DEPENDS "${CMAKE_CURRENT_BINARY_DIR}/asset files"
+)
+
+# Copy the assets
+add_custom_command(
+    OUTPUT "${CMAKE_CURRENT_BINARY_DIR}/asset files"
+    COMMAND ${CMAKE_COMMAND} -E copy_directory
+        ${CMAKE_SOURCE_DIR}/assets $<TARGET_FILE_DIR:Grimwall>/assets
+)
 
 
 
@@ -218,3 +239,57 @@ add_custom_command(TARGET Grimwall POST_BUILD
 # include system runtimes (e.g. msvcp140.dll) into "<install_prefix>/bin" folder 
 # how can i change/remove the "bin" suffix to install into <install_prefix>?
 #include(InstallRequiredSystemLibraries)
+
+
+
+#------------------------------------------------------------------------------
+#                        Google Test
+#------------------------------------------------------------------------------
+
+# To compile tests, run cmake with option: -DTESTS:BOOL=ON
+set(TESTS OFF CACHE BOOL "Compile tests")
+if(TESTS)
+    # Add all files in src/Domain to be builded
+    file(GLOB_RECURSE Grimwall_Test_SRC
+        "test/src/*.cpp"
+    )
+    add_executable(Grimwall_Test ${Grimwall_SRC_Domain} ${Grimwall_SRC_GUI} ${Grimwall_SRC_Input} ${Grimwall_Test_SRC})
+
+    if(APPLE)
+        target_link_libraries(Grimwall_Test ${XCURSOR_LIBRARY})
+        include(${XCURSOR_INCLUDE_DIR})
+    endif()
+
+    if(UNIX)
+        target_link_libraries(Grimwall_Test ${X11_LIBRARY})
+        target_link_libraries(Grimwall_Test Xcursor)
+    endif()
+    
+    find_package(GoogleTest REQUIRED)
+    
+    include_directories(
+        ${GTEST_INCLUDE_DIR}
+    )
+
+    target_link_libraries(Grimwall_Test ${ZLIB_LIBRARIES})
+    target_link_libraries(Grimwall_Test ${Boost_LIBRARIES})
+    target_link_libraries(Grimwall_Test ${OPENAL_LIBRARY})
+    target_link_libraries(Grimwall_Test ${OPENGL_LIBRARY})
+    target_link_libraries(Grimwall_Test ${PNG_LIBRARIES})
+    target_link_libraries(Grimwall_Test ${SDL2_LIBRARY})
+    target_link_libraries(Grimwall_Test ${SDL2_IMAGE_LIBRARIES})
+    target_link_libraries(Grimwall_Test ${SDL2_TTF_LIBRARIES})
+    target_link_libraries(Grimwall_Test ${TinyXML_LIBRARIES})
+    target_link_libraries(Grimwall_Test ${OGG_LIBRARIES})
+    target_link_libraries(Grimwall_Test ${VORBIS_LIBRARIES})
+    target_link_libraries(Grimwall_Test ${VORBIS_LIBRARY})
+    target_link_libraries(Grimwall_Test ${VORBISFILE_LIBRARY})
+    target_link_libraries(Grimwall_Test ${FIFECHAN_LIBRARIES})
+    target_link_libraries(Grimwall_Test ${FIFE_LIBRARIES})
+    target_link_libraries(Grimwall_Test ${GTEST_LIBRARIES})
+
+    install(TARGETS Grimwall_Test
+        RUNTIME DESTINATION ${CMAKE_INSTALL_PREFIX}/${PROJECT_NAME}
+        COMPONENT executable
+    )
+endif(TESTS)
