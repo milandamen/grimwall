@@ -119,7 +119,7 @@ file(GLOB_RECURSE Grimwall_SRC_Input
 )
 
 # Add list of files to executable
-add_executable(Grimwall ${Grimwall_SRC_Domain} ${Grimwall_SRC_GUI} ${Grimwall_SRC_Input} "src/main.cpp" src/Domain/FIFE/Camera/FIFECameraScroller.cpp src/Domain/FIFE/Camera/FIFECameraScroller.h)
+add_executable(Grimwall ${Grimwall_SRC_Domain} ${Grimwall_SRC_GUI} ${Grimwall_SRC_Input} "src/main.cpp" src/Domain/FIFE/Camera/FIFECameraScroller.cpp src/Domain/FIFE/Camera/FIFECameraScroller.h src/Input/Callbacks/MoveCameraCallback.cpp src/Input/Callbacks/MoveCameraCallback.h src/Input/Callbacks/ZoomCameraCallback.cpp src/Input/Callbacks/ZoomCameraCallback.h)
 
 if(APPLE)
   find_package(Xcursor REQUIRED)

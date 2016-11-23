@@ -33,7 +33,7 @@ Game::Game()
             //zoom in and out
             //EngineFacade::engine()->zoomIn();
             //EngineFacade::engine()->zoomOut();
-            //EngineFacade::engine()->updateLocation(-1, -1);
+            //EngineFacade::engine()->updateLocation(+1, -1);
         }
         
         // Render a frame
