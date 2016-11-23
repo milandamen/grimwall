@@ -11,11 +11,20 @@ FIFEFacade::FIFEFacade()
     settings.setWindowTitle("Grimwall v0.1");
     settings.setDefaultFontGlyphs("abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789.,!?-+/():;%&amp;`'*#=[]\"");
     settings.setDefaultFontPath(defaultFontPath.string());
+
+    FIFE::FifechanManager* fcm = new FIFE::FifechanManager();
+    engine->setGuiManager(fcm);
 }
 
 FIFEFacade::~FIFEFacade()
 {
     delete engine;
+    delete guimanager;
+}
+
+FIFE::FifechanManager* FIFEFacade::getGuiManager()
+{
+    return guimanager;
 }
 
 void FIFEFacade::setRenderBackend(std::string engine)

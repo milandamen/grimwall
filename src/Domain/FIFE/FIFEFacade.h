@@ -1,4 +1,5 @@
 
+#include <gui/fifechan/fifechanmanager.h>
 #include "../IEngineFacade.h"
 
 #include "fife/core/controller/engine.h"
@@ -14,14 +15,20 @@ namespace FIFE
     class Map;
     class Camera;
     class Instance;
+    class IGUIManager;
 }
 
 class FIFEFacade : public IEngineFacade {
 private:
     FIFE::Engine* engine;
+    FIFE::FifechanManager* guimanager;
 public:
     FIFEFacade();
     ~FIFEFacade();
+
+    /** Encapsulation **/
+
+    FIFE::FifechanManager* getGuiManager() override;
     
     /** Settings **/
     
@@ -30,7 +37,7 @@ public:
     void setScreenHeight(int height) override;
     void setFullScreen(bool fullScreen) override;
     void setWindowTitle(std::string title) override;
-    
+
     /** Initializing **/
     
     /**

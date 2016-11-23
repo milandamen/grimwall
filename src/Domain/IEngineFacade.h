@@ -2,6 +2,7 @@
 #define IENGINEFACADE_H
 
 #include <iostream>
+#include <gui/guimanager.h>
 
 /**
  * Class to be extended by classes like FIFEFacade
@@ -10,7 +11,11 @@ class IEngineFacade
 {
 public:
     virtual ~IEngineFacade() {};
-    
+
+    /** Encapsulation **/
+
+    virtual FIFE::IGUIManager* getGuiManager() = 0;
+
     /** Settings **/
     
     virtual void setRenderBackend(std::string engine) = 0;
