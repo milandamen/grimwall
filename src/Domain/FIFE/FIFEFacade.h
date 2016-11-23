@@ -117,8 +117,7 @@ public:
     /**
      * Update location
      */
-    void updateLocation(/*FIFE::MouseEvent& evt*/ int x, int y) override;
-
+    void updateLocation(std::string location) override;
 };
 
 #endif

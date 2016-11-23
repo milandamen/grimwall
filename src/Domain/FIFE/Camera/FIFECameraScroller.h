@@ -15,10 +15,10 @@ public:
     FIFECameraScroller(FIFE::Camera* camera, FIFE::EventManager* eventManager, FIFE::TimeManager* timeManager);
     ~FIFECameraScroller();
 
-    void updateLocation(int x, int y);
+    void updateLocation(std::string location);
     void unregisterEvent();
 private:
-    void evaluateLocation();
+    void evaluateLocation(std::string location);
     void updateEvent(uint32_t time);
     bool onSdlEvent(SDL_Event& evt);
 private:

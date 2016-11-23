@@ -2,6 +2,7 @@
 #define IENGINEFACADE_H
 
 #include <iostream>
+#include <util/structures/rect.h>
 
 #include "eventchannel/mouse/ec_mouseevent.h"
 #include "../Input/ICallback.h"
@@ -71,7 +72,7 @@ public:
     /**
      * update screen camera
      */
-    virtual void updateLocation(/*FIFE::MouseEvent& evt*/ int x, int y) = 0;
+    virtual void updateLocation(std::string location) = 0;
 
 };
 

@@ -7,17 +7,16 @@ MoveCameraCallback::MoveCameraCallback(IGame* game, std::string direction) : Key
 
 void MoveCameraCallback::execute()
 {
-
     if(direction == "UP"){
-        EngineFacade::engine()->updateLocation(2000, 2000);
+        EngineFacade::engine()->updateLocation(direction);
     }
     else if(direction == "DOWN"){
-        EngineFacade::engine()->updateLocation(0, -1);
+        EngineFacade::engine()->updateLocation(direction);
     }
     else if(direction == "RIGHT"){
-        EngineFacade::engine()->updateLocation(+1, 0);
+        EngineFacade::engine()->updateLocation(direction);
     }
     else if(direction == "LEFT"){
-        EngineFacade::engine()->updateLocation(-1, 0);
+        EngineFacade::engine()->updateLocation(direction);
     }
 }

@@ -18,6 +18,7 @@ FIFEFacade::~FIFEFacade()
 {
     delete keyListener;
     delete fifeCamera;
+
 //     delete mainCamera;
 //     delete map;
 //     delete engine;
@@ -138,7 +139,8 @@ void FIFEFacade::zoomOut() {
     fifeCamera->zoomOut();
 }
 
-void FIFEFacade::updateLocation(/*FIFE::MouseEvent &evt*/ int x, int y) {
-    fifeCamera->updateLocation(x, y);
+void FIFEFacade::updateLocation(std::string location) {
+    fifeCamera->updateLocation(location);
 }
+
 
