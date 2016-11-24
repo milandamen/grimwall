@@ -1,8 +1,0 @@
-/home/baksteen/Project/grimwall/cmake-build-debug/CMakeFiles/rebuild_cache.dir
-/home/baksteen/Project/grimwall/cmake-build-debug/CMakeFiles/list_install_components.dir
-/home/baksteen/Project/grimwall/cmake-build-debug/CMakeFiles/install.dir
-/home/baksteen/Project/grimwall/cmake-build-debug/CMakeFiles/install/local.dir
-/home/baksteen/Project/grimwall/cmake-build-debug/CMakeFiles/install/strip.dir
-/home/baksteen/Project/grimwall/cmake-build-debug/CMakeFiles/edit_cache.dir
-/home/baksteen/Project/grimwall/cmake-build-debug/CMakeFiles/copy_assets.dir
-/home/baksteen/Project/grimwall/cmake-build-debug/CMakeFiles/Grimwall.dir
