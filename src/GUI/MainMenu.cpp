@@ -10,10 +10,6 @@ MainMenu::MainMenu(FIFE::FifechanManager *manager)
     // Initialise FifeChanManager
     manager->init("OpenGL", 800, 600);
 
-    // Set top
-    fcn::Container* top = new fcn::Container();
-    manager->getFifechanGUI()->setTop(top);
-
     // Button Campaign (Play)
     fcn::Button* btnCampaign = new fcn::Button();
     btnCampaign->setId("btnCampaign");
@@ -22,7 +18,7 @@ MainMenu::MainMenu(FIFE::FifechanManager *manager)
     btnCampaign->setHeight(50);
     btnCampaign->setPosition(100, 100);
     btnCampaign->setCaption("Campaign");
-    top->add(btnCampaign);
+    manager->add(btnCampaign);
 
     //fcn::ActionEvent* e = new fcn::ActionEvent(btnCampaign, "btnCampaign");
     //fcn::ActionListener::action(e);
@@ -35,7 +31,7 @@ MainMenu::MainMenu(FIFE::FifechanManager *manager)
     btnOptions->setHeight(50);
     btnOptions->setPosition(100, 200);
     btnOptions->setCaption("Options");
-    top->add(btnOptions);
+    manager->add(btnOptions);
 
     // Button Exit
     fcn::Button* btnExit = new fcn::Button();
@@ -45,7 +41,7 @@ MainMenu::MainMenu(FIFE::FifechanManager *manager)
     btnExit->setHeight(50);
     btnExit->setPosition(100, 300);
     btnExit->setCaption("Exit to desktop");
-    top->add(btnExit);
+    manager->add(btnExit);
 }
 
 void MainMenu::action(const fcn::ActionEvent& actionEvent)

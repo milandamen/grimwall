@@ -32,12 +32,15 @@ namespace FIFE
 
 namespace fs = boost::filesystem;
 
-class FIFEFacade : public IEngineFacade {
+class FIFEFacade : public IEngineFacade, fcn::ActionListener, fcn::KeyListener, fcn::MouseListener {
 private:
     FIFE::Engine* engine {nullptr};
     FIFE::FifechanManager* guimanager {nullptr};
     FIFE::Map* map {nullptr};
     FIFE::Camera* mainCamera {nullptr};
+
+    fcn::Button* btnOptions {nullptr};
+    fcn::Button* btnExit {nullptr};
     
     IGame* game {nullptr};
     FIFEKeyListener* keyListener {nullptr};
@@ -57,6 +60,9 @@ public:
      * @return
      */
     FIFE::FifechanManager* getGuiManager() override;
+    void action(const fcn::ActionEvent& actionEvent) override;
+    void keyPressed(fcn::KeyEvent& keyEvent) override;
+    void mousePressed(fcn::MouseEvent& mouseEvent) override;
 
     /**** Settings ****/
     
