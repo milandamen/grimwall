@@ -15,8 +15,8 @@ protected:
     int speed;
     int visibility;
 
-    double x = 0;
-    double y = 0;
+    double x{0};
+    double y{0};
 public:
     AUnit(std::string name, int reach, int attackDelay, int power, int hitPoints, int speed,
     int visibility);

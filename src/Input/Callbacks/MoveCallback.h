@@ -13,7 +13,7 @@ public:
 private:
     std::string direction;
 
-    double increaser = 0.1;
+    double increaser{0.1};
 
     void up();
     void left();

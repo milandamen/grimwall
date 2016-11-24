@@ -9,13 +9,13 @@ MoveCallback::MoveCallback(IGame* game, std::string direction)
 {}
 
 void MoveCallback::execute() {
-    if (direction == "up")
+    if (direction == "UP")
         up();
-    else if (direction == "left")
+    else if (direction == "LEFT")
         left();
-    else if (direction == "right")
+    else if (direction == "RIGHT")
         right();
-    else if (direction == "down")
+    else if (direction == "DOWN")
         down();
 
     EngineFacade::engine()->setInstanceLocation("Dralas", this->game->getHero()->getX(), this->game->getHero()->getY());
