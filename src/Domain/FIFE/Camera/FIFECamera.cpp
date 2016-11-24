@@ -1,8 +1,7 @@
 #include "FIFECamera.h"
 
-FIFECamera::FIFECamera(FIFE::Map *map, FIFE::EventManager* eventManager, FIFE::TimeManager* timeManager) : eventManager{eventManager}, timeManager{timeManager}{
-    this->map = map;
-
+FIFECamera::FIFECamera(FIFE::Map *map, FIFE::EventManager* eventManager, FIFE::TimeManager* timeManager)
+: eventManager{eventManager}, timeManager{timeManager}, map{map}{
     zoomIncrement = 0.75;
     maxZoom = 4;
     minZoom = 0.25;

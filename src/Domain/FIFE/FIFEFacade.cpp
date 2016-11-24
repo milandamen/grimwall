@@ -64,6 +64,10 @@ void FIFEFacade::init()
 
 void FIFEFacade::loadMap(std::string path)
 {
+    if(map){
+        delete fifeCamera;
+    }
+
     if (engine->getModel() && engine->getVFS() && engine->getImageManager() && 
         engine->getRenderBackend())
     {
