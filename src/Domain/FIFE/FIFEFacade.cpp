@@ -17,6 +17,8 @@ FIFEFacade::FIFEFacade(IGame* game)
 FIFEFacade::~FIFEFacade()
 {
     delete keyListener;
+    delete fifeCamera;
+
 //     delete mainCamera;
 //     delete map;
 //     delete engine;
@@ -62,6 +64,10 @@ void FIFEFacade::init()
 
 void FIFEFacade::loadMap(std::string path)
 {
+    if(map){
+        delete fifeCamera;
+    }
+
     if (engine->getModel() && engine->getVFS() && engine->getImageManager() && 
         engine->getRenderBackend())
     {
@@ -76,6 +82,7 @@ void FIFEFacade::loadMap(std::string path)
         if (mapLoader) {
             // load the map
             map = mapLoader->load(mapPath.string());
+            fifeCamera = new FIFECamera(map, engine->getEventManager(), engine->getTimeManager());
         }
 
         // done with map loader safe to delete
@@ -94,39 +101,7 @@ void FIFEFacade::loadMap(std::string path)
 
 void FIFEFacade::initView()
 {
-    if (map)
-    {
-        // get the main camera for this map
-        mainCamera = map->getCamera("main");
-
-        if (mainCamera)
-        {
-            // attach the controller to the camera
-//             m_viewController->AttachCamera(mainCamera);
-//             m_viewController->EnableCamera(true);
-            mainCamera->setEnabled(true);
-
-            // get the renderer associated with viewing objects on the map
-            FIFE::RendererBase* renderer = mainCamera->getRenderer("InstanceRenderer");
-
-            if (renderer)
-            {
-                // activate all layers associated with the renderer
-                // for this map, this must be done to see anything
-                renderer->activateAllLayers(map);
-            }
-
-//             // get the mini camera attached to the map
-//             FIFE::Camera* miniCamera = map->getCamera("small");
-// 
-//             // default the small camera to off, we will revisit the
-//             // mini camera in a later demo
-//             if (miniCamera)
-//             {
-//                 miniCamera->setEnabled(false);
-//             }
-        }
-    }
+    fifeCamera->initView();
 }
 
 void FIFEFacade::initInput()
@@ -183,4 +158,17 @@ void FIFEFacade::registerCallback(std::string keys, ICallback* callback)
 {
     keyListener->registerCallback(keys, callback);
 }
+
+void FIFEFacade::zoomIn() {
+    fifeCamera->zoomIn();
+}
+
+void FIFEFacade::zoomOut() {
+    fifeCamera->zoomOut();
+}
+
+void FIFEFacade::updateLocation(std::string location) {
+    fifeCamera->updateLocation(location);
+}
+
 

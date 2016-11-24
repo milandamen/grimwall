@@ -17,6 +17,7 @@ Game::Game()
     // Game loop
     int lastTime = 0;
     int curTime = 0;
+
     while (running)
     {
         // Update FPS reading approx. every second
