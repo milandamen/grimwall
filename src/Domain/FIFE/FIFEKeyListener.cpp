@@ -81,7 +81,7 @@ void FIFEKeyListener::keyPressed(FIFE::KeyEvent& evt)
     std::transform(key.begin(), key.end(), key.begin(), std::ptr_fun<int, int>(std::toupper));
     ss << key;
     std::string pressed = ss.str();
-    
+
     for (auto& keyPair : callbackMap)
     {
         if (keyPair.first == pressed)
