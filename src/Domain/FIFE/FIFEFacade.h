@@ -18,6 +18,7 @@
 #include "FIFEKeyListener.h"
 #include "../IGame.h"
 #include "../../Input/ICallback.h"
+#include "Camera/FIFECamera.h"
 
 // TODO Remove unnecesary
 namespace FIFE
@@ -41,6 +42,7 @@ private:
 
     fcn::Button* btnOptions {nullptr};
     fcn::Button* btnExit {nullptr};
+    FIFECamera* fifeCamera {nullptr};
     
     IGame* game {nullptr};
     FIFEKeyListener* keyListener {nullptr};
@@ -133,6 +135,21 @@ public:
      * Register a callback with a key combination
      */
     void registerCallback(std::string, ICallback* callback) override;
+
+    /**
+     * Zoom in
+     */
+    void zoomIn() override;
+
+    /**
+     * Zoom out
+     */
+    void zoomOut() override;
+
+    /**
+     * Update location
+     */
+    void updateLocation(std::string location) override;
 };
 
 #endif

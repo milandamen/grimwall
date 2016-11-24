@@ -3,7 +3,9 @@
 
 #include <iostream>
 #include <gui/guimanager.h>
+#include <util/structures/rect.h>
 
+#include "eventchannel/mouse/ec_mouseevent.h"
 #include "../Input/ICallback.h"
 
 /**
@@ -62,6 +64,22 @@ public:
      * Register a callback with a key combination
      */
     virtual void registerCallback(std::string, ICallback* callback) = 0;
+
+    /**
+     * Zoom in
+     */
+    virtual void zoomIn() = 0;
+
+    /**
+     * Zoom out
+     */
+    virtual void zoomOut() = 0;
+
+    /**
+     * update screen camera
+     */
+    virtual void updateLocation(std::string location) = 0;
+
 };
 
 #endif
