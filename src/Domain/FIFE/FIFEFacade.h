@@ -9,6 +9,7 @@
 #include "view/camera.h"
 #include "util/time/timemanager.h"
 #include "eventchannel/eventmanager.h"
+#include <gui/fifechan/fifechanmanager.h>
 
 #include "boost/filesystem.hpp"
 #include "SDL.h"
@@ -19,12 +20,28 @@
 #include "../../Input/ICallback.h"
 #include "Camera/FIFECamera.h"
 
+// TODO Remove unnecesary
+namespace FIFE
+{
+    class Engine;
+    class EngineSettings;
+    class Map;
+    class Camera;
+    class Instance;
+    class IGUIManager;
+}
+
 namespace fs = boost::filesystem;
 
-class FIFEFacade : public IEngineFacade {
+class FIFEFacade : public IEngineFacade, fcn::ActionListener, fcn::KeyListener, fcn::MouseListener {
 private:
     FIFE::Engine* engine {nullptr};
+    FIFE::FifechanManager* guimanager {nullptr};
     FIFE::Map* map {nullptr};
+    FIFE::Camera* mainCamera {nullptr};
+
+    fcn::Button* btnOptions {nullptr};
+    fcn::Button* btnExit {nullptr};
     FIFECamera* fifeCamera {nullptr};
     
     IGame* game {nullptr};
@@ -37,8 +54,18 @@ private:
 public:
     FIFEFacade(IGame* game);
     ~FIFEFacade();
-    
-    
+
+    /**** Encapsulation ****/
+
+    /**
+     * Get the GUI Manager
+     * @return
+     */
+    FIFE::FifechanManager* getGuiManager() override;
+    void action(const fcn::ActionEvent& actionEvent) override;
+    void keyPressed(fcn::KeyEvent& keyEvent) override;
+    void mousePressed(fcn::MouseEvent& mouseEvent) override;
+
     /**** Settings ****/
     
     /**
@@ -65,8 +92,8 @@ public:
      * Sets windows title.
      */
     void setWindowTitle(std::string title) override;
-    
-    
+
+
     /**** Initializing ****/
     
     /**

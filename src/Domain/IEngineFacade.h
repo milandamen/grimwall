@@ -2,6 +2,7 @@
 #define IENGINEFACADE_H
 
 #include <iostream>
+#include <gui/guimanager.h>
 #include <util/structures/rect.h>
 
 #include "eventchannel/mouse/ec_mouseevent.h"
@@ -14,7 +15,11 @@ class IEngineFacade
 {
 public:
     virtual ~IEngineFacade() {};
-    
+
+    /** Encapsulation **/
+
+    virtual FIFE::IGUIManager* getGuiManager() = 0;
+
     /** Settings **/
     
     virtual void setRenderBackend(std::string engine) = 0;
