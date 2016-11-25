@@ -129,7 +129,7 @@ public:
     /**
      * Get layer by name
      */
-    void setInstanceLocation(std::string name, int x, int y) override;
+    void setInstanceLocation(std::string name, double x, double y) override;
     
     /**
      * Register a callback with a key combination
