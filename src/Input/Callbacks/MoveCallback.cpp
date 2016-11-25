@@ -22,22 +22,22 @@ void MoveCallback::execute() {
 }
 
 void MoveCallback::up() {
-    this->game->getHero()->setX(this->game->getHero()->getX() + increaser);
-    this->game->getHero()->setY(this->game->getHero()->getY() - increaser);
+    this->game->getHero()->setX(this->game->getHero()->getX() + (double)this->game->getHero()->getSpeed() / 100);
+    this->game->getHero()->setY(this->game->getHero()->getY() - (double)this->game->getHero()->getSpeed() / 100);
 }
 
 void MoveCallback::left() {
-    this->game->getHero()->setX(this->game->getHero()->getX() - increaser);
-    this->game->getHero()->setY(this->game->getHero()->getY() - increaser);
+    this->game->getHero()->setX(this->game->getHero()->getX() - (double)this->game->getHero()->getSpeed() / 100);
+    this->game->getHero()->setY(this->game->getHero()->getY() - (double)this->game->getHero()->getSpeed() / 100);
 }
 
 void MoveCallback::right() {
-    this->game->getHero()->setX(this->game->getHero()->getX() + increaser);
-    this->game->getHero()->setY(this->game->getHero()->getY() + increaser);
+    this->game->getHero()->setX(this->game->getHero()->getX() + (double)this->game->getHero()->getSpeed() / 100);
+    this->game->getHero()->setY(this->game->getHero()->getY() + (double)this->game->getHero()->getSpeed() / 100);
 }
 
 void MoveCallback::down() {
-    this->game->getHero()->setX(this->game->getHero()->getX() - increaser);
-    this->game->getHero()->setY(this->game->getHero()->getY() + increaser);
+    this->game->getHero()->setX(this->game->getHero()->getX() - (double)this->game->getHero()->getSpeed() / 100);
+    this->game->getHero()->setY(this->game->getHero()->getY() + (double)this->game->getHero()->getSpeed() / 100);
 }
 

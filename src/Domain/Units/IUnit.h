@@ -5,6 +5,7 @@
 
 class IUnit {
 public:
+    virtual ~IUnit() = default;
     virtual std::string getName() = 0;
     virtual int getReach() = 0;
     virtual int getAttackDelay() = 0;
