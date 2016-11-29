@@ -13,11 +13,21 @@ private:
     bool running {true};
     
     /**
+     * Value that denotes the current time
+     */
+    int curTime {};
+    /**
+     * Value that denotes the last time the FPS was updated
+     */
+    int lastTime {};
+    
+    /**
      * Handles mapping of key combinations to callbacks
      */
     KeyboardMapper* keyboardMapper {nullptr};
     
     void initInput();
+    void updateFPS();
 public:
     Game();
     virtual void quit() override;

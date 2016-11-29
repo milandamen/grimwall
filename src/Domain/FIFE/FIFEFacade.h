@@ -20,17 +20,6 @@
 #include "../../Input/ICallback.h"
 #include "Camera/FIFECamera.h"
 
-// TODO Remove unnecesary
-namespace FIFE
-{
-    class Engine;
-    class EngineSettings;
-    class Map;
-    class Camera;
-    class Instance;
-    class IGUIManager;
-}
-
 namespace fs = boost::filesystem;
 
 class FIFEFacade : public IEngineFacade, fcn::ActionListener, fcn::KeyListener, fcn::MouseListener {
@@ -92,6 +81,11 @@ public:
      * Sets windows title.
      */
     void setWindowTitle(std::string title) override;
+    
+    /**
+     * Set a limit to the FPS
+     */
+    void setFPSLimit(int fpsLimit) override;
 
 
     /**** Initializing ****/
@@ -150,6 +144,12 @@ public:
      * Update location
      */
     void updateLocation(std::string location) override;
+    
+    /**
+     * Run a tick for userland code like input callbacks
+     */
+    void tick() override;
+    
 };
 
 #endif

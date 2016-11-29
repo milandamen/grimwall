@@ -19,8 +19,8 @@ FIFEFacade::FIFEFacade(IGame* game)
 }
 
 FIFEFacade::~FIFEFacade() {
-    delete engine;
-    delete guimanager;
+    //delete engine;
+    //delete guimanager;
     delete keyListener;
     delete fifeCamera;
 }
@@ -60,6 +60,12 @@ void FIFEFacade::setWindowTitle(std::string title)
     settings.setWindowTitle(title);                                 // Doesn't work very well, that's why we manually use SDL below.
     
     SDL_SetWindowTitle(engine->getRenderBackend()->getWindow(), title.c_str());
+}
+
+void FIFEFacade::setFPSLimit(int fpsLimit)
+{
+    engine->getSettings().setFrameLimit(fpsLimit);
+    engine->getSettings().setFrameLimitEnabled(true);
 }
 
 void FIFEFacade::init()
@@ -248,6 +254,11 @@ void FIFEFacade::zoomOut() {
 
 void FIFEFacade::updateLocation(std::string location) {
     fifeCamera->updateLocation(location);
+}
+
+void FIFEFacade::tick()
+{
+    keyListener->tick();
 }
 
 

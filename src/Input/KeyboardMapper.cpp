@@ -9,4 +9,5 @@ KeyboardMapper::KeyboardMapper(IGame* game)
     EngineFacade::engine()->registerCallback("UP", new MoveCameraCallback(game, "UP"));
     EngineFacade::engine()->registerCallback("=", new ZoomCameraCallback(game, "PLUS"));
     EngineFacade::engine()->registerCallback("-", new ZoomCameraCallback(game, "MINUS"));
+    EngineFacade::engine()->registerCallback("W+A+S+D", new QuitCallback(game));
 }
