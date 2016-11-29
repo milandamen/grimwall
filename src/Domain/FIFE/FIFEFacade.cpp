@@ -5,6 +5,8 @@ FIFEFacade::FIFEFacade(IGame* game)
 {
     this->game = game;
     engine = new FIFE::Engine();
+    guimanager = new FIFE::FifechanManager();
+
     fs::path defaultFontPath("assets/fonts/FreeSans.ttf");
     FIFE::EngineSettings& settings = engine->getSettings();
     settings.setBitsPerPixel(0);
@@ -12,14 +14,20 @@ FIFEFacade::FIFEFacade(IGame* game)
     settings.setWindowTitle("Grimwall v0.1");
     settings.setDefaultFontGlyphs("abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789.,!?-+/():;%&amp;`'*#=[]\"");
     settings.setDefaultFontPath(defaultFontPath.string());
+
+    // FIFE::FifechanManager* guiManager = static_cast<FIFE::FifechanManager*>(m_engine->getGuiManager());
 }
 
-FIFEFacade::~FIFEFacade()
-{
+FIFEFacade::~FIFEFacade() {
+    delete engine;
+    delete guimanager;
     delete keyListener;
-//     delete mainCamera;
-//     delete map;
-//     delete engine;
+    delete fifeCamera;
+}
+
+FIFE::FifechanManager* FIFEFacade::getGuiManager()
+{
+    return guimanager;
 }
 
 void FIFEFacade::setRenderBackend(std::string engine)
@@ -57,12 +65,84 @@ void FIFEFacade::setWindowTitle(std::string title)
 void FIFEFacade::init()
 {
     engine->init();
+
+    // setup the gui
+    guimanager->setDefaultFont(
+            engine->getSettings().getDefaultFontPath(),
+            engine->getSettings().getDefaultFontSize(),
+            engine->getSettings().getDefaultFontGlyphs()
+    );
+
+    guimanager->init(
+            engine->getRenderBackend()->getName(),
+            engine->getRenderBackend()->getScreenWidth(),
+            engine->getRenderBackend()->getScreenHeight()
+    );
+
     initInput();
+
+    engine->setGuiManager(guimanager);
+    engine->getEventManager()->addSdlEventListener(guimanager);
+
+    btnOptions = new fcn::Button();
+    btnOptions->setId("btnOptions");
+    btnOptions->setActionEventId("clickBtnOptions");
+    btnOptions->setWidth(300);
+    btnOptions->setHeight(50);
+    btnOptions->setPosition(300, 200);
+    btnOptions->setCaption("Play");
+    btnOptions->addActionListener(this);
+    btnOptions->addMouseListener(this);
+    guimanager->add(btnOptions);
+
+    btnExit = new fcn::Button();
+    btnExit->setId("btnExit");
+    btnExit->setActionEventId("clickBtnExit");
+    btnExit->setWidth(300);
+    btnExit->setHeight(50);
+    btnExit->setPosition(300, 300);
+    btnExit->setCaption("Quit to desktop");
+    btnExit->addActionListener(this);
+    btnExit->addKeyListener(this);
+    btnExit->addMouseListener(this);
+    guimanager->add(btnExit);
+}
+
+void FIFEFacade::mousePressed(fcn::MouseEvent& mouseEvent)
+{
+    if(mouseEvent.getSource() == btnOptions) {
+        guimanager->getTopContainer()->setVisible(false);
+    } else {
+        game->quit();
+    }
+
+}
+
+void FIFEFacade::keyPressed(fcn::KeyEvent &keyEvent)
+{
+    std::cout << keyEvent.getDistributor();
+//    if(actionEvent.getId() == "clickBtnOptions")
+//        std::cout << "Play!";
+//    else
+//        std::cout << "Exit!";
+}
+
+void FIFEFacade::action(const fcn::ActionEvent &actionEvent)
+{
+    std::cout << actionEvent.getId();
+    if(actionEvent.getId() == "clickBtnOptions")
+        std::cout << "Play!";
+    else
+        std::cout << "Exit!";
 }
 
 void FIFEFacade::loadMap(std::string path)
 {
-    if (engine->getModel() && engine->getVFS() && engine->getImageManager() && 
+    if(map){
+        delete fifeCamera;
+    }
+
+    if (engine->getModel() && engine->getVFS() && engine->getImageManager() &&
         engine->getRenderBackend())
     {
         // create the default loader for the FIFE map format
@@ -76,6 +156,7 @@ void FIFEFacade::loadMap(std::string path)
         if (mapLoader) {
             // load the map
             map = mapLoader->load(mapPath.string());
+            fifeCamera = new FIFECamera(map, engine->getEventManager(), engine->getTimeManager());
         }
 
         // done with map loader safe to delete
@@ -94,39 +175,7 @@ void FIFEFacade::loadMap(std::string path)
 
 void FIFEFacade::initView()
 {
-    if (map)
-    {
-        // get the main camera for this map
-        mainCamera = map->getCamera("main");
-
-        if (mainCamera)
-        {
-            // attach the controller to the camera
-//             m_viewController->AttachCamera(mainCamera);
-//             m_viewController->EnableCamera(true);
-            mainCamera->setEnabled(true);
-
-            // get the renderer associated with viewing objects on the map
-            FIFE::RendererBase* renderer = mainCamera->getRenderer("InstanceRenderer");
-
-            if (renderer)
-            {
-                // activate all layers associated with the renderer
-                // for this map, this must be done to see anything
-                renderer->activateAllLayers(map);
-            }
-
-//             // get the mini camera attached to the map
-//             FIFE::Camera* miniCamera = map->getCamera("small");
-// 
-//             // default the small camera to off, we will revisit the
-//             // mini camera in a later demo
-//             if (miniCamera)
-//             {
-//                 miniCamera->setEnabled(false);
-//             }
-        }
-    }
+    fifeCamera->initView();
 }
 
 void FIFEFacade::initInput()
@@ -156,22 +205,17 @@ int FIFEFacade::getTime()
     return engine->getTimeManager()->getTime();
 }
 
-void FIFEFacade::setInstanceLocation(std::string name, int x, int y) {
+void FIFEFacade::setInstanceLocation(std::string name, double x, double y) {
     if (map) {
-        std::cout << "map, ";
         FIFE::Layer *layer = map->getLayer("unitLayer");
 
         if (layer) {
-            std::cout << "layer, ";
             FIFE::Instance *instance = layer->getInstance(name);
 
             if (instance) {
-                std::cout << "instance, ";
-
                 // Get the current location of the instance
                 FIFE::Location destination(instance->getLocation());
 
-                FIFE::ScreenPoint screenPoint(x, y);
                 FIFE::ExactModelCoordinate mapCoords{};
                 mapCoords.x = x;
                 mapCoords.y = y;
@@ -188,6 +232,19 @@ void FIFEFacade::registerCallback(std::string keys, ICallback* callback)
 {
     keyListener->registerCallback(keys, callback);
 }
+
+void FIFEFacade::zoomIn() {
+    fifeCamera->zoomIn();
+}
+
+void FIFEFacade::zoomOut() {
+    fifeCamera->zoomOut();
+}
+
+void FIFEFacade::updateLocation(std::string location) {
+    fifeCamera->updateLocation(location);
+}
+
 
 std::vector<std::string> FIFEFacade::loadTowers()
 {

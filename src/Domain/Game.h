@@ -11,6 +11,8 @@
 
 class Game : public IGame {
 private:
+    AHero* hero{nullptr};
+
     /**
      * Set this to true to stop the game loop
      */
@@ -28,6 +30,8 @@ private:
     void initInput();
 public:
     Game();
+    ~Game();
+    virtual AHero* getHero() override;
     virtual void quit() override;
 };
 
