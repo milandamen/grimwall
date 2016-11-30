@@ -2,9 +2,6 @@
 #include "Game.h"
 #include "EngineFacade.h"
 #include "Units/Heroes/Dralas.h"
-#include "Units/UnitManager.h"
-#include "Units/Heroes/Abilities/BoneStorm.h"
-#include "Units/Buff/BoneStormBuff.h"
 
 Game::Game()
 {
@@ -14,7 +11,6 @@ Game::Game()
     EngineFacade::engine()->init();
     initInput();
     EngineFacade::engine()->loadMap("assets/maps/level1_remake_conv.xml");
-
 
     this->hero = new UnitManager(new Dralas());
 
