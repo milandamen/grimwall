@@ -2,6 +2,7 @@
 #include "Game.h"
 #include "EngineFacade.h"
 #include "Units/Heroes/Dralas.h"
+#include "Units/Buff/BoneStormBuff.h"
 
 Game::Game()
 {
@@ -12,7 +13,7 @@ Game::Game()
     initInput();
     EngineFacade::engine()->loadMap("assets/maps/level1_remake_conv.xml");
 
-    this->hero = new Dralas();
+    this->hero = new UnitManager(new Dralas());
 
     // Game loop
     int lastTime = 0;
@@ -48,7 +49,7 @@ Game::~Game() {
     delete this->hero;
 }
 
-AHero* Game::getHero() {
+UnitManager* Game::getHero() {
     return this->hero;
 }
 
