@@ -7,7 +7,7 @@
 
 class Game : public IGame {
 private:
-    AHero* hero{nullptr};
+    UnitManager* hero{nullptr};
 
     /**
      * Set this to true to stop the game loop
@@ -23,7 +23,7 @@ private:
 public:
     Game();
     ~Game();
-    virtual AHero* getHero() override;
+    virtual UnitManager* getHero() override;
     virtual void quit() override;
 };
 
