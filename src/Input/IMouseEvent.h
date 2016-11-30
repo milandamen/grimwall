@@ -1,11 +1,9 @@
-
 class IMouseEvent
 {
 private:
 
 
 public:
-
 
 
 };

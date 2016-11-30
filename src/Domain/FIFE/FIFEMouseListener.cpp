@@ -1,3 +1,4 @@
+#include <eventchannel/mouse/ec_mouseevent.h>
 #include "FIFEMouseListener.h"
 
 using namespace std;
@@ -11,13 +12,22 @@ FIFEMouseListener::~FIFEMouseListener() {
 }
 
 void FIFEMouseListener::mouseEntered(FIFE::MouseEvent& evt) {
+
     cout<< "Mouse Entered \n";
 }
 void FIFEMouseListener::mouseExited(FIFE::MouseEvent& evt) {
     cout<< "Mouse Exited \n";
 }
 void FIFEMouseListener::mousePressed(FIFE::MouseEvent& evt) {
-    cout<< "Mouse Pressed \n";
+    if(evt.getButton() == FIFE::MouseEvent::LEFT){
+        cout<< "Left Mouse Pressed at X:" << evt.getX() << " and Y: " << evt.getY() << "\n";
+    }
+    else if(evt.getButton() == FIFE::MouseEvent::RIGHT){
+        cout<< "Right Mouse Pressed \n";
+    }
+    else if(evt.getButton() == FIFE::MouseEvent::MIDDLE){
+        cout<< "Middle Mouse Pressed \n";
+    }
 }
 
 void FIFEMouseListener::mouseReleased(FIFE::MouseEvent& evt) {
