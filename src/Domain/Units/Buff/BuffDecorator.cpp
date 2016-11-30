@@ -37,3 +37,19 @@ int BuffDecorator::getVisibility()
 void BuffDecorator::doDamage(int power) {
     // do damage
 }
+
+double BuffDecorator::getX() {
+    return this->m_wrappee->getX();
+}
+
+void BuffDecorator::setX(double x) {
+    this->m_wrappee->setX(x);
+}
+
+double BuffDecorator::getY() {
+    return this->m_wrappee->getY();
+}
+
+void BuffDecorator::setY(double y) {
+    this->m_wrappee->setY(y);
+}

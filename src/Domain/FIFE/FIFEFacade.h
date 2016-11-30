@@ -9,6 +9,7 @@
 #include "view/camera.h"
 #include "util/time/timemanager.h"
 #include "eventchannel/eventmanager.h"
+#include <gui/fifechan/fifechanmanager.h>
 
 #include "boost/filesystem.hpp"
 #include "SDL.h"
@@ -17,14 +18,31 @@
 #include "FIFEKeyListener.h"
 #include "../IGame.h"
 #include "../../Input/ICallback.h"
+#include "Camera/FIFECamera.h"
+
+// TODO Remove unnecesary
+namespace FIFE
+{
+    class Engine;
+    class EngineSettings;
+    class Map;
+    class Camera;
+    class Instance;
+    class IGUIManager;
+}
 
 namespace fs = boost::filesystem;
 
-class FIFEFacade : public IEngineFacade {
+class FIFEFacade : public IEngineFacade, fcn::ActionListener, fcn::KeyListener, fcn::MouseListener {
 private:
     FIFE::Engine* engine {nullptr};
+    FIFE::FifechanManager* guimanager {nullptr};
     FIFE::Map* map {nullptr};
     FIFE::Camera* mainCamera {nullptr};
+
+    fcn::Button* btnOptions {nullptr};
+    fcn::Button* btnExit {nullptr};
+    FIFECamera* fifeCamera {nullptr};
     
     IGame* game {nullptr};
     FIFEKeyListener* keyListener {nullptr};
@@ -36,8 +54,18 @@ private:
 public:
     FIFEFacade(IGame* game);
     ~FIFEFacade();
-    
-    
+
+    /**** Encapsulation ****/
+
+    /**
+     * Get the GUI Manager
+     * @return
+     */
+    FIFE::FifechanManager* getGuiManager() override;
+    void action(const fcn::ActionEvent& actionEvent) override;
+    void keyPressed(fcn::KeyEvent& keyEvent) override;
+    void mousePressed(fcn::MouseEvent& mouseEvent) override;
+
     /**** Settings ****/
     
     /**
@@ -64,8 +92,8 @@ public:
      * Sets windows title.
      */
     void setWindowTitle(std::string title) override;
-    
-    
+
+
     /**** Initializing ****/
     
     /**
@@ -100,12 +128,32 @@ public:
     /**
      * Get layer by name
      */
-    void setInstanceLocation(std::string name, int x, int y) override;
+    void setInstanceLocation(std::string name, double x, double y) override;
     
     /**
      * Register a callback with a key combination
      */
     void registerCallback(std::string, ICallback* callback) override;
+
+    /**
+     * Zoom in
+     */
+    void zoomIn() override;
+
+    /**
+     * Zoom out
+     */
+    void zoomOut() override;
+
+    /**
+     * Update location
+     */
+    void updateLocation(std::string location) override;
+
+    /**
+     * Creates a new instance on a given location
+     */
+    void createInstance() override;
 };
 
 #endif
