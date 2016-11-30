@@ -16,7 +16,6 @@ private:
     /**
      * Set this to true to stop the game loop
      */
-    bool quit {false};
     std::vector<ATower*> towers;
     void loadTowers();
     void deleteTowers();

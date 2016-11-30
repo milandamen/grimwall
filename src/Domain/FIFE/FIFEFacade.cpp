@@ -248,7 +248,7 @@ void FIFEFacade::updateLocation(std::string location) {
 
 std::vector<std::string> FIFEFacade::loadTowers()
 {
-    FIFE::Layer* layer = map->getLayer("layer2");
+    FIFE::Layer* layer = map->getLayer("unitLayer");
     std::vector<std::string> idList;
     if(layer)
     {

@@ -9,11 +9,10 @@ Game::Game()
     EngineFacade::engine()->setRenderBackend("OpenGL");
     
     EngineFacade::engine()->init();
-    EngineFacade::engine()->loadMap("assets/maps/level1.xml");
-    loadTowers();
 
     initInput();
     EngineFacade::engine()->loadMap("assets/maps/level1_remake_conv.xml");
+    loadTowers();
 
     this->hero = new Dralas();
 
@@ -49,6 +48,7 @@ Game::Game()
 
 Game::~Game() {
     delete this->hero;
+    this->deleteTowers();
 }
 
 AHero* Game::getHero() {
