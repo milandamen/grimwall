@@ -1,10 +1,10 @@
 #include "BoneStormBuff.h"
 
-BoneStormBuff::BoneStormBuff(IUnit* inner, int multiplier)
-        : BuffDecorator(inner, 300), multiplier{multiplier}
+BoneStormBuff::BoneStormBuff(IUnit* inner)
+        : BuffDecorator(inner, 300)
 {}
 
 int BoneStormBuff::getAttackDelay()
 {
-    return BuffDecorator::getAttackDelay() * this->multiplier;
+    return BuffDecorator::getAttackDelay() * 2;
 }

@@ -4,10 +4,8 @@
 #include "BuffDecorator.h"
 
 class BoneStormBuff : public BuffDecorator {
-private:
-    int multiplier;
 public:
-    BoneStormBuff(IUnit *inner, int multiplier);
+    BoneStormBuff(IUnit *inner);
 
     int getAttackDelay();
 
