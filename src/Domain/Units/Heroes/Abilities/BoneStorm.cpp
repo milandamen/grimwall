@@ -11,6 +11,6 @@ BoneStorm::BoneStorm(vector<IUnit*> towers)
 int BoneStorm::execute()
 {
     for (size_t i = 0; i < this->towers.size(); ++i)
-        this->towers[i] = new BoneStormBuff(this->towers[i]);
+        this->towers[i] = new BoneStormBuff(this->towers[i], 2);
     return 1;
 }

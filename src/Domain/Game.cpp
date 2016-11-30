@@ -2,6 +2,7 @@
 #include "Game.h"
 #include "EngineFacade.h"
 #include "Units/Heroes/Dralas.h"
+#include "Units/Buff/BoneStormBuff.h"
 
 Game::Game()
 {

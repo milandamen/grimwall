@@ -26,9 +26,11 @@ public:
     double getY() override;
     void setY(double y) override;
 
+    IUnit* getUnit();
+
     template <typename Decorator>
-    void decorate() {
-        this->unit = new Decorator(this->unit);
+    void decorate(Decorator* decorator) {
+        this->unit = decorator;
     };
 };
 

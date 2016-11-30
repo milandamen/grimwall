@@ -57,3 +57,7 @@ double UnitManager::getY() {
 void UnitManager::setY(double y) {
     unit->setY(y);
 }
+
+IUnit* UnitManager::getUnit() {
+    return this->unit;
+}
