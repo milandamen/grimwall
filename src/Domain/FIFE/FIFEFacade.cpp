@@ -80,10 +80,10 @@ void FIFEFacade::init()
             engine->getRenderBackend()->getScreenHeight()
     );
 
-    initInput();
-
     engine->setGuiManager(guimanager);
     engine->getEventManager()->addSdlEventListener(guimanager);
+
+    initInput();
 
     btnOptions = new fcn::Button();
     btnOptions->setId("btnOptions");
@@ -158,6 +158,7 @@ void FIFEFacade::loadMap(std::string path)
             // load the map
             map = mapLoader->load(mapPath.string());
             fifeCamera = new FIFECamera(map, engine->getEventManager(), engine->getTimeManager());
+
         }
 
         // done with map loader safe to delete
@@ -172,6 +173,7 @@ void FIFEFacade::loadMap(std::string path)
         pumpingInitialized = true;
         engine->initializePumping();
     }
+    mouseListener->setCamera(fifeCamera);
 }
 
 void FIFEFacade::initView()
@@ -185,7 +187,7 @@ void FIFEFacade::initInput()
     {
         // attach our key listener to the engine
         keyListener = new FIFEKeyListener(game);
-        mouseListener = new FIFEMouseListener(game);
+        mouseListener = new FIFEMouseListener(game, fifeCamera);
         engine->getEventManager()->addKeyListener(keyListener);
         engine->getEventManager()->addMouseListener(mouseListener);
     }

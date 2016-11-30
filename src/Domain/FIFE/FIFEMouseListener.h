@@ -2,6 +2,9 @@
 #define FIFE_MOUSE_LISTENER_H
 
 #include "eventchannel/mouse/ec_imouselistener.h"
+#include "eventchannel/mouse/ec_mouseevent.h"
+#include "model/structures/layer.h"
+#include "model/metamodel/grids/cellgrid.h"
 
 #include <string>
 #include <unordered_map>
@@ -11,7 +14,7 @@
 #include "../Units/IUnit.h"
 //#include "../EngineFacade.h"
 #include "../IGame.h"
-
+#include "Camera/FIFECamera.h"
 
 
 
@@ -19,16 +22,21 @@ class FIFEMouseListener : public FIFE::IMouseListener
 {
 private:
     IGame* game;
+    FIFECamera* camera;
+
     std::unordered_map<std::string, MouseCallback*> callbackMap;
 
     int dragX;
     int dragY;
 
 public:
-    FIFEMouseListener(IGame* game);
+    FIFEMouseListener(IGame* game, FIFECamera* camera);
+
     virtual ~FIFEMouseListener();
 
     void registerCallback(std::string click, MouseCallback* callback);
+
+    void setCamera(FIFECamera* camera);
 
     virtual void mouseEntered(FIFE::MouseEvent& evt);
     virtual void mouseExited(FIFE::MouseEvent& evt);
@@ -41,11 +49,6 @@ public:
     virtual void mouseDragged(FIFE::MouseEvent& evt);
 
     void setPlayer(IUnit* unit);
-
-
-
-
-
 
 
 };

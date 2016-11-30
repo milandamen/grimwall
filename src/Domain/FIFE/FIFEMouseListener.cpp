@@ -1,9 +1,10 @@
-#include <eventchannel/mouse/ec_mouseevent.h>
 #include "FIFEMouseListener.h"
 
 using namespace std;
+using namespace FIFE;
 
-FIFEMouseListener::FIFEMouseListener(IGame *game) : game{game} {}
+FIFEMouseListener::FIFEMouseListener(IGame *game, FIFECamera* camera) : game{game}, camera{camera} {}
+
 FIFEMouseListener::~FIFEMouseListener() {
     for (auto &&item : callbackMap) {
         delete item.second;
@@ -21,6 +22,15 @@ void FIFEMouseListener::mouseExited(FIFE::MouseEvent& evt) {
 void FIFEMouseListener::mousePressed(FIFE::MouseEvent& evt) {
     if(evt.getButton() == FIFE::MouseEvent::LEFT){
         cout<< "Left Mouse Pressed at X:" << evt.getX() << " and Y: " << evt.getY() << "\n";
+
+        auto coord = camera->getExact(evt.getX(), evt.getX());
+
+
+
+        cout << coord << "\n";
+
+
+
     }
     else if(evt.getButton() == FIFE::MouseEvent::RIGHT){
         cout<< "Right Mouse Pressed \n";
@@ -28,6 +38,10 @@ void FIFEMouseListener::mousePressed(FIFE::MouseEvent& evt) {
     else if(evt.getButton() == FIFE::MouseEvent::MIDDLE){
         cout<< "Middle Mouse Pressed \n";
     }
+}
+
+void FIFEMouseListener::setCamera(FIFECamera* camera) {
+    this->camera = camera;
 }
 
 void FIFEMouseListener::mouseReleased(FIFE::MouseEvent& evt) {

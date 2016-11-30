@@ -7,7 +7,7 @@ Game::Game()
 {
     EngineFacade::setEngine("FIFE", this);
     EngineFacade::engine()->setRenderBackend("OpenGL");
-    
+
     EngineFacade::engine()->init();
     initInput();
     EngineFacade::engine()->loadMap("assets/maps/level1_remake_conv.xml");

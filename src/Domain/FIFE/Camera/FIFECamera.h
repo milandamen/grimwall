@@ -7,6 +7,9 @@
 #include <util/time/timemanager.h>
 #include <eventchannel/eventmanager.h>
 #include "model/structures/map.h"
+#include "model/structures/layer.h"
+#include "model/metamodel/grids/cellgrid.h"
+#include "model/structures/location.h"
 
 #include "FIFECamera.h"
 #include "FIFECameraScroller.h"
@@ -19,10 +22,18 @@ public:
     void zoomOut();
     void zoomIn();
     void updateLocation(std::string location);
+
+    FIFE::Location getExact(int screenX, int screenY);
+
 private:
     FIFE::Map* map {nullptr};
     FIFE::Camera* mainCamera {nullptr};
     FIFECameraScroller* cameraScroller {nullptr};
+
+
+
+
+
 
     double zoomIncrement;
     double maxZoom;
