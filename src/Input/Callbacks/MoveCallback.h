@@ -5,6 +5,7 @@
 
 #include <iostream>
 #include "../KeypressCallback.h"
+#include "../../Domain/EngineFacade.h"
 
 class MoveCallback : public KeypressCallback {
 private:
@@ -14,6 +15,10 @@ private:
     void left();
     void right();
     void down();
+    void upright();
+    void rightdown();
+    void downleft();
+    void leftup();
 public:
     /**
      * Create a MoveCallback object

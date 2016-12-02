@@ -18,7 +18,11 @@ KeyboardMapper::KeyboardMapper(IGame* game)
 
     // Hero
     EngineFacade::engine()->registerCallback("W", new MoveCallback(game, 1, "UP"));
+    EngineFacade::engine()->registerCallback("D", new MoveCallback(game, 1, "RIGHT"));
     EngineFacade::engine()->registerCallback("S", new MoveCallback(game, 1, "DOWN"));
     EngineFacade::engine()->registerCallback("A", new MoveCallback(game, 1, "LEFT"));
-    EngineFacade::engine()->registerCallback("D", new MoveCallback(game, 1, "RIGHT"));
+    EngineFacade::engine()->registerCallback("W+D", new MoveCallback(game, 1, "UPRIGHT"));
+    EngineFacade::engine()->registerCallback("D+S", new MoveCallback(game, 1, "RIGHTDOWN"));
+    EngineFacade::engine()->registerCallback("S+A", new MoveCallback(game, 1, "DOWNLEFT"));
+    EngineFacade::engine()->registerCallback("W+A", new MoveCallback(game, 1, "LEFTUP"));
 }

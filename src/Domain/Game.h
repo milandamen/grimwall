@@ -3,8 +3,11 @@
 #define GAME_H
 
 #include "IGame.h"
+#include "EngineFacade.h"
 #include "../Input/KeyboardMapper.h"
 #include "Units/UnitManager.h"
+#include "Units/Heroes/Dralas.h"
+#include "Units/Buff/BoneStormBuff.h"
 
 class Game : public IGame {
 private:

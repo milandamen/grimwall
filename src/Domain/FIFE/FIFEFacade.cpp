@@ -1,4 +1,3 @@
- 
 #include "FIFEFacade.h"
 
 FIFEFacade::FIFEFacade(IGame* game)
