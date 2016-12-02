@@ -130,16 +130,52 @@ void FIFEKeyListener::addPressed(std::string key)
         /* v contains x */
     } else {
         pressedKeys.push_back(key);
+        loadCallback();
     }
 }
 
 void FIFEKeyListener::removePressed(std::string key)
 {
     pressedKeys.erase(std::remove(pressedKeys.begin(), pressedKeys.end(), key), pressedKeys.end());
+    loadCallback();
+}
+
+void FIFEKeyListener::loadCallback()
+{
+    // This method only runs when pressedKeys changed
+    
+    if (loadedCallback != nullptr)
+    {
+        loadedCallback->reset();
+        loadedCallback = nullptr;
+    }
+    
+    // Sort keyList
+    std::sort(pressedKeys.begin(), pressedKeys.end());
+    
+    std::stringstream ss;
+    for (auto& el : pressedKeys)
+    {
+        ss << el;
+    }
+    
+    std::string needle = ss.str();
+    
+    // Find callback
+    for (auto& keyPair : callbackMap)
+    {
+        if (keyPair.first == needle)
+        {
+            loadedCallback = keyPair.second;
+            break;
+        }
+    }
 }
 
 void FIFEKeyListener::tick()
 {
-    // TODO: Implement tick
+    if (loadedCallback == nullptr) { return; }
+    
+    loadedCallback->execute();
 }
 
