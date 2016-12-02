@@ -4,9 +4,12 @@
 
 #include "IGame.h"
 #include "../Input/KeyboardMapper.h"
+#include "Units/UnitManager.h"
 
 class Game : public IGame {
 private:
+    UnitManager* hero{nullptr};
+
     /**
      * Set this to true to stop the game loop
      */
@@ -30,6 +33,8 @@ private:
     void updateFPS();
 public:
     Game();
+    ~Game();
+    virtual UnitManager* getHero() override;
     virtual void quit() override;
 };
 

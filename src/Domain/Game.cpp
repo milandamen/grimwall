@@ -1,6 +1,8 @@
 
 #include "Game.h"
 #include "EngineFacade.h"
+#include "Units/Heroes/Dralas.h"
+#include "Units/Buff/BoneStormBuff.h"
 
 Game::Game()
 {
@@ -11,7 +13,9 @@ Game::Game()
     EngineFacade::engine()->init();
     initInput();
     EngineFacade::engine()->loadMap("assets/maps/level1_remake_conv.xml");
-    
+
+    this->hero = new UnitManager(new Dralas());
+
     // Game loop
     curTime = 0;
     lastTime = 0;
@@ -31,6 +35,14 @@ Game::Game()
     
     EngineFacade::destroy();     // TODO Currently crashes (SEGFAULT), problem not in my code.
     delete keyboardMapper;
+}
+
+Game::~Game() {
+    delete this->hero;
+}
+
+UnitManager* Game::getHero() {
+    return this->hero;
 }
 
 void Game::quit()

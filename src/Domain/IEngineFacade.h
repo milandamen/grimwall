@@ -83,7 +83,7 @@ public:
     /**
      * Set the location of an instance
      */
-    virtual void setInstanceLocation(std::string name, int x, int y) = 0;
+    virtual void setInstanceLocation(std::string name, double x, double y) = 0;
     
     /**
      * Run a tick for userland code like input callbacks

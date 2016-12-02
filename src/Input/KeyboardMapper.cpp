@@ -3,6 +3,8 @@
 KeyboardMapper::KeyboardMapper(IGame* game)
 {
     EngineFacade::engine()->registerCallback("ESCAPE", new QuitCallback(game));
+    
+    // Camera
     EngineFacade::engine()->registerCallback("UP", new MoveCameraCallback(game, 1, "UP"));
     EngineFacade::engine()->registerCallback("RIGHT", new MoveCameraCallback(game, 1, "RIGHT"));
     EngineFacade::engine()->registerCallback("DOWN", new MoveCameraCallback(game, 1, "DOWN"));
@@ -13,4 +15,10 @@ KeyboardMapper::KeyboardMapper(IGame* game)
     EngineFacade::engine()->registerCallback("LEFT+UP", new MoveCameraCallback(game, 1, "LEFTUP"));
     EngineFacade::engine()->registerCallback("=", new ZoomCameraCallback(game, 5, "PLUS"));
     EngineFacade::engine()->registerCallback("-", new ZoomCameraCallback(game, 5, "MINUS"));
+
+    // Hero
+    EngineFacade::engine()->registerCallback("W", new MoveCallback(game, 1, "UP"));
+    EngineFacade::engine()->registerCallback("S", new MoveCallback(game, 1, "DOWN"));
+    EngineFacade::engine()->registerCallback("A", new MoveCallback(game, 1, "LEFT"));
+    EngineFacade::engine()->registerCallback("D", new MoveCallback(game, 1, "RIGHT"));
 }
