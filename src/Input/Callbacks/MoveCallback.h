@@ -25,7 +25,7 @@ public:
      * 
      * @param game An instance of IGame that the callback can execute methods on
      * @param firePerNFrames Callback fires every N frames or only once if set to 0. Fires while keys are held.
-     * @param direction Move the hero in a certain direction (UP, RIGHT, DOWN, LEFT)
+     * @param direction Move the hero in a certain direction (UP, RIGHT, DOWN, LEFT, UPRIGHT, RIGHTDOWN, DOWNLEFT, LEFTUP)
      */
     MoveCallback(IGame* game, int firePerNFrames, std::string direction);
     virtual void execute() override;

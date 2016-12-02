@@ -18,7 +18,7 @@ public:
      * 
      * @param game An instance of IGame that the callback can execute methods on
      * @param firePerNFrames Callback fires every N frames or only once if set to 0. Fires while keys are held.
-     * @param 
+     * @param value Direction of zooming (PLUS, MINUS)
      */
     ZoomCameraCallback(IGame* game, int firePerNFrames, std::string value);
     virtual void execute() override;

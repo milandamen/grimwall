@@ -1,5 +1,4 @@
 #include "MoveCallback.h"
-#include "iostream"
 
 MoveCallback::MoveCallback(IGame* game, int firePerNFrames, std::string direction)
     : KeypressCallback(game, firePerNFrames), direction{direction}
@@ -47,7 +46,7 @@ void MoveCallback::execute() {
 }
 
 void MoveCallback::up() {
-    // Diagonal speed is 1/3 slower in both directions because moving over 2 axels
+    // Diagonal speed is 1/3 slower in both directions because moving over 2 axles
     this->game->getHero()->setX(this->game->getHero()->getX() + (double)this->game->getHero()->getSpeed() / 133);
     this->game->getHero()->setY(this->game->getHero()->getY() - (double)this->game->getHero()->getSpeed() / 133);
 }

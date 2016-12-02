@@ -71,14 +71,8 @@ void FIFEKeyListener::registerCallback(std::string keys, ICallback* callback)
  */
 void FIFEKeyListener::keyPressed(FIFE::KeyEvent& evt)
 {
-    if (evt.getKey().getAsString() == "Escape")
-    {
-        exit(0);            // TODO: Remove temporary code
-    }
-    
     std::string key {evt.getKey().getAsString()};
     std::transform(key.begin(), key.end(), key.begin(), std::ptr_fun<int, int>(std::toupper));
-    
     
     if (key == "CTRL" || key == "LEFT CTRL" || key == "RIGHT CTRL")
     {
