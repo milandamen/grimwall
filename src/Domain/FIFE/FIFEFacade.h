@@ -9,7 +9,8 @@
 #include "view/camera.h"
 #include "util/time/timemanager.h"
 #include "eventchannel/eventmanager.h"
-#include <gui/fifechan/fifechanmanager.h>
+#include "gui/fifechan/fifechanmanager.h"
+#include "util/log/logger.h"
 
 #include "boost/filesystem.hpp"
 #include "SDL.h"

@@ -8,12 +8,12 @@
 #include <eventchannel/eventmanager.h>
 #include "model/structures/map.h"
 
-#include "FIFECamera.h"
 #include "FIFECameraScroller.h"
 
 class FIFECamera{
 public:
     FIFECamera(FIFE::Map* map, FIFE::EventManager* eventManager, FIFE::TimeManager* timeManager);
+    ~FIFECamera();
 
     void initView();
     void zoomOut();

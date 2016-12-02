@@ -7,6 +7,11 @@ FIFECamera::FIFECamera(FIFE::Map *map, FIFE::EventManager* eventManager, FIFE::T
     minZoom = 0.25;
 }
 
+FIFECamera::~FIFECamera()
+{
+    delete cameraScroller;
+}
+
 void FIFECamera::initView() {
     if(map){
         // get the main camera for this map
