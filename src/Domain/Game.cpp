@@ -76,12 +76,6 @@ void Game::loadTowers()
 
         this->towers.push_back(tower);
     }
-
-    std::cout << "Nr of towers:  "<< this->towers.size() << std::endl;
-    for (unsigned int i = 0; i < towerIds.size(); ++i)
-    {
-        std::cout << this->towers.at(i)->getId() << std::endl;
-    }
 }
 
 void Game::deleteTowers()
