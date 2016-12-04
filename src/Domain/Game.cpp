@@ -10,8 +10,10 @@ Game::Game()
     EngineFacade::engine()->setRenderBackend("OpenGL");
     
     EngineFacade::engine()->init();
+
     initInput();
     EngineFacade::engine()->loadMap("assets/maps/level1_remake_conv.xml");
+    loadTowers();
 
     this->hero = new UnitManager(new Dralas());
 
@@ -47,6 +49,7 @@ Game::Game()
 
 Game::~Game() {
     delete this->hero;
+    this->deleteTowers();
 }
 
 UnitManager* Game::getHero() {
@@ -61,4 +64,26 @@ void Game::quit()
 void Game::initInput()
 {
     keyboardMapper = new KeyboardMapper(this);
+}
+
+void Game::loadTowers()
+{
+    std::vector<std::string> towerIds = EngineFacade::engine()->loadTowers();
+
+    for (unsigned int i = 0; i < towerIds.size(); ++i)
+    {
+        ATower* tower = new DefaultTower();
+        tower->setId(towerIds.at(i));
+
+        this->towers.push_back(tower);
+    }
+}
+
+void Game::deleteTowers()
+{
+    for (unsigned int i = 0; i < this->towers.size(); ++i)
+    {
+        delete this->towers.at(i);
+    }
+    this->towers.clear();
 }
