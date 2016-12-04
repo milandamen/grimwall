@@ -147,7 +147,7 @@ void FIFEFacade::loadMap(std::string path)
         delete fifeCamera;
     }
 
-    if (engine->getModel() && engine->getVFS() && engine->getImageManager() && 
+    if (engine->getModel() && engine->getVFS() && engine->getImageManager() &&
         engine->getRenderBackend())
     {
         // create the default loader for the FIFE map format
@@ -254,5 +254,33 @@ void FIFEFacade::tick()
 {
     keyListener->tick();
 }
+
+
+std::vector<std::string> FIFEFacade::loadTowers()
+{
+    FIFE::Layer* layer = map->getLayer("unitLayer");
+    std::vector<std::string> idList;
+    if(layer)
+    {
+        std::vector<FIFE::Instance*> instances = layer->getInstances();
+
+        //get the towers
+        for (unsigned int i = 0; i < instances.size(); ++i)
+        {
+            //select instances with tower in their id
+            std::string id = instances.at(i)->getId();
+
+            if(id.find("Tower")  != std::string::npos)
+            {
+                idList.push_back(id);
+            }
+        }
+    }
+
+    return idList;
+
+
+}
+
 
 

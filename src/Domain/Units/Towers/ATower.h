@@ -6,8 +6,12 @@
 
 class ATower : public AUnit {
 private:
+    std::string id;
 public:
+    ATower (std::string name, int reach, int attackDelay, int power, int hitPoints, int visibility);
     virtual void doDamage(int power);
+    virtual std::string getId();
+    virtual void setId(std::string id);
 };
 
 
