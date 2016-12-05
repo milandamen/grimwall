@@ -2,7 +2,7 @@
 #include "Domain/Game.h"
 
 int main() {
-    std::cout << "test" << std::endl;
+    std::cout << "Starting Grimwall" << std::endl;
 
     Game game;
     

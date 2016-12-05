@@ -28,7 +28,7 @@ public:
     virtual void setScreenHeight(int height) = 0;
     virtual void setFullScreen(bool fullScreen) = 0;
     virtual void setWindowTitle(std::string title) = 0;
-    virtual void setInstanceLocation(std::string name, double x, double y) = 0;
+    virtual void setFPSLimit(int fpsLimit) = 0;
     
     /** Initializing **/
     
@@ -77,11 +77,20 @@ public:
     virtual void zoomOut() = 0;
 
     /**
-     * update screen camera
+     * Update the screen camera
      */
     virtual void updateLocation(std::string location) = 0;
 
-
+    /**
+     * Set the location of an instance
+     */
+    virtual void setInstanceLocation(std::string name, double x, double y) = 0;
+    
+    /**
+     * Run a tick for userland code like input callbacks
+     */
+    virtual void tick() = 0;
+    
     /**
      *  load towers from map
      */

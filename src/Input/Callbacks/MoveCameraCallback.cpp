@@ -1,22 +1,25 @@
 #include "MoveCameraCallback.h"
 
-MoveCameraCallback::MoveCameraCallback(IGame* game, std::string direction) : KeypressCallback(game), direction{direction}
+MoveCameraCallback::MoveCameraCallback(IGame* game, int firePerNFrames, std::string direction) : KeypressCallback(game, firePerNFrames), direction{direction}
 {
 
 }
 
 void MoveCameraCallback::execute()
 {
-    if(direction == "UP"){
-        EngineFacade::engine()->updateLocation(direction);
+    if (!shouldExecute()) { return; }
+    
+    // You can move in multiple directions at once
+    if (direction.find("UP") != std::string::npos) {
+        EngineFacade::engine()->updateLocation("UP");
     }
-    else if(direction == "DOWN"){
-        EngineFacade::engine()->updateLocation(direction);
+    if (direction.find("RIGHT") != std::string::npos) {
+        EngineFacade::engine()->updateLocation("RIGHT");
     }
-    else if(direction == "RIGHT"){
-        EngineFacade::engine()->updateLocation(direction);
+    if (direction.find("DOWN") != std::string::npos) {
+        EngineFacade::engine()->updateLocation("DOWN");
     }
-    else if(direction == "LEFT"){
-        EngineFacade::engine()->updateLocation(direction);
+    if (direction.find("LEFT") != std::string::npos) {
+        EngineFacade::engine()->updateLocation("LEFT");
     }
 }
