@@ -63,3 +63,7 @@ void FIFECamera::zoomOut(){
 void FIFECamera::updateLocation(std::string location) {
     cameraScroller->updateLocation(location);
 }
+
+FIFE::Camera* FIFECamera::Camera() {
+    return mainCamera;
+}

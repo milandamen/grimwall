@@ -209,6 +209,7 @@ void FIFEFacade::setInstanceLocation(std::string name, double x, double y) {
     if (map) {
         FIFE::Layer *layer = map->getLayer("unitLayer");
 
+
         if (layer) {
             FIFE::Instance *instance = layer->getInstance(name);
 
@@ -216,13 +217,15 @@ void FIFEFacade::setInstanceLocation(std::string name, double x, double y) {
                 // Get the current location of the instance
                 FIFE::Location destination(instance->getLocation());
 
-                FIFE::ExactModelCoordinate mapCoords{};
-                mapCoords.x = x;
-                mapCoords.y = y;
+                FIFE::ScreenPoint screenPoint(501, 175);
+                FIFE::ExactModelCoordinate mapCoords = fifeCamera->Camera()->toMapCoordinates(screenPoint, false);
+
                 mapCoords.z = 0.0;
+
                 destination.setMapCoordinates(mapCoords);
 
-                instance->setLocation(destination);
+                //instance->setLocation(destination);
+                instance->move("walk", destination, instance->getTotalTimeMultiplier());
             }
         }
     }

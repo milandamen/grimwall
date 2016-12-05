@@ -33,6 +33,8 @@ Game::Game()
             // Update the last time FPS was calculated
             lastTime = EngineFacade::engine()->getTime();
         }
+
+
         
         // Render a frame
         EngineFacade::engine()->render();

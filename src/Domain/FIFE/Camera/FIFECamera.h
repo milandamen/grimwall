@@ -19,6 +19,7 @@ public:
     void zoomOut();
     void zoomIn();
     void updateLocation(std::string location);
+    FIFE::Camera* Camera();
 private:
     FIFE::Map* map {nullptr};
     FIFE::Camera* mainCamera {nullptr};
