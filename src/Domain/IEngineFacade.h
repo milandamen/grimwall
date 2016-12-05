@@ -80,6 +80,11 @@ public:
      */
     virtual void updateLocation(std::string location) = 0;
 
+    /**
+     * Creates a new instance on a given location and returns the name of the object
+     */
+    virtual std::string createInstance(std::string objectName, std::string instanceName, double x, double y) = 0;
+
 };
 
 #endif

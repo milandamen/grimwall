@@ -3,6 +3,9 @@
 
 #include "controller/engine.h"
 #include "controller/enginesettings.h"
+#include "model/model.h"
+#include "model/structures/instance.h"
+#include "view/visual.h"
 #include "loaders/native/map/maploader.h"
 #include "model/structures/map.h"
 #include "model/structures/layer.h"
@@ -151,9 +154,9 @@ public:
     void updateLocation(std::string location) override;
 
     /**
-     * Creates a new instance on a given location
+     * Creates a new instance on a given location and returns the name of the object
      */
-    void createInstance() override;
+    std::string createInstance(std::string objectName, std::string instanceName, double x, double y) override;
 };
 
 #endif

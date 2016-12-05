@@ -1,5 +1,6 @@
 #include "KeyboardMapper.h"
 #include "Callbacks/MoveCallback.h"
+#include "Callbacks/TroupSpawnCallback.h"
 
 KeyboardMapper::KeyboardMapper(IGame* game)
 {
@@ -22,5 +23,5 @@ KeyboardMapper::KeyboardMapper(IGame* game)
     EngineFacade::engine()->registerCallback("-", new ZoomCameraCallback(game, "MINUS"));
 
     // TROUPS
-    EngineFacade::engine()->registerCallback("-", new TroupSpawnCallback(game, "1"));
+    EngineFacade::engine()->registerCallback("1", new TroupSpawnCallback(game, "1"));
 }

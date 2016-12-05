@@ -13,7 +13,11 @@ Game::Game()
     initInput();
     EngineFacade::engine()->loadMap("assets/maps/level1_remake_conv.xml");
 
+
     this->hero = new UnitManager(new Dralas());
+
+    std::cout << "test" << std::endl;
+
 
     // Game loop
     int lastTime = 0;

@@ -228,8 +228,40 @@ void FIFEFacade::setInstanceLocation(std::string name, double x, double y) {
     }
 }
 
-void FIFEFacade::createInstance(){
-
+std::string FIFEFacade::createInstance(std::string objectName, std::string instanceName, double x, double y){
+    if(map){
+        FIFE::Layer *layer = map->getLayer("unitLayer");
+        if(layer)  {
+            FIFE::Object *object = engine->getModel()->getObject(objectName, "grimwall");
+            if(object) {
+                std::cout << "Object created." << std::endl;
+                FIFE::ExactModelCoordinate mapCoords{};
+                mapCoords.x = x;
+                mapCoords.y = y;
+                mapCoords.z = 0.0;
+                FIFE::Location *location = new FIFE::Location(layer);
+                location->setMapCoordinates(mapCoords);
+                    if(layer->getInstancesAt(*location).size() == 0) {
+                        FIFE::Instance *instance = layer->createInstance(object, mapCoords, instanceName);
+                        std::cout << "Instance added." << std::endl;
+                    }
+                    else {
+                        std::cout << "ERROR: space occupied." << std::endl;
+                    }
+                delete location;
+                return instanceName;
+            }
+            else {
+                std::cout << "No object found." << std::endl;
+            }
+        }
+        else {
+            std::cout << "No layer found." << std::endl;
+        }
+    }
+    else {
+        std::cout << "No map found." << std::endl;
+    }
 }
 
 void FIFEFacade::registerCallback(std::string keys, ICallback* callback)
