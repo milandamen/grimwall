@@ -33,10 +33,10 @@ private:
     fcn::Button* btnOptions {nullptr};
     fcn::Button* btnExit {nullptr};
     FIFECamera* fifeCamera {nullptr};
-    
+
     IGame* game {nullptr};
     FIFEKeyListener* keyListener {nullptr};
-    
+
     bool pumpingInitialized {false};
     
     void initView();
@@ -120,6 +120,13 @@ public:
      * Get the current time in milliseconds
      */
     int getTime() override;
+
+    /**
+     *  load towers from map
+     */
+    std::vector<std::string> loadTowers() override;
+
+
 
     /**
      * Get layer by name

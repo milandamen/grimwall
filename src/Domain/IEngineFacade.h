@@ -4,6 +4,7 @@
 #include <iostream>
 #include <gui/guimanager.h>
 #include <util/structures/rect.h>
+#include <vector>
 
 #include "eventchannel/mouse/ec_mouseevent.h"
 #include "../Input/ICallback.h"
@@ -59,7 +60,7 @@ public:
      * Get the current time in milliseconds
      */
     virtual int getTime() = 0;
-    
+
     /**
      * Register a callback with a key combination
      */
@@ -90,6 +91,10 @@ public:
      */
     virtual void tick() = 0;
     
+    /**
+     *  load towers from map
+     */
+    virtual std::vector<std::string> loadTowers() = 0;
 };
 
 #endif

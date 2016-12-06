@@ -9,6 +9,10 @@
 #include "Units/Heroes/Dralas.h"
 #include "Units/Buff/BoneStormBuff.h"
 
+#include <vector>
+#include "Units/Towers/ATower.h"
+#include "Units/Towers/DefaultTower.h"
+
 class Game : public IGame {
 private:
     UnitManager* hero{nullptr};
@@ -16,8 +20,11 @@ private:
     /**
      * Set this to true to stop the game loop
      */
+    std::vector<ATower*> towers;
+    void loadTowers();
+    void deleteTowers();
     bool running {true};
-    
+
     /**
      * Value that denotes the current time
      */
@@ -31,7 +38,7 @@ private:
      * Handles mapping of key combinations to callbacks
      */
     KeyboardMapper* keyboardMapper {nullptr};
-    
+
     void initInput();
     void updateFPS();
 public:
