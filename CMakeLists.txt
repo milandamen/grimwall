@@ -251,6 +251,7 @@ set(TESTS OFF CACHE BOOL "Compile tests")
 if(TESTS)
     # Add all files in src/Domain to be builded
     file(GLOB_RECURSE Grimwall_Test_SRC
+        "test/stc/*.h"
         "test/src/*.cpp"
     )
     add_executable(Grimwall_Test ${Grimwall_SRC_Domain} ${Grimwall_SRC_GUI} ${Grimwall_SRC_Input} ${Grimwall_Test_SRC})
@@ -266,9 +267,11 @@ if(TESTS)
     endif()
     
     find_package(GoogleTest REQUIRED)
+    find_package(GoogleMock REQUIRED)
     
     include_directories(
         ${GTEST_INCLUDE_DIR}
+        ${GMOCK_INCLUDE_DIR}
     )
 
     target_link_libraries(Grimwall_Test ${ZLIB_LIBRARIES})
@@ -287,6 +290,7 @@ if(TESTS)
     target_link_libraries(Grimwall_Test ${FIFECHAN_LIBRARIES})
     target_link_libraries(Grimwall_Test ${FIFE_LIBRARIES})
     target_link_libraries(Grimwall_Test ${GTEST_LIBRARIES})
+    target_link_libraries(Grimwall_Test ${GMOCK_LIBRARIES})
 
     install(TARGETS Grimwall_Test
         RUNTIME DESTINATION ${CMAKE_INSTALL_PREFIX}/${PROJECT_NAME}
