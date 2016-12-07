@@ -5,6 +5,7 @@
 #include "Callbacks/QuitCallback.h"
 #include "Callbacks/MoveCameraCallback.h"
 #include "Callbacks/ZoomCameraCallback.h"
+#include "Callbacks/MoveCallback.h"
 #include "../Domain/IGame.h"
 
 class KeyboardMapper
