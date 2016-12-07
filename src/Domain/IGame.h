@@ -2,12 +2,12 @@
 #define IGAME_H
 
 #include "Units/Heroes/AHero.h"
-#include "Units/UnitManager.h"
+#include "Units/UnitManager.hpp"
 
 class IGame
 {
 public:
-    virtual UnitManager* getHero() = 0;
+    virtual UnitManager<AHero>* getHero() = 0;
     virtual void quit() = 0;
 };
 
