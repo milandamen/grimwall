@@ -3,5 +3,5 @@
 MouseMapper::MouseMapper(IGame* game)
 {
     // Hero
-    EngineFacade::engine()->registerCallback("W", new MoveCallback(game, 1));
+   // EngineFacade::engine()->registerCallback("W", new MoveCallback(game, 1));
 }

@@ -161,8 +161,8 @@ void FIFEFacade::loadMap(std::string path)
 
         if (mapLoader) {
             // load the map
-            map = mapLoader->load(mapPath.string());
             fifeCamera = new FIFECamera(map, engine->getEventManager(), engine->getTimeManager());
+            map = mapLoader->load(mapPath.string());
 
         }
 
@@ -227,11 +227,14 @@ void FIFEFacade::move(std::string name, double x, double y) {
                 // move controller to clicked spot
                 FIFE::Location destination(instance->getLocation());
                 FIFE::ScreenPoint screenPoint(x, y);
-                FIFE::ExactModelCoordinate mapCoords = mainCamera->toMapCoordinates(screenPoint, false);
-                mapCoords.z = 0.0;
-                destination.setMapCoordinates(mapCoords);
-                std::cout << "X: " << mapCoords.x << ", Y:" << mapCoords.y << std::endl;
-                instance->move("walk", destination, instance->getTotalTimeMultiplier());
+                if(mainCamera != nullptr){
+                    FIFE::ExactModelCoordinate mapCoords = mainCamera->toMapCoordinates(screenPoint, false);
+                    mapCoords.z = 0.0;
+                    destination.setMapCoordinates(mapCoords);
+                    std::cout << "X: " << mapCoords.x << ", Y:" << mapCoords.y << std::endl;
+                    instance->move("walk", destination, instance->getTotalTimeMultiplier());
+                }
+
 
 // OLD-------------------------------------------------------------------------------------------------------------
 //                // Get the current location of the instance

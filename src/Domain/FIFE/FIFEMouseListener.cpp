@@ -1,4 +1,5 @@
 #include "FIFEMouseListener.h"
+#include "../EngineFacade.h"
 
 using namespace std;
 using namespace FIFE;
@@ -40,6 +41,7 @@ void FIFEMouseListener::mouseReleased(FIFE::MouseEvent& evt) {
     // only activate the move action if the mouse was pressed and released without dragging
     if (evt.getButton() == FIFE::MouseEvent::LEFT && prevEventType != FIFE::MouseEvent::DRAGGED)
     {
+        EngineFacade::engine()->move("Dralas", evt.getX(), evt.getY());
        // call the move callback......... and pass clicked x and y evt.getX();, evt.getY();
     }
 
@@ -69,10 +71,13 @@ void FIFEMouseListener::mouseWheelMovedDown(FIFE::MouseEvent& evt) {
 //    cout<< "Scrolled down \n";
 }
 void FIFEMouseListener::mouseMoved(FIFE::MouseEvent& evt) {
-    camera->updateLocation(evt.getX(), evt.getY());
+    if(camera != nullptr){
+        camera->updateLocation(evt.getX(), evt.getY());
 
-    SetPreviousMouseEvent(evt.getType());
+        SetPreviousMouseEvent(evt.getType());
 //    cout<< "Mouse has moved \n";
+    }
+
 }
 void FIFEMouseListener::mouseDragged(FIFE::MouseEvent& evt) {
     if (evt.getButton() == FIFE::MouseEvent::LEFT)
