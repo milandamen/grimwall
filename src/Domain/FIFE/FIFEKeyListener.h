@@ -30,6 +30,7 @@ private:
     void addPressed(std::string key);
     void removePressed(std::string key);
     void loadCallback();
+    std::string generalizeModifier(std::string key);
 public:
     FIFEKeyListener(IGame* game);
     ~FIFEKeyListener();

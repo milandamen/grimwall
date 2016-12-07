@@ -15,11 +15,24 @@ FIFEFacade::FIFEFacade(IGame* game)
     settings.setDefaultFontPath(defaultFontPath.string());
 
     // FIFE::FifechanManager* guiManager = static_cast<FIFE::FifechanManager*>(m_engine->getGuiManager());
+    
+    // If you want logging from the engine, uncomment this code:
+//     FIFE::LogManager* logManager {engine->getLogManager()};
+//     logManager->setLogToPrompt(true);
+//     logManager->setLevelFilter(FIFE::LogManager::LEVEL_DEBUG);
+//     logManager->addVisibleModule(LM_CONTROLLER);
+//     
+//     // Add logging from all modules
+//     for (int i {0}; i < logmodule_t::LM_MODULE_MAX; i++)
+//     {
+//         logManager->addVisibleModule(static_cast<logmodule_t>(i));
+//     }
 }
 
 FIFEFacade::~FIFEFacade() {
-    //delete engine;
-    //delete guimanager;
+    delete btnOptions;
+    delete btnExit;
+    delete engine;
     delete keyListener;
     delete fifeCamera;
 }
