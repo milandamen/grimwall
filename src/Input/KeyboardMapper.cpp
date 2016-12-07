@@ -1,5 +1,6 @@
 #include "KeyboardMapper.h"
 #include "Callbacks/MoveCallback.h"
+#include "Callbacks/UseAbilityCallback.h"
 
 KeyboardMapper::KeyboardMapper(IGame* game)
 {
@@ -17,4 +18,9 @@ KeyboardMapper::KeyboardMapper(IGame* game)
     EngineFacade::engine()->registerCallback("UP", new MoveCameraCallback(game, "UP"));
     EngineFacade::engine()->registerCallback("=", new ZoomCameraCallback(game, "PLUS"));
     EngineFacade::engine()->registerCallback("-", new ZoomCameraCallback(game, "MINUS"));
+
+    EngineFacade::engine()->registerCallback("1", new UseAbilityCallback(game, 1));
+    EngineFacade::engine()->registerCallback("2", new UseAbilityCallback(game, 2));
+    EngineFacade::engine()->registerCallback("3", new UseAbilityCallback(game, 3));
+    EngineFacade::engine()->registerCallback("4", new UseAbilityCallback(game, 4));
 }

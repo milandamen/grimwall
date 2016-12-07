@@ -7,10 +7,23 @@ AHero::AHero(std::string name, int reach, int attackDelay, int moveSpeed, int po
 
 }
 
-AHero::~AHero() {}
+AHero::~AHero() {
+    for (std::vector<AAbility*>::iterator it = this->abilities.begin() ; it != this->abilities.end(); ++it)
+        delete (*it);
+
+    this->abilities.clear();
+}
 
 std::string AHero::getWeapon() {
     return this->weapon;
+}
+
+void AHero::executeAbility(int number) {
+    this->abilities[number]->execute();
+}
+
+void AHero::addAbility(AAbility *ability) {
+    this->abilities.push_back(ability);
 }
 
 
