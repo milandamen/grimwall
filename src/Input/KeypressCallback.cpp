@@ -9,10 +9,17 @@ bool KeypressCallback::shouldExecute()
 {
     currentFrame++;
     
-    if (firePerNFrames == 0 && currentFrame == 1)
+    if (firePerNFrames == 0)
     {
-        lastExecutedFrame++;
-        return true;
+        if (currentFrame == 1)
+        {
+            lastExecutedFrame++;
+            return true;
+        }
+        else
+        {
+            return false;
+        }
     }
     
     if (currentFrame - lastExecutedFrame >= firePerNFrames)
