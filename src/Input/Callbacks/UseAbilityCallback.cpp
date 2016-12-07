@@ -10,5 +10,5 @@ void UseAbilityCallback::execute() {
     if (!this->shouldExecute())
         return;
 
-    this->game->getHero()->getBase()->executeAbility(this->ability - 1);
+    this->game->getHero()->getBase()->executeAbility(this->ability);
 }

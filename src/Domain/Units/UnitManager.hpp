@@ -10,8 +10,8 @@
 template <typename UnitType>
 class UnitManager : public IUnit {
 private:
-    UnitType* base;
-    IUnit* unit;
+    UnitType* base {nullptr};
+    IUnit* unit {nullptr};
 public:
     UnitManager(UnitType* unit);
     ~UnitManager();
