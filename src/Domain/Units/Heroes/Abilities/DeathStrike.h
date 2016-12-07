@@ -3,14 +3,14 @@
 
 #include "../AAbility.h"
 #include "../AHero.h"
+#include "../../UnitManager.hpp"
 
 class DeathStrike : public AAbility {
 private:
-    IUnit* hero;
+    UnitManager<AHero>* hero;
 public:
-    DeathStrike(IUnit* hero);
+    DeathStrike(UnitManager<AHero>* hero);
     int execute();
-    IUnit* getHero();
 };
 
 
