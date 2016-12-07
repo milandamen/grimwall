@@ -1,9 +1,7 @@
 #include "KeyboardMapper.h"
-<<<<<<< HEAD
+
 #include "Callbacks/MoveCallback.h"
 #include "Callbacks/UseAbilityCallback.h"
-=======
->>>>>>> master
 
 KeyboardMapper::KeyboardMapper(IGame* game)
 {

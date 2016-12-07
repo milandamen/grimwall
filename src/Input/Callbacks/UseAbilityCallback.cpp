@@ -3,11 +3,12 @@
 #include "UseAbilityCallback.h"
 
 UseAbilityCallback::UseAbilityCallback(IGame *game, int ability)
-    : KeypressCallback(game), ability{ability}
+    : KeypressCallback(game, 0), ability{ability}
 {}
 
 void UseAbilityCallback::execute() {
-    std::cout << this->game->getHero()->getPower() << std::endl;
-    this->game->getHero()->getBase()->executeAbility(this->ability-1);
-    std::cout << this->game->getHero()->getPower() << std::endl;
+    if (!this->shouldExecute())
+        return;
+
+    this->game->getHero()->getBase()->executeAbility(this->ability - 1);
 }
