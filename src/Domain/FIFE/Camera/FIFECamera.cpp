@@ -34,14 +34,16 @@ void FIFECamera::initView() {
 
 }
 
-FIFE::Location FIFECamera::getExact(int screenX, int screenY) {
+FIFE::Location* FIFECamera::getExact(int screenX, int screenY) {
     FIFE::ScreenPoint point = FIFE::ScreenPoint(screenX, screenY);
 
     FIFE::ExactModelCoordinate coord = map->getLayer("layer1")->getCellGrid()
             ->toMapCoordinates(mainCamera->toMapCoordinates(point));
 
-    FIFE::Location loc = FIFE::Location(map->getLayer("layer1"));
-    loc.setExactLayerCoordinates(coord);
+    FIFE::Location* loc = new FIFE::Location(map->getLayer("layer1"));
+    loc->setExactLayerCoordinates(coord);
+
+    FIFE::CellSelectionRenderer::getInstance(mainCamera)->selectLocation(loc);
 
     return loc;
 }

@@ -26,8 +26,7 @@ void FIFEMouseListener::mousePressed(FIFE::MouseEvent& evt) {
         auto coord = camera->getExact(evt.getX(), evt.getX());
 
 
-
-        cout << coord << "\n";
+        cout << coord->getExactLayerCoordinates() << "\n";
 
 
 
@@ -60,6 +59,6 @@ void FIFEMouseListener::mouseMoved(FIFE::MouseEvent& evt) {
 //    cout<< "Mouse has moved \n";
 }
 void FIFEMouseListener::mouseDragged(FIFE::MouseEvent& evt) {
-    cout<< "Dragging the mouse \n";
+//    cout<< "Dragging the mouse \n";
 }
 
