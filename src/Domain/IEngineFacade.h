@@ -80,7 +80,7 @@ public:
     /**
      * Update the screen camera
      */
-    virtual void updateLocation(std::string location) = 0;
+    virtual void updateLocation(int x, int y) = 0;
 
     /**
      * Set the location of an instance

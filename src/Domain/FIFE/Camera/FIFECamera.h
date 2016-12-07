@@ -22,9 +22,11 @@ public:
     void initView();
     void zoomOut();
     void zoomIn();
-    void updateLocation(std::string location);
+    void updateLocation(int x, int y);
+    void unregisterEvent();
 
     FIFE::Location* getExact(int screenX, int screenY);
+    FIFE::Camera* Camera() const;
 
 private:
     FIFE::Map* map {nullptr};

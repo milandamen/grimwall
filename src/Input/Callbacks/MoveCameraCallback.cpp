@@ -9,17 +9,17 @@ void MoveCameraCallback::execute()
 {
     if (!shouldExecute()) { return; }
     
-    // You can move in multiple directions at once
-    if (direction.find("UP") != std::string::npos) {
-        EngineFacade::engine()->updateLocation("UP");
-    }
-    if (direction.find("RIGHT") != std::string::npos) {
-        EngineFacade::engine()->updateLocation("RIGHT");
-    }
-    if (direction.find("DOWN") != std::string::npos) {
-        EngineFacade::engine()->updateLocation("DOWN");
-    }
-    if (direction.find("LEFT") != std::string::npos) {
-        EngineFacade::engine()->updateLocation("LEFT");
-    }
+//    // You can move in multiple directions at once
+//    if (direction.find("UP") != std::string::npos) {
+//        EngineFacade::engine()->updateLocation("UP");
+//    }
+//    if (direction.find("RIGHT") != std::string::npos) {
+//        EngineFacade::engine()->updateLocation("RIGHT");
+//    }
+//    if (direction.find("DOWN") != std::string::npos) {
+//        EngineFacade::engine()->updateLocation("DOWN");
+//    }
+//    if (direction.find("LEFT") != std::string::npos) {
+//        EngineFacade::engine()->updateLocation("LEFT");
+//    }
 }

@@ -252,8 +252,8 @@ void FIFEFacade::zoomOut() {
     fifeCamera->zoomOut();
 }
 
-void FIFEFacade::updateLocation(std::string location) {
-    fifeCamera->updateLocation(location);
+void FIFEFacade::updateLocation(int x, int y) {
+    fifeCamera->updateLocation(x,y);
 }
 
 void FIFEFacade::tick()

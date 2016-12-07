@@ -164,7 +164,7 @@ public:
     /**
      * Update location
      */
-    void updateLocation(std::string location) override;
+    void updateLocation(int x, int y) override;
     
     /**
      * Run a tick for userland code like input callbacks

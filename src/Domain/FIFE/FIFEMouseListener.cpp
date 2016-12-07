@@ -3,7 +3,8 @@
 using namespace std;
 using namespace FIFE;
 
-FIFEMouseListener::FIFEMouseListener(IGame *game, FIFECamera* camera) : game{game}, camera{camera} {}
+FIFEMouseListener::FIFEMouseListener(IGame *game, FIFECamera* camera) : game{game}, camera{camera}, prevEventType(FIFE::MouseEvent::UNKNOWN_EVENT),
+instance(0), dragX(0), dragY(0){}
 
 FIFEMouseListener::~FIFEMouseListener() {
     for (auto &&item : callbackMap) {
@@ -13,30 +14,39 @@ FIFEMouseListener::~FIFEMouseListener() {
 }
 
 void FIFEMouseListener::mouseEntered(FIFE::MouseEvent& evt) {
-
-    cout<< "Mouse Entered \n";
+    SetPreviousMouseEvent(evt.getType());
+//    cout<< "Mouse Entered \n";
 }
 void FIFEMouseListener::mouseExited(FIFE::MouseEvent& evt) {
-    cout<< "Mouse Exited \n";
+    SetPreviousMouseEvent(evt.getType());
+//    cout<< "Mouse Exited \n";
 }
 void FIFEMouseListener::mousePressed(FIFE::MouseEvent& evt) {
-    if(evt.getButton() == FIFE::MouseEvent::LEFT){
-        cout<< "Left Mouse Pressed at X:" << evt.getX() << " and Y: " << evt.getY() << "\n";
-
-        auto coord = camera->getExact(evt.getX(), evt.getX());
-
-
-        cout << coord->getExactLayerCoordinates() << "\n";
-
-
-
+//    if(evt.getButton() == FIFE::MouseEvent::LEFT){
+//        cout<< "Left Mouse Pressed at X:" << evt.getX() << " and Y: " << evt.getY() << "\n";
+//
+//        auto coord = camera->getExact(evt.getX(), evt.getX());
+//
+//
+//        cout << coord->getExactLayerCoordinates() << "\n";
+//
+//
+//
+//    }
+//    else if(evt.getButton() == FIFE::MouseEvent::RIGHT){
+//        cout<< "Right Mouse Pressed \n";
+//    }
+//    else if(evt.getButton() == FIFE::MouseEvent::MIDDLE){
+//        cout<< "Middle Mouse Pressed \n";
+//    }
+    if (evt.getButton() == FIFE::MouseEvent::LEFT)
+    {
+        // save mouse position
+        dragX = evt.getX();
+        dragY = evt.getY();
     }
-    else if(evt.getButton() == FIFE::MouseEvent::RIGHT){
-        cout<< "Right Mouse Pressed \n";
-    }
-    else if(evt.getButton() == FIFE::MouseEvent::MIDDLE){
-        cout<< "Middle Mouse Pressed \n";
-    }
+
+    SetPreviousMouseEvent(evt.getType());
 }
 
 void FIFEMouseListener::setCamera(FIFECamera* camera) {
@@ -44,21 +54,94 @@ void FIFEMouseListener::setCamera(FIFECamera* camera) {
 }
 
 void FIFEMouseListener::mouseReleased(FIFE::MouseEvent& evt) {
-    cout << "Mouse Released \n";
+    // only activate the move action if the mouse was pressed and released without dragging
+    if (/*instance &&*/ evt.getButton() == FIFE::MouseEvent::LEFT && prevEventType != FIFE::MouseEvent::DRAGGED)
+    {
+        // move controller to clicked spot
+        //FIFE::Location destination(instance->getLocation());
+        FIFE::ScreenPoint screenPoint(evt.getX(), evt.getY());
+        FIFE::ExactModelCoordinate mapCoords = camera->Camera()->toMapCoordinates(screenPoint, false);
+        mapCoords.z = 0.0;
+        //destination.setMapCoordinates(mapCoords);
+        std::cout << "X: " << mapCoords.x << ", Y:" << mapCoords.y << std::endl;
+        //instance->move("walk", destination, instance->getTotalTimeMultiplier());
+    }
+
+    SetPreviousMouseEvent(evt.getType());
+//    cout << "Mouse Released \n";
 }
 void FIFEMouseListener::mouseClicked(FIFE::MouseEvent& evt) {
-    cout<< "Mouse clicked \n";
+    SetPreviousMouseEvent(evt.getType());
+//    cout<< "Mouse clicked \n";
 }
 void FIFEMouseListener::mouseWheelMovedUp(FIFE::MouseEvent& evt) {
-    cout<< "Scrolled up\n";
+    // zoom in
+    camera->zoomIn();
+
+    // save mouse position
+    dragX = evt.getX();
+    dragY = evt.getY();
+
+    SetPreviousMouseEvent(evt.getType());
+//    cout<< "Scrolled up\n";
 }
 void FIFEMouseListener::mouseWheelMovedDown(FIFE::MouseEvent& evt) {
-    cout<< "Scrolled down \n";
+    // zoom out
+    camera->zoomOut();
+
+    SetPreviousMouseEvent(evt.getType());
+//    cout<< "Scrolled down \n";
 }
 void FIFEMouseListener::mouseMoved(FIFE::MouseEvent& evt) {
+    camera->updateLocation(evt.getX(), evt.getY());
+
+    SetPreviousMouseEvent(evt.getType());
 //    cout<< "Mouse has moved \n";
 }
 void FIFEMouseListener::mouseDragged(FIFE::MouseEvent& evt) {
+    if (evt.getButton() == FIFE::MouseEvent::LEFT)
+    {
+        // unregister the auto-scrolling event
+        // we are now scrolling manually and do not
+        // want both trying to do it at the same time
+        camera->unregisterEvent();
+
+        // get the screen coordinates of the mouse
+        int currX = evt.getX();
+        int currY = evt.getY();
+
+        // get the mouse delta for camera movement
+        FIFE::ScreenPoint delta(dragX - currX, dragY - currY);
+
+        // get the current camera location
+        FIFE::ScreenPoint cameraScreenCoords = camera->Camera()->toScreenCoordinates(camera->Camera()->getLocationRef().getMapCoordinates());
+        cameraScreenCoords += delta;
+
+        // set the new coordinates
+        FIFE::Location camLocation(camera->Camera()->getLocationRef());
+        FIFE::ExactModelCoordinate mapCoords = camera->Camera()->toMapCoordinates(cameraScreenCoords, false);
+        mapCoords.z = 0.0;
+        camLocation.setMapCoordinates(mapCoords);
+        camera->Camera()->setLocation(camLocation);
+
+        // update last saved x,y values for dragging
+        dragX = currX;
+        dragY = currY;
+    }
+
+    // make sure to save that the last event was drag
+    // this is important to get around the drag & click problem
+    SetPreviousMouseEvent(evt.getType());
 //    cout<< "Dragging the mouse \n";
+}
+
+void FIFEMouseListener::SetController(FIFE::Instance* instance)
+{
+    instance = instance;
+}
+
+void FIFEMouseListener::SetPreviousMouseEvent(FIFE::MouseEvent::MouseEventType type)
+{
+    prevEventType = type;
 }
 

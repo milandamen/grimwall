@@ -30,6 +30,9 @@ private:
     int dragX;
     int dragY;
 
+    FIFE::MouseEvent::MouseEventType prevEventType;
+    FIFE::Instance* instance;
+
 public:
     FIFEMouseListener(IGame* game, FIFECamera* camera);
 
@@ -48,6 +51,9 @@ public:
     virtual void mouseWheelMovedDown(FIFE::MouseEvent& evt);
     virtual void mouseMoved(FIFE::MouseEvent& evt);
     virtual void mouseDragged(FIFE::MouseEvent& evt);
+    virtual void SetPreviousMouseEvent(FIFE::MouseEvent::MouseEventType type);
+    virtual void SetController(FIFE::Instance* instance);
+
 
     void setPlayer(IUnit* unit);
 

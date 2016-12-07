@@ -6,6 +6,18 @@ FIFECameraScroller::FIFECameraScroller(FIFE::Camera *camera, FIFE::EventManager 
 {
     // set the period for timing event in ms
     setPeriod(20);
+
+    if (mainCamera)
+    {
+        // get the viewport for the camera
+        const FIFE::Rect& viewport = mainCamera->getViewPort();
+
+        // calculate borders to activate automatic scrolling
+        scrollAreaTop = static_cast<int>(viewport.h - (viewport.h*ScrollActivationPercent));
+        scrollAreaBottom = static_cast<int>(viewport.y + (viewport.h*ScrollActivationPercent));
+        scrollAreaRight = static_cast<int>(viewport.w - (viewport.w*ScrollActivationPercent));
+        scrollAreaLeft = static_cast<int>(viewport.x + (viewport.w*ScrollActivationPercent));
+    }
 }
 
 FIFECameraScroller::~FIFECameraScroller()
@@ -14,39 +26,55 @@ FIFECameraScroller::~FIFECameraScroller()
 }
 
 
-void FIFECameraScroller::evaluateLocation(std::string location)
+void FIFECameraScroller::evaluateLocation()
 {
     scrollCoords = mainCamera->toScreenCoordinates(mainCamera->getLocationRef().getMapCoordinates());
 
     shouldScroll = false;
 
-    if(location == "UP"){
-        scrollCoords[1] -= ScrollAmount;
+    // check left
+    if (cursorX <= scrollAreaLeft)
+    {
+        // modify x value
+        scrollCoords[0] -= ScrollAmount;
 
         shouldScroll = true;
     }
-    if(location == "DOWN"){
-        scrollCoords[1] += ScrollAmount;
-
-        shouldScroll = true;
-    }
-    if(location == "RIGHT"){
+        // check right
+    else if (cursorX >= scrollAreaRight)
+    {
+        // modify x value
         scrollCoords[0] += ScrollAmount;
 
         shouldScroll = true;
     }
-    if(location == "LEFT"){
-        scrollCoords[0] -= ScrollAmount;
+
+    // check top
+    if (cursorY >= scrollAreaTop)
+    {
+        // modify y value
+        scrollCoords[1] += ScrollAmount;
+
+        shouldScroll = true;
+    }
+        // check bottom
+    else if (cursorY <= scrollAreaBottom)
+    {
+        // modify y value
+        scrollCoords[1] -= ScrollAmount;
 
         shouldScroll = true;
     }
 }
 
 
-void FIFECameraScroller::updateLocation(std::string location)
+void FIFECameraScroller::updateLocation(int x, int y)
 {
+    cursorX = x;
+    cursorY = y;
+
     // test whether we should be scrolling
-    evaluateLocation(location);
+    evaluateLocation();
 
     if (shouldScroll && !eventRegistered)
     {
@@ -97,7 +125,7 @@ bool FIFECameraScroller::onSdlEvent(SDL_Event& evt)
     // if it is a mouse focus event and we have lost focus
     // then we need to unregister for events until
     // we have regained focus
-    if (evt.type == SDL_WINDOWEVENT && evt.window.event == SDL_KEYUP)
+    if (evt.type == SDL_WINDOWEVENT && evt.window.event == SDL_WINDOWEVENT_LEAVE)
     {
         unregisterEvent();
         return true;
