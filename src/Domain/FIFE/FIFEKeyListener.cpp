@@ -74,18 +74,7 @@ void FIFEKeyListener::keyPressed(FIFE::KeyEvent& evt)
     std::string key {evt.getKey().getAsString()};
     std::transform(key.begin(), key.end(), key.begin(), std::ptr_fun<int, int>(std::toupper));
     
-    if (key == "CTRL" || key == "LEFT CTRL" || key == "RIGHT CTRL")
-    {
-        key = "CTRL";
-    }
-    else if (key == "SHIFT" || key == "LEFT SHIFT" || key == "RIGHT SHIFT")
-    {
-        key = "SHIFT";
-    }
-    if (key == "ALT" || key == "LEFT ALT" || key == "RIGHT ALT")
-    {
-        key = "ALT";
-    }
+    key = generalizeModifier(key);
     
     addPressed(key);
 }
@@ -99,18 +88,7 @@ void FIFEKeyListener::keyReleased(FIFE::KeyEvent& evt)
     std::string key {evt.getKey().getAsString()};
     std::transform(key.begin(), key.end(), key.begin(), std::ptr_fun<int, int>(std::toupper));
     
-    if (key == "CTRL" || key == "LEFT CTRL" || key == "RIGHT CTRL")
-    {
-        key = "CTRL";
-    }
-    else if (key == "SHIFT" || key == "LEFT SHIFT" || key == "RIGHT SHIFT")
-    {
-        key = "SHIFT";
-    }
-    if (key == "ALT" || key == "LEFT ALT" || key == "RIGHT ALT")
-    {
-        key = "ALT";
-    }
+    key = generalizeModifier(key);
     
     removePressed(key);
     
@@ -171,5 +149,23 @@ void FIFEKeyListener::tick()
     if (loadedCallback == nullptr) { return; }
     
     loadedCallback->execute();
+}
+
+std::string FIFEKeyListener::generalizeModifier(std::string key)
+{
+    if (key == "LEFT CTRL" || key == "RIGHT CTRL")
+    {
+        key = "CTRL";
+    }
+    else if (key == "LEFT SHIFT" || key == "RIGHT SHIFT")
+    {
+        key = "SHIFT";
+    }
+    if (key == "LEFT ALT" || key == "RIGHT ALT")
+    {
+        key = "ALT";
+    }
+    
+    return key;
 }
 
