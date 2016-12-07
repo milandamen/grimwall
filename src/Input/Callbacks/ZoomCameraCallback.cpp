@@ -8,6 +8,8 @@ ZoomCameraCallback::ZoomCameraCallback(IGame* game, int firePerNFrames, std::str
 
 void ZoomCameraCallback::execute()
 {
+    if (!shouldExecute()) { return; }
+    
     if(value == "PLUS"){
         EngineFacade::engine()->zoomIn();
     }
