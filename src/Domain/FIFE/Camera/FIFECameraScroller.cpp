@@ -1,7 +1,7 @@
 #include "FIFECameraScroller.h"
 
 FIFECameraScroller::FIFECameraScroller(FIFE::Camera *camera, FIFE::EventManager *eventManager, FIFE::TimeManager *timeManager)
-        : mainCamera(camera), eventManager(eventManager), timeManager(timeManager), ScrollAmount(20),
+        : mainCamera(camera), eventManager(eventManager), timeManager(timeManager), ScrollAmount(10),
           ScrollActivationPercent(0.02f), eventRegistered(false)
 {
     // set the period for timing event in ms

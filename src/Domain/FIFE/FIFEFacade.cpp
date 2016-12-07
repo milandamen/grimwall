@@ -1,4 +1,3 @@
- 
 #include "FIFEFacade.h"
 
 FIFEFacade::FIFEFacade(IGame* game)
@@ -19,8 +18,8 @@ FIFEFacade::FIFEFacade(IGame* game)
 }
 
 FIFEFacade::~FIFEFacade() {
-    delete engine;
-    delete guimanager;
+    //delete engine;
+    //delete guimanager;
     delete keyListener;
     delete fifeCamera;
 }
@@ -60,6 +59,12 @@ void FIFEFacade::setWindowTitle(std::string title)
     settings.setWindowTitle(title);                                 // Doesn't work very well, that's why we manually use SDL below.
     
     SDL_SetWindowTitle(engine->getRenderBackend()->getWindow(), title.c_str());
+}
+
+void FIFEFacade::setFPSLimit(int fpsLimit)
+{
+    engine->getSettings().setFrameLimit(fpsLimit);
+    engine->getSettings().setFrameLimitEnabled(true);
 }
 
 void FIFEFacade::init()
@@ -142,7 +147,7 @@ void FIFEFacade::loadMap(std::string path)
         delete fifeCamera;
     }
 
-    if (engine->getModel() && engine->getVFS() && engine->getImageManager() && 
+    if (engine->getModel() && engine->getVFS() && engine->getImageManager() &&
         engine->getRenderBackend())
     {
         // create the default loader for the FIFE map format
@@ -244,5 +249,38 @@ void FIFEFacade::zoomOut() {
 void FIFEFacade::updateLocation(std::string location) {
     fifeCamera->updateLocation(location);
 }
+
+void FIFEFacade::tick()
+{
+    keyListener->tick();
+}
+
+
+std::vector<std::string> FIFEFacade::loadTowers()
+{
+    FIFE::Layer* layer = map->getLayer("unitLayer");
+    std::vector<std::string> idList;
+    if(layer)
+    {
+        std::vector<FIFE::Instance*> instances = layer->getInstances();
+
+        //get the towers
+        for (unsigned int i = 0; i < instances.size(); ++i)
+        {
+            //select instances with tower in their id
+            std::string id = instances.at(i)->getId();
+
+            if(id.find("Tower")  != std::string::npos)
+            {
+                idList.push_back(id);
+            }
+        }
+    }
+
+    return idList;
+
+
+}
+
 
 

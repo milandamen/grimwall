@@ -22,13 +22,20 @@
 class FIFEKeyListener : public FIFE::IKeyListener
 {
 private:
-    IGame* game;
+    IGame* game {nullptr};
     std::unordered_map<std::string, ICallback*> callbackMap;
+    std::vector<std::string> pressedKeys;
+    ICallback* loadedCallback {nullptr};
+    
+    void addPressed(std::string key);
+    void removePressed(std::string key);
+    void loadCallback();
 public:
     FIFEKeyListener(IGame* game);
     ~FIFEKeyListener();
     
     void registerCallback(std::string keys, ICallback* callback);
+    void tick();
 
     // overridden from base class
     virtual void keyPressed(FIFE::KeyEvent& evt) override;

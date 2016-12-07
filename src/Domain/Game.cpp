@@ -1,39 +1,32 @@
-
 #include "Game.h"
-#include "Units/Heroes/Dralas.h"
+
 #include "Units/Heroes/Abilities/DeathStrike.h"
 
 Game::Game()
 {
     EngineFacade::setEngine("FIFE", this);
     EngineFacade::engine()->setRenderBackend("OpenGL");
+    EngineFacade::engine()->setFPSLimit(60);
     
     EngineFacade::engine()->init();
+
     initInput();
     EngineFacade::engine()->loadMap("assets/maps/level1_remake_conv.xml");
+    loadTowers();
 
     this->hero = new UnitManager<AHero>(new Dralas());
     this->hero->getBase()->addAbility(new DeathStrike(this->hero));
 
     // Game loop
-    int lastTime = 0;
-    int curTime = 0;
+    curTime = 0;
+    lastTime = 0;
 
     while (running)
     {
-        // Update FPS reading approx. every second
-        if ((curTime > 0) && (curTime - lastTime >= 1000))
-        {
-            // Create Title + FPS string
-            std::ostringstream oss;
-            oss << "Grimwall [FPS: " << EngineFacade::engine()->getFPS() << "]";
-            
-            // Show FPS in windows title
-            EngineFacade::engine()->setWindowTitle(oss.str());
-            
-            // Update the last time FPS was calculated
-            lastTime = EngineFacade::engine()->getTime();
-        }
+        updateFPS();
+        
+        // Run an engine tick for userland code
+        EngineFacade::engine()->tick();
         
         // Render a frame
         EngineFacade::engine()->render();
@@ -47,6 +40,7 @@ Game::Game()
 
 Game::~Game() {
     delete this->hero;
+    this->deleteTowers();
 }
 
 UnitManager<AHero>* Game::getHero() {
@@ -61,4 +55,43 @@ void Game::quit()
 void Game::initInput()
 {
     keyboardMapper = new KeyboardMapper(this);
+}
+
+void Game::updateFPS()
+{
+    // Update FPS reading approx. every second
+    if ((curTime > 0) && (curTime - lastTime >= 1000))
+    {
+        // Create Title + FPS string
+        std::ostringstream oss;
+        oss << "Grimwall [FPS: " << EngineFacade::engine()->getFPS() << "]";
+        
+        // Show FPS in windows title
+        EngineFacade::engine()->setWindowTitle(oss.str());
+        
+        // Update the last time FPS was calculated
+        lastTime = EngineFacade::engine()->getTime();
+    }
+}
+
+void Game::loadTowers()
+{
+    std::vector<std::string> towerIds = EngineFacade::engine()->loadTowers();
+
+    for (unsigned int i = 0; i < towerIds.size(); ++i)
+    {
+        ATower* tower = new DefaultTower();
+        tower->setId(towerIds.at(i));
+
+        this->towers.push_back(tower);
+    }
+}
+
+void Game::deleteTowers()
+{
+    for (unsigned int i = 0; i < this->towers.size(); ++i)
+    {
+        delete this->towers.at(i);
+    }
+    this->towers.clear();
 }
