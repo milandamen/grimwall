@@ -38,16 +38,9 @@ void FIFEMouseListener::setCamera(FIFECamera* camera) {
 
 void FIFEMouseListener::mouseReleased(FIFE::MouseEvent& evt) {
     // only activate the move action if the mouse was pressed and released without dragging
-    if (/*instance &&*/ evt.getButton() == FIFE::MouseEvent::LEFT && prevEventType != FIFE::MouseEvent::DRAGGED)
+    if (evt.getButton() == FIFE::MouseEvent::LEFT && prevEventType != FIFE::MouseEvent::DRAGGED)
     {
-        // move controller to clicked spot
-        //FIFE::Location destination(instance->getLocation());
-        FIFE::ScreenPoint screenPoint(evt.getX(), evt.getY());
-        FIFE::ExactModelCoordinate mapCoords = camera->Camera()->toMapCoordinates(screenPoint, false);
-        mapCoords.z = 0.0;
-        //destination.setMapCoordinates(mapCoords);
-        std::cout << "X: " << mapCoords.x << ", Y:" << mapCoords.y << std::endl;
-        //instance->move("walk", destination, instance->getTotalTimeMultiplier());
+       // call the move callback......... and pass clicked x and y evt.getX();, evt.getY();
     }
 
     SetPreviousMouseEvent(evt.getType());

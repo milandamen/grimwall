@@ -144,7 +144,7 @@ public:
     /**
      * Get layer by name
      */
-    void setInstanceLocation(std::string name, double x, double y) override;
+    void move(std::string name, double x, double y) override;
     
     /**
      * Register a callback with a key combination

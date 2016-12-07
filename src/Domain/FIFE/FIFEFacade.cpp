@@ -216,7 +216,7 @@ int FIFEFacade::getTime()
     return engine->getTimeManager()->getTime();
 }
 
-void FIFEFacade::setInstanceLocation(std::string name, double x, double y) {
+void FIFEFacade::move(std::string name, double x, double y) {
     if (map) {
         FIFE::Layer *layer = map->getLayer("unitLayer");
 
@@ -224,16 +224,26 @@ void FIFEFacade::setInstanceLocation(std::string name, double x, double y) {
             FIFE::Instance *instance = layer->getInstance(name);
 
             if (instance) {
-                // Get the current location of the instance
+                // move controller to clicked spot
                 FIFE::Location destination(instance->getLocation());
-
-                FIFE::ExactModelCoordinate mapCoords{};
-                mapCoords.x = x;
-                mapCoords.y = y;
+                FIFE::ScreenPoint screenPoint(x, y);
+                FIFE::ExactModelCoordinate mapCoords = mainCamera->toMapCoordinates(screenPoint, false);
                 mapCoords.z = 0.0;
                 destination.setMapCoordinates(mapCoords);
+                std::cout << "X: " << mapCoords.x << ", Y:" << mapCoords.y << std::endl;
+                instance->move("walk", destination, instance->getTotalTimeMultiplier());
 
-                instance->setLocation(destination);
+// OLD-------------------------------------------------------------------------------------------------------------
+//                // Get the current location of the instance
+//                FIFE::Location destination(instance->getLocation());
+//
+//                FIFE::ExactModelCoordinate mapCoords{};
+//                mapCoords.x = x;
+//                mapCoords.y = y;
+//                mapCoords.z = 0.0;
+//                destination.setMapCoordinates(mapCoords);
+//
+//                instance->setLocation(destination);
             }
         }
     }
