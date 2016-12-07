@@ -22,23 +22,6 @@ void FIFEMouseListener::mouseExited(FIFE::MouseEvent& evt) {
 //    cout<< "Mouse Exited \n";
 }
 void FIFEMouseListener::mousePressed(FIFE::MouseEvent& evt) {
-//    if(evt.getButton() == FIFE::MouseEvent::LEFT){
-//        cout<< "Left Mouse Pressed at X:" << evt.getX() << " and Y: " << evt.getY() << "\n";
-//
-//        auto coord = camera->getExact(evt.getX(), evt.getX());
-//
-//
-//        cout << coord->getExactLayerCoordinates() << "\n";
-//
-//
-//
-//    }
-//    else if(evt.getButton() == FIFE::MouseEvent::RIGHT){
-//        cout<< "Right Mouse Pressed \n";
-//    }
-//    else if(evt.getButton() == FIFE::MouseEvent::MIDDLE){
-//        cout<< "Middle Mouse Pressed \n";
-//    }
     if (evt.getButton() == FIFE::MouseEvent::LEFT)
     {
         // save mouse position
@@ -133,11 +116,6 @@ void FIFEMouseListener::mouseDragged(FIFE::MouseEvent& evt) {
     // this is important to get around the drag & click problem
     SetPreviousMouseEvent(evt.getType());
 //    cout<< "Dragging the mouse \n";
-}
-
-void FIFEMouseListener::SetController(FIFE::Instance* instance)
-{
-    instance = instance;
 }
 
 void FIFEMouseListener::SetPreviousMouseEvent(FIFE::MouseEvent::MouseEventType type)

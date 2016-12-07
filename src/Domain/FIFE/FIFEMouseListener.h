@@ -52,12 +52,8 @@ public:
     virtual void mouseMoved(FIFE::MouseEvent& evt);
     virtual void mouseDragged(FIFE::MouseEvent& evt);
     virtual void SetPreviousMouseEvent(FIFE::MouseEvent::MouseEventType type);
-    virtual void SetController(FIFE::Instance* instance);
-
 
     void setPlayer(IUnit* unit);
-
-
 };
 
 
