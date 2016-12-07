@@ -9,16 +9,17 @@
 #include "view/camera.h"
 #include "util/time/timemanager.h"
 #include "eventchannel/eventmanager.h"
-#include <gui/fifechan/fifechanmanager.h>
-
 #include "boost/filesystem.hpp"
+
 #include "SDL.h"
+#include "FIFEChan.h"
+#include "FIFEKeyListener.h"
+#include "Camera/FIFECamera.h"
 
 #include "../IEngineFacade.h"
-#include "FIFEKeyListener.h"
 #include "../IGame.h"
 #include "../../Input/ICallback.h"
-#include "Camera/FIFECamera.h"
+
 
 // TODO Remove unnecesary
 namespace FIFE
@@ -33,15 +34,13 @@ namespace FIFE
 
 namespace fs = boost::filesystem;
 
-class FIFEFacade : public IEngineFacade, fcn::ActionListener, fcn::KeyListener, fcn::MouseListener {
+class FIFEFacade : public IEngineFacade {
 private:
     FIFE::Engine* engine {nullptr};
-    FIFE::FifechanManager* guimanager {nullptr};
     FIFE::Map* map {nullptr};
     FIFE::Camera* mainCamera {nullptr};
 
-    fcn::Button* btnOptions {nullptr};
-    fcn::Button* btnExit {nullptr};
+    FIFEChan* fifeChan {nullptr};
     FIFECamera* fifeCamera {nullptr};
     
     IGame* game {nullptr};
@@ -54,17 +53,6 @@ private:
 public:
     FIFEFacade(IGame* game);
     ~FIFEFacade();
-
-    /**** Encapsulation ****/
-
-    /**
-     * Get the GUI Manager
-     * @return
-     */
-    FIFE::FifechanManager* getGuiManager() override;
-    void action(const fcn::ActionEvent& actionEvent) override;
-    void keyPressed(fcn::KeyEvent& keyEvent) override;
-    void mousePressed(fcn::MouseEvent& mouseEvent) override;
 
     /**** Settings ****/
     

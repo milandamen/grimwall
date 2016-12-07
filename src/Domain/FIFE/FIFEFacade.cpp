@@ -4,8 +4,8 @@
 FIFEFacade::FIFEFacade(IGame* game)
 {
     this->game = game;
-    engine = new FIFE::Engine();
-    guimanager = new FIFE::FifechanManager();
+    this->engine = new FIFE::Engine();
+    this->fifeChan = new FIFEChan(this->engine);
 
     fs::path defaultFontPath("assets/fonts/FreeSans.ttf");
     FIFE::EngineSettings& settings = engine->getSettings();
@@ -20,14 +20,9 @@ FIFEFacade::FIFEFacade(IGame* game)
 
 FIFEFacade::~FIFEFacade() {
     delete engine;
-    delete guimanager;
     delete keyListener;
     delete fifeCamera;
-}
-
-FIFE::FifechanManager* FIFEFacade::getGuiManager()
-{
-    return guimanager;
+    delete fifeChan;
 }
 
 void FIFEFacade::setRenderBackend(std::string engine)
@@ -64,76 +59,10 @@ void FIFEFacade::setWindowTitle(std::string title)
 
 void FIFEFacade::init()
 {
-    engine->init();
-
-    // setup the gui
-    guimanager->setDefaultFont(
-            engine->getSettings().getDefaultFontPath(),
-            engine->getSettings().getDefaultFontSize(),
-            engine->getSettings().getDefaultFontGlyphs()
-    );
-
-    guimanager->init(
-            engine->getRenderBackend()->getName(),
-            engine->getRenderBackend()->getScreenWidth(),
-            engine->getRenderBackend()->getScreenHeight()
-    );
+    this->engine->init();
+    this->engine->getEventManager()->addSdlEventListener(this->fifeChan->getGuiManager());
 
     initInput();
-
-    engine->setGuiManager(guimanager);
-    engine->getEventManager()->addSdlEventListener(guimanager);
-
-    btnOptions = new fcn::Button();
-    btnOptions->setId("btnOptions");
-    btnOptions->setActionEventId("clickBtnOptions");
-    btnOptions->setWidth(300);
-    btnOptions->setHeight(50);
-    btnOptions->setPosition(300, 200);
-    btnOptions->setCaption("Play");
-    btnOptions->addActionListener(this);
-    btnOptions->addMouseListener(this);
-    guimanager->add(btnOptions);
-
-    btnExit = new fcn::Button();
-    btnExit->setId("btnExit");
-    btnExit->setActionEventId("clickBtnExit");
-    btnExit->setWidth(300);
-    btnExit->setHeight(50);
-    btnExit->setPosition(300, 300);
-    btnExit->setCaption("Quit to desktop");
-    btnExit->addActionListener(this);
-    btnExit->addKeyListener(this);
-    btnExit->addMouseListener(this);
-    guimanager->add(btnExit);
-}
-
-void FIFEFacade::mousePressed(fcn::MouseEvent& mouseEvent)
-{
-    if(mouseEvent.getSource() == btnOptions) {
-        guimanager->getTopContainer()->setVisible(false);
-    } else {
-        game->quit();
-    }
-
-}
-
-void FIFEFacade::keyPressed(fcn::KeyEvent &keyEvent)
-{
-    std::cout << keyEvent.getDistributor();
-//    if(actionEvent.getId() == "clickBtnOptions")
-//        std::cout << "Play!";
-//    else
-//        std::cout << "Exit!";
-}
-
-void FIFEFacade::action(const fcn::ActionEvent &actionEvent)
-{
-    std::cout << actionEvent.getId();
-    if(actionEvent.getId() == "clickBtnOptions")
-        std::cout << "Play!";
-    else
-        std::cout << "Exit!";
 }
 
 void FIFEFacade::loadMap(std::string path)

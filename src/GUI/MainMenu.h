@@ -10,7 +10,7 @@
 #include <gui/fifechan/fifechanmanager.h>
 #include "GUI.h"
 
-class MainMenu : public GUI, fcn::ActionListener {
+class MainMenu : public GUI {
 
 public:
     MainMenu(FIFE::FifechanManager* manager);
@@ -18,7 +18,7 @@ public:
 
 private:
     FIFE::FifechanManager* manager;
-    void action(const fcn::ActionEvent& actionEvent) override;
+    //void action(const fcn::ActionEvent& actionEvent) override;
 };
 
 
