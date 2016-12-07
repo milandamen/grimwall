@@ -3,3 +3,7 @@
 //
 
 #include "GuiWidgetButton.h"
+
+void GuiWidgetButton::onClick(std::function<void()> delegate) {
+    this->onClickDelegate = delegate;
+}

@@ -8,20 +8,19 @@
 
 #include "AGUIWidget.h"
 #include <string>
+#include <functional>
 
 class GuiWidgetButton : public AGUIWidget {
 
-    typedef void (delegate)(void);
-
-private:
-    delegate onClickDelegate;
+protected:
+    std::function<void()> onClickDelegate = [](){}; // Empty delegate
 
 public:
-    virtual ~GuiWidgetButton() = 0;
+    //virtual ~GuiWidgetButton() = 0;
 
     virtual std::string getCaption() = 0;
     virtual void setCaption(std::string caption) = 0;
-    virtual void onClick(delegate callback) = 0;
+    void onClick(std::function<void()> delegate);
 };
 
 

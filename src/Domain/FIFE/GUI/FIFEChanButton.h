@@ -22,8 +22,7 @@ public:
     ~FIFEChanButton();
 
 public:
-    void setX(int x) override;
-
+    std::string getCaption() override;
     void setCaption(std::string caption) override;
     void mousePressed(fcn::MouseEvent& mouseEvent) override;
 };

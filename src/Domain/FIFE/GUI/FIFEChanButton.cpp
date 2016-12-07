@@ -5,7 +5,6 @@
 #include "FIFEChanButton.h"
 
 FIFEChanButton::FIFEChanButton()
-    : FIFEChanWidget(nullptr)
 {
     this->widget = new fcn::Button();
     this->widget->addMouseListener(this);
@@ -16,6 +15,10 @@ FIFEChanButton::~FIFEChanButton()
     delete this->button;
 }
 
+std::string FIFEChanButton::getCaption() {
+    return "";
+}
+
 void FIFEChanButton::setCaption(std::string caption)
 {
     this->button->setCaption(caption);
@@ -23,5 +26,5 @@ void FIFEChanButton::setCaption(std::string caption)
 
 void FIFEChanButton::mousePressed(fcn::MouseEvent &mouseEvent)
 {
-
+    this->onClickDelegate();
 }

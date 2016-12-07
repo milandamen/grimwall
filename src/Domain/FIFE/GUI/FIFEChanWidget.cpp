@@ -4,10 +4,6 @@
 
 #include "FIFEChanWidget.h"
 
-FIFEChanWidget::FIFEChanWidget(fcn::Widget widget)
-    : widget{}
-{}
-
 FIFEChanWidget::~FIFEChanWidget()
 {
     delete this->widget;
@@ -16,4 +12,21 @@ FIFEChanWidget::~FIFEChanWidget()
 fcn::Widget * FIFEChanWidget::getFCNWidget()
 {
     return this->widget;
+}
+
+void FIFEChanWidget::setX(int x) {
+    this->widget->setX(x);
+}
+
+void FIFEChanWidget::setY(int y) {
+    this->widget->setY(y);
+}
+
+void FIFEChanWidget::setWidth(int width)
+{
+    this->widget->setWidth(width);
+}
+
+void FIFEChanWidget::setHeight(int height){
+    this->widget->setHeight(height);
 }

@@ -22,7 +22,6 @@ fcn::Container* FIFEChanGuiManager::getContainer()
 
 FIFEChanButton* FIFEChanGuiManager::addButton(std::string caption, int x = 0, int y = 0)
 {
-
     FIFEChanButton* button = new FIFEChanButton();
     button->setX(x);
     button->setY(y);
@@ -30,7 +29,9 @@ FIFEChanButton* FIFEChanGuiManager::addButton(std::string caption, int x = 0, in
     button->setHeight(200);
     button->setCaption(caption);
     this->widgets.push_back(button);
-    this->container->add(button);
+    this->container->add(button->getFCNWidget());
+
+    return button;
 }
 
 void FIFEChanGuiManager::addLabel()
