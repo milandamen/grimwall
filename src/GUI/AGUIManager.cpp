@@ -3,5 +3,3 @@
 //
 
 #include "AGUIManager.h"
-
-AGUIManager::~AGUIManager() {}

@@ -2,10 +2,6 @@
 #define IENGINEFACADE_H
 
 #include <iostream>
-#include <gui/guimanager.h>
-#include <util/structures/rect.h>
-
-#include "eventchannel/mouse/ec_mouseevent.h"
 #include "../Input/ICallback.h"
 
 /**

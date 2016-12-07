@@ -7,11 +7,13 @@
 FIFEChan::FIFEChan(FIFE::Engine* engine)
 {
     this->engine = engine;
-    this->guimanager = static_cast<FIFE::FifechanManager*>(this->engine->getGuiManager());
+    this->guimanager = new FIFE::FifechanManager();
 }
 
 FIFEChan::~FIFEChan()
-{}
+{
+    delete this->guimanager;
+}
 
 void FIFEChan::init()
 {

@@ -6,16 +6,16 @@
 #define GRIMWALL_FIFECHANWIDGET_H
 
 #include <fifechan/widget.hpp>
-#include "../../../GUI/Widget/GuiWidgetButton.h"
+#include "../../../../GUI/Widget/GUIWidgetButton.h"
 
 
-class FIFEChanWidget : public GuiWidgetButton {
+class FIFEChanWidget : public GUIWidgetButton {
 
 protected:
     fcn::Widget* widget;
 
 public:
-    ~FIFEChanWidget();
+    virtual ~FIFEChanWidget() = 0;
 
     void setWidth(int width) override;
     void setHeight(int height) override;

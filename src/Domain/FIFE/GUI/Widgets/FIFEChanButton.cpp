@@ -15,10 +15,6 @@ FIFEChanButton::~FIFEChanButton()
     delete this->button;
 }
 
-std::string FIFEChanButton::getCaption() {
-    return "";
-}
-
 void FIFEChanButton::setCaption(std::string caption)
 {
     this->button->setCaption(caption);

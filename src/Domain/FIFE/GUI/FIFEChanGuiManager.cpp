@@ -6,12 +6,11 @@
 
 FIFEChanGuiManager::FIFEChanGuiManager()
 {
-    this->container = new  fcn::Container();
+    this->container = new fcn::Container();
 }
 
 FIFEChanGuiManager::~FIFEChanGuiManager()
 {
-
     delete this->container;
 }
 
@@ -20,7 +19,7 @@ fcn::Container* FIFEChanGuiManager::getContainer()
     return this->container;
 }
 
-FIFEChanButton* FIFEChanGuiManager::addButton(std::string caption, int x = 0, int y = 0)
+FIFEChanButton* FIFEChanGuiManager::addButton(std::string caption = "", int x = 0, int y = 0)
 {
     FIFEChanButton* button = new FIFEChanButton();
     button->setX(x);
@@ -34,11 +33,31 @@ FIFEChanButton* FIFEChanGuiManager::addButton(std::string caption, int x = 0, in
     return button;
 }
 
-void FIFEChanGuiManager::addLabel()
-{}
+FIFEChanLabel* FIFEChanGuiManager::addLabel(std::string caption = "", int x = 0, int y = 0)
+{
+    FIFEChanLabel* label = new FIFEChanLabel();
+    label->setX(x);
+    label->setY(y);
+    label->setCaption(caption);
 
-void FIFEChanGuiManager::addImage()
-{}
+    this->widgets.push_back(label);
+    this->container->add(label->getFCNWidget());
+
+    return label;
+}
+
+FIFEChanImage* FIFEChanGuiManager::addImage(std::string asset = "", int x = 0, int y = 0)
+{
+    FIFEChanImage* image = new FIFEChanImage();
+    image->setX(x);
+    image->setY(y);
+    image->setAsset(asset);
+
+    this->widgets.push_back(image);
+    this->container->add(image->getFCNWidget());
+
+    return image;
+}
 
 void FIFEChanGuiManager::action(const fcn::ActionEvent &actionEvent)
 {}

@@ -6,14 +6,15 @@
 #define GRIMWALL_AGUIMANAGER_H
 
 
-class AGUIManager {
-protected:
-    AGUIManager() {};
-    virtual ~AGUIManager() = 0;
+#include "Widget/GUIWidgetButton.h"
+#include "Widget/GUIWidgetLabel.h"
+#include "Widget/GUIWidgetImage.h"
 
-    virtual void addButton() = 0;
-    virtual void addLabel() = 0;
-    virtual void addImage() = 0;
+class AGUIManager {
+public:
+    virtual GUIWidgetButton* addButton() = 0;
+    virtual GUIWidgetLabel* addLabel() = 0;
+    virtual GUIWidgetImage* addImage() = 0;
 };
 
 

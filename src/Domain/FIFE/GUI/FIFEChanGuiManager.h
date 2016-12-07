@@ -10,9 +10,11 @@
 #include <fifechan/widgets/container.hpp>
 #include <fifechan/widgets/button.hpp>
 #include <vector>
-#include "FIFEChanButton.h"
+#include "Widgets/FIFEChanButton.h"
 #include "../../../GUI/AGUIManager.h"
 #include "../../../GUI/Widget/AGUIWidget.h"
+#include "Widgets/FIFEChanLabel.h"
+#include "Widgets/FIFEChanImage.h"
 
 class FIFEChanGuiManager : AGUIManager, fcn::ActionListener, fcn::KeyListener {
 
@@ -28,8 +30,8 @@ public:
     fcn::Container* getContainer();
 
     FIFEChanButton* addButton(std::string caption, int x, int y);
-    void addLabel();
-    void addImage();
+    FIFEChanLabel* addLabel(std::string caption, int x, int y);
+    FIFEChanImage* addImage(std::string asset, int x, int y);
 
     void action(const fcn::ActionEvent& actionEvent) override;
     void keyPressed(fcn::KeyEvent& keyEvent) override;

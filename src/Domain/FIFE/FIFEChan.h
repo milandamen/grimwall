@@ -7,6 +7,7 @@
 
 #include <gui/fifechan/fifechanmanager.h>
 #include <controller/engine.h>
+#include <controller/enginesettings.h>
 
 class FIFEChan {
 

@@ -3,39 +3,27 @@
 //
 
 #include "MainMenu.h"
+#include "Widget/GUIWidgetButton.h"
 
-MainMenu::MainMenu(FIFE::FifechanManager *manager)
-    : manager{manager}
+MainMenu::MainMenu(AGUIManager* manager)
+        : GUI(manager)
 {
-    // GuiWidgetButton Campaign (Play)
-    fcn::Button* btnCampaign = new fcn::Button();
-    btnCampaign->setId("btnCampaign");
-    btnCampaign->setActionEventId("clickBtnCampaign");
-    btnCampaign->setWidth(300);
-    btnCampaign->setHeight(50);
-    btnCampaign->setPosition(100, 100);
-    btnCampaign->setCaption("Campaign");
-    manager->add(btnCampaign);
-
-    // GuiWidgetButton Options
-    fcn::Button* btnOptions = new fcn::Button();
-    btnOptions->setId("btnOptions");
-    btnOptions->setActionEventId("clickBtnOptions");
-    btnOptions->setWidth(300);
-    btnOptions->setHeight(50);
-    btnOptions->setPosition(100, 200);
-    btnOptions->setCaption("Options");
-    manager->add(btnOptions);
-
-    // GuiWidgetButton Exit
-    fcn::Button* btnExit = new fcn::Button();
-    btnExit->setId("btnExit");
-    btnExit->setActionEventId("clickBtnExit");
-    btnExit->setWidth(300);
-    btnExit->setHeight(50);
-    btnExit->setPosition(100, 300);
-    btnExit->setCaption("Exit to desktop");
-    manager->add(btnExit);
+    GUIWidgetButton* b = manager->addButton();
+    b->setX(0);
+    b->setY(0);
+    b->setCaption("Click me!");
+    b->setWidth(300);
+    b->setHeight(100);
+    b->onClick([&](){
+        this->ClickMeClick();
+    });
 }
+
 MainMenu::~MainMenu()
 {}
+
+
+void MainMenu::ClickMeClick()
+{
+
+}

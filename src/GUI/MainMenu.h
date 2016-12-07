@@ -9,16 +9,18 @@
 #include <fifechan.hpp>
 #include <gui/fifechan/fifechanmanager.h>
 #include "GUI.h"
+#include "AGUIManager.h"
 
-class MainMenu : public GUI {
+class MainMenu : public GUI
+{
+private:
+    AGUIManager* manager;
+
+    void ClickMeClick();
 
 public:
-    MainMenu(FIFE::FifechanManager* manager);
+    MainMenu(AGUIManager* manager);
     ~MainMenu();
-
-private:
-    FIFE::FifechanManager* manager;
-    //void action(const fcn::ActionEvent& actionEvent) override;
 };
 
 

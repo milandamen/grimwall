@@ -52,7 +52,7 @@ void FIFEFacade::setFullScreen(bool fullScreen)
 void FIFEFacade::setWindowTitle(std::string title)
 {
     FIFE::EngineSettings& settings = engine->getSettings();
-    settings.setWindowTitle(title);                                 // Doesn't work very well, that's why we manually use SDL below.
+    settings.setWindowTitle(title);                                 // Doesn't work very well, that's why we manually use SDL below. Bad FIFE!
     
     SDL_SetWindowTitle(engine->getRenderBackend()->getWindow(), title.c_str());
 }
@@ -60,9 +60,11 @@ void FIFEFacade::setWindowTitle(std::string title)
 void FIFEFacade::init()
 {
     this->engine->init();
-    this->engine->getEventManager()->addSdlEventListener(this->fifeChan->getGuiManager());
+    this->fifeChan->init();
 
-    initInput();
+    this->initInput();
+
+    this->engine->getEventManager()->addSdlEventListener(this->fifeChan->getGuiManager());
 }
 
 void FIFEFacade::loadMap(std::string path)

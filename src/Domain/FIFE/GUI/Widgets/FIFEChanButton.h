@@ -12,17 +12,14 @@
 #include "FIFEChanWidget.h"
 
 
-class FIFEChanButton : public FIFEChanWidget, fcn::MouseListener {
-
+class FIFEChanButton : public FIFEChanWidget, fcn::MouseListener
+{
 private:
-    fcn::Button* button;
+    fcn::Button* button {nullptr};
 
 public:
     FIFEChanButton();
     ~FIFEChanButton();
-
-public:
-    std::string getCaption() override;
     void setCaption(std::string caption) override;
     void mousePressed(fcn::MouseEvent& mouseEvent) override;
 };
