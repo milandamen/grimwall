@@ -71,12 +71,11 @@ void FIFEMouseListener::mouseWheelMovedDown(FIFE::MouseEvent& evt) {
 //    cout<< "Scrolled down \n";
 }
 void FIFEMouseListener::mouseMoved(FIFE::MouseEvent& evt) {
-    if(camera != nullptr){
-        camera->updateLocation(evt.getX(), evt.getY());
+    camera->updateLocation(evt.getX(), evt.getY());
 
-        SetPreviousMouseEvent(evt.getType());
+    SetPreviousMouseEvent(evt.getType());
 //    cout<< "Mouse has moved \n";
-    }
+
 
 }
 void FIFEMouseListener::mouseDragged(FIFE::MouseEvent& evt) {

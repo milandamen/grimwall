@@ -58,7 +58,6 @@ void FIFEFacade::setWindowTitle(std::string title)
 {
     FIFE::EngineSettings& settings = engine->getSettings();
     settings.setWindowTitle(title);                                 // Doesn't work very well, that's why we manually use SDL below.
-    
     SDL_SetWindowTitle(engine->getRenderBackend()->getWindow(), title.c_str());
 }
 
@@ -161,24 +160,24 @@ void FIFEFacade::loadMap(std::string path)
 
         if (mapLoader) {
             // load the map
-            fifeCamera = new FIFECamera(map, engine->getEventManager(), engine->getTimeManager());
             map = mapLoader->load(mapPath.string());
-
+            fifeCamera = new FIFECamera(map, engine->getEventManager(), engine->getTimeManager());
+            fifeCamera->initView();
         }
 
         // done with map loader safe to delete
         delete mapLoader;
         mapLoader = 0;
     }
-    
-    initView();
-    
+
+    mouseListener->setCamera(fifeCamera);
+
     if (!pumpingInitialized)
     {
         pumpingInitialized = true;
         engine->initializePumping();
     }
-    mouseListener->setCamera(fifeCamera);
+
 }
 
 void FIFEFacade::initView()
@@ -224,29 +223,29 @@ void FIFEFacade::move(std::string name, double x, double y) {
             FIFE::Instance *instance = layer->getInstance(name);
 
             if (instance) {
-                // move controller to clicked spot
-                FIFE::Location destination(instance->getLocation());
-                FIFE::ScreenPoint screenPoint(x, y);
-                if(mainCamera != nullptr){
-                    FIFE::ExactModelCoordinate mapCoords = mainCamera->toMapCoordinates(screenPoint, false);
-                    mapCoords.z = 0.0;
-                    destination.setMapCoordinates(mapCoords);
-                    std::cout << "X: " << mapCoords.x << ", Y:" << mapCoords.y << std::endl;
-                    instance->move("walk", destination, instance->getTotalTimeMultiplier());
-                }
+//                // move controller to clicked spot
+//                FIFE::Location destination(instance->getLocation());
+//                FIFE::ScreenPoint screenPoint(x, y);
+//                if(fifeCamera->Camera() != nullptr){
+//                    FIFE::ExactModelCoordinate mapCoords = fifeCamera->Camera()->toMapCoordinates(screenPoint, false);
+//                    mapCoords.z = 0.0;
+//                    destination.setMapCoordinates(mapCoords);
+//                    std::cout << "X: " << mapCoords.x << ", Y:" << mapCoords.y << std::endl;
+//                    instance->move("walk", destination, instance->getTotalTimeMultiplier());
+//                }
 
 
 // OLD-------------------------------------------------------------------------------------------------------------
-//                // Get the current location of the instance
-//                FIFE::Location destination(instance->getLocation());
-//
-//                FIFE::ExactModelCoordinate mapCoords{};
-//                mapCoords.x = x;
-//                mapCoords.y = y;
-//                mapCoords.z = 0.0;
-//                destination.setMapCoordinates(mapCoords);
-//
-//                instance->setLocation(destination);
+                // Get the current location of the instance
+                FIFE::Location destination(instance->getLocation());
+
+                FIFE::ExactModelCoordinate mapCoords{};
+                mapCoords.x = x;
+                mapCoords.y = y;
+                mapCoords.z = 0.0;
+                destination.setMapCoordinates(mapCoords);
+
+                instance->setLocation(destination);
             }
         }
     }

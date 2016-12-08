@@ -39,7 +39,6 @@ private:
     FIFE::Engine* engine {nullptr};
     FIFE::FifechanManager* guimanager {nullptr};
     FIFE::Map* map {nullptr};
-    FIFE::Camera* mainCamera {nullptr};
 
     fcn::Button* btnOptions {nullptr};
     fcn::Button* btnExit {nullptr};
