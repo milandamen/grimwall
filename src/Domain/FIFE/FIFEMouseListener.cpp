@@ -16,11 +16,9 @@ FIFEMouseListener::~FIFEMouseListener() {
 
 void FIFEMouseListener::mouseEntered(FIFE::MouseEvent& evt) {
     SetPreviousMouseEvent(evt.getType());
-//    cout<< "Mouse Entered \n";
 }
 void FIFEMouseListener::mouseExited(FIFE::MouseEvent& evt) {
     SetPreviousMouseEvent(evt.getType());
-//    cout<< "Mouse Exited \n";
 }
 void FIFEMouseListener::mousePressed(FIFE::MouseEvent& evt) {
     if (evt.getButton() == FIFE::MouseEvent::LEFT)
@@ -42,15 +40,12 @@ void FIFEMouseListener::mouseReleased(FIFE::MouseEvent& evt) {
     if (evt.getButton() == FIFE::MouseEvent::LEFT && prevEventType != FIFE::MouseEvent::DRAGGED)
     {
         EngineFacade::engine()->move("Dralas", evt.getX(), evt.getY());
-       // call the move callback......... and pass clicked x and y evt.getX();, evt.getY();
     }
 
     SetPreviousMouseEvent(evt.getType());
-//    cout << "Mouse Released \n";
 }
 void FIFEMouseListener::mouseClicked(FIFE::MouseEvent& evt) {
     SetPreviousMouseEvent(evt.getType());
-//    cout<< "Mouse clicked \n";
 }
 void FIFEMouseListener::mouseWheelMovedUp(FIFE::MouseEvent& evt) {
     // zoom in
@@ -61,22 +56,17 @@ void FIFEMouseListener::mouseWheelMovedUp(FIFE::MouseEvent& evt) {
     dragY = evt.getY();
 
     SetPreviousMouseEvent(evt.getType());
-//    cout<< "Scrolled up\n";
 }
 void FIFEMouseListener::mouseWheelMovedDown(FIFE::MouseEvent& evt) {
     // zoom out
     camera->zoomOut();
 
     SetPreviousMouseEvent(evt.getType());
-//    cout<< "Scrolled down \n";
 }
 void FIFEMouseListener::mouseMoved(FIFE::MouseEvent& evt) {
     camera->updateLocation(evt.getX(), evt.getY());
 
     SetPreviousMouseEvent(evt.getType());
-//    cout<< "Mouse has moved \n";
-
-
 }
 void FIFEMouseListener::mouseDragged(FIFE::MouseEvent& evt) {
     if (evt.getButton() == FIFE::MouseEvent::LEFT)
@@ -112,7 +102,6 @@ void FIFEMouseListener::mouseDragged(FIFE::MouseEvent& evt) {
     // make sure to save that the last event was drag
     // this is important to get around the drag & click problem
     SetPreviousMouseEvent(evt.getType());
-//    cout<< "Dragging the mouse \n";
 }
 
 void FIFEMouseListener::SetPreviousMouseEvent(FIFE::MouseEvent::MouseEventType type)

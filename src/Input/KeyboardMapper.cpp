@@ -8,7 +8,7 @@ KeyboardMapper::KeyboardMapper(IGame* game)
     EngineFacade::engine()->registerCallback("ESCAPE", new QuitCallback(game));
     
     // Camera
-    //EngineFacade::engine()->registerCallback("UP", new MoveCameraCallback(game, 1, "UP"));
+    EngineFacade::engine()->registerCallback("UP", new MoveCameraCallback(game, 1, "UP"));
     //EngineFacade::engine()->registerCallback("RIGHT", new MoveCameraCallback(game, 1, "RIGHT"));
     //EngineFacade::engine()->registerCallback("DOWN", new MoveCameraCallback(game, 1, "DOWN"));
     //EngineFacade::engine()->registerCallback("LEFT", new MoveCameraCallback(game, 1, "LEFT"));
