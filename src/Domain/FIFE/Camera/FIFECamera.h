@@ -33,11 +33,6 @@ private:
     FIFE::Camera* mainCamera {nullptr};
     FIFECameraScroller* cameraScroller {nullptr};
 
-
-
-
-
-
     double zoomIncrement;
     double maxZoom;
     double minZoom;
