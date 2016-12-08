@@ -106,16 +106,19 @@ set(Boost_USE_MULTITHREADED ON)
 file(GLOB_RECURSE Grimwall_SRC_Domain
     "src/Domain/*.h"
     "src/Domain/*.cpp"
+    "src/Domain/*.hpp"
 )
 # Add all files in src/GUI to be builded
 file(GLOB_RECURSE Grimwall_SRC_GUI
     "src/GUI/*.h"
     "src/GUI/*.cpp"
+    "src/GUI/*.hpp"
 )
 # Add all files in src/Input to be builded
 file(GLOB_RECURSE Grimwall_SRC_Input
     "src/Input/*.h"
     "src/Input/*.cpp"
+    "src/Input/*.hpp"
 )
 
 # Add list of files to executable
