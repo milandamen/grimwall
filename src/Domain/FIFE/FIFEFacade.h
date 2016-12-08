@@ -136,7 +136,7 @@ public:
     /**
      * Register a callback with a key combination
      */
-    void registerCallback(std::string, ICallback* callback) override;
+    void registerCallback(std::string keys, ICallback* callback) override;
 
     /**
      * Zoom in
