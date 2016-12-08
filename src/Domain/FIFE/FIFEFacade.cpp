@@ -231,36 +231,23 @@ int FIFEFacade::getTime()
 
 void FIFEFacade::move(std::string name, double x, double y) {
     if (map) {
-        FIFE::Layer *layer = map->getLayer("unitLayer");
+        FIFE::Layer *layer = map->getLayer("TechdemoMapGroundObjectLayer");
 
         if (layer) {
             FIFE::Instance *instance = layer->getInstance(name);
 
             if (instance) {
                 ///Keep this for now
-//                // move controller to clicked spot
-//                FIFE::Location destination(instance->getLocation());
-//                FIFE::ScreenPoint screenPoint(x, y);
-//                if(fifeCamera->Camera() != nullptr){
-//                    FIFE::ExactModelCoordinate mapCoords = fifeCamera->Camera()->toMapCoordinates(screenPoint, false);
-//                    mapCoords.z = 0.0;
-//                    destination.setMapCoordinates(mapCoords);
-//                    std::cout << "X: " << mapCoords.x << ", Y:" << mapCoords.y << std::endl;
-//                    instance->move("walk", destination, instance->getTotalTimeMultiplier());
-//                }
-
-
-// OLD-------------------------------------------------------------------------------------------------------------
-                // Get the current location of the instance
+                // move controller to clicked spot
                 FIFE::Location destination(instance->getLocation());
-
-                FIFE::ExactModelCoordinate mapCoords{};
-                mapCoords.x = x;
-                mapCoords.y = y;
-                mapCoords.z = 0.0;
-                destination.setMapCoordinates(mapCoords);
-
-                instance->setLocation(destination);
+                FIFE::ScreenPoint screenPoint(x, y);
+                if(fifeCamera->Camera() != nullptr){
+                    FIFE::ExactModelCoordinate mapCoords = fifeCamera->Camera()->toMapCoordinates(screenPoint, false);
+                    mapCoords.z = 0.0;
+                    destination.setMapCoordinates(mapCoords);
+                    std::cout << "X: " << mapCoords.x << ", Y:" << mapCoords.y << std::endl;
+                    instance->move("walk", destination, instance->getTotalTimeMultiplier());
+                }
             }
         }
     }
