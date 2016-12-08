@@ -24,9 +24,7 @@ public:
     void updateLocation(int x, int y);
     void unregisterEvent();
 
-    FIFE::Location* getExact(int screenX, int screenY);
     FIFE::Camera* Camera() const;
-
 private:
     FIFE::Map* map {nullptr};
     FIFE::Camera* mainCamera {nullptr};
