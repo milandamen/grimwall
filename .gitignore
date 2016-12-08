@@ -35,3 +35,5 @@ build/
 .kdev4/
 grimwall.kdev4
 cmake-build-debug/
+*.swp
+*.swo
