@@ -231,7 +231,7 @@ int FIFEFacade::getTime()
 
 void FIFEFacade::move(std::string name, double x, double y) {
     if (map) {
-        FIFE::Layer *layer = map->getLayer("TechdemoMapGroundObjectLayer");
+        FIFE::Layer *layer = map->getLayer("unitLayer");
 
         if (layer) {
             FIFE::Instance *instance = layer->getInstance(name);

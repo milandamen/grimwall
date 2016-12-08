@@ -12,7 +12,7 @@ Game::Game()
     EngineFacade::engine()->init();
 
     initInput();
-    EngineFacade::engine()->loadMap("assets/maps/shrine.xml");
+    EngineFacade::engine()->loadMap("assets/maps/level1_remake_conv.xml");
     loadTowers();
 
     this->hero = new UnitManager<AHero>(new Dralas());
