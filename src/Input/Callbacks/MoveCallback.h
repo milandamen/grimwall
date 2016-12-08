@@ -9,16 +9,8 @@
 
 class MoveCallback : public KeypressCallback {
 private:
-    std::string direction;
+    double x, y;
 
-    void up();
-    void left();
-    void right();
-    void down();
-    void upright();
-    void rightdown();
-    void downleft();
-    void leftup();
 public:
     /**
      * Create a MoveCallback object
@@ -27,7 +19,7 @@ public:
      * @param firePerNFrames Callback fires every N frames or only once if set to 0. Fires while keys are held.
      * @param direction Move the hero in a certain direction (UP, RIGHT, DOWN, LEFT, UPRIGHT, RIGHTDOWN, DOWNLEFT, LEFTUP)
      */
-    MoveCallback(IGame* game, int firePerNFrames, std::string direction);
+    MoveCallback(IGame* game, int firePerNFrames, double x, double y);
     virtual void execute() override;
 };
 

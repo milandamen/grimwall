@@ -6,8 +6,9 @@ Game::Game()
 {
     EngineFacade::setEngine("FIFE", this);
     EngineFacade::engine()->setRenderBackend("OpenGL");
+
     EngineFacade::engine()->setFPSLimit(60);
-    
+
     EngineFacade::engine()->init();
 
     initInput();

@@ -40,6 +40,24 @@ void FIFECamera::initView() {
 
 }
 
+FIFE::Location* FIFECamera::getExact(int screenX, int screenY) {
+    FIFE::ScreenPoint point = FIFE::ScreenPoint(screenX, screenY);
+
+    FIFE::ExactModelCoordinate coord = map->getLayer("layer1")->getCellGrid()
+            ->toMapCoordinates(mainCamera->toMapCoordinates(point));
+
+    FIFE::Location* loc = new FIFE::Location(map->getLayer("layer1"));
+    loc->setExactLayerCoordinates(coord);
+
+    FIFE::CellSelectionRenderer::getInstance(mainCamera)->selectLocation(loc);
+
+    return loc;
+}
+
+FIFE::Camera* FIFECamera::Camera() const {
+    return mainCamera;
+}
+
 void FIFECamera::zoomIn() {
     if (mainCamera)
     {
@@ -51,6 +69,10 @@ void FIFECamera::zoomIn() {
             mainCamera->setZoom(zoom);
         }
     }
+}
+
+void FIFECamera::unregisterEvent() {
+    cameraScroller->unregisterEvent();
 }
 
 void FIFECamera::zoomOut(){
@@ -66,6 +88,6 @@ void FIFECamera::zoomOut(){
     }
 }
 
-void FIFECamera::updateLocation(std::string location) {
-    cameraScroller->updateLocation(location);
+void FIFECamera::updateLocation(int x, int y) {
+    cameraScroller->updateLocation(x,y);
 }

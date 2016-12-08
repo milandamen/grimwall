@@ -66,6 +66,7 @@ public:
      */
     virtual void registerCallback(std::string, ICallback* callback) = 0;
 
+    //TODO: register Callback for mouse listener
     /**
      * Zoom in
      */
@@ -79,12 +80,12 @@ public:
     /**
      * Update the screen camera
      */
-    virtual void updateLocation(std::string location) = 0;
+    virtual void updateLocation(int x, int y) = 0;
 
     /**
      * Set the location of an instance
      */
-    virtual void setInstanceLocation(std::string name, double x, double y) = 0;
+    virtual void move(std::string name, double x, double y) = 0;
     
     /**
      * Run a tick for userland code like input callbacks

@@ -16,10 +16,22 @@
 #include "SDL.h"
 
 #include "../IEngineFacade.h"
+#include "FIFEMouseListener.h"
 #include "FIFEKeyListener.h"
 #include "../IGame.h"
 #include "../../Input/ICallback.h"
 #include "Camera/FIFECamera.h"
+
+// TODO Remove unnecesary
+namespace FIFE
+{
+    class Engine;
+    class EngineSettings;
+    class Map;
+    class Camera;
+    class Instance;
+    class IGUIManager;
+}
 
 namespace fs = boost::filesystem;
 
@@ -28,7 +40,6 @@ private:
     FIFE::Engine* engine {nullptr};
     FIFE::FifechanManager* guimanager {nullptr};
     FIFE::Map* map {nullptr};
-    FIFE::Camera* mainCamera {nullptr};
 
     fcn::Button* btnOptions {nullptr};
     fcn::Button* btnExit {nullptr};
@@ -36,6 +47,8 @@ private:
 
     IGame* game {nullptr};
     FIFEKeyListener* keyListener {nullptr};
+
+    FIFEMouseListener* mouseListener;
 
     bool pumpingInitialized {false};
     
@@ -131,7 +144,7 @@ public:
     /**
      * Get layer by name
      */
-    void setInstanceLocation(std::string name, double x, double y) override;
+    void move(std::string name, double x, double y) override;
     
     /**
      * Register a callback with a key combination
@@ -151,7 +164,7 @@ public:
     /**
      * Update location
      */
-    void updateLocation(std::string location) override;
+    void updateLocation(int x, int y) override;
     
     /**
      * Run a tick for userland code like input callbacks

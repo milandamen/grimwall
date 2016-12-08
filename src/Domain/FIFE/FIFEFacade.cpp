@@ -34,6 +34,7 @@ FIFEFacade::~FIFEFacade() {
     delete btnExit;
     delete engine;
     delete keyListener;
+    delete mouseListener;
     delete fifeCamera;
 }
 
@@ -70,7 +71,6 @@ void FIFEFacade::setWindowTitle(std::string title)
 {
     FIFE::EngineSettings& settings = engine->getSettings();
     settings.setWindowTitle(title);                                 // Doesn't work very well, that's why we manually use SDL below.
-    
     SDL_SetWindowTitle(engine->getRenderBackend()->getWindow(), title.c_str());
 }
 
@@ -97,10 +97,10 @@ void FIFEFacade::init()
             engine->getRenderBackend()->getScreenHeight()
     );
 
-    initInput();
-
     engine->setGuiManager(guimanager);
     engine->getEventManager()->addSdlEventListener(guimanager);
+
+    initInput();
 
     btnOptions = new fcn::Button();
     btnOptions->setId("btnOptions");
@@ -175,20 +175,22 @@ void FIFEFacade::loadMap(std::string path)
             // load the map
             map = mapLoader->load(mapPath.string());
             fifeCamera = new FIFECamera(map, engine->getEventManager(), engine->getTimeManager());
+            fifeCamera->initView();
         }
 
         // done with map loader safe to delete
         delete mapLoader;
         mapLoader = 0;
     }
-    
-    initView();
-    
+
+    mouseListener->setCamera(fifeCamera);
+
     if (!pumpingInitialized)
     {
         pumpingInitialized = true;
         engine->initializePumping();
     }
+
 }
 
 void FIFEFacade::initView()
@@ -202,8 +204,11 @@ void FIFEFacade::initInput()
     {
         // attach our key listener to the engine
         keyListener = new FIFEKeyListener(game);
+        mouseListener = new FIFEMouseListener(game, fifeCamera);
         engine->getEventManager()->addKeyListener(keyListener);
+        engine->getEventManager()->addMouseListener(mouseListener);
     }
+
 }
 
 void FIFEFacade::render()
@@ -223,7 +228,7 @@ int FIFEFacade::getTime()
     return engine->getTimeManager()->getTime();
 }
 
-void FIFEFacade::setInstanceLocation(std::string name, double x, double y) {
+void FIFEFacade::move(std::string name, double x, double y) {
     if (map) {
         FIFE::Layer *layer = map->getLayer("unitLayer");
 
@@ -231,6 +236,19 @@ void FIFEFacade::setInstanceLocation(std::string name, double x, double y) {
             FIFE::Instance *instance = layer->getInstance(name);
 
             if (instance) {
+//                // move controller to clicked spot
+//                FIFE::Location destination(instance->getLocation());
+//                FIFE::ScreenPoint screenPoint(x, y);
+//                if(fifeCamera->Camera() != nullptr){
+//                    FIFE::ExactModelCoordinate mapCoords = fifeCamera->Camera()->toMapCoordinates(screenPoint, false);
+//                    mapCoords.z = 0.0;
+//                    destination.setMapCoordinates(mapCoords);
+//                    std::cout << "X: " << mapCoords.x << ", Y:" << mapCoords.y << std::endl;
+//                    instance->move("walk", destination, instance->getTotalTimeMultiplier());
+//                }
+
+
+// OLD-------------------------------------------------------------------------------------------------------------
                 // Get the current location of the instance
                 FIFE::Location destination(instance->getLocation());
 
@@ -259,8 +277,8 @@ void FIFEFacade::zoomOut() {
     fifeCamera->zoomOut();
 }
 
-void FIFEFacade::updateLocation(std::string location) {
-    fifeCamera->updateLocation(location);
+void FIFEFacade::updateLocation(int x, int y) {
+    fifeCamera->updateLocation(x,y);
 }
 
 void FIFEFacade::tick()
