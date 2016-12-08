@@ -139,6 +139,7 @@ void FIFEFacade::mousePressed(fcn::MouseEvent& mouseEvent)
 void FIFEFacade::keyPressed(fcn::KeyEvent &keyEvent)
 {
     std::cout << keyEvent.getDistributor();
+    ///What does this do?
 //    if(actionEvent.getId() == "clickBtnOptions")
 //        std::cout << "Play!";
 //    else
@@ -236,6 +237,7 @@ void FIFEFacade::move(std::string name, double x, double y) {
             FIFE::Instance *instance = layer->getInstance(name);
 
             if (instance) {
+                ///Keep this for now
 //                // move controller to clicked spot
 //                FIFE::Location destination(instance->getLocation());
 //                FIFE::ScreenPoint screenPoint(x, y);
@@ -312,6 +314,3 @@ std::vector<std::string> FIFEFacade::loadTowers()
 
 
 }
-
-
-

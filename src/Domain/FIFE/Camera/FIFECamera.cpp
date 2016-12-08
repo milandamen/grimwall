@@ -11,6 +11,7 @@ FIFECamera::FIFECamera(FIFE::Map *map, FIFE::EventManager* eventManager, FIFE::T
 FIFECamera::~FIFECamera()
 {
     delete cameraScroller;
+    // No need to delete the rest as they will be deleted on Engine Destroy()
 }
 
 void FIFECamera::initView() {

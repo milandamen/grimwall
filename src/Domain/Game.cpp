@@ -35,7 +35,7 @@ Game::Game()
         curTime = EngineFacade::engine()->getTime();
     }
     
-    EngineFacade::destroy();     // TODO Currently crashes (SEGFAULT), problem not in my code.
+    EngineFacade::destroy();
     delete keyboardMapper;
 }
 
