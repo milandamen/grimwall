@@ -1,6 +1,3 @@
-//
-// Created by dudebag on 11/30/16.
-//
 #include "TroupSpawnCallback.h"
 TroupSpawnCallback::TroupSpawnCallback(IGame* game, std::string value) : KeypressCallback(game, 0), value{value}
 {

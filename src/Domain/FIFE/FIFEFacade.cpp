@@ -225,10 +225,10 @@ int FIFEFacade::getTime()
 
 void FIFEFacade::setInstanceLocation(std::string name, double x, double y) {
     if (map) {
-        FIFE::Layer *layer = map->getLayer("unitLayer");
+        FIFE::Layer* layer = map->getLayer("unitLayer");
 
         if (layer) {
-            FIFE::Instance *instance = layer->getInstance(name);
+            FIFE::Instance* instance = layer->getInstance(name);
 
             if (instance) {
                 // Get the current location of the instance
@@ -248,45 +248,33 @@ void FIFEFacade::setInstanceLocation(std::string name, double x, double y) {
 
 std::string FIFEFacade::createInstance(std::string objectName, std::string instanceName, double x, double y){
     if(map){
-        FIFE::Layer *layer = map->getLayer("unitLayer");
+        FIFE::Layer* layer {map->getLayer("unitLayer")};
         if(layer)  {
-            FIFE::Object *object = engine->getModel()->getObject(objectName, "grimwall");
+            FIFE::Object* object {engine->getModel()->getObject(objectName, "grimwall")};
             if(object) {
-                std::cout << "Object created." << std::endl;
                 FIFE::ExactModelCoordinate mapCoords{};
                 mapCoords.x = x;
                 mapCoords.y = y;
                 mapCoords.z = 0.0;
-                FIFE::Location *location = new FIFE::Location(layer);
+                FIFE::Location* location {new FIFE::Location(layer)};
                 location->setMapCoordinates(mapCoords);
-                    if(layer->getInstancesAt(*location).size() == 0) {
-                        FIFE::Instance *instance = layer->createInstance(object, mapCoords, instanceName);
-                        std::cout << "Instance added." << std::endl;
-                    }
-                    else {
-                        std::cout << "ERROR: space occupied." << std::endl;
-                    }
+                //Check if position is occupied
+                if(layer->getInstancesAt(*location).size() == 0) {
+                    layer->createInstance(object, mapCoords, instanceName);
+                }
                 delete location;
                 return instanceName;
             }
-            else {
-                std::cout << "No object found." << std::endl;
-            }
-        }
-        else {
-            std::cout << "No layer found." << std::endl;
         }
     }
-    else {
-        std::cout << "No map found." << std::endl;
-    }
+    return "ERROR";
 }
 
 void FIFEFacade::deleteInstance(std::string instanceName){
     if (map) {
-        FIFE::Layer *layer = map->getLayer("unitLayer");
+        FIFE::Layer* layer {map->getLayer("unitLayer")};
         if (layer) {
-            FIFE::Instance *instance = layer->getInstance(instanceName);
+            FIFE::Instance* instance {layer->getInstance(instanceName)};
             if (instance) {
                 layer->deleteInstance(instance);
             }
@@ -296,9 +284,9 @@ void FIFEFacade::deleteInstance(std::string instanceName){
 
 void FIFEFacade::removeInstance(std::string instanceName){
     if (map) {
-        FIFE::Layer *layer = map->getLayer("unitLayer");
+        FIFE::Layer* layer {map->getLayer("unitLayer")};
         if (layer) {
-            FIFE::Instance *instance = layer->getInstance(instanceName);
+            FIFE::Instance* instance {layer->getInstance(instanceName)};
             if (instance) {
                 layer->removeInstance(instance);
             }

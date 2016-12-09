@@ -122,7 +122,7 @@ file(GLOB_RECURSE Grimwall_SRC_Input
 )
 
 # Add list of files to executable
-add_executable(Grimwall ${Grimwall_SRC_Domain} ${Grimwall_SRC_GUI} ${Grimwall_SRC_Input} "src/main.cpp" src/Input/Callbacks/TroupSpawnCallback.cpp src/Input/Callbacks/TroupSpawnCallback.h)
+add_executable(Grimwall ${Grimwall_SRC_Domain} ${Grimwall_SRC_GUI} ${Grimwall_SRC_Input} "src/main.cpp")
 
 if(APPLE)
   find_package(Xcursor REQUIRED)
