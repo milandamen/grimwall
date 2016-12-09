@@ -85,6 +85,16 @@ public:
      */
     virtual std::string createInstance(std::string objectName, std::string instanceName, double x, double y) = 0;
 
+    /**
+    * Gets the instance from the layer, then both removes and deletes it.
+    */
+    virtual void deleteInstance(std::string instanceName) = 0;
+
+    /**
+     * Gets the instance from the layer, then removes it. Beware: this method does not delete the object.
+     */
+    virtual void removeInstance(std::string instanceName) = 0;
+
 };
 
 #endif

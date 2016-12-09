@@ -157,6 +157,16 @@ public:
      * Creates a new instance on a given location and returns the name of the object
      */
     std::string createInstance(std::string objectName, std::string instanceName, double x, double y) override;
+
+    /**
+     * Gets the instance from the layer, then both removes and deletes it.
+     */
+    void deleteInstance(std::string instanceName) override;
+
+    /**
+     * Gets the instance from the layer, then removes it. Beware: this method does not delete the object.
+     */
+    void removeInstance(std::string instanceName) override;
 };
 
 #endif

@@ -264,6 +264,30 @@ std::string FIFEFacade::createInstance(std::string objectName, std::string insta
     }
 }
 
+void FIFEFacade::deleteInstance(std::string instanceName){
+    if (map) {
+        FIFE::Layer *layer = map->getLayer("unitLayer");
+        if (layer) {
+            FIFE::Instance *instance = layer->getInstance(instanceName);
+            if (instance) {
+                layer->deleteInstance(instance);
+            }
+        }
+    }
+}
+
+void FIFEFacade::removeInstance(std::string instanceName){
+    if (map) {
+        FIFE::Layer *layer = map->getLayer("unitLayer");
+        if (layer) {
+            FIFE::Instance *instance = layer->getInstance(instanceName);
+            if (instance) {
+                layer->removeInstance(instance);
+            }
+        }
+    }
+}
+
 void FIFEFacade::registerCallback(std::string keys, ICallback* callback)
 {
     keyListener->registerCallback(keys, callback);
