@@ -14,18 +14,6 @@
 #include "FIFECameraScroller.h"
 
 class FIFECamera{
-public:
-    FIFECamera(FIFE::Map* map, FIFE::EventManager* eventManager, FIFE::TimeManager* timeManager);
-    ~FIFECamera();
-
-    void initView();
-    void zoomOut();
-    void zoomIn();
-    void updateLocation(int x, int y);
-    void unregisterEvent();
-
-    FIFE::Camera* Camera() const;
-
 private:
     FIFE::Map* map {nullptr};
     FIFE::Camera* mainCamera {nullptr};
@@ -36,6 +24,19 @@ private:
     double zoomIncrement;
     double maxZoom;
     double minZoom;
+
+public:
+    FIFECamera(FIFE::Map* map, FIFE::EventManager* eventManager, FIFE::TimeManager* timeManager);
+    ~FIFECamera();
+
+    void initView();
+    void zoomOut();
+    void zoomIn();
+    void updateLocation(int x, int y);
+    void unregisterEvent();
+
+    FIFE::Camera* camera() const;
+
 };
 
 #endif //GRIMWALL_FIFECAMERA_H

@@ -22,7 +22,6 @@
 #include "../../Input/ICallback.h"
 #include "Camera/FIFECamera.h"
 
-// TODO Remove unnecesary
 namespace FIFE
 {
     class Engine;
@@ -48,7 +47,7 @@ private:
     IGame* game {nullptr};
     FIFEKeyListener* keyListener {nullptr};
 
-    FIFEMouseListener* mouseListener;
+    FIFEMouseListener* mouseListener {nullptr};
 
     bool pumpingInitialized {false};
     

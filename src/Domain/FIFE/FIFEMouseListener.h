@@ -6,7 +6,6 @@
 #include "model/structures/layer.h"
 #include "model/metamodel/grids/cellgrid.h"
 
-
 #include <string>
 #include <unordered_map>
 #include <iostream>
@@ -15,7 +14,6 @@
 #include "../Units/IUnit.h"
 #include "../IGame.h"
 #include "Camera/FIFECamera.h"
-
 
 
 class FIFEMouseListener : public FIFE::IMouseListener
@@ -50,7 +48,7 @@ public:
     virtual void mouseWheelMovedDown(FIFE::MouseEvent& evt);
     virtual void mouseMoved(FIFE::MouseEvent& evt);
     virtual void mouseDragged(FIFE::MouseEvent& evt);
-    virtual void SetPreviousMouseEvent(FIFE::MouseEvent::MouseEventType type);
+    virtual void setPreviousMouseEvent(FIFE::MouseEvent::MouseEventType type);
 
     void setPlayer(IUnit* unit);
 };

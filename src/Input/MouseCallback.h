@@ -16,6 +16,7 @@ protected:
     MouseCallback(IGame* game);
 public:
     virtual void execute(IMouseEvent* event);
+    virtual ~MouseCallback();
 };
 
 #endif

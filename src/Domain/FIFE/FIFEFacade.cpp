@@ -139,11 +139,6 @@ void FIFEFacade::mousePressed(fcn::MouseEvent& mouseEvent)
 void FIFEFacade::keyPressed(fcn::KeyEvent &keyEvent)
 {
     std::cout << keyEvent.getDistributor();
-    ///What does this do?
-//    if(actionEvent.getId() == "clickBtnOptions")
-//        std::cout << "Play!";
-//    else
-//        std::cout << "Exit!";
 }
 
 void FIFEFacade::action(const fcn::ActionEvent &actionEvent)
@@ -241,11 +236,10 @@ void FIFEFacade::move(std::string name, double x, double y) {
                 // move controller to clicked spot
                 FIFE::Location destination(instance->getLocation());
                 FIFE::ScreenPoint screenPoint(x, y);
-                if(fifeCamera->Camera() != nullptr){
-                    FIFE::ExactModelCoordinate mapCoords = fifeCamera->Camera()->toMapCoordinates(screenPoint, false);
+                if(fifeCamera->camera() != nullptr){
+                    FIFE::ExactModelCoordinate mapCoords = fifeCamera->camera()->toMapCoordinates(screenPoint, false);
                     mapCoords.z = 0.0;
                     destination.setMapCoordinates(mapCoords);
-                    std::cout << "X: " << mapCoords.x << ", Y:" << mapCoords.y << std::endl;
                     instance->move("walk", destination, instance->getTotalTimeMultiplier());
                 }
             }

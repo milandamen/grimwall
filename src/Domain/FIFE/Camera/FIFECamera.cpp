@@ -39,7 +39,7 @@ void FIFECamera::initView() {
 
 }
 
-FIFE::Camera* FIFECamera::Camera() const {
+FIFE::Camera* FIFECamera::camera() const {
     return mainCamera;
 }
 

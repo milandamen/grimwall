@@ -4,21 +4,21 @@
 using namespace std;
 using namespace FIFE;
 
-FIFEMouseListener::FIFEMouseListener(IGame *game, FIFECamera* camera) : game{game}, camera{camera}, prevEventType(FIFE::MouseEvent::UNKNOWN_EVENT),
-instance(0), dragX(0), dragY(0){}
+FIFEMouseListener::FIFEMouseListener(IGame *game, FIFECamera* camera) : game{game}, camera{camera}, dragX{0}, dragY{0}, prevEventType{FIFE::MouseEvent::UNKNOWN_EVENT},
+instance{0}{}
 
 FIFEMouseListener::~FIFEMouseListener() {
-    for (auto &&item : callbackMap) {
+    for (auto&& item : callbackMap) {
         delete item.second;
     }
     callbackMap.clear();
 }
 
 void FIFEMouseListener::mouseEntered(FIFE::MouseEvent& evt) {
-    SetPreviousMouseEvent(evt.getType());
+    setPreviousMouseEvent(evt.getType());
 }
 void FIFEMouseListener::mouseExited(FIFE::MouseEvent& evt) {
-    SetPreviousMouseEvent(evt.getType());
+    setPreviousMouseEvent(evt.getType());
 }
 void FIFEMouseListener::mousePressed(FIFE::MouseEvent& evt) {
     if (evt.getButton() == FIFE::MouseEvent::LEFT)
@@ -28,7 +28,7 @@ void FIFEMouseListener::mousePressed(FIFE::MouseEvent& evt) {
         dragY = evt.getY();
     }
 
-    SetPreviousMouseEvent(evt.getType());
+    setPreviousMouseEvent(evt.getType());
 }
 
 void FIFEMouseListener::setCamera(FIFECamera* camera) {
@@ -42,10 +42,10 @@ void FIFEMouseListener::mouseReleased(FIFE::MouseEvent& evt) {
         EngineFacade::engine()->move("Dralas", evt.getX(), evt.getY());
     }
 
-    SetPreviousMouseEvent(evt.getType());
+    setPreviousMouseEvent(evt.getType());
 }
 void FIFEMouseListener::mouseClicked(FIFE::MouseEvent& evt) {
-    SetPreviousMouseEvent(evt.getType());
+    setPreviousMouseEvent(evt.getType());
 }
 void FIFEMouseListener::mouseWheelMovedUp(FIFE::MouseEvent& evt) {
     // zoom in
@@ -55,18 +55,18 @@ void FIFEMouseListener::mouseWheelMovedUp(FIFE::MouseEvent& evt) {
     dragX = evt.getX();
     dragY = evt.getY();
 
-    SetPreviousMouseEvent(evt.getType());
+    setPreviousMouseEvent(evt.getType());
 }
 void FIFEMouseListener::mouseWheelMovedDown(FIFE::MouseEvent& evt) {
     // zoom out
     camera->zoomOut();
 
-    SetPreviousMouseEvent(evt.getType());
+    setPreviousMouseEvent(evt.getType());
 }
 void FIFEMouseListener::mouseMoved(FIFE::MouseEvent& evt) {
     camera->updateLocation(evt.getX(), evt.getY());
 
-    SetPreviousMouseEvent(evt.getType());
+    setPreviousMouseEvent(evt.getType());
 }
 void FIFEMouseListener::mouseDragged(FIFE::MouseEvent& evt) {
     if (evt.getButton() == FIFE::MouseEvent::LEFT)
@@ -81,18 +81,18 @@ void FIFEMouseListener::mouseDragged(FIFE::MouseEvent& evt) {
         int currY = evt.getY();
 
         // get the mouse delta for camera movement
-        FIFE::ScreenPoint delta(dragX - currX, dragY - currY);
+        FIFE::ScreenPoint delta {dragX - currX, dragY - currY};
 
         // get the current camera location
-        FIFE::ScreenPoint cameraScreenCoords = camera->Camera()->toScreenCoordinates(camera->Camera()->getLocationRef().getMapCoordinates());
+        FIFE::ScreenPoint cameraScreenCoords = camera->camera()->toScreenCoordinates(camera->camera()->getLocationRef().getMapCoordinates());
         cameraScreenCoords += delta;
 
         // set the new coordinates
-        FIFE::Location camLocation(camera->Camera()->getLocationRef());
-        FIFE::ExactModelCoordinate mapCoords = camera->Camera()->toMapCoordinates(cameraScreenCoords, false);
+        FIFE::Location camLocation(camera->camera()->getLocationRef());
+        FIFE::ExactModelCoordinate mapCoords = camera->camera()->toMapCoordinates(cameraScreenCoords, false);
         mapCoords.z = 0.0;
         camLocation.setMapCoordinates(mapCoords);
-        camera->Camera()->setLocation(camLocation);
+        camera->camera()->setLocation(camLocation);
 
         // update last saved x,y values for dragging
         dragX = currX;
@@ -101,10 +101,10 @@ void FIFEMouseListener::mouseDragged(FIFE::MouseEvent& evt) {
 
     // make sure to save that the last event was drag
     // this is important to get around the drag & click problem
-    SetPreviousMouseEvent(evt.getType());
+    setPreviousMouseEvent(evt.getType());
 }
 
-void FIFEMouseListener::SetPreviousMouseEvent(FIFE::MouseEvent::MouseEventType type)
+void FIFEMouseListener::setPreviousMouseEvent(FIFE::MouseEvent::MouseEventType type)
 {
     prevEventType = type;
 }
