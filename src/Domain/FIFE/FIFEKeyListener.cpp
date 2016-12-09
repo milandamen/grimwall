@@ -30,29 +30,37 @@ void FIFEKeyListener::registerCallback(std::string keys, ICallback* callback)
         if (item == "ALT" || item == "LEFT_ALT" || item == "RIGHT_ALT") hasAlt = true;
     }
     
-    std::stringstream ssnew;
+    std::vector<std::string> keyList;
     if (hasCtrl)
     {
-        ssnew << "CTRL";
+        keyList.push_back("CTRL");
     }
     if (hasShift)
     {
-        ssnew << "SHIFT";
+        keyList.push_back("SHIFT");
     }
     if (hasAlt)
     {
-        ssnew << "ALT";
+        keyList.push_back("ALT");
     }
     
     for (auto& el : elems)
     {
         if (el != "CTRL" && el != "LEFT_CONTROL" && el != "RIGHT_CONTROL" && el != "SHIFT" && el != "LEFT_SHIFT" && el != "RIGHT_SHIFT" && el != "ALT" && el != "LEFT_ALT" && el != "RIGHT_ALT")
         {
-            ssnew << el;
+            keyList.push_back(el);
         }
     }
     
-    std::cout << "registered " << keys << std::endl;
+    // Sort keyList
+    std::sort(keyList.begin(), keyList.end());
+    
+    std::stringstream ssnew;
+    for (auto& el : keyList)
+    {
+        ssnew << el;
+    }
+    
     callbackMap.insert({ssnew.str(), callback});
 }
 
@@ -63,37 +71,12 @@ void FIFEKeyListener::registerCallback(std::string keys, ICallback* callback)
  */
 void FIFEKeyListener::keyPressed(FIFE::KeyEvent& evt)
 {
-    std::stringstream ss;
-    if (evt.isControlPressed())
-    {
-        ss << "CTRL";
-    }
-    if (evt.isShiftPressed())
-    {
-        ss << "SHIFT";
-    }
-    if (evt.isAltPressed())
-    {
-        ss << "ALT";
-    }
-    
     std::string key {evt.getKey().getAsString()};
     std::transform(key.begin(), key.end(), key.begin(), std::ptr_fun<int, int>(std::toupper));
-    ss << key;
-    std::string pressed = ss.str();
-
-    for (auto& keyPair : callbackMap)
-    {
-        if (keyPair.first == pressed)
-        {
-            // Run execute() on the ICallback
-            keyPair.second->execute();
-            
-            // Mark event as consumed
-            evt.consume();
-            return;
-        }
-    }
+    
+    key = generalizeModifier(key);
+    
+    addPressed(key);
 }
 
 /**
@@ -102,6 +85,87 @@ void FIFEKeyListener::keyPressed(FIFE::KeyEvent& evt)
  */
 void FIFEKeyListener::keyReleased(FIFE::KeyEvent& evt)
 {
+    std::string key {evt.getKey().getAsString()};
+    std::transform(key.begin(), key.end(), key.begin(), std::ptr_fun<int, int>(std::toupper));
+    
+    key = generalizeModifier(key);
+    
+    removePressed(key);
+    
     // Mark event as consumed
     evt.consume();
 }
+
+void FIFEKeyListener::addPressed(std::string key)
+{
+    if(std::find(pressedKeys.begin(), pressedKeys.end(), key) != pressedKeys.end()) {
+        /* v contains x */
+    } else {
+        pressedKeys.push_back(key);
+        loadCallback();
+    }
+}
+
+void FIFEKeyListener::removePressed(std::string key)
+{
+    pressedKeys.erase(std::remove(pressedKeys.begin(), pressedKeys.end(), key), pressedKeys.end());
+    loadCallback();
+}
+
+void FIFEKeyListener::loadCallback()
+{
+    // This method only runs when pressedKeys changed
+    
+    if (loadedCallback != nullptr)
+    {
+        loadedCallback->reset();
+        loadedCallback = nullptr;
+    }
+    
+    // Sort keyList
+    std::sort(pressedKeys.begin(), pressedKeys.end());
+    
+    std::stringstream ss;
+    for (auto& el : pressedKeys)
+    {
+        ss << el;
+    }
+    
+    std::string needle = ss.str();
+    
+    // Find callback
+    for (auto& keyPair : callbackMap)
+    {
+        if (keyPair.first == needle)
+        {
+            loadedCallback = keyPair.second;
+            break;
+        }
+    }
+}
+
+void FIFEKeyListener::tick()
+{
+    if (loadedCallback == nullptr) { return; }
+    
+    loadedCallback->execute();
+}
+
+std::string FIFEKeyListener::generalizeModifier(std::string key)
+{
+    if (key == "LEFT CTRL" || key == "RIGHT CTRL")
+    {
+        key = "CTRL";
+    }
+    else if (key == "LEFT SHIFT" || key == "RIGHT SHIFT")
+    {
+        key = "SHIFT";
+    }
+    if (key == "LEFT ALT" || key == "RIGHT ALT")
+    {
+        key = "ALT";
+    }
+    
+    return key;
+}
+

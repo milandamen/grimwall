@@ -1,17 +1,13 @@
 #include "DeathStrike.h"
 #include "../../Buff/DeathStrikeBuff.h"
 
-DeathStrike::DeathStrike(IUnit* hero)
+DeathStrike::DeathStrike(UnitManager<AHero>* hero)
         : AAbility(25), hero{hero}
 {
     
 }
 
 int DeathStrike::execute() {
-    hero = new DeathStrikeBuff(hero, 2);
+    hero->buff(new DeathStrikeBuff(hero->getUnit(), 2));
     return 1;
-}
-
-IUnit* DeathStrike::getHero() {
-    return hero;
 }

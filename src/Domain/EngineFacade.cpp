@@ -1,4 +1,3 @@
-
 #include "EngineFacade.h"
 
 IEngineFacade* EngineFacade::_engine {nullptr};

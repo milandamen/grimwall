@@ -4,6 +4,7 @@
 #include <iostream>
 #include <gui/guimanager.h>
 #include <util/structures/rect.h>
+#include <vector>
 
 #include "eventchannel/mouse/ec_mouseevent.h"
 #include "../Input/ICallback.h"
@@ -27,7 +28,7 @@ public:
     virtual void setScreenHeight(int height) = 0;
     virtual void setFullScreen(bool fullScreen) = 0;
     virtual void setWindowTitle(std::string title) = 0;
-    virtual void setInstanceLocation(std::string name, double x, double y) = 0;
+    virtual void setFPSLimit(int fpsLimit) = 0;
     
     /** Initializing **/
     
@@ -59,7 +60,7 @@ public:
      * Get the current time in milliseconds
      */
     virtual int getTime() = 0;
-    
+
     /**
      * Register a callback with a key combination
      */
@@ -76,7 +77,7 @@ public:
     virtual void zoomOut() = 0;
 
     /**
-     * update screen camera
+     * Update the screen camera
      */
     virtual void updateLocation(std::string location) = 0;
 
@@ -94,6 +95,21 @@ public:
      * Gets the instance from the layer, then removes it. Beware: this method does not delete the object.
      */
     virtual void removeInstance(std::string instanceName) = 0;
+
+    /**
+     * Set the location of an instance
+     */
+    virtual void setInstanceLocation(std::string name, double x, double y) = 0;
+    
+    /**
+     * Run a tick for userland code like input callbacks
+     */
+    virtual void tick() = 0;
+    
+    /**
+     *  load towers from map
+     */
+    virtual std::vector<std::string> loadTowers() = 0;
 
 };
 

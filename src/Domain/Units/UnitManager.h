@@ -1,8 +1,5 @@
-
-
 #ifndef GRIMWALL_UNITMANAGER_H
 #define GRIMWALL_UNITMANAGER_H
-
 
 #include "IUnit.h"
 

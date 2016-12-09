@@ -12,7 +12,8 @@
 #include "view/camera.h"
 #include "util/time/timemanager.h"
 #include "eventchannel/eventmanager.h"
-#include <gui/fifechan/fifechanmanager.h>
+#include "gui/fifechan/fifechanmanager.h"
+#include "util/log/logger.h"
 
 #include "boost/filesystem.hpp"
 #include "SDL.h"
@@ -22,17 +23,6 @@
 #include "../IGame.h"
 #include "../../Input/ICallback.h"
 #include "Camera/FIFECamera.h"
-
-// TODO Remove unnecesary
-namespace FIFE
-{
-    class Engine;
-    class EngineSettings;
-    class Map;
-    class Camera;
-    class Instance;
-    class IGUIManager;
-}
 
 namespace fs = boost::filesystem;
 
@@ -46,10 +36,10 @@ private:
     fcn::Button* btnOptions {nullptr};
     fcn::Button* btnExit {nullptr};
     FIFECamera* fifeCamera {nullptr};
-    
+
     IGame* game {nullptr};
     FIFEKeyListener* keyListener {nullptr};
-    
+
     bool pumpingInitialized {false};
     
     void initView();
@@ -95,6 +85,11 @@ public:
      * Sets windows title.
      */
     void setWindowTitle(std::string title) override;
+    
+    /**
+     * Set a limit to the FPS
+     */
+    void setFPSLimit(int fpsLimit) override;
 
 
     /**** Initializing ****/
@@ -127,6 +122,12 @@ public:
      * Get the current time in milliseconds
      */
     int getTime() override;
+
+    /**
+     *  load towers from map
+     */
+    std::vector<std::string> loadTowers() override;
+
 
     /**
      * Get layer by name
@@ -167,6 +168,12 @@ public:
      * Gets the instance from the layer, then removes it. Beware: this method does not delete the object.
      */
     void removeInstance(std::string instanceName) override;
+    
+    /**
+     * Run a tick for userland code like input callbacks
+     */
+    void tick() override;
+
 };
 
 #endif
