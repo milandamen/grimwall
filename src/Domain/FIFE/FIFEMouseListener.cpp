@@ -37,9 +37,9 @@ void FIFEMouseListener::setCamera(FIFECamera* camera) {
 
 void FIFEMouseListener::mouseReleased(FIFE::MouseEvent& evt) {
     // only activate the move action if the mouse was pressed and released without dragging
-    if (evt.getButton() == FIFE::MouseEvent::LEFT && prevEventType != FIFE::MouseEvent::DRAGGED)
+    if (evt.getButton() == FIFE::MouseEvent::RIGHT && prevEventType != FIFE::MouseEvent::DRAGGED)
     {
-        EngineFacade::engine()->move("Dralas", evt.getX(), evt.getY());
+        EngineFacade::engine()->move(this->game->getHero()->getName(), evt.getX(), evt.getY());
     }
 
     setPreviousMouseEvent(evt.getType());
