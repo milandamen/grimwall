@@ -1,6 +1,7 @@
 #include "MoveCameraCallback.h"
 
-MoveCameraCallback::MoveCameraCallback(IGame* game, int firePerNFrames, std::string direction) : KeypressCallback(game, firePerNFrames), direction{direction}
+MoveCameraCallback::MoveCameraCallback(IGame* game, std::string direction)
+        : KeypressCallback(game, 1), direction{direction}
 {
 
 }
