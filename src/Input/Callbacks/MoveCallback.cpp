@@ -1,7 +1,7 @@
 #include "MoveCallback.h"
 
-MoveCallback::MoveCallback(IGame* game, int firePerNFrames, std::string direction)
-    : KeypressCallback(game, firePerNFrames), direction{direction}
+MoveCallback::MoveCallback(IGame* game, std::string direction)
+    : KeypressCallback(game, 1), direction{direction}
 {
     
 }
