@@ -47,11 +47,6 @@ public:
 
     /**** Encapsulation ****/
 
-    /**
-     * Get the GUI Manager
-     * @return
-     */
-    FIFE::FifechanManager* getGuiManager() override;
     void action(const fcn::ActionEvent& actionEvent) override;
     void keyPressed(fcn::KeyEvent& keyEvent) override;
     void mousePressed(fcn::MouseEvent& mouseEvent) override;

@@ -20,6 +20,7 @@ private:
 public:
     static IEngineFacade* engine();
     static void setEngine(std::string engine, IGame* game);
+    static void setEngine(IEngineFacade* engine);
     static void destroy();
 };
 

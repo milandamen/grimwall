@@ -37,11 +37,6 @@ FIFEFacade::~FIFEFacade() {
     delete fifeCamera;
 }
 
-FIFE::FifechanManager* FIFEFacade::getGuiManager()
-{
-    return guimanager;
-}
-
 void FIFEFacade::setRenderBackend(std::string engine)
 {
     FIFE::EngineSettings& settings = this->engine->getSettings();

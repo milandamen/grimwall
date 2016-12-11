@@ -19,19 +19,8 @@ public:
     MOCK_METHOD0(zoomIn, void());
     MOCK_METHOD0(zoomOut, void());
     MOCK_METHOD1(updateLocation, void(std::string location));
+    MOCK_METHOD3(setInstanceLocation, void(std::string name, double x, double y));
+    MOCK_METHOD0(tick, void());
+    MOCK_METHOD0(loadTowers, std::vector<std::string>());
     
-    /**
-     * Set the location of an instance
-     */
-    virtual void setInstanceLocation(std::string name, double x, double y) = 0;
-    
-    /**
-     * Run a tick for userland code like input callbacks
-     */
-    virtual void tick() = 0;
-    
-    /**
-     *  load towers from map
-     */
-    virtual std::vector<std::string> loadTowers() = 0;
 };
