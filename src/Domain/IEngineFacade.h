@@ -17,10 +17,6 @@ class IEngineFacade
 public:
     virtual ~IEngineFacade() {};
 
-    /** Encapsulation **/
-
-    virtual FIFE::IGUIManager* getGuiManager() = 0;
-
     /** Settings **/
     
     virtual void setRenderBackend(std::string engine) = 0;
@@ -64,7 +60,7 @@ public:
     /**
      * Register a callback with a key combination
      */
-    virtual void registerCallback(std::string, ICallback* callback) = 0;
+    virtual void registerCallback(std::string keys, ICallback* callback) = 0;
 
     /**
      * Zoom in

@@ -50,11 +50,6 @@ public:
 
     /**** Encapsulation ****/
 
-    /**
-     * Get the GUI Manager
-     * @return
-     */
-    FIFE::FifechanManager* getGuiManager() override;
     void action(const fcn::ActionEvent& actionEvent) override;
     void keyPressed(fcn::KeyEvent& keyEvent) override;
     void mousePressed(fcn::MouseEvent& mouseEvent) override;
@@ -137,7 +132,7 @@ public:
     /**
      * Register a callback with a key combination
      */
-    void registerCallback(std::string, ICallback* callback) override;
+    void registerCallback(std::string keys, ICallback* callback) override;
 
     /**
      * Zoom in
