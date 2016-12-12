@@ -8,7 +8,7 @@ FIFEMouseListener::FIFEMouseListener(IGame *game, FIFECamera* camera) : game{gam
 instance{0}{}
 
 FIFEMouseListener::~FIFEMouseListener() {
-    for (auto&& item : callbackMap) {
+    for (auto& item : callbackMap) {
         delete item.second;
     }
     callbackMap.clear();

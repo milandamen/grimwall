@@ -19,8 +19,8 @@
 class FIFEMouseListener : public FIFE::IMouseListener
 {
 private:
-    IGame* game;
-    FIFECamera* camera;
+    IGame* game {nullptr};
+    FIFECamera* camera {nullptr};
 
     std::unordered_map<std::string, MouseCallback*> callbackMap;
 
@@ -28,7 +28,7 @@ private:
     int dragY;
 
     FIFE::MouseEvent::MouseEventType prevEventType;
-    FIFE::Instance* instance;
+    FIFE::Instance* instance {nullptr};
 
 public:
     FIFEMouseListener(IGame* game, FIFECamera* camera);

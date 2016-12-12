@@ -21,7 +21,6 @@ void FIFECamera::initView() {
 
         if (mainCamera)
         {
-            // attach the controller to the camera
             mainCamera->setEnabled(true);
 
             // get the renderer associated with viewing objects on the map

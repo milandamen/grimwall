@@ -22,16 +22,6 @@
 #include "../../Input/ICallback.h"
 #include "Camera/FIFECamera.h"
 
-namespace FIFE
-{
-    class Engine;
-    class EngineSettings;
-    class Map;
-    class Camera;
-    class Instance;
-    class IGUIManager;
-}
-
 namespace fs = boost::filesystem;
 
 class FIFEFacade : public IEngineFacade, fcn::ActionListener, fcn::KeyListener, fcn::MouseListener {
