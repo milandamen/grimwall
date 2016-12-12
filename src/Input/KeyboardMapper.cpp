@@ -1,10 +1,7 @@
 #include "KeyboardMapper.h"
 
-<<<<<<< HEAD
 #include "Callbacks/MoveCallback.h"
 #include "Callbacks/TroupSpawnCallback.h"
-=======
->>>>>>> master
 #include "Callbacks/UseAbilityCallback.h"
 #include "Callbacks/AttackCallback.h"
 
