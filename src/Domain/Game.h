@@ -12,17 +12,19 @@
 #include <vector>
 #include "Units/Towers/ATower.h"
 #include "Units/Towers/DefaultTower.h"
+#include "Units/Troups/ATroup.h"
 
 class Game : public IGame {
 private:
     UnitManager<AHero>* hero{nullptr};
 
-    /**
-     * Set this to true to stop the game loop
-     */
+    std::vector<ATroup*> troups;
     std::vector<ATower*> towers;
     void loadTowers();
     void deleteTowers();
+    /**
+     * Set this to true to stop the game loop
+     */
     bool running {true};
 
     /**
@@ -45,6 +47,7 @@ public:
     Game();
     ~Game();
     virtual UnitManager<AHero>* getHero() override;
+    virtual UnitManager<std::vector<ATroup*> >* getTroups() override;
     virtual void quit() override;
 };
 
