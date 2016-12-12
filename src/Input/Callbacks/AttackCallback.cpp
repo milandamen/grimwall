@@ -7,5 +7,12 @@ AttackCallback::AttackCallback(IGame *game)
 {}
 
 void AttackCallback::execute() {
-    std::cout << "Do damage";
+    int reach = game->getHero()->getReach();
+    int power = game->getHero()->getPower();
+
+    /** TODO:
+     * get towers
+     * filter towers that in range
+     * do damage to tower
+    **/
 }

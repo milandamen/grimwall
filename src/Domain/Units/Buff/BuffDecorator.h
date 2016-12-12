@@ -19,7 +19,7 @@ public:
     int getHitPoints();
     int getSpeed();
     int getVisibility();
-    void doDamage(int power);
+    void receiveDamage(int power);
 
     double getX();
     void setX(double x);

@@ -29,7 +29,7 @@ public:
     virtual int getHitPoints();
     virtual int getSpeed();
     virtual int getVisibility();
-    virtual void doDamage(int power) = 0;
+    virtual void receiveDamage(int power);
 
     double getX() override;
     void setX(double x) override;

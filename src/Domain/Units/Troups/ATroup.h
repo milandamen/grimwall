@@ -9,7 +9,6 @@ private:
 public:
     virtual int getMoveSpeed() = 0;
     virtual int getPrice() = 0;
-    virtual void doDamage(int power);
 };
 
 

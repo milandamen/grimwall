@@ -39,8 +39,8 @@ int AUnit::getVisibility() {
     return this->visibility;
 }
 
-void AUnit::doDamage(int power) {
-    // do damage
+void AUnit::receiveDamage(int power) {
+    this->hitPoints -= power;
 }
 
 double AUnit::getX() {

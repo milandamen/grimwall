@@ -13,7 +13,7 @@ public:
     virtual int getHitPoints() = 0;
     virtual int getSpeed() = 0;
     virtual int getVisibility() = 0;
-    virtual void doDamage(int power) = 0;
+    virtual void receiveDamage(int power) = 0;
 
     virtual double getX() = 0;
     virtual void setX(double x) = 0;

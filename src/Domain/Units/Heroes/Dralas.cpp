@@ -9,5 +9,3 @@ Dralas::Dralas()
 {}
 
 Dralas::~Dralas() {}
-
-void Dralas::doDamage(int power) {}

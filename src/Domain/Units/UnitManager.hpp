@@ -22,7 +22,7 @@ public:
     int getHitPoints() override;
     int getSpeed() override;
     int getVisibility() override;
-    void doDamage(int power) override;
+    void receiveDamage(int power) override;
 
     double getX() override;
     void setX(double x) override;
@@ -37,7 +37,7 @@ public:
 
 template <typename UnitType>
 UnitManager<UnitType>::UnitManager(UnitType *unit)
-        : unit{unit}, base{unit}
+        : base{unit}, unit{unit}
 {}
 
 template <typename UnitType>
@@ -81,8 +81,8 @@ int UnitManager<UnitType>::getVisibility() {
 }
 
 template <typename UnitType>
-void UnitManager<UnitType>::doDamage(int power) {
-    unit->doDamage(power);
+void UnitManager<UnitType>::receiveDamage(int power) {
+    unit->receiveDamage(power);
 }
 
 template <typename UnitType>

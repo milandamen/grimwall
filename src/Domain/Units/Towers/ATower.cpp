@@ -5,10 +5,6 @@ ATower::ATower(std::string name, int reach, int attackDelay, int power, int hitP
         : AUnit(name, reach, attackDelay, 0, power, hitPoints, visibility)
 {}
 
-void ATower::doDamage(int power) {
-    //do the attack
-}
-
 std::string ATower::getId() {
     return this->id;
 }

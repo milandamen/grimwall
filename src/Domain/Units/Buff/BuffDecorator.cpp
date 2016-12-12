@@ -34,8 +34,8 @@ int BuffDecorator::getVisibility()
     return this->m_wrappee->getSpeed();
 }
 
-void BuffDecorator::doDamage(int power) {
-    this->m_wrappee->doDamage(power);
+void BuffDecorator::receiveDamage(int power) {
+    this->m_wrappee->receiveDamage(power);
 }
 
 double BuffDecorator::getX() {
