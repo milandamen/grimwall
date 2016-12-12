@@ -116,7 +116,6 @@ void FIFECameraScroller::unregisterEvent()
 
 void FIFECameraScroller::updateEvent(uint32_t time)
 {
-
     if (shouldScroll)
     {
         FIFE::Location camLocation(mainCamera->getLocationRef());
@@ -142,7 +141,6 @@ bool FIFECameraScroller::onSdlEvent(SDL_Event& evt)
     // we have regained focus
     if (evt.type == SDL_WINDOWEVENT && evt.window.event == SDL_WINDOWEVENT_LEAVE)
     {
-
         unregisterEvent();
         return true;
     }
