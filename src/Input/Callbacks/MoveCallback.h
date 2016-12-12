@@ -19,7 +19,7 @@ public:
      * @param firePerNFrames Callback fires every N frames or only once if set to 0. Fires while keys are held.
      * @param direction Move the hero in a certain direction (UP, RIGHT, DOWN, LEFT, UPRIGHT, RIGHTDOWN, DOWNLEFT, LEFTUP)
      */
-    MoveCallback(IGame* game, int firePerNFrames, double x, double y);
+MoveCallback(IGame* game, int firePerNFrames, double x, double y);
     virtual void execute() override;
 };
 
