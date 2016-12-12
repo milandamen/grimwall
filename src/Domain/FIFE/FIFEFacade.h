@@ -128,7 +128,7 @@ public:
      */
     std::vector<std::string> loadTowers() override;
 
-    void move(std::string name, double x, double y) override;
+    void move(std::string name, double x, double y, int moveSpeed) override;
     
     /**
      * Register a callback with a key combination

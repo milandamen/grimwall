@@ -224,7 +224,7 @@ int FIFEFacade::getTime()
     return engine->getTimeManager()->getTime();
 }
 
-void FIFEFacade::move(std::string name, double x, double y) {
+void FIFEFacade::move(std::string name, double x, double y, int moveSpeed) {
     if (map) {
         FIFE::Layer *layer = map->getLayer("unitLayer");
 
@@ -240,7 +240,7 @@ void FIFEFacade::move(std::string name, double x, double y) {
                     FIFE::ExactModelCoordinate mapCoords = fifeCamera->camera()->toMapCoordinates(screenPoint, false);
                     mapCoords.z = 0.0;
                     destination.setMapCoordinates(mapCoords);
-                    instance->move("walk", destination, game->getHero()->getSpeed());
+                    instance->move("walk", destination, moveSpeed);
                 }
             }
         }
