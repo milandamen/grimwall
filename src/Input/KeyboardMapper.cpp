@@ -1,9 +1,4 @@
 #include "KeyboardMapper.h"
-<<<<<<< HEAD
-
-
-=======
->>>>>>> 4c2ec6c7f40c8ea393fefc91ea2d47b8dd7bb449
 #include "Callbacks/UseAbilityCallback.h"
 #include "Callbacks/AttackCallback.h"
 
