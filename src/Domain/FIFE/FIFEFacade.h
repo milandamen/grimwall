@@ -3,6 +3,9 @@
 
 #include "controller/engine.h"
 #include "controller/enginesettings.h"
+#include "model/model.h"
+#include "model/structures/instance.h"
+#include "view/visual.h"
 #include "loaders/native/map/maploader.h"
 #include "model/structures/map.h"
 #include "model/structures/layer.h"
@@ -102,8 +105,7 @@ public:
      * Load a map specified by the path into the engine.
      */
     void loadMap(std::string path) override;
-    
-    
+
     /**** Running ****/
     
     /**
@@ -125,7 +127,6 @@ public:
      *  load towers from map
      */
     std::vector<std::string> loadTowers() override;
-
 
 
     /**
@@ -152,12 +153,27 @@ public:
      * Update location
      */
     void updateLocation(std::string location) override;
+
+    /**
+     * Creates a new instance on a given location and returns the name of the object
+     */
+    std::string createInstance(std::string objectName, std::string instanceName, double x, double y) override;
+
+    /**
+     * Gets the instance from the layer, then both removes and deletes it.
+     */
+    void deleteInstance(std::string instanceName) override;
+
+    /**
+     * Gets the instance from the layer, then removes it. Beware: this method does not delete the object.
+     */
+    void removeInstance(std::string instanceName) override;
     
     /**
      * Run a tick for userland code like input callbacks
      */
     void tick() override;
-    
+
 };
 
 #endif

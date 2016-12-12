@@ -1,10 +1,13 @@
 #include "KeyboardMapper.h"
 
+#include "Callbacks/MoveCallback.h"
+#include "Callbacks/TroupSpawnCallback.h"
 #include "Callbacks/UseAbilityCallback.h"
 #include "Callbacks/AttackCallback.h"
 
 KeyboardMapper::KeyboardMapper(IGame* game)
 {
+    // SYSTEM
     EngineFacade::engine()->registerCallback("ESCAPE", new QuitCallback(game));
     
     // Camera
@@ -19,7 +22,10 @@ KeyboardMapper::KeyboardMapper(IGame* game)
     EngineFacade::engine()->registerCallback("=", new ZoomCameraCallback(game, "PLUS"));
     EngineFacade::engine()->registerCallback("-", new ZoomCameraCallback(game, "MINUS"));
 
-
+    // TROUPS
+    EngineFacade::engine()->registerCallback("5", new TroupSpawnCallback(game, "1"));
+    
+    // Abilities
     EngineFacade::engine()->registerCallback("SPACE", new AttackCallback(game));
     EngineFacade::engine()->registerCallback("1", new UseAbilityCallback(game, 0));
     EngineFacade::engine()->registerCallback("2", new UseAbilityCallback(game, 1));

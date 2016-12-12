@@ -82,6 +82,21 @@ public:
     virtual void updateLocation(std::string location) = 0;
 
     /**
+     * Creates a new instance on a given location and returns the name of the object
+     */
+    virtual std::string createInstance(std::string objectName, std::string instanceName, double x, double y) = 0;
+
+    /**
+    * Gets the instance from the layer, then both removes and deletes it.
+    */
+    virtual void deleteInstance(std::string instanceName) = 0;
+
+    /**
+     * Gets the instance from the layer, then removes it. Beware: this method does not delete the object.
+     */
+    virtual void removeInstance(std::string instanceName) = 0;
+
+    /**
      * Set the location of an instance
      */
     virtual void setInstanceLocation(std::string name, double x, double y) = 0;
@@ -95,6 +110,7 @@ public:
      *  load towers from map
      */
     virtual std::vector<std::string> loadTowers() = 0;
+
 };
 
 #endif
