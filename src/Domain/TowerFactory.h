@@ -11,7 +11,7 @@
 #include "Units/Towers/RangedTower.h"
 #include "Units/UnitManager.hpp"
 
-std::vector<UnitManager<ATower>*> getTowers(std::vector<std::string> ids);
+std::vector<UnitManager<ATower>*> generateTowers(std::vector<std::string> ids);
 
 //class TowerFactory {
 //private:

@@ -78,12 +78,7 @@ void Game::loadTowers()
 {
     std::vector<std::string> towerIds = EngineFacade::engine()->loadTowers();
 
-    towerIds.emplace_back("rangedTower2");
-    towerIds.emplace_back("rangedTower1");
-    towerIds.emplace_back("armouredTower2");
-    towerIds.emplace_back("armo=uredTower2");
-
-    this->towers = getTowers(towerIds);
+    this->towers = generateTowers(towerIds);
 }
 
 void Game::deleteTowers()
@@ -93,4 +88,8 @@ void Game::deleteTowers()
         delete this->towers.at(i);
     }
     this->towers.clear();
+}
+
+std::vector<UnitManager<ATower> *> Game::getTowers() {
+    return this->towers;
 }

@@ -2,7 +2,7 @@
 
 
 
-std::vector<UnitManager<ATower>*> getTowers(std::vector<std::string> ids) {
+std::vector<UnitManager<ATower>*> generateTowers(std::vector<std::string> ids) {
 
     std::string key;
     std::string id;
