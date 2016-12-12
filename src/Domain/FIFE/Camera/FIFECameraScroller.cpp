@@ -28,12 +28,12 @@ FIFECameraScroller::~FIFECameraScroller()
 
 void FIFECameraScroller::evaluateLocation()
 {
+    shouldScroll = false;
+	
     scrollCoords = mainCamera->toScreenCoordinates(mainCamera->getLocationRef().getMapCoordinates());
 
     //get the viewport for the camera so we can fetch the screen size
     const FIFE::Rect& viewport = mainCamera->getViewPort();
-
-    shouldScroll = false;
 
     // Check if the mouse is out of screen
     if(cursorX < 1 || cursorX > viewport.right() - 2
@@ -44,13 +44,10 @@ void FIFECameraScroller::evaluateLocation()
         // check left
         if (cursorX <= scrollAreaLeft)
         {
-            // Camera shouldn't move when out of screen
-
             // modify x value
             scrollCoords[0] -= scrollAmount;
 
             shouldScroll = true;
-
         }
 
         // check right
@@ -70,7 +67,8 @@ void FIFECameraScroller::evaluateLocation()
 
             shouldScroll = true;
         }
-            // check bottom
+		
+        // check bottom
         else if (cursorY <= scrollAreaBottom)
         {
             // modify y value
