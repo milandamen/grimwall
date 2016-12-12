@@ -2,23 +2,25 @@
 #ifndef GAME_H
 #define GAME_H
 
+#include <vector>
+
 #include "IGame.h"
 #include "EngineFacade.h"
 #include "../Input/KeyboardMapper.h"
 #include "Units/UnitManager.h"
 #include "Units/Heroes/Dralas.h"
 #include "Units/Buff/BoneStormBuff.h"
-
-#include <vector>
 #include "Units/Towers/ATower.h"
 #include "Units/Towers/DefaultTower.h"
 #include "Units/Troups/ATroup.h"
+#include "Units/Troups/TroupManager.h"
 
 class Game : public IGame {
 private:
     UnitManager<AHero>* hero{nullptr};
 
-    std::vector<ATroup*> troups;
+    TroupManager* troupManager;
+
     std::vector<ATower*> towers;
     void loadTowers();
     void deleteTowers();
@@ -47,7 +49,6 @@ public:
     Game();
     ~Game();
     virtual UnitManager<AHero>* getHero() override;
-    virtual UnitManager<std::vector<ATroup*> >* getTroups() override;
     virtual void quit() override;
 };
 
