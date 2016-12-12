@@ -35,57 +35,44 @@ void FIFECameraScroller::evaluateLocation()
 
     shouldScroll = false;
 
-    // check left
-    if (cursorX <= scrollAreaLeft)
-    {
-        // Camera shouldn't move when out of screen
-        if(cursorX < 1){
-            shouldScroll = false;
-        }
-        else{
+    // Check if the mouse is out of screen
+    if(cursorX < 1 || cursorX > viewport.right() - 2
+            || cursorY < 1 || cursorY > viewport.bottom() - 2) {
+        shouldScroll = false;
+    }
+    else{
+        // check left
+        if (cursorX <= scrollAreaLeft)
+        {
+            // Camera shouldn't move when out of screen
+
             // modify x value
             scrollCoords[0] -= scrollAmount;
 
             shouldScroll = true;
+
         }
-    }
+
         // check right
-    else if (cursorX >= scrollAreaRight)
-    {
-        // Minus two, because the screen width is 800 and 799 is the maximum mouse coordinate
-        if(cursorX > viewport.right() - 2){
-            shouldScroll = false;
-        }
-        else{
+        else if (cursorX >= scrollAreaRight)
+        {
             // modify x value
             scrollCoords[0] += scrollAmount;
 
             shouldScroll = true;
         }
-    }
 
-    // check top
-    if (cursorY >= scrollAreaTop)
-    {
-        // Minus two, because the screen height is 600 and 599 is the maximum mouse coordinate
-        if(cursorY > viewport.bottom() - 2){
-            shouldScroll = false;
-        }
-        else{
+        // check top
+        if (cursorY >= scrollAreaTop)
+        {
             // modify y value
             scrollCoords[1] += scrollAmount;
 
             shouldScroll = true;
         }
-    }
-        // check bottom
-    else if (cursorY <= scrollAreaBottom)
-    {
-        // Camera shouldn't move when out of screen
-        if(cursorY < 1){
-            shouldScroll = false;
-        }
-        else{
+            // check bottom
+        else if (cursorY <= scrollAreaBottom)
+        {
             // modify y value
             scrollCoords[1] -= scrollAmount;
 

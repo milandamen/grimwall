@@ -96,6 +96,7 @@ void FIFEMouseListener::mouseDragged(FIFE::MouseEvent& evt) {
         // set the new coordinates
         FIFE::Location camLocation(camera->camera()->getLocationRef());
         FIFE::ExactModelCoordinate mapCoords = camera->camera()->toMapCoordinates(cameraScreenCoords, false);
+        cout<<mapCoords<<endl;
         mapCoords.z = 0.0;
         camLocation.setMapCoordinates(mapCoords);
         camera->camera()->setLocation(camLocation);
