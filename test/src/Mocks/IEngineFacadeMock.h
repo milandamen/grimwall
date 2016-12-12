@@ -18,8 +18,11 @@ public:
     MOCK_METHOD2(registerCallback, void(std::string keys, ICallback* callback));
     MOCK_METHOD0(zoomIn, void());
     MOCK_METHOD0(zoomOut, void());
-    MOCK_METHOD1(updateLocation, void(std::string location));
-    MOCK_METHOD3(setInstanceLocation, void(std::string name, double x, double y));
+    MOCK_METHOD2(updateLocation, void(int x, int y));
+    MOCK_METHOD4(createInstance, std::string(std::string objectName, std::string instanceName, double x, double y));
+    MOCK_METHOD1(deleteInstance, void(std::string instanceName));
+    MOCK_METHOD1(removeInstance, void(std::string instanceName));
+    MOCK_METHOD4(move, void(std::string name, double x, double y, int moveSpeed));
     MOCK_METHOD0(tick, void());
     MOCK_METHOD0(loadTowers, std::vector<std::string>());
     
