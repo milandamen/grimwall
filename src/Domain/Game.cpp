@@ -84,13 +84,6 @@ void Game::loadTowers()
     towerIds.emplace_back("armo=uredTower2");
 
     this->towers = getTowers(towerIds);
-//    for (unsigned int i = 0; i < towerIds.size(); ++i)
-//    {
-//        ATower* tower = new DefaultTower();
-//        tower->setId(towerIds.at(i));
-//
-//        this->towers.push_back(tower);
-//    }
 }
 
 void Game::deleteTowers()
