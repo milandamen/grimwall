@@ -30,40 +30,67 @@ void FIFECameraScroller::evaluateLocation()
 {
     scrollCoords = mainCamera->toScreenCoordinates(mainCamera->getLocationRef().getMapCoordinates());
 
+    //get the viewport for the camera so we can fetch the screen size
+    const FIFE::Rect& viewport = mainCamera->getViewPort();
+
     shouldScroll = false;
 
     // check left
     if (cursorX <= scrollAreaLeft)
     {
-        // modify x value
-        scrollCoords[0] -= scrollAmount;
+        // Camera shouldn't move when out of screen
+        if(cursorX < 1){
+            shouldScroll = false;
+        }
+        else{
+            // modify x value
+            scrollCoords[0] -= scrollAmount;
 
-        shouldScroll = true;
+            shouldScroll = true;
+        }
     }
         // check right
     else if (cursorX >= scrollAreaRight)
     {
-        // modify x value
-        scrollCoords[0] += scrollAmount;
+        // Minus two, because the screen width is 800 and 799 is the maximum mouse coordinate
+        if(cursorX > viewport.right() - 2){
+            shouldScroll = false;
+        }
+        else{
+            // modify x value
+            scrollCoords[0] += scrollAmount;
 
-        shouldScroll = true;
+            shouldScroll = true;
+        }
     }
 
     // check top
     if (cursorY >= scrollAreaTop)
     {
-        // modify y value
-        scrollCoords[1] += scrollAmount;
+        // Minus two, because the screen height is 600 and 599 is the maximum mouse coordinate
+        if(cursorY > viewport.bottom() - 2){
+            shouldScroll = false;
+        }
+        else{
+            // modify y value
+            scrollCoords[1] += scrollAmount;
 
-        shouldScroll = true;
+            shouldScroll = true;
+        }
     }
         // check bottom
     else if (cursorY <= scrollAreaBottom)
     {
-        // modify y value
-        scrollCoords[1] -= scrollAmount;
+        // Camera shouldn't move when out of screen
+        if(cursorY < 1){
+            shouldScroll = false;
+        }
+        else{
+            // modify y value
+            scrollCoords[1] -= scrollAmount;
 
-        shouldScroll = true;
+            shouldScroll = true;
+        }
     }
 }
 
@@ -102,6 +129,7 @@ void FIFECameraScroller::unregisterEvent()
 
 void FIFECameraScroller::updateEvent(uint32_t time)
 {
+
     if (shouldScroll)
     {
         FIFE::Location camLocation(mainCamera->getLocationRef());
@@ -127,6 +155,7 @@ bool FIFECameraScroller::onSdlEvent(SDL_Event& evt)
     // we have regained focus
     if (evt.type == SDL_WINDOWEVENT && evt.window.event == SDL_WINDOWEVENT_LEAVE)
     {
+
         unregisterEvent();
         return true;
     }
