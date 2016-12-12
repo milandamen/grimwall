@@ -1,10 +1,16 @@
 #include "FIFECamera.h"
 
 FIFECamera::FIFECamera(FIFE::Map *map, FIFE::EventManager* eventManager, FIFE::TimeManager* timeManager)
-: eventManager{eventManager}, timeManager{timeManager}, map{map}{
+    : map{map}, eventManager{eventManager}, timeManager{timeManager} {
+    
     zoomIncrement = 0.95;
     maxZoom = 4;
     minZoom = 0.25;
+}
+
+FIFECamera::~FIFECamera()
+{
+    delete cameraScroller;
 }
 
 void FIFECamera::initView() {

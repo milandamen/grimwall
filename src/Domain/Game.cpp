@@ -1,5 +1,7 @@
 #include "Game.h"
 
+#include "Units/Heroes/Abilities/DeathStrike.h"
+
 Game::Game()
 {
     EngineFacade::setEngine("FIFE", this);
@@ -12,7 +14,8 @@ Game::Game()
     EngineFacade::engine()->loadMap("assets/maps/level1_remake_conv.xml");
     loadTowers();
 
-    this->hero = new UnitManager(new Dralas());
+    this->hero = new UnitManager<AHero>(new Dralas());
+    this->hero->getBase()->addAbility(new DeathStrike(this->hero));
 
     // Game loop
     curTime = 0;
@@ -40,7 +43,7 @@ Game::~Game() {
     this->deleteTowers();
 }
 
-UnitManager* Game::getHero() {
+UnitManager<AHero>* Game::getHero() {
     return this->hero;
 }
 

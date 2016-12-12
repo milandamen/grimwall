@@ -1,13 +1,16 @@
 
 
 #include "ZoomCameraCallback.h"
-ZoomCameraCallback::ZoomCameraCallback(IGame* game, int firePerNFrames, std::string value) : KeypressCallback(game, firePerNFrames), value{value}
+ZoomCameraCallback::ZoomCameraCallback(IGame* game, std::string value)
+        : KeypressCallback(game, 5), value{value}
 {
 
 }
 
 void ZoomCameraCallback::execute()
 {
+    if (!shouldExecute()) { return; }
+    
     if(value == "PLUS"){
         EngineFacade::engine()->zoomIn();
     }
