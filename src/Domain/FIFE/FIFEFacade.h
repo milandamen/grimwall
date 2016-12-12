@@ -128,11 +128,6 @@ public:
      */
     std::vector<std::string> loadTowers() override;
 
-
-
-    /**
-     * Get layer by name
-     */
     void move(std::string name, double x, double y) override;
     
     /**
