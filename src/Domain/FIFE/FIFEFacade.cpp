@@ -1,9 +1,11 @@
  
 #include "FIFEFacade.h"
+#include "GUI/FIFEChanGuiManager.h"
+
 
 FIFEFacade::FIFEFacade(IGame* game)
+    : game{game}
 {
-    this->game = game;
     this->engine = new FIFE::Engine();
     this->fifeChan = new FIFEChan(this->engine);
 
@@ -53,8 +55,21 @@ void FIFEFacade::setWindowTitle(std::string title)
 {
     FIFE::EngineSettings& settings = engine->getSettings();
     settings.setWindowTitle(title);                                 // Doesn't work very well, that's why we manually use SDL below. Bad FIFE!
-    
+
     SDL_SetWindowTitle(engine->getRenderBackend()->getWindow(), title.c_str());
+}
+
+AGUIManager* FIFEFacade::createGUIManager() {
+    return new FIFEChanGuiManager();
+}
+
+void FIFEFacade::setActiveGUIManager(AGUIManager* manager) {
+    if(this->guimanager != nullptr)
+        this->fifeChan->getGuiManager()->remove(this->guimanager->getContainer());
+
+    this->guimanager = static_cast<FIFEChanGuiManager*>(manager);
+    this->fifeChan->getGuiManager()->add(this->guimanager->getContainer());
+    this->engine->getEventManager()->addSdlEventListener(this->fifeChan->getGuiManager());
 }
 
 void FIFEFacade::init()

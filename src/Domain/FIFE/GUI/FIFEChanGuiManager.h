@@ -16,25 +16,25 @@
 #include "Widgets/FIFEChanLabel.h"
 #include "Widgets/FIFEChanImage.h"
 
-class FIFEChanGuiManager : AGUIManager, fcn::ActionListener, fcn::KeyListener {
+class FIFEChanGuiManager : public AGUIManager {
 
 private:
     fcn::Container* container {nullptr};
+    fcn::Color bgColor = fcn::Color();
     std::vector<AGUIWidget*> widgets;
     int count = 0;
 
+
+
 public:
     FIFEChanGuiManager();
-    virtual ~FIFEChanGuiManager() = 0;
+    ~FIFEChanGuiManager();
 
     fcn::Container* getContainer();
 
-    FIFEChanButton* addButton(std::string caption, int x, int y);
-    FIFEChanLabel* addLabel(std::string caption, int x, int y);
-    FIFEChanImage* addImage(std::string asset, int x, int y);
-
-    void action(const fcn::ActionEvent& actionEvent) override;
-    void keyPressed(fcn::KeyEvent& keyEvent) override;
+    GUIWidgetButton* addButton(std::string caption, int x, int y) override;
+    GUIWidgetLabel* addLabel(std::string caption, int x, int y) override;
+    GUIWidgetImage* addImage(std::string asset, int x, int y) override;
 };
 
 

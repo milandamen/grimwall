@@ -19,6 +19,7 @@
 #include "../IEngineFacade.h"
 #include "../IGame.h"
 #include "../../Input/ICallback.h"
+#include "GUI/FIFEChanGuiManager.h"
 
 
 // TODO Remove unnecesary
@@ -29,7 +30,7 @@ namespace FIFE
     class Map;
     class Camera;
     class Instance;
-    class IGUIManager;
+    //class IGUIManager;
 }
 
 namespace fs = boost::filesystem;
@@ -41,6 +42,7 @@ private:
     FIFE::Camera* mainCamera {nullptr};
 
     FIFEChan* fifeChan {nullptr};
+    FIFEChanGuiManager* guimanager {nullptr};
     FIFECamera* fifeCamera {nullptr};
     
     IGame* game {nullptr};
@@ -55,7 +57,6 @@ public:
     ~FIFEFacade();
 
     /**** Settings ****/
-    
     /**
      * Set the render backend used by the engine (OpenGL or SDL).
      */
@@ -95,7 +96,21 @@ public:
      * Load a map specified by the path into the engine.
      */
     void loadMap(std::string path) override;
-    
+
+
+    /**** GUIManager ****/
+
+    /**
+     * Method to create a GUI manager
+     * @return Pointer to instance of AGUIManager
+     */
+    AGUIManager* createGUIManager() override;
+
+    /**
+     * Method to set the active GUI manager
+     * @param manager Pointer to AGUIManager instance
+     */
+    void setActiveGUIManager(AGUIManager* manager) override;
     
     /**** Running ****/
     

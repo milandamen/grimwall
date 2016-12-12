@@ -11,12 +11,14 @@ class GUI {
 
 protected:
     AGUIManager* manager;
-    AGUIManager* getGuiManager();
-    void setGuiManager();
+
 
 public:
     GUI(AGUIManager* manager);
     virtual ~GUI() = 0;
+
+    void setGuiManager();
+    AGUIManager* getGuiManager();
 };
 
 

@@ -12,8 +12,10 @@
 class FIFEChan {
 
 private:
-    FIFE::Engine* engine;
-    FIFE::FifechanManager* guimanager;
+    FIFE::Engine* engine {nullptr};
+    FIFE::FifechanManager* guimanager {nullptr};
+
+//    AGUIState* state {nullptr};
 
 public:
     FIFEChan(FIFE::Engine* engine);

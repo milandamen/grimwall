@@ -23,6 +23,27 @@ FIFEChanImage::~FIFEChanImage()
     delete this->icon;
 }
 
+void FIFEChanImage::setX(int x) {
+    this->icon->setX(x);
+}
+
+void FIFEChanImage::setY(int y) {
+    this->icon->setY(y);
+}
+
+void FIFEChanImage::setWidth(int width)
+{
+    this->icon->setWidth(width);
+}
+
+void FIFEChanImage::setHeight(int height){
+    this->icon->setHeight(height);
+}
+
+fcn::Widget* FIFEChanImage::getWidget() {
+    return this->icon;
+}
+
 void FIFEChanImage::setAsset(std::string asset)
 {
     this->image = fcn::Image::load(asset, false);

@@ -17,7 +17,8 @@ protected:
 
 public:
     virtual void setCaption(std::string caption) = 0;
-    void onClick(std::function<void()> delegate);
+
+    virtual void onClick(std::function<void()> delegate);
 };
 
 

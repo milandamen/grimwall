@@ -1,13 +1,17 @@
 
 #include "Game.h"
 #include "EngineFacade.h"
+#include "../GUI/MainMenu.h"
 
 Game::Game()
 {
     EngineFacade::setEngine("FIFE", this);
     EngineFacade::engine()->setRenderBackend("OpenGL");
-    
     EngineFacade::engine()->init();
+
+    MainMenu* menu = new MainMenu(EngineFacade::engine()->createGUIManager());
+    EngineFacade::engine()->setActiveGUIManager(menu->getGuiManager());
+
     initInput();
     EngineFacade::engine()->loadMap("assets/maps/level1_remake_conv.xml");
     

@@ -6,12 +6,12 @@
 #define GRIMWALL_FIFECHANIMAGE_H
 
 
-#include "FIFEChanWidget.h"
+#include "../../../../GUI/Widget/GUIWidgetImage.h"
 #include <fifechan/sdl/sdlimageloader.hpp>
 #include <fifechan/image.hpp>
 #include <fifechan/widgets/icon.hpp>
 
-class FIFEChanImage : public FIFEChanWidget
+class FIFEChanImage : public GUIWidgetImage
 {
     //static SDLImageLoader* imageLoader {nullptr};
 
@@ -22,8 +22,14 @@ private:
 public:
     FIFEChanImage();
     ~FIFEChanImage();
+
+    void setX(int x = 0) override;
+    void setY(int y = 0) override;
+    void setWidth(int width = 0) override;
+    void setHeight(int height = 0) override;
+    fcn::Widget* getWidget();
+
     void setAsset(std::string);
-    void setCaption(std::string) override {};
 };
 
 

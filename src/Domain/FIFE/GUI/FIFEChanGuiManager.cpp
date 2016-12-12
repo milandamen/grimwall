@@ -7,6 +7,20 @@
 FIFEChanGuiManager::FIFEChanGuiManager()
 {
     this->container = new fcn::Container();
+
+    this->bgColor.a = 0;
+    this->bgColor.r = 0;
+    this->bgColor.g = 0;
+    this->bgColor.b = 0;
+
+    this->container->setBackgroundColor(this->bgColor);
+    this->container->setBaseColor(this->bgColor);
+    this->container->setFocusable(false);
+
+    this->container->setX(0);
+    this->container->setY(0);
+    this->container->setWidth(800);
+    this->container->setHeight(600);
 }
 
 FIFEChanGuiManager::~FIFEChanGuiManager()
@@ -19,7 +33,7 @@ fcn::Container* FIFEChanGuiManager::getContainer()
     return this->container;
 }
 
-FIFEChanButton* FIFEChanGuiManager::addButton(std::string caption = "", int x = 0, int y = 0)
+GUIWidgetButton* FIFEChanGuiManager::addButton(std::string caption = "", int x = 0, int y = 0)
 {
     FIFEChanButton* button = new FIFEChanButton();
     button->setX(x);
@@ -28,12 +42,12 @@ FIFEChanButton* FIFEChanGuiManager::addButton(std::string caption = "", int x = 
     button->setHeight(200);
     button->setCaption(caption);
     this->widgets.push_back(button);
-    this->container->add(button->getFCNWidget());
+    this->container->add(button->getWidget());
 
     return button;
 }
 
-FIFEChanLabel* FIFEChanGuiManager::addLabel(std::string caption = "", int x = 0, int y = 0)
+GUIWidgetLabel* FIFEChanGuiManager::addLabel(std::string caption = "", int x = 0, int y = 0)
 {
     FIFEChanLabel* label = new FIFEChanLabel();
     label->setX(x);
@@ -41,12 +55,12 @@ FIFEChanLabel* FIFEChanGuiManager::addLabel(std::string caption = "", int x = 0,
     label->setCaption(caption);
 
     this->widgets.push_back(label);
-    this->container->add(label->getFCNWidget());
+    this->container->add(label->getWidget());
 
     return label;
 }
 
-FIFEChanImage* FIFEChanGuiManager::addImage(std::string asset = "", int x = 0, int y = 0)
+GUIWidgetImage* FIFEChanGuiManager::addImage(std::string asset = "", int x = 0, int y = 0)
 {
     FIFEChanImage* image = new FIFEChanImage();
     image->setX(x);
@@ -54,13 +68,7 @@ FIFEChanImage* FIFEChanGuiManager::addImage(std::string asset = "", int x = 0, i
     image->setAsset(asset);
 
     this->widgets.push_back(image);
-    this->container->add(image->getFCNWidget());
+    this->container->add(image->getWidget());
 
     return image;
 }
-
-void FIFEChanGuiManager::action(const fcn::ActionEvent &actionEvent)
-{}
-
-void FIFEChanGuiManager::keyPressed(fcn::KeyEvent &keyEvent)
-{}

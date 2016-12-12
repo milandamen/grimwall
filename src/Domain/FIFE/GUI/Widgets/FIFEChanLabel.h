@@ -8,8 +8,9 @@
 
 #include <fifechan/widgets/label.hpp>
 #include "FIFEChanButton.h"
+#include "../../../../GUI/Widget/GUIWidgetLabel.h"
 
-class FIFEChanLabel : public FIFEChanButton
+class FIFEChanLabel : public GUIWidgetLabel
 {
 private:
     fcn::Label* label {nullptr};
@@ -17,6 +18,13 @@ private:
 public:
     FIFEChanLabel();
     ~FIFEChanLabel();
+
+    void setX(int x = 0) override;
+    void setY(int y = 0) override;
+    void setWidth(int width = 0) override;
+    void setHeight(int height = 0) override;
+    fcn::Widget* getWidget();
+
     void setCaption(std::string caption) override;
 };
 

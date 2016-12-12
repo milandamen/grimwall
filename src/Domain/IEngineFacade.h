@@ -3,6 +3,7 @@
 
 #include <iostream>
 #include "../Input/ICallback.h"
+#include "../GUI/AGUIManager.h"
 
 /**
  * Class to be extended by classes like FIFEFacade
@@ -34,7 +35,21 @@ public:
      * Load a map specified by the path into the engine.
      */
     virtual void loadMap(std::string path) = 0;
-    
+
+    /** GUIManager **/
+
+    /**
+     * Method to create a GUI manager
+     * @return Pointer to instance of AGUIManager
+     */
+    virtual AGUIManager* createGUIManager() = 0;
+
+    /**
+     * Method to set the active GUI manager
+     * @param manager Pointer to AGUIManager instance
+     */
+    virtual void setActiveGUIManager(AGUIManager* manager) = 0;
+
     /** Running **/
     
     /**

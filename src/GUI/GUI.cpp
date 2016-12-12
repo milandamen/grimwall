@@ -10,7 +10,9 @@ GUI::GUI(AGUIManager *manager)
 {}
 
 GUI::~GUI()
-{}
+{
+    delete this->manager;
+}
 
 AGUIManager* GUI::getGuiManager()
 {
