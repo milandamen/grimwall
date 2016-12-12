@@ -85,7 +85,7 @@ public:
     /**
      * Set the location of an instance
      */
-    virtual void move(std::string name, double x, double y) = 0;
+    virtual void move(std::string name, double x, double y, int moveSpeed) = 0;
     
     /**
      * Run a tick for userland code like input callbacks
