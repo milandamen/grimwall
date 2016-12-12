@@ -7,6 +7,6 @@ MoveCallback::MoveCallback(IGame* game, int firePerNFrames, double x, double y)
 }
 
 void MoveCallback::execute() {
-    EngineFacade::engine()->move("Dralas", x, y);
+    EngineFacade::engine()->move(game->getHero()->getName(), x, y);
 }
 

@@ -240,7 +240,7 @@ void FIFEFacade::move(std::string name, double x, double y) {
                     FIFE::ExactModelCoordinate mapCoords = fifeCamera->camera()->toMapCoordinates(screenPoint, false);
                     mapCoords.z = 0.0;
                     destination.setMapCoordinates(mapCoords);
-                    instance->move("walk", destination, instance->getTotalTimeMultiplier());
+                    instance->move("walk", destination, game->getHero()->getSpeed());
                 }
             }
         }

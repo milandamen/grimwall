@@ -30,6 +30,8 @@ private:
     FIFE::MouseEvent::MouseEventType prevEventType;
     FIFE::Instance* instance {nullptr};
 
+    void mouseLeftButtonPressed(FIFE::MouseEvent& evt);
+
 public:
     FIFEMouseListener(IGame* game, FIFECamera* camera);
 
