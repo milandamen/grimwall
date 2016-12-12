@@ -3,7 +3,7 @@
 	<image source="grass.png" xpos="0" ypos="0" width="98" height="48"/>
 </atlas>
 
-<object id="grass" namespace="grimwall" blocking="1" static="1">
+<object id="grass" namespace="grimwall" static="1">
 	<image source="grass.png" direction="0" />
 </object>
 

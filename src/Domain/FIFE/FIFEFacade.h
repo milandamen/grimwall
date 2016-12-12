@@ -19,6 +19,7 @@
 #include "SDL.h"
 
 #include "../IEngineFacade.h"
+#include "FIFEMouseListener.h"
 #include "FIFEKeyListener.h"
 #include "../IGame.h"
 #include "../../Input/ICallback.h"
@@ -31,7 +32,6 @@ private:
     FIFE::Engine* engine {nullptr};
     FIFE::FifechanManager* guimanager {nullptr};
     FIFE::Map* map {nullptr};
-    FIFE::Camera* mainCamera {nullptr};
 
     fcn::Button* btnOptions {nullptr};
     fcn::Button* btnExit {nullptr};
@@ -39,6 +39,8 @@ private:
 
     IGame* game {nullptr};
     FIFEKeyListener* keyListener {nullptr};
+
+    FIFEMouseListener* mouseListener {nullptr};
 
     bool pumpingInitialized {false};
     
@@ -125,10 +127,10 @@ public:
 
 
     /**
-     * Get layer by name
+     * Move the character
      */
-    void setInstanceLocation(std::string name, double x, double y) override;
-    
+    void move(std::string name, double x, double y, int moveSpeed) override;
+  
     /**
      * Register a callback with a key combination
      */
@@ -147,7 +149,7 @@ public:
     /**
      * Update location
      */
-    void updateLocation(std::string location) override;
+    void updateLocation(int x, int y) override;
 
     /**
      * Creates a new instance on a given location and returns the name of the object

@@ -6,8 +6,9 @@ Game::Game()
 {
     EngineFacade::setEngine("FIFE", this);
     EngineFacade::engine()->setRenderBackend("OpenGL");
+
     EngineFacade::engine()->setFPSLimit(60);
-    
+
     EngineFacade::engine()->init();
 
     initInput();
@@ -34,7 +35,7 @@ Game::Game()
         curTime = EngineFacade::engine()->getTime();
     }
     
-    EngineFacade::destroy();     // TODO Currently crashes (SEGFAULT), problem not in my code.
+    EngineFacade::destroy();
     delete keyboardMapper;
 }
 

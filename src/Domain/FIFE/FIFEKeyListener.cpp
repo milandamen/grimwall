@@ -168,4 +168,3 @@ std::string FIFEKeyListener::generalizeModifier(std::string key)
     
     return key;
 }
-

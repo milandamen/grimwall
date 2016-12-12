@@ -34,6 +34,7 @@ FIFEFacade::~FIFEFacade() {
     delete btnExit;
     delete engine;
     delete keyListener;
+    delete mouseListener;
     delete fifeCamera;
 }
 
@@ -65,7 +66,6 @@ void FIFEFacade::setWindowTitle(std::string title)
 {
     FIFE::EngineSettings& settings = engine->getSettings();
     settings.setWindowTitle(title);                                 // Doesn't work very well, that's why we manually use SDL below.
-    
     SDL_SetWindowTitle(engine->getRenderBackend()->getWindow(), title.c_str());
 }
 
@@ -92,10 +92,10 @@ void FIFEFacade::init()
             engine->getRenderBackend()->getScreenHeight()
     );
 
-    initInput();
-
     engine->setGuiManager(guimanager);
     engine->getEventManager()->addSdlEventListener(guimanager);
+
+    initInput();
 
     btnOptions = new fcn::Button();
     btnOptions->setId("btnOptions");
@@ -134,10 +134,6 @@ void FIFEFacade::mousePressed(fcn::MouseEvent& mouseEvent)
 void FIFEFacade::keyPressed(fcn::KeyEvent &keyEvent)
 {
     std::cout << keyEvent.getDistributor();
-//    if(actionEvent.getId() == "clickBtnOptions")
-//        std::cout << "Play!";
-//    else
-//        std::cout << "Exit!";
 }
 
 void FIFEFacade::action(const fcn::ActionEvent &actionEvent)
@@ -170,20 +166,22 @@ void FIFEFacade::loadMap(std::string path)
             // load the map
             map = mapLoader->load(mapPath.string());
             fifeCamera = new FIFECamera(map, engine->getEventManager(), engine->getTimeManager());
+            fifeCamera->initView();
         }
 
         // done with map loader safe to delete
         delete mapLoader;
         mapLoader = 0;
     }
-    
-    initView();
-    
+
+    mouseListener->setCamera(fifeCamera);
+
     if (!pumpingInitialized)
     {
         pumpingInitialized = true;
         engine->initializePumping();
     }
+
 }
 
 void FIFEFacade::initView()
@@ -197,8 +195,11 @@ void FIFEFacade::initInput()
     {
         // attach our key listener to the engine
         keyListener = new FIFEKeyListener(game);
+        mouseListener = new FIFEMouseListener(game, fifeCamera);
         engine->getEventManager()->addKeyListener(keyListener);
+        engine->getEventManager()->addMouseListener(mouseListener);
     }
+
 }
 
 void FIFEFacade::render()
@@ -218,7 +219,7 @@ int FIFEFacade::getTime()
     return engine->getTimeManager()->getTime();
 }
 
-void FIFEFacade::setInstanceLocation(std::string name, double x, double y) {
+void FIFEFacade::move(std::string name, double x, double y, int moveSpeed) {
     if (map) {
         FIFE::Layer* layer = map->getLayer("unitLayer");
 
@@ -226,16 +227,16 @@ void FIFEFacade::setInstanceLocation(std::string name, double x, double y) {
             FIFE::Instance* instance = layer->getInstance(name);
 
             if (instance) {
-                // Get the current location of the instance
+                ///Keep this for now
+                // move controller to clicked spot
                 FIFE::Location destination(instance->getLocation());
-
-                FIFE::ExactModelCoordinate mapCoords{};
-                mapCoords.x = x;
-                mapCoords.y = y;
-                mapCoords.z = 0.0;
-                destination.setMapCoordinates(mapCoords);
-
-                instance->setLocation(destination);
+                FIFE::ScreenPoint screenPoint(x, y);
+                if(fifeCamera->camera() != nullptr){
+                    FIFE::ExactModelCoordinate mapCoords = fifeCamera->camera()->toMapCoordinates(screenPoint, false);
+                    mapCoords.z = 0.0;
+                    destination.setMapCoordinates(mapCoords);
+                    instance->move("walk", destination, moveSpeed);
+                }
             }
         }
     }
@@ -302,8 +303,8 @@ void FIFEFacade::zoomOut() {
     fifeCamera->zoomOut();
 }
 
-void FIFEFacade::updateLocation(std::string location) {
-    fifeCamera->updateLocation(location);
+void FIFEFacade::updateLocation(int x, int y) {
+    fifeCamera->updateLocation(x,y);
 }
 
 void FIFEFacade::tick()
@@ -337,6 +338,3 @@ std::vector<std::string> FIFEFacade::loadTowers()
 
 
 }
-
-
-
