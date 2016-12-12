@@ -428,5 +428,5 @@
     </layer>
 
     <cellcaches />
-    <camera id="main" ref_cell_height="48" ref_cell_width="98" ref_layer_id="unitLayer" rotation="45" tilt="60" viewport="0,0,1024,768" zoom="1" />
+    <camera id="main" ref_cell_height="48" ref_cell_width="98" ref_layer_id="unitLayer" rotation="45" tilt="60"  zoom="1" />
 </map>
