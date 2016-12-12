@@ -1,23 +1,12 @@
 #include "KeyboardMapper.h"
 
-#include "Callbacks/MoveCallback.h"
-#include "Callbacks/UseAbilityCallback.h"
-#include "Callbacks/AttackCallback.h"
 
 KeyboardMapper::KeyboardMapper(IGame* game)
 {
     // SYSTEM
     EngineFacade::engine()->registerCallback("ESCAPE", new QuitCallback(game));
     
-    // Camera
-    EngineFacade::engine()->registerCallback("UP", new MoveCameraCallback(game, "UP"));
-    EngineFacade::engine()->registerCallback("RIGHT", new MoveCameraCallback(game, "RIGHT"));
-    EngineFacade::engine()->registerCallback("DOWN", new MoveCameraCallback(game, "DOWN"));
-    EngineFacade::engine()->registerCallback("LEFT", new MoveCameraCallback(game, "LEFT"));
-    EngineFacade::engine()->registerCallback("UP+RIGHT", new MoveCameraCallback(game, "UPRIGHT"));
-    EngineFacade::engine()->registerCallback("RIGHT+DOWN", new MoveCameraCallback(game, "RIGHTDOWN"));
-    EngineFacade::engine()->registerCallback("DOWN+LEFT", new MoveCameraCallback(game, "DOWNLEFT"));
-    EngineFacade::engine()->registerCallback("LEFT+UP", new MoveCameraCallback(game, "LEFTUP"));
+
     EngineFacade::engine()->registerCallback("=", new ZoomCameraCallback(game, "PLUS"));
     EngineFacade::engine()->registerCallback("-", new ZoomCameraCallback(game, "MINUS"));
 

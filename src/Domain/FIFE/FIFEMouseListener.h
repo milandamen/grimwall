@@ -10,7 +10,6 @@
 #include <unordered_map>
 #include <iostream>
 
-#include "../../Input/MouseCallback.h"
 #include "../Units/IUnit.h"
 #include "../IGame.h"
 #include "Camera/FIFECamera.h"
@@ -21,8 +20,6 @@ class FIFEMouseListener : public FIFE::IMouseListener
 private:
     IGame* game {nullptr};
     FIFECamera* camera {nullptr};
-
-    std::unordered_map<std::string, MouseCallback*> callbackMap;
 
     int dragX;
     int dragY;
@@ -37,7 +34,6 @@ public:
 
     virtual ~FIFEMouseListener();
 
-    void registerCallback(std::string click, MouseCallback* callback);
 
     void setCamera(FIFECamera* camera);
 

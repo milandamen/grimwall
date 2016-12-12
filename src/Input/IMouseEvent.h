@@ -1,9 +1,0 @@
-class IMouseEvent
-{
-private:
-
-
-public:
-
-
-};

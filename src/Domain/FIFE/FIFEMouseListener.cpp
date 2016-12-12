@@ -7,12 +7,7 @@ using namespace FIFE;
 FIFEMouseListener::FIFEMouseListener(IGame *game, FIFECamera* camera) : game{game}, camera{camera}, dragX{0}, dragY{0}, prevEventType{FIFE::MouseEvent::UNKNOWN_EVENT},
 instance{0}{}
 
-FIFEMouseListener::~FIFEMouseListener() {
-    for (auto& item : callbackMap) {
-        delete item.second;
-    }
-    callbackMap.clear();
-}
+FIFEMouseListener::~FIFEMouseListener() {}
 
 void FIFEMouseListener::mouseEntered(FIFE::MouseEvent& evt) {
     setPreviousMouseEvent(evt.getType());
