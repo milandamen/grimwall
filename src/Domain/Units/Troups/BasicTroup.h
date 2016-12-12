@@ -13,4 +13,4 @@ public:
 };
 
 
-#endif //GRIMWALL_BASICTROUP_H
+#endif

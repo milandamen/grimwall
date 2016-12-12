@@ -6,32 +6,29 @@ TroupSpawnCallback::TroupSpawnCallback(IGame* game, std::string value) : Keypres
 
 void TroupSpawnCallback::execute()
 {
-    if(value == "1"){
+    game->getTroupManager()->createTroup(
+            "basicTroup",
+            "basicTroup",
+            this->game->getHero()->getX() + 1,
+            this->game->getHero()->getY()
+    );
 
-        EngineFacade::engine()->createInstance(
-                "standardTroup",
-                "standardTroup",
-                this->game->getHero()->getX() + 1,
-                this->game->getHero()->getY()
-        );
-        EngineFacade::engine()->createInstance(
-                "standardTroup",
-                "standardTroup",
-                this->game->getHero()->getX() - 1,
-                this->game->getHero()->getY()
-        );
-        EngineFacade::engine()->createInstance(
-                "standardTroup",
-                "standardTroup",
-                this->game->getHero()->getX(),
-                this->game->getHero()->getY() + 1
-        );
-        EngineFacade::engine()->createInstance(
-                "standardTroup",
-                "standardTroup",
-                this->game->getHero()->getX(),
-                this->game->getHero()->getY() - 1
-        );
-
-    }
+    game->getTroupManager()->createTroup(
+            "basicTroup",
+            "basicTroup",
+            this->game->getHero()->getX() - 1,
+            this->game->getHero()->getY()
+    );
+    game->getTroupManager()->createTroup(
+            "basicTroup",
+            "basicTroup",
+            this->game->getHero()->getX(),
+            this->game->getHero()->getY() + 1
+    );
+    game->getTroupManager()->createTroup(
+            "basicTroup",
+            "basicTroup",
+            this->game->getHero()->getX(),
+            this->game->getHero()->getY() - 1
+    );
 }

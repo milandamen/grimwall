@@ -49,6 +49,7 @@ public:
     Game();
     ~Game();
     virtual UnitManager<AHero>* getHero() override;
+    virtual TroupManager* getTroupManager() override;
     virtual void quit() override;
 };
 

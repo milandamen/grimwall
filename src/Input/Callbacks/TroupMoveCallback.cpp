@@ -6,5 +6,5 @@ TroupMoveCallback::TroupMoveCallback(IGame* game, std::string value) : KeypressC
 
 void TroupMoveCallback::execute()
 {
-
+    // game->getTroupManager()->moveTroups(x, y);
 }

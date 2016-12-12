@@ -17,5 +17,21 @@ std::vector<ATroup*>* TroupManager::getTroups(){
 }
 
 void TroupManager::moveTroups(double x, double y) {
-    
+    // EngineFacade::move("basicTroup", x, y);
+}
+
+void TroupManager::createTroup(
+        std::string objectName,
+        std::string instanceName,
+        double x,
+        double y
+) {
+    EngineFacade::engine()->createInstance(
+            objectName,
+            instanceName,
+            x,
+            y
+    );
+
+    //troups.push_back()
 }

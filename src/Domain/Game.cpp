@@ -97,3 +97,7 @@ void Game::deleteTowers()
     }
     this->towers.clear();
 }
+
+TroupManager* Game::getTroupManager(){
+    return this->troupManager;
+}

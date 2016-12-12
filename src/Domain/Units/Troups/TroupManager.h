@@ -3,6 +3,8 @@
 
 #include <vector>
 #include "ATroup.h"
+#include "../../IGame.h"
+#include "../../EngineFacade.h"
 
 
 class TroupManager {
@@ -14,9 +16,12 @@ public:
     ~TroupManager();
     std::vector<ATroup*>* getTroups();
     void moveTroups(double x, double y);
-
+    void createTroup(std::string objectName,
+                     std::string instanceName,
+                     double x,
+                     double y);
 
 };
 
 
-#endif //GRIMWALL_TROUPMANAGER_H
+#endif
