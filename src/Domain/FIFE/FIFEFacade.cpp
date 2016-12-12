@@ -38,11 +38,6 @@ FIFEFacade::~FIFEFacade() {
     delete fifeCamera;
 }
 
-FIFE::FifechanManager* FIFEFacade::getGuiManager()
-{
-    return guimanager;
-}
-
 void FIFEFacade::setRenderBackend(std::string engine)
 {
     FIFE::EngineSettings& settings = this->engine->getSettings();
@@ -226,10 +221,10 @@ int FIFEFacade::getTime()
 
 void FIFEFacade::move(std::string name, double x, double y, int moveSpeed) {
     if (map) {
-        FIFE::Layer *layer = map->getLayer("unitLayer");
+        FIFE::Layer* layer = map->getLayer("unitLayer");
 
         if (layer) {
-            FIFE::Instance *instance = layer->getInstance(name);
+            FIFE::Instance* instance = layer->getInstance(name);
 
             if (instance) {
                 ///Keep this for now
@@ -242,6 +237,54 @@ void FIFEFacade::move(std::string name, double x, double y, int moveSpeed) {
                     destination.setMapCoordinates(mapCoords);
                     instance->move("walk", destination, moveSpeed);
                 }
+            }
+        }
+    }
+}
+
+std::string FIFEFacade::createInstance(std::string objectName, std::string instanceName, double x, double y){
+    if(map){
+        FIFE::Layer* layer {map->getLayer("unitLayer")};
+        if(layer)  {
+            FIFE::Object* object {engine->getModel()->getObject(objectName, "grimwall")};
+            if(object) {
+                FIFE::ExactModelCoordinate mapCoords{};
+                mapCoords.x = x;
+                mapCoords.y = y;
+                mapCoords.z = 0.0;
+                FIFE::Location* location {new FIFE::Location(layer)};
+                location->setMapCoordinates(mapCoords);
+                //Check if position is occupied
+                if(layer->getInstancesAt(*location).size() == 0) {
+                    layer->createInstance(object, mapCoords, instanceName);
+                }
+                delete location;
+                return instanceName;
+            }
+        }
+    }
+    return "ERROR";
+}
+
+void FIFEFacade::deleteInstance(std::string instanceName){
+    if (map) {
+        FIFE::Layer* layer {map->getLayer("unitLayer")};
+        if (layer) {
+            FIFE::Instance* instance {layer->getInstance(instanceName)};
+            if (instance) {
+                layer->deleteInstance(instance);
+            }
+        }
+    }
+}
+
+void FIFEFacade::removeInstance(std::string instanceName){
+    if (map) {
+        FIFE::Layer* layer {map->getLayer("unitLayer")};
+        if (layer) {
+            FIFE::Instance* instance {layer->getInstance(instanceName)};
+            if (instance) {
+                layer->removeInstance(instance);
             }
         }
     }

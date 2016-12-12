@@ -17,7 +17,7 @@ Game::Game()
 
     this->hero = new UnitManager<AHero>(new Dralas());
     this->hero->getBase()->addAbility(new DeathStrike(this->hero));
-
+    
     // Game loop
     curTime = 0;
     lastTime = 0;
