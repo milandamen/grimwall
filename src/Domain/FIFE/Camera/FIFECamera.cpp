@@ -11,6 +11,7 @@ FIFECamera::FIFECamera(FIFE::Map *map, FIFE::EventManager* eventManager, FIFE::T
 FIFECamera::~FIFECamera()
 {
     delete cameraScroller;
+    // No need to delete the rest as they will be deleted on Engine Destroy()
 }
 
 void FIFECamera::initView() {
@@ -20,9 +21,6 @@ void FIFECamera::initView() {
 
         if (mainCamera)
         {
-            // attach the controller to the camera
-//             m_viewController->AttachCamera(mainCamera);
-//             m_viewController->EnableCamera(true);
             mainCamera->setEnabled(true);
 
             // get the renderer associated with viewing objects on the map
@@ -40,6 +38,10 @@ void FIFECamera::initView() {
 
 }
 
+FIFE::Camera* FIFECamera::camera() const {
+    return mainCamera;
+}
+
 void FIFECamera::zoomIn() {
     if (mainCamera)
     {
@@ -51,6 +53,10 @@ void FIFECamera::zoomIn() {
             mainCamera->setZoom(zoom);
         }
     }
+}
+
+void FIFECamera::unregisterEvent() {
+    cameraScroller->unregisterEvent();
 }
 
 void FIFECamera::zoomOut(){
@@ -66,8 +72,8 @@ void FIFECamera::zoomOut(){
     }
 }
 
-void FIFECamera::updateLocation(std::string location) {
-    cameraScroller->updateLocation(location);
+void FIFECamera::updateLocation(int x, int y) {
+    cameraScroller->updateLocation(x,y);
 }
 
 FIFE::Camera* FIFECamera::Camera() {

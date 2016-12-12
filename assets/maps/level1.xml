@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="ascii" ?>
+
 <map id="level1" format="1.0">
     <import file="../objects/tiles/waterM.xml" />
     <import file="../objects/tiles/waterR.xml" />
@@ -9,6 +10,7 @@
     <import file="../objects/tiles/grass.xml" />
     <import file="../objects/tiles/gravell.xml" />
     <import file="../objects/towers/tree.xml" />
+    <import file="../objects/troups/standardTroup/standardTroup.xml" />
     <layer id="layer1" x_offset="0" y_offset="0" z_offset="0" x_scale="1" y_scale="1" rotation="0" grid_type="square" transparency="0" pathing="cell_edges_only" sorting="camera">
         <instances>
             <i ns="grimwall" o="grass" x="2" y="2" z="0" r="0" blocking="1" stackpos="0" />

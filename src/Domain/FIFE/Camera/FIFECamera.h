@@ -1,12 +1,15 @@
 #ifndef GRIMWALL_FIFECAMERA_H
 #define GRIMWALL_FIFECAMERA_H
 
-
 #include <view/camera.h>
 #include <eventchannel/mouse/ec_mouseevent.h>
 #include <util/time/timemanager.h>
 #include <eventchannel/eventmanager.h>
 #include "model/structures/map.h"
+#include "model/structures/layer.h"
+#include "model/metamodel/grids/cellgrid.h"
+#include "model/structures/location.h"
+#include "view/renderers/cellselectionrenderer.h"
 
 #include "FIFECameraScroller.h"
 
@@ -21,6 +24,7 @@ private:
     double zoomIncrement;
     double maxZoom;
     double minZoom;
+
 public:
     FIFECamera(FIFE::Map* map, FIFE::EventManager* eventManager, FIFE::TimeManager* timeManager);
     ~FIFECamera();
@@ -28,8 +32,11 @@ public:
     void initView();
     void zoomOut();
     void zoomIn();
-    void updateLocation(std::string location);
-};
+    void updateLocation(int x, int y);
+    void unregisterEvent();
 
+    FIFE::Camera* camera() const;
+
+};
 
 #endif //GRIMWALL_FIFECAMERA_H

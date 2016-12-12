@@ -1,19 +1,23 @@
 #include "Game.h"
 
+#include "Units/Heroes/Abilities/DeathStrike.h"
+
 Game::Game()
 {
     EngineFacade::setEngine("FIFE", this);
     EngineFacade::engine()->setRenderBackend("OpenGL");
+
     EngineFacade::engine()->setFPSLimit(60);
-    
+
     EngineFacade::engine()->init();
 
     initInput();
     EngineFacade::engine()->loadMap("assets/maps/level1_remake_conv.xml");
     loadTowers();
 
-    this->hero = new UnitManager(new Dralas());
-
+    this->hero = new UnitManager<AHero>(new Dralas());
+    this->hero->getBase()->addAbility(new DeathStrike(this->hero));
+    
     // Game loop
     curTime = 0;
     lastTime = 0;
@@ -31,7 +35,7 @@ Game::Game()
         curTime = EngineFacade::engine()->getTime();
     }
     
-    EngineFacade::destroy();     // TODO Currently crashes (SEGFAULT), problem not in my code.
+    EngineFacade::destroy();
     delete keyboardMapper;
 }
 
@@ -40,7 +44,7 @@ Game::~Game() {
     this->deleteTowers();
 }
 
-UnitManager* Game::getHero() {
+UnitManager<AHero>* Game::getHero() {
     return this->hero;
 }
 
