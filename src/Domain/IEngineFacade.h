@@ -2,8 +2,14 @@
 #define IENGINEFACADE_H
 
 #include <iostream>
+
+#include <gui/guimanager.h>
+#include <util/structures/rect.h>
+#include <vector>
+#include "eventchannel/mouse/ec_mouseevent.h"
 #include "../Input/ICallback.h"
 #include "../GUI/AGUIManager.h"
+
 
 /**
  * Class to be extended by classes like FIFEFacade
@@ -20,7 +26,7 @@ public:
     virtual void setScreenHeight(int height) = 0;
     virtual void setFullScreen(bool fullScreen) = 0;
     virtual void setWindowTitle(std::string title) = 0;
-    virtual void setInstanceLocation(std::string name, int x, int y) = 0;
+    virtual void setFPSLimit(int fpsLimit) = 0;
     
     /** Initializing **/
     
@@ -66,12 +72,13 @@ public:
      * Get the current time in milliseconds
      */
     virtual int getTime() = 0;
-    
+
     /**
      * Register a callback with a key combination
      */
-    virtual void registerCallback(std::string, ICallback* callback) = 0;
+    virtual void registerCallback(std::string keys, ICallback* callback) = 0;
 
+    //TODO: register Callback for mouse listener
     /**
      * Zoom in
      */
@@ -83,9 +90,39 @@ public:
     virtual void zoomOut() = 0;
 
     /**
-     * update screen camera
+     * Update the screen camera
      */
-    virtual void updateLocation(std::string location) = 0;
+    virtual void updateLocation(int x, int y) = 0;
+
+    /**
+     * Creates a new instance on a given location and returns the name of the object
+     */
+    virtual std::string createInstance(std::string objectName, std::string instanceName, double x, double y) = 0;
+
+    /**
+    * Gets the instance from the layer, then both removes and deletes it.
+    */
+    virtual void deleteInstance(std::string instanceName) = 0;
+
+    /**
+     * Gets the instance from the layer, then removes it. Beware: this method does not delete the object.
+     */
+    virtual void removeInstance(std::string instanceName) = 0;
+
+    /**
+     * Set the location of an instance
+     */
+    virtual void move(std::string name, double x, double y, int moveSpeed) = 0;
+    
+    /**
+     * Run a tick for userland code like input callbacks
+     */
+    virtual void tick() = 0;
+    
+    /**
+     *  load towers from map
+     */
+    virtual std::vector<std::string> loadTowers() = 0;
 
 };
 

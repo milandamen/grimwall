@@ -1,4 +1,3 @@
-
 #include "EngineFacade.h"
 
 IEngineFacade* EngineFacade::_engine {nullptr};
@@ -16,6 +15,19 @@ void EngineFacade::setEngine(std::string engine, IGame* game)
         destroy();
         _engine = new FIFEFacade(game);
     }
+}
+
+void EngineFacade::setEngine(IEngineFacade* engine)
+{
+    if (_engine != nullptr)
+    {
+        if (_engine == engine) { return; }
+        
+        destroy();
+    }
+    
+    _engine = engine;
+    currentEngineName = "CUSTOM";
 }
 
 void EngineFacade::destroy()

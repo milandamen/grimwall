@@ -5,7 +5,6 @@ AUnit::AUnit(std::string name, int reach, int attackDelay, int power, int hitPoi
              int visibility)
         : name{name}, reach{reach}, attackDelay{attackDelay}, power{power}, hitPoints{hitPoints}, speed{speed}, visibility{visibility}
 {
-
 }
 
 AUnit::~AUnit() {
@@ -42,4 +41,20 @@ int AUnit::getVisibility() {
 
 void AUnit::doDamage(int power) {
     // do damage
+}
+
+double AUnit::getX() {
+    return this->x;
+}
+
+void AUnit::setX(double x) {
+    this->x = x;
+}
+
+double AUnit::getY() {
+    return this->y;
+}
+
+void AUnit::setY(double y) {
+    this->y = y;
 }

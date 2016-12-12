@@ -5,6 +5,7 @@
 
 class IUnit {
 public:
+    virtual ~IUnit() = default;
     virtual std::string getName() = 0;
     virtual int getReach() = 0;
     virtual int getAttackDelay() = 0;
@@ -13,6 +14,11 @@ public:
     virtual int getSpeed() = 0;
     virtual int getVisibility() = 0;
     virtual void doDamage(int power) = 0;
+
+    virtual double getX() = 0;
+    virtual void setX(double x) = 0;
+    virtual double getY() = 0;
+    virtual void setY(double y) = 0;
 };
 
 
