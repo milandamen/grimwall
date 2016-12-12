@@ -10,8 +10,7 @@
 #include "Units/Buff/BoneStormBuff.h"
 
 #include <vector>
-#include "Units/Towers/ATower.h"
-#include "Units/Towers/DefaultTower.h"
+#include "TowerFactory.h"
 
 class Game : public IGame {
 private:
@@ -20,7 +19,7 @@ private:
     /**
      * Set this to true to stop the game loop
      */
-    std::vector<ATower*> towers;
+    std::vector<UnitManager<ATower>*> towers;
     void loadTowers();
     void deleteTowers();
     bool running {true};
@@ -46,6 +45,7 @@ public:
     ~Game();
     virtual UnitManager<AHero>* getHero() override;
     virtual void quit() override;
+    virtual std::vector<UnitManager<ATower>*> getTowers() override;
 };
 
 

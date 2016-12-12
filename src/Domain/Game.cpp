@@ -79,13 +79,7 @@ void Game::loadTowers()
 {
     std::vector<std::string> towerIds = EngineFacade::engine()->loadTowers();
 
-    for (unsigned int i = 0; i < towerIds.size(); ++i)
-    {
-        ATower* tower = new DefaultTower();
-        tower->setId(towerIds.at(i));
-
-        this->towers.push_back(tower);
-    }
+    this->towers = generateTowers(towerIds);
 }
 
 void Game::deleteTowers()
@@ -95,4 +89,8 @@ void Game::deleteTowers()
         delete this->towers.at(i);
     }
     this->towers.clear();
+}
+
+std::vector<UnitManager<ATower> *> Game::getTowers() {
+    return this->towers;
 }
