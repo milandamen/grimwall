@@ -118,3 +118,5 @@ void FIFEMouseListener::setPreviousMouseEvent(FIFE::MouseEvent::MouseEventType t
     prevEventType = type;
 }
 
+void FIFEMouseListener::tick() {}
+

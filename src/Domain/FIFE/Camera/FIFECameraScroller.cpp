@@ -2,7 +2,7 @@
 
 FIFECameraScroller::FIFECameraScroller(FIFE::Camera *camera, FIFE::EventManager *eventManager, FIFE::TimeManager *timeManager)
         : mainCamera(camera), eventManager(eventManager), timeManager(timeManager), scrollAmount(10),
-          scrollActivationPercent(0.5f), eventRegistered(false)
+          scrollActivationPercent(0.1f), eventRegistered(false)
 {
     // set the period for timing event in ms
     setPeriod(20);
