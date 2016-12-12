@@ -27,8 +27,8 @@ private:
     FIFE::TimeManager* timeManager;
     FIFE::ScreenPoint scrollCoords;
 
-    const int ScrollAmount;
-    const float ScrollActivationPercent;
+    const int scrollAmount;
+    const float scrollActivationPercent;
 
     int cursorX;
     int cursorY;

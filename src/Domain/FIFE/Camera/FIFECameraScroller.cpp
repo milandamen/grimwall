@@ -1,8 +1,8 @@
 #include "FIFECameraScroller.h"
 
 FIFECameraScroller::FIFECameraScroller(FIFE::Camera *camera, FIFE::EventManager *eventManager, FIFE::TimeManager *timeManager)
-        : mainCamera(camera), eventManager(eventManager), timeManager(timeManager), ScrollAmount(10),
-          ScrollActivationPercent(0.02f), eventRegistered(false)
+        : mainCamera(camera), eventManager(eventManager), timeManager(timeManager), scrollAmount(10),
+          scrollActivationPercent(0.5f), eventRegistered(false)
 {
     // set the period for timing event in ms
     setPeriod(20);
@@ -13,10 +13,10 @@ FIFECameraScroller::FIFECameraScroller(FIFE::Camera *camera, FIFE::EventManager 
         const FIFE::Rect& viewport = mainCamera->getViewPort();
 
         // calculate borders to activate automatic scrolling
-        scrollAreaTop = static_cast<int>(viewport.h - (viewport.h*ScrollActivationPercent));
-        scrollAreaBottom = static_cast<int>(viewport.y + (viewport.h*ScrollActivationPercent));
-        scrollAreaRight = static_cast<int>(viewport.w - (viewport.w*ScrollActivationPercent));
-        scrollAreaLeft = static_cast<int>(viewport.x + (viewport.w*ScrollActivationPercent));
+        scrollAreaTop = static_cast<int>(viewport.h - (viewport.h*scrollActivationPercent));
+        scrollAreaBottom = static_cast<int>(viewport.y + (viewport.h*scrollActivationPercent));
+        scrollAreaRight = static_cast<int>(viewport.w - (viewport.w*scrollActivationPercent));
+        scrollAreaLeft = static_cast<int>(viewport.x + (viewport.w*scrollActivationPercent));
     }
 }
 
@@ -36,7 +36,7 @@ void FIFECameraScroller::evaluateLocation()
     if (cursorX <= scrollAreaLeft)
     {
         // modify x value
-        scrollCoords[0] -= ScrollAmount;
+        scrollCoords[0] -= scrollAmount;
 
         shouldScroll = true;
     }
@@ -44,7 +44,7 @@ void FIFECameraScroller::evaluateLocation()
     else if (cursorX >= scrollAreaRight)
     {
         // modify x value
-        scrollCoords[0] += ScrollAmount;
+        scrollCoords[0] += scrollAmount;
 
         shouldScroll = true;
     }
@@ -53,7 +53,7 @@ void FIFECameraScroller::evaluateLocation()
     if (cursorY >= scrollAreaTop)
     {
         // modify y value
-        scrollCoords[1] += ScrollAmount;
+        scrollCoords[1] += scrollAmount;
 
         shouldScroll = true;
     }
@@ -61,7 +61,7 @@ void FIFECameraScroller::evaluateLocation()
     else if (cursorY <= scrollAreaBottom)
     {
         // modify y value
-        scrollCoords[1] -= ScrollAmount;
+        scrollCoords[1] -= scrollAmount;
 
         shouldScroll = true;
     }
