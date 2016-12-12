@@ -1,29 +1,36 @@
 #include "TowerFactory.h"
 
-void TowerFactory::populateDictionary() {
-    //load
-    this->dictionary.emplace("defaultTower", std::make_shared<DefaultTower>());
-    this->dictionary.emplace("armouredTower", std::make_shared<ArmouredTower>());
-    this->dictionary.emplace("rangedTower", std::make_shared<RangedTower>());
 
-}
 
-std::vector<std::shared_ptr<ATower>> TowerFactory::getTowers(std::vector<std::string> ids) {
+std::vector<UnitManager<ATower>*> getTowers(std::vector<std::string> ids) {
 
     std::string key;
-    std::vector<std::shared_ptr<ATower>> towerList;
+    std::string id;
+    std::vector<UnitManager<ATower>*> towerList;
+
+    static std::map<std::string, std::function<UnitManager<ATower>*()>> dictionary =
+            {
+                    {"defaultTower", [](){return new UnitManager<ATower>(new DefaultTower()); }},
+                    {"rangedTower", [](){return new UnitManager<ATower>(new RangedTower()); }},
+                    {"armouredTower", [](){return new UnitManager<ATower>(new ArmouredTower()); }},
+            };
+
+//    UnitManager<ATower> a;
+//    a.getBase();
 
     for (auto it = ids.begin(); it != ids.end(); ++it)
     {
-        key = it->substr(0, it->length());
-        auto tower = this->dictionary.find(key);
+        id = *it;
+        key = it->substr(0, it->length()-1);
+        auto tower = dictionary.find(key);
 
-        if(tower != this->dictionary.end())
+        if(tower != dictionary.end())
         {
             //dictionary contains key
-            ATower t {*tower->second};
-            std::shared_ptr g {std::make_shared(t)};
-//            towerList.emplace(g);
+            UnitManager<ATower>* t  = tower->second();
+            t->getBase()->setId(*it);
+
+            towerList.emplace_back(t);
         }
     }
 
@@ -32,6 +39,4 @@ std::vector<std::shared_ptr<ATower>> TowerFactory::getTowers(std::vector<std::st
     return towerList;
 }
 
-std::shared_ptr<ATower> TowerFactory::getTower(std::string id) {
-    return std::shared_ptr<ATower>();
-}
+
