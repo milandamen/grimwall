@@ -58,12 +58,24 @@ public:
      * Set the render backend used by the engine (OpenGL or SDL).
      */
     void setRenderBackend(std::string engine) override;
-    
+
+    /**
+     * Gets the width of the window
+     * @return Integer The window width
+     */
+    int getScreenWidth() override;
+
     /**
      * Sets the width of the window.
      */
     void setScreenWidth(int width) override;
-    
+
+    /**
+     * Gets the width of the window
+     * @return Integer The window width
+     */
+    int getScreenHeight() override;
+
     /**
      * Sets the height of the window.
      */

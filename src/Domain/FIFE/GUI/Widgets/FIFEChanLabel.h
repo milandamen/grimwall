@@ -19,13 +19,16 @@ public:
     FIFEChanLabel();
     ~FIFEChanLabel();
 
+    fcn::Widget* getWidget();
+
     void setX(int x = 0) override;
     void setY(int y = 0) override;
     void setWidth(int width = 0) override;
     void setHeight(int height = 0) override;
-    fcn::Widget* getWidget();
-
     void setCaption(std::string caption) override;
+
+    void setForegroundColor(int r, int g, int b, int a) override;
+    void setBackgroundColor(int r, int g, int b, int a) override;
 };
 
 

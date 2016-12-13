@@ -56,6 +56,17 @@ void FIFEChanButton::mousePressed(fcn::MouseEvent &mouseEvent)
     this->onClickDelegate();
 }
 
+void FIFEChanButton::setForegroundColor(int r = 0, int g = 0, int b = 0, int a = 0)
+{
+    this->button->setForegroundColor(fcn::Color(r, g, b, a));
+}
+
+void FIFEChanButton::setBackgroundColor(int r = 0, int g = 0, int b = 0, int a = 0)
+{
+    this->button->setBaseColor(fcn::Color(r, g, b, a));
+    this->button->setBackgroundColor(fcn::Color(r, g, b, a));
+}
+
 //void FIFEChanButton::mouseReleased(fcn::MouseEvent &mouseEvent)
 //{
 //    this->onClickDelegate();

@@ -22,7 +22,9 @@ public:
     /** Settings **/
     
     virtual void setRenderBackend(std::string engine) = 0;
+    virtual int getScreenWidth() = 0;
     virtual void setScreenWidth(int width) = 0;
+    virtual int getScreenHeight() = 0;
     virtual void setScreenHeight(int height) = 0;
     virtual void setFullScreen(bool fullScreen) = 0;
     virtual void setWindowTitle(std::string title) = 0;

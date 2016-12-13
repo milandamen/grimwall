@@ -6,10 +6,6 @@
 
 FIFEChanImage::FIFEChanImage()
 {
-    //if(FIFEChanImage::imageLoader == nullptr)
-    //    FIFEChanImage::imageLoader = new SDLImageLoader();
-    //this->image->setImageLoader(FIFEChanImage::imageLoader);
-
     this->icon = new fcn::Icon();
 }
 
@@ -48,4 +44,14 @@ void FIFEChanImage::setAsset(std::string asset)
 {
     this->image = fcn::Image::load(asset, false);
     this->icon->setImage(this->image);
+}
+
+void FIFEChanImage::setForegroundColor(int r = 0, int g = 0, int b = 0, int a = 255)
+{
+    this->icon->setForegroundColor(fcn::Color(r, g, b, a));
+}
+
+void FIFEChanImage::setBackgroundColor(int r = 0, int g = 0, int b = 0, int a = 255)
+{
+    this->icon->setBackgroundColor(fcn::Color(r, g, b, a));
 }

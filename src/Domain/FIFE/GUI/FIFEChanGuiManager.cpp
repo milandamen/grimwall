@@ -3,6 +3,7 @@
 //
 
 #include "FIFEChanGuiManager.h"
+#include "../../EngineFacade.h"
 
 FIFEChanGuiManager::FIFEChanGuiManager()
 {
@@ -19,8 +20,8 @@ FIFEChanGuiManager::FIFEChanGuiManager()
 
     this->container->setX(0);
     this->container->setY(0);
-    this->container->setWidth(800);
-    this->container->setHeight(600);
+    this->container->setWidth(EngineFacade::engine()->getScreenWidth());
+    this->container->setHeight(EngineFacade::engine()->getScreenHeight());
 }
 
 FIFEChanGuiManager::~FIFEChanGuiManager()
@@ -60,11 +61,13 @@ GUIWidgetLabel* FIFEChanGuiManager::addLabel(std::string caption = "", int x = 0
     return label;
 }
 
-GUIWidgetImage* FIFEChanGuiManager::addImage(std::string asset = "", int x = 0, int y = 0)
+GUIWidgetImage* FIFEChanGuiManager::addImage(std::string asset = "", int x = 0, int y = 0, int width = 0, int height = 0)
 {
     FIFEChanImage* image = new FIFEChanImage();
     image->setX(x);
     image->setY(y);
+    image->setWidth(width);
+    image->setHeight(height);
     image->setAsset(asset);
 
     this->widgets.push_back(image);

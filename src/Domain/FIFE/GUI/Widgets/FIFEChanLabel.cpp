@@ -39,3 +39,13 @@ void FIFEChanLabel::setCaption(std::string caption)
 {
     this->label->setCaption(caption);
 }
+
+void FIFEChanLabel::setForegroundColor(int r = 0, int g = 0, int b = 0, int a = 0)
+{
+    this->label->setForegroundColor(fcn::Color(r, g, b, a));
+}
+
+void FIFEChanLabel::setBackgroundColor(int r = 0, int g = 0, int b = 0, int a = 0)
+{
+    this->label->setBackgroundColor(fcn::Color(r, g, b, a));
+}

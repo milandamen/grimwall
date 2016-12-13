@@ -10,16 +10,16 @@
 #include <gui/fifechan/fifechanmanager.h>
 #include "GUI.h"
 #include "AGUIManager.h"
+#include "../Domain/IGame.h"
 
 class MainMenu : public GUI
 {
 private:
+    IGame* game;
     AGUIManager* manager;
 
-    void ClickMeClick();
-
 public:
-    MainMenu(AGUIManager* manager);
+    MainMenu(IGame* game, AGUIManager* manager);
     ~MainMenu();
 };
 

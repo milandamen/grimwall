@@ -13,6 +13,8 @@ public:
     virtual void setHeight(int height) = 0;
     virtual void setX(int x) = 0;
     virtual void setY(int y) = 0;
+    virtual void setForegroundColor(int r, int g, int b, int a) = 0;
+    virtual void setBackgroundColor(int r, int g, int b, int a) = 0;
 };
 
 

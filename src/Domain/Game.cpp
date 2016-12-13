@@ -8,7 +8,7 @@ Game::Game()
     EngineFacade::engine()->setRenderBackend("OpenGL");
     EngineFacade::engine()->init();
 
-    MainMenu* menu = new MainMenu(EngineFacade::engine()->createGUIManager());
+    MainMenu* menu = new MainMenu(this, EngineFacade::engine()->createGUIManager());
     EngineFacade::engine()->setActiveGUIManager(menu->getGuiManager());
 
     EngineFacade::engine()->setFPSLimit(60);

@@ -34,7 +34,7 @@ public:
 
     GUIWidgetButton* addButton(std::string caption, int x, int y) override;
     GUIWidgetLabel* addLabel(std::string caption, int x, int y) override;
-    GUIWidgetImage* addImage(std::string asset, int x, int y) override;
+    GUIWidgetImage* addImage(std::string asset, int x, int y, int width, int height) override;
 };
 
 
