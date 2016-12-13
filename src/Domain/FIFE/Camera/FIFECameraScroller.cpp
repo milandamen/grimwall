@@ -28,42 +28,54 @@ FIFECameraScroller::~FIFECameraScroller()
 
 void FIFECameraScroller::evaluateLocation()
 {
+    shouldScroll = false;
+	
     scrollCoords = mainCamera->toScreenCoordinates(mainCamera->getLocationRef().getMapCoordinates());
 
-    shouldScroll = false;
+    //get the viewport for the camera so we can fetch the screen size
+    const FIFE::Rect& viewport = mainCamera->getViewPort();
 
-    // check left
-    if (cursorX <= scrollAreaLeft)
-    {
-        // modify x value
-        scrollCoords[0] -= scrollAmount;
-
-        shouldScroll = true;
+    // Check if the mouse is out of screen
+    if(cursorX < 1 || cursorX > viewport.right() - 2
+            || cursorY < 1 || cursorY > viewport.bottom() - 2) {
+        shouldScroll = false;
     }
+    else{
+        // check left
+        if (cursorX <= scrollAreaLeft)
+        {
+            // modify x value
+            scrollCoords[0] -= scrollAmount;
+
+            shouldScroll = true;
+        }
+
         // check right
-    else if (cursorX >= scrollAreaRight)
-    {
-        // modify x value
-        scrollCoords[0] += scrollAmount;
+        else if (cursorX >= scrollAreaRight)
+        {
+            // modify x value
+            scrollCoords[0] += scrollAmount;
 
-        shouldScroll = true;
-    }
+            shouldScroll = true;
+        }
 
-    // check top
-    if (cursorY >= scrollAreaTop)
-    {
-        // modify y value
-        scrollCoords[1] += scrollAmount;
+        // check top
+        if (cursorY >= scrollAreaTop)
+        {
+            // modify y value
+            scrollCoords[1] += scrollAmount;
 
-        shouldScroll = true;
-    }
+            shouldScroll = true;
+        }
+		
         // check bottom
-    else if (cursorY <= scrollAreaBottom)
-    {
-        // modify y value
-        scrollCoords[1] -= scrollAmount;
+        else if (cursorY <= scrollAreaBottom)
+        {
+            // modify y value
+            scrollCoords[1] -= scrollAmount;
 
-        shouldScroll = true;
+            shouldScroll = true;
+        }
     }
 }
 

@@ -44,6 +44,16 @@ void FIFEFacade::setRenderBackend(std::string engine)
     settings.setRenderBackend(engine);
 }
 
+const uint16_t FIFEFacade::getScreenWidth() {
+    FIFE::EngineSettings& settings = engine->getSettings();
+    return settings.getScreenWidth();
+}
+
+const uint16_t FIFEFacade::getScreenHeight() {
+    FIFE::EngineSettings& settings = engine->getSettings();
+    return settings.getScreenHeight();
+}
+
 void FIFEFacade::setScreenWidth(int width)
 {
     FIFE::EngineSettings& settings = engine->getSettings();
@@ -310,6 +320,7 @@ void FIFEFacade::updateLocation(int x, int y) {
 void FIFEFacade::tick()
 {
     keyListener->tick();
+    mouseListener->tick();
 }
 
 
