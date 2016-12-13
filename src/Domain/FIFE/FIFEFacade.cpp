@@ -323,10 +323,9 @@ void FIFEFacade::tick()
     mouseListener->tick();
 }
 
-
 std::vector<std::string> FIFEFacade::loadTowers()
 {
-    FIFE::Layer* layer = map->getLayer("unitLayer");
+    FIFE::Layer* layer = map->getLayer("towerLayer");
     std::vector<std::string> idList;
     if(layer)
     {

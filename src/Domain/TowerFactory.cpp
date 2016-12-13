@@ -1,7 +1,5 @@
 #include "TowerFactory.h"
 
-
-
 std::vector<UnitManager<ATower>*> generateTowers(std::vector<std::string> ids) {
 
     std::string key;
