@@ -13,8 +13,7 @@ UnitManager<ATower>* generateTower(std::string name, double x, double y) {
     std::string key = name.substr(0, name.length()-1);
     auto tower = dictionary.find(key);
 
-    if(tower != dictionary.end())
-    {
+    if(tower != dictionary.end()) {
         //dictionary contains key
         UnitManager<ATower>* t  = tower->second();
         t->setX(x);
@@ -22,8 +21,9 @@ UnitManager<ATower>* generateTower(std::string name, double x, double y) {
         t->getBase()->setId(name);
 
         return t;
-    } else
-        return nullptr;
+    }
+
+    return nullptr;
 }
 
 

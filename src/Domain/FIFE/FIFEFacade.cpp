@@ -375,11 +375,15 @@ std::vector<UnitManager<ATower>*> FIFEFacade::loadTowers()
             //select instances with tower in their id
             std::string id = instances.at(i)->getId();
 
-            if(id.find("Tower")  != std::string::npos)
+            if(id.find("Tower") != std::string::npos)
             {
                 double x = instances.at(i)->getLocation().getMapCoordinates().x;
                 double y = instances.at(i)->getLocation().getMapCoordinates().y;
-                towers.push_back(generateTower(id, x, y));
+
+                UnitManager<ATower>* tower = generateTower(id, x, y);
+                if (tower != nullptr) {
+                    towers.push_back(tower);
+                }
             }
         }
     }

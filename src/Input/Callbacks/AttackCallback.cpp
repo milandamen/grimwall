@@ -9,8 +9,7 @@ AttackCallback::AttackCallback(IGame *game)
 {}
 
 void AttackCallback::execute() {
-    if (!this->shouldExecute())
-        return;
+    if (!shouldExecute()) { return; }
 
     updateLocation(game->getHero(), "Dralas");
 
@@ -19,10 +18,10 @@ void AttackCallback::execute() {
     double reach = game->getHero()->getReach();
     int power = game->getHero()->getPower();
 
-    std::vector<UnitManager<ATower>*> towers = game->getTowers();
+    std::vector<UnitManager<ATower>*>* towers = game->getTowers();
     UnitManager<ATower>* tower;
-    for (int t = 0; t < towers.size(); ++t) {
-        tower = towers[t];
+    for(std::vector<UnitManager<ATower>*>::iterator it = towers->begin(); it != towers->end();) {
+        tower = *it;
 
         double xDiff = std::abs(tower->getX() - x);
         double yDiff = std::abs(tower->getY() - y);
@@ -34,8 +33,14 @@ void AttackCallback::execute() {
                 if (EngineFacade::engine()->instanceExists(tower->getBase()->getId(), "towerLayer")) {
                     EngineFacade::engine()->deleteInstance(tower->getBase()->getId(), "towerLayer");
                 }
-                game->removeTower(t);
+
+                delete tower;
+                towers->erase(it);
+            } else {
+                ++it;
             }
+        } else {
+            ++it;
         }
     }
 }
