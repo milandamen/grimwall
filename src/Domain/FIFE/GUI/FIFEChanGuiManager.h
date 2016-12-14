@@ -10,17 +10,20 @@
 #include <fifechan/widgets/container.hpp>
 #include <fifechan/widgets/button.hpp>
 #include <vector>
-#include "Widgets/FIFEChanButton.h"
+
+#include "../../EngineFacade.h"
 #include "../../../GUI/AGUIManager.h"
 #include "../../../GUI/Widget/AGUIWidget.h"
+
+#include "Widgets/FIFEChanButton.h"
 #include "Widgets/FIFEChanLabel.h"
 #include "Widgets/FIFEChanImage.h"
+#include "Widgets/FIFEChanRadio.h"
 
 class FIFEChanGuiManager : public AGUIManager {
 
 private:
     fcn::Container* container {nullptr};
-    fcn::Color bgColor = fcn::Color();
     std::vector<AGUIWidget*> widgets;
     int count = 0;
 
@@ -35,6 +38,7 @@ public:
     GUIWidgetButton* addButton(std::string caption, int x, int y) override;
     GUIWidgetLabel* addLabel(std::string caption, int x, int y) override;
     GUIWidgetImage* addImage(std::string asset, int x, int y, int width, int height) override;
+    GUIWidgetRadio* addRadio(std::string caption, std::string group, int x, int y, bool selected) override;
 };
 
 

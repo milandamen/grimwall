@@ -37,6 +37,7 @@ public:
     virtual void onClick(std::function<void()> delegate) override;
     virtual void setForegroundColor(int r, int g, int b, int a) override;
     virtual void setBackgroundColor(int r, int g, int b, int a) override;
+    virtual void setHighlightColor(int r, int g, int b, int a) override;
 };
 
 

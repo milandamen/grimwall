@@ -3,21 +3,13 @@
 //
 
 #include "FIFEChanGuiManager.h"
-#include "../../EngineFacade.h"
 
 FIFEChanGuiManager::FIFEChanGuiManager()
 {
     this->container = new fcn::Container();
-
-    this->bgColor.a = 0;
-    this->bgColor.r = 0;
-    this->bgColor.g = 0;
-    this->bgColor.b = 0;
-
-    this->container->setBackgroundColor(this->bgColor);
-    this->container->setBaseColor(this->bgColor);
+    this->container->setBackgroundColor(fcn::Color(0,0,0,0));
+    this->container->setBaseColor(fcn::Color(0,0,0,0));
     this->container->setFocusable(false);
-
     this->container->setX(0);
     this->container->setY(0);
     this->container->setWidth(EngineFacade::engine()->getScreenWidth());
@@ -26,6 +18,11 @@ FIFEChanGuiManager::FIFEChanGuiManager()
 
 FIFEChanGuiManager::~FIFEChanGuiManager()
 {
+    // Remove FCN widgets
+    for (unsigned int i = 0; i < this->widgets.size(); i++) {
+        delete this->widgets[i];
+    }
+
     delete this->container;
 }
 
@@ -74,4 +71,20 @@ GUIWidgetImage* FIFEChanGuiManager::addImage(std::string asset = "", int x = 0, 
     this->container->add(image->getWidget());
 
     return image;
+}
+
+GUIWidgetRadio* FIFEChanGuiManager::addRadio(std::string caption, std::string group, int x = 0, int y = 0, bool selected = false)
+{
+    FIFEChanRadio* radio = new FIFEChanRadio();
+    radio->setX(x);
+    radio->setY(y);
+    radio->setWidth(200);
+    radio->setHeight(20);
+    radio->setCaption(caption);
+    radio->setGroup(group);
+    radio->setSelected(selected);
+
+    this->widgets.push_back(radio);
+    this->container->add(radio->getWidget());
+    return radio;
 }

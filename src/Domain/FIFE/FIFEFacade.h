@@ -29,6 +29,8 @@
 #include "GUI/FIFEChanGuiManager.h"
 
 
+class FIFEChanGuiManager;
+
 namespace fs = boost::filesystem;
 
 class FIFEFacade : public IEngineFacade {

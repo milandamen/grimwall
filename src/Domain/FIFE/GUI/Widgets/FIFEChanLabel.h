@@ -9,6 +9,7 @@
 #include <fifechan/widgets/label.hpp>
 #include "FIFEChanButton.h"
 #include "../../../../GUI/Widget/GUIWidgetLabel.h"
+#include "../../../../GUI/Widget/GUITextAlignment.h"
 
 class FIFEChanLabel : public GUIWidgetLabel
 {
@@ -26,6 +27,7 @@ public:
     void setWidth(int width = 0) override;
     void setHeight(int height = 0) override;
     void setCaption(std::string caption) override;
+    void setAlignment(GUITextAlignment alignment) override;
 
     void setForegroundColor(int r, int g, int b, int a) override;
     void setBackgroundColor(int r, int g, int b, int a) override;

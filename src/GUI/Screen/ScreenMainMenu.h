@@ -8,19 +8,19 @@
 
 #include <fifechan.hpp>
 #include <gui/fifechan/fifechanmanager.h>
-#include "GUI.h"
-#include "AGUIManager.h"
-#include "../Domain/IGame.h"
+#include "../GUI.h"
+#include "../AGUIManager.h"
+#include "../../Domain/IGame.h"
 
-class MainMenu : public GUI
+class ScreenMainMenu : public GUI
 {
 private:
     IGame* game;
     AGUIManager* manager;
 
 public:
-    MainMenu(IGame* game, AGUIManager* manager);
-    ~MainMenu();
+    ScreenMainMenu(IGame* game, AGUIManager* manager);
+    ~ScreenMainMenu();
 };
 
 

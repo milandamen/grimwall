@@ -45,14 +45,8 @@ fcn::Widget* FIFEChanButton::getWidget() {
     return this->button;
 }
 
-//void FIFEChanButton::mouseClicked(fcn::MouseEvent &mouseEvent)
-//{
-//    this->onClickDelegate();
-//}
-
 void FIFEChanButton::mousePressed(fcn::MouseEvent &mouseEvent)
 {
-    //std::cout << "JA!" << std::endl;
     this->onClickDelegate();
 }
 
@@ -67,7 +61,7 @@ void FIFEChanButton::setBackgroundColor(int r = 0, int g = 0, int b = 0, int a =
     this->button->setBackgroundColor(fcn::Color(r, g, b, a));
 }
 
-//void FIFEChanButton::mouseReleased(fcn::MouseEvent &mouseEvent)
-//{
-//    this->onClickDelegate();
-//}
+void FIFEChanButton::setHighlightColor(int r = 0, int g = 0, int b = 0, int a = 0)
+{
+    this->button->setSelectionColor(fcn::Color(r, g, b, a));
+}

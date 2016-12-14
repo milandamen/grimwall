@@ -13,8 +13,6 @@
 
 class FIFEChanImage : public GUIWidgetImage
 {
-    //static SDLImageLoader* imageLoader {nullptr};
-
 private:
     fcn::Image* image {nullptr};
     fcn::Icon* icon {nullptr};
@@ -29,7 +27,7 @@ public:
     void setY(int y = 0) override;
     void setWidth(int width = 0) override;
     void setHeight(int height = 0) override;
-    void setAsset(std::string);
+    void setAsset(std::string) override;
 
     void setForegroundColor(int r, int g, int b, int a) override;
     void setBackgroundColor(int r, int g, int b, int a) override;

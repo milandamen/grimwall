@@ -8,44 +8,82 @@ Game::Game()
     EngineFacade::engine()->setRenderBackend("OpenGL");
     EngineFacade::engine()->init();
 
-    MainMenu* menu = new MainMenu(this, EngineFacade::engine()->createGUIManager());
-    EngineFacade::engine()->setActiveGUIManager(menu->getGuiManager());
+    this->guirepo = new GUIRepo();
+    this->guirepo->addGUI("MainMenu", new ScreenMainMenu(this, EngineFacade::engine()->createGUIManager()));
+    this->guirepo->addGUI("GameOver", new ScreenGameOver(this, EngineFacade::engine()->createGUIManager()));
+    this->guirepo->addGUI("Won", new ScreenWon(this, EngineFacade::engine()->createGUIManager()));
+    this->guirepo->addGUI("SelectHero", new ScreenSelectHero(this, EngineFacade::engine()->createGUIManager()));
+    this->guirepo->addGUI("SelectLevel", new ScreenSelectLevel(this, EngineFacade::engine()->createGUIManager()));
+    this->guirepo->addGUI("Options", new ScreenOptions(this, EngineFacade::engine()->createGUIManager()));
+    this->guirepo->addGUI("Game", new ScreenGame(this, EngineFacade::engine()->createGUIManager()));
 
+    EngineFacade::engine()->setActiveGUIManager(this->guirepo->getGUI("MainMenu")->getGuiManager());
     EngineFacade::engine()->setFPSLimit(60);
-
     EngineFacade::engine()->init();
 
-    initInput();
-    EngineFacade::engine()->loadMap("assets/maps/level1_remake_conv.xml");
-    loadTowers();
+    this->initInput();
 
-    this->hero = new UnitManager<AHero>(new Dralas());
-    this->hero->getBase()->addAbility(new DeathStrike(this->hero));
+    //this->hero = new UnitManager<AHero>(new Dralas());
+    //this->hero->getBase()->addAbility(new DeathStrike(this->hero));
     
     // Game loop
-    curTime = 0;
-    lastTime = 0;
+    this->curTime = 0;
+    this->lastTime = 0;
+    this->isPaused = true;
 
-    while (running)
+    while (this->isRunning)
     {
         updateFPS();
-        
-        // Run an engine tick for userland code
-        EngineFacade::engine()->tick();
-        
+
+        // Check if we are in pause state
+        if(!this->isPaused) {
+            // Run an engine tick for userland code
+            EngineFacade::engine()->tick();
+        }
+
         // Render a frame
         EngineFacade::engine()->render();
         
-        curTime = EngineFacade::engine()->getTime();
+        this->curTime = EngineFacade::engine()->getTime();
     }
     
     EngineFacade::destroy();
-    delete keyboardMapper;
+    delete this->keyboardMapper;
 }
 
 Game::~Game() {
     delete this->hero;
     this->deleteTowers();
+}
+
+void Game::setMap(std::string path)
+{
+    EngineFacade::engine()->loadMap(path);
+    this->loadTowers();
+}
+
+int Game::getCurrentScore() {
+    return this->score;
+}
+
+void Game::setPaused(bool paused)
+{
+    this->isPaused = paused;
+}
+
+void Game::setHero(AHero *hero)
+{
+    if(this->hero != nullptr)
+        delete this->hero;
+
+    this->hero = new UnitManager<AHero>(hero);
+}
+
+void Game::setUI(std::string name)
+{
+    GUI* gui = this->guirepo->getGUI(name);
+    if(gui != nullptr)
+        EngineFacade::engine()->setActiveGUIManager(gui->getGuiManager());
 }
 
 UnitManager<AHero>* Game::getHero() {
@@ -54,7 +92,7 @@ UnitManager<AHero>* Game::getHero() {
 
 void Game::quit()
 {
-    running = false;
+    isRunning = false;
 }
 
 void Game::initInput()
