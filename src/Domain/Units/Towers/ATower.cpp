@@ -17,3 +17,11 @@ void ATower::setId(std::string id) {
     this->id = id;
 }
 
+void ATower::setTimeLastAttack(int time) {
+    timeLastAttack = time;
+}
+
+int ATower::getTimeLastAttack() {
+    return timeLastAttack;
+}
+
