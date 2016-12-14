@@ -113,6 +113,8 @@ void Game::letTowersAttack() {
         {
             //time delay passed
 
+            AUnit* closest = nullptr;
+            int curDistance = INT_MAX;
             //if unit is in range, check if it is the closest
             int unitX = hero->getX();
             int unitY = hero->getY();
@@ -125,6 +127,11 @@ void Game::letTowersAttack() {
             {
                 //unit is in range, attack
 
+//                if(distance < curDistance)
+//                {
+//                    //current unit is closer, set it as closest
+//
+//                }
 
                 //get tower attack
                 //subtract it from unit hp
