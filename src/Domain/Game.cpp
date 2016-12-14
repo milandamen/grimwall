@@ -14,8 +14,6 @@ Game::Game()
     EngineFacade::engine()->loadMap("assets/maps/level1_remake_conv.xml");
     loadTowers();
 
-    troupManager = new TroupManager();
-
     this->hero = new UnitManager<AHero>(new Dralas());
     this->hero->getBase()->addAbility(new DeathStrike(this->hero));
     

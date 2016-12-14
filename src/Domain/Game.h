@@ -12,8 +12,6 @@
 #include "Units/Buff/BoneStormBuff.h"
 #include "Units/Towers/ATower.h"
 #include "Units/Towers/DefaultTower.h"
-#include "Units/Troups/ATroup.h"
-#include "Units/Troups/TroupManager.h"
 
 class Game : public IGame {
 private:
@@ -48,8 +46,8 @@ private:
 public:
     Game();
     ~Game();
+    TroupManager* getTroupManager();
     virtual UnitManager<AHero>* getHero() override;
-    virtual TroupManager* getTroupManager() override;
     virtual void quit() override;
 };
 

@@ -3,14 +3,12 @@
 
 #include <vector>
 #include "ATroup.h"
-#include "../../IGame.h"
 #include "../../EngineFacade.h"
-
 
 class TroupManager {
 
 private:
-    std::vector<ATroup*> troups;
+    std::vector<ATroup*>* troups;
 public:
     TroupManager();
     ~TroupManager();

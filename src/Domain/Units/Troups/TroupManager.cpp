@@ -5,15 +5,15 @@ TroupManager::TroupManager(){
 }
 
 TroupManager::~TroupManager(){
-    for(unsigned i = 0; i < troups.size(); ++i){
-        delete troups.at(i);
+    for(unsigned i = 0; i < troups->size(); ++i){
+        delete troups->at(i);
     }
-    troups.clear();
+    troups->clear();
     delete troups;
 }
 
 std::vector<ATroup*>* TroupManager::getTroups(){
-    return &troups;
+    return troups;
 }
 
 void TroupManager::moveTroups(double x, double y) {
