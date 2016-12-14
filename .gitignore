@@ -34,3 +34,4 @@ _build/
 build/
 .kdev4/
 grimwall.kdev4
+cmake-build-debug/
