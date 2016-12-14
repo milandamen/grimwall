@@ -24,7 +24,11 @@
 #include "../IGame.h"
 #include "../../Input/ICallback.h"
 #include "Camera/FIFECamera.h"
+#include <audio/soundclipmanager.h>
+#include <audio/soundmanager.h>
+#include "Audio/FIFEAudio.h"
 #include "../TowerFactory.h"
+
 
 namespace fs = boost::filesystem;
 
@@ -34,6 +38,7 @@ private:
     FIFE::FifechanManager* guimanager {nullptr};
     FIFE::Map* map {nullptr};
 
+    FIFEAudio* fifeAudio {nullptr};
     fcn::Button* btnOptions {nullptr};
     fcn::Button* btnExit {nullptr};
     FIFECamera* fifeCamera {nullptr};

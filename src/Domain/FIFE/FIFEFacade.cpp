@@ -6,6 +6,7 @@ FIFEFacade::FIFEFacade(IGame* game)
     engine = new FIFE::Engine();
     guimanager = new FIFE::FifechanManager();
 
+
     fs::path defaultFontPath("assets/fonts/FreeSans.ttf");
     FIFE::EngineSettings& settings = engine->getSettings();
     settings.setBitsPerPixel(0);
@@ -36,6 +37,7 @@ FIFEFacade::~FIFEFacade() {
     delete keyListener;
     delete mouseListener;
     delete fifeCamera;
+    delete fifeAudio;
 }
 
 void FIFEFacade::setRenderBackend(std::string engine)
@@ -88,6 +90,9 @@ void FIFEFacade::setFPSLimit(int fpsLimit)
 void FIFEFacade::init()
 {
     engine->init();
+
+    //initialize the audio
+    fifeAudio = new FIFEAudio(engine->getSoundClipManager(), engine->getSoundManager());
 
     // setup the gui
     guimanager->setDefaultFont(
@@ -160,6 +165,8 @@ void FIFEFacade::loadMap(std::string path)
     if(map){
         delete fifeCamera;
     }
+
+
 
     if (engine->getModel() && engine->getVFS() && engine->getImageManager() &&
         engine->getRenderBackend())
