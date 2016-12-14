@@ -20,6 +20,7 @@ private:
     FIFE::SoundClipManager* soundClipManager;
     FIFE::SoundManager* soundManager;
     FIFE::SoundEmitter* soundEmitter;
+    FIFE::OggLoader* oggLoader;
 public:
     FIFEAudio(FIFE::SoundClipManager* soundClipManager, FIFE::SoundManager* soundManager);
     ~FIFEAudio();

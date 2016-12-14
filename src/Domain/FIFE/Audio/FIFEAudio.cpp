@@ -2,15 +2,14 @@
 
 FIFEAudio::FIFEAudio(FIFE::SoundClipManager* soundClipManager, FIFE::SoundManager* soundManager)
         : soundClipManager{soundClipManager}, soundManager{soundManager} {
+    oggLoader = new FIFE::OggLoader();
 
     setVolume(100);
 
     soundEmitter = soundManager->createEmitter();
 
-    FIFE::OggLoader* loader = new FIFE::OggLoader();
+    FIFE::SoundClipPtr soundClip = soundClipManager->load("assets/sounds/intro.ogg", oggLoader);
 
-    FIFE::SoundClipPtr soundClip = soundClipManager->load("assets/sounds/intro.ogg", loader);
-    std::string name = soundClip.get()->getName();
     soundEmitter->setSoundClip(soundClip);
 
     soundEmitter->play();
