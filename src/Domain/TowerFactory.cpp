@@ -1,10 +1,6 @@
 #include "TowerFactory.h"
 
-std::vector<UnitManager<ATower>*> generateTowers(std::vector<std::string> ids) {
-
-    std::string key;
-    std::string id;
-    std::vector<UnitManager<ATower>*> towerList;
+UnitManager<ATower>* generateTower(std::string name, double x, double y) {
 
     static std::map<std::string, std::function<UnitManager<ATower>*()>> dictionary =
             {
@@ -13,28 +9,21 @@ std::vector<UnitManager<ATower>*> generateTowers(std::vector<std::string> ids) {
                     {"armouredTower", [](){return new UnitManager<ATower>(new ArmouredTower()); }},
             };
 
-//    UnitManager<ATower> a;
-//    a.getBase();
 
-    for (auto it = ids.begin(); it != ids.end(); ++it)
+    std::string key = name.substr(0, name.length()-1);
+    auto tower = dictionary.find(key);
+
+    if(tower != dictionary.end())
     {
-        id = *it;
-        key = it->substr(0, it->length()-1);
-        auto tower = dictionary.find(key);
+        //dictionary contains key
+        UnitManager<ATower>* t  = tower->second();
+        t->setX(x);
+        t->setY(y);
+        t->getBase()->setId(name);
 
-        if(tower != dictionary.end())
-        {
-            //dictionary contains key
-            UnitManager<ATower>* t  = tower->second();
-            t->getBase()->setId(*it);
-
-            towerList.emplace_back(t);
-        }
-    }
-
-
-
-    return towerList;
+        return t;
+    } else
+        return nullptr;
 }
 
 

@@ -9,8 +9,6 @@ class Dralas : public AHero {
 public:
     Dralas();
     ~Dralas();
-
-    void doDamage(int power) override;
 };
 
 
