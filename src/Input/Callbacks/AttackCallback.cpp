@@ -9,8 +9,7 @@ AttackCallback::AttackCallback(IGame *game)
 {}
 
 void AttackCallback::execute() {
-    if (!this->shouldExecute())
-        return;
+    if (!shouldExecute()) { return; }
 
     updateLocation(game->getHero(), "Dralas");
 
