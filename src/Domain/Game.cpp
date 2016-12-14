@@ -31,7 +31,7 @@ Game::Game()
         
         // Render a frame
         EngineFacade::engine()->render();
-        
+        letTowersAttack();
         curTime = EngineFacade::engine()->getTime();
     }
     
@@ -97,7 +97,7 @@ void Game::letTowersAttack() {
     //iterate through all towers
     for(unsigned int i = 0; i < towers.size(); ++i)
     {
-        // for each tower check there's an oposing unit within range
+        // for each tower check if the hero is within range
 
         UnitManager<ATower>* tower = towers.at(i);
 
@@ -107,40 +107,38 @@ void Game::letTowersAttack() {
         if(tower->getBase()->getTimeLastAttack() == -23 || timeSince >= tower->getAttackDelay())
         {
             //time delay passed
+            updateLocation(tower, tower->getName());
+            updateLocation(this->hero, this->hero->getName());
 
-            AUnit* closest = nullptr;
-            int curDistance = INT_MAX;
-            //if unit is in range, check if it is the closest
-            int unitX = hero->getX();
-            int unitY = hero->getY();
+
+            double unitX = hero->getX();
+            double unitY = hero->getY();
             //calculate distance between unit and tower
-            double deltaX = std::pow((unitX + tower->getX()) , 2.0);
-            double deltaY = std::pow((unitY + tower->getY()) , 2.0);
-            double distance = std::sqrt(deltaX + deltaY);
+            double xTot = (unitX - tower->getX());
+            double yTot = (unitY - tower->getY());
+
+            double deltaX = std::pow(xTot, 2.0);
+            double deltaY = std::pow(yTot, 2.0);
+
+            double sum = deltaX + deltaY;
+
+            double distance = std::sqrt(sum);
 
             if(distance <= tower->getReach())
             {
-                //unit is in range, attack
-
-//                if(distance < curDistance)
-//                {
-//                    //current unit is closer, set it as closest
-//
-//                }
+                //hero in range, attack
 
                 //get tower attack
-                //subtract it from unit hp
+                //subtract it from hero hp
+                int damage = tower->getPower();
+                hero->receiveDamage(damage);
 
+                std::cout << "Hero hp: " << hero->getHitPoints() << std::endl;
                 //update time tower last attacked
                 tower->getBase()->setTimeLastAttack(curTime);
 
             }
         }
-
-
-
-        //when closest unit is found attack it
-
     }
 }
 

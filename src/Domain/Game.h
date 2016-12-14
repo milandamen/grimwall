@@ -8,6 +8,7 @@
 #include "Units/UnitManager.hpp"
 #include "Units/Heroes/Dralas.h"
 #include "Units/Buff/BoneStormBuff.h"
+#include "UnitFactory.h"
 
 #include <vector>
 
@@ -45,7 +46,6 @@ public:
     virtual UnitManager<AHero>* getHero() override;
     virtual void quit() override;
     virtual std::vector<UnitManager<ATower>*>* getTowers() override;
-    void removeTower(int i) override;
     virtual void letTowersAttack() override;
 };
 
