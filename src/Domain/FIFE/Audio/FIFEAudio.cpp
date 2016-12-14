@@ -1,20 +1,10 @@
 #include "FIFEAudio.h"
 
 FIFEAudio::FIFEAudio(FIFE::SoundClipManager* soundClipManager, FIFE::SoundManager* soundManager)
-        : soundClipManager{soundClipManager}, soundManager{soundManager} {
+        : soundClipManager{soundClipManager}, soundManager{soundManager}, canPlay{false} {
     oggLoader = new FIFE::OggLoader();
-    
     soundManager->init();
-
-    setVolume(100);
-
     soundEmitter = soundManager->createEmitter();
-
-    FIFE::SoundClipPtr soundClip = soundClipManager->load("assets/sounds/intro.ogg", oggLoader);
-
-    soundEmitter->setSoundClip(soundClip);
-
-    soundEmitter->play();
 }
 
 FIFEAudio::~FIFEAudio() {
@@ -24,5 +14,31 @@ FIFEAudio::~FIFEAudio() {
 void FIFEAudio::setVolume(int volume) {
     soundManager->setVolume(0.01 * volume);
 }
+
+void FIFEAudio::playMusic() {
+    if(canPlay)
+        soundEmitter->play();
+}
+
+void FIFEAudio::disableMusic() {
+    canPlay = false;
+}
+
+void FIFEAudio::enableMusic() {
+    canPlay = true;
+    playMusic();
+}
+
+void FIFEAudio::setMusic(std::string asset) {
+    FIFE::SoundClipPtr soundClip = soundClipManager->load(asset, oggLoader);
+    soundEmitter->setSoundClip(soundClip);
+}
+
+
+
+
+
+
+
 
 

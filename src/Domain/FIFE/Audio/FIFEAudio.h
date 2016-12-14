@@ -13,12 +13,19 @@ private:
     FIFE::SoundManager* soundManager;
     FIFE::SoundEmitter* soundEmitter;
     FIFE::OggLoader* oggLoader;
+
+    bool canPlay;
+
+    void playMusic();
 public:
     FIFEAudio(FIFE::SoundClipManager* soundClipManager, FIFE::SoundManager* soundManager);
     ~FIFEAudio();
 
     //set volume, enable/disable music
     void setVolume(int volume);
+    void disableMusic();
+    void enableMusic();
+    void setMusic(std::string asset);
 };
 
 
