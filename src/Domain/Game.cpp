@@ -77,9 +77,7 @@ void Game::updateFPS()
 
 void Game::loadTowers()
 {
-    std::vector<std::string> towerIds = EngineFacade::engine()->loadTowers();
-
-    this->towers = generateTowers(towerIds);
+    this->towers = EngineFacade::engine()->loadTowers();
 }
 
 void Game::deleteTowers()
@@ -91,6 +89,6 @@ void Game::deleteTowers()
     this->towers.clear();
 }
 
-std::vector<UnitManager<ATower> *> Game::getTowers() {
-    return this->towers;
+std::vector<UnitManager<ATower> *>* Game::getTowers() {
+    return &this->towers;
 }

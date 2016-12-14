@@ -16,13 +16,13 @@ public:
     UnitManager(UnitType* unit);
     ~UnitManager();
     std::string getName() override;
-    int getReach() override;
+    double getReach() override;
     int getAttackDelay() override;
     int getPower() override;
     int getHitPoints() override;
-    int getSpeed() override;
+    double getSpeed() override;
     int getVisibility() override;
-    void doDamage(int power) override;
+    void receiveDamage(int power) override;
 
     double getX() override;
     void setX(double x) override;
@@ -37,7 +37,7 @@ public:
 
 template <typename UnitType>
 UnitManager<UnitType>::UnitManager(UnitType *unit)
-        : unit{unit}, base{unit}
+        : base{unit}, unit{unit}
 {}
 
 template <typename UnitType>
@@ -51,7 +51,7 @@ std::string UnitManager<UnitType>::getName() {
 }
 
 template <typename UnitType>
-int UnitManager<UnitType>::getReach() {
+double UnitManager<UnitType>::getReach() {
     return unit->getReach();
 }
 
@@ -71,7 +71,7 @@ int UnitManager<UnitType>::getHitPoints() {
 }
 
 template <typename UnitType>
-int UnitManager<UnitType>::getSpeed() {
+double UnitManager<UnitType>::getSpeed() {
     return unit->getSpeed();
 }
 
@@ -81,8 +81,8 @@ int UnitManager<UnitType>::getVisibility() {
 }
 
 template <typename UnitType>
-void UnitManager<UnitType>::doDamage(int power) {
-    unit->doDamage(power);
+void UnitManager<UnitType>::receiveDamage(int power) {
+    unit->receiveDamage(power);
 }
 
 template <typename UnitType>

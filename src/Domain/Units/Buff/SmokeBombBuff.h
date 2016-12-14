@@ -10,7 +10,7 @@ private:
 public:
     SmokeBombBuff(IUnit *inner, int divisor);
 
-    int getReach();
+    double getReach();
 
 };
 
