@@ -6,6 +6,7 @@ FIFEFacade::FIFEFacade(IGame* game)
     engine = new FIFE::Engine();
     guimanager = new FIFE::FifechanManager();
 
+
     fs::path defaultFontPath("assets/fonts/FreeSans.ttf");
     FIFE::EngineSettings& settings = engine->getSettings();
     settings.setBitsPerPixel(0);
@@ -36,12 +37,23 @@ FIFEFacade::~FIFEFacade() {
     delete keyListener;
     delete mouseListener;
     delete fifeCamera;
+    delete fifeAudio;
 }
 
 void FIFEFacade::setRenderBackend(std::string engine)
 {
     FIFE::EngineSettings& settings = this->engine->getSettings();
     settings.setRenderBackend(engine);
+}
+
+const uint16_t FIFEFacade::getScreenWidth() {
+    FIFE::EngineSettings& settings = engine->getSettings();
+    return settings.getScreenWidth();
+}
+
+const uint16_t FIFEFacade::getScreenHeight() {
+    FIFE::EngineSettings& settings = engine->getSettings();
+    return settings.getScreenHeight();
 }
 
 void FIFEFacade::setScreenWidth(int width)
@@ -78,6 +90,9 @@ void FIFEFacade::setFPSLimit(int fpsLimit)
 void FIFEFacade::init()
 {
     engine->init();
+
+    //initialize the audio
+    fifeAudio = new FIFEAudio(engine->getSoundClipManager(), engine->getSoundManager());
 
     // setup the gui
     guimanager->setDefaultFont(
@@ -151,6 +166,8 @@ void FIFEFacade::loadMap(std::string path)
         delete fifeCamera;
     }
 
+
+
     if (engine->getModel() && engine->getVFS() && engine->getImageManager() &&
         engine->getRenderBackend())
     {
@@ -219,6 +236,44 @@ int FIFEFacade::getTime()
     return engine->getTimeManager()->getTime();
 }
 
+bool FIFEFacade::instanceExists(std::string name, std::string layerName = "unitLayer") {
+    if (map) {
+        FIFE::Layer *layer = map->getLayer(layerName);
+
+        if (layer) {
+            FIFE::Instance *instance = layer->getInstance(name);
+
+            if (instance) {
+                return true;
+            }
+        }
+    }
+
+    return false;
+}
+
+double FIFEFacade::getInstanceX(std::string name, std::string layerName) {
+    if (this->instanceExists(name, layerName)) {
+        FIFE::Layer *layer = map->getLayer(layerName);
+        FIFE::Instance *instance = layer->getInstance(name);
+
+        return instance->getLocation().getMapCoordinates().x;
+    }
+
+    return 0;
+}
+
+double FIFEFacade::getInstanceY(std::string name, std::string layerName) {
+    if (this->instanceExists(name, layerName)) {
+        FIFE::Layer *layer = map->getLayer(layerName);
+        FIFE::Instance *instance = layer->getInstance(name);
+
+        return instance->getLocation().getMapCoordinates().y;
+    }
+
+    return 0;
+}
+
 void FIFEFacade::move(std::string name, double x, double y, int moveSpeed) {
     if (map) {
         FIFE::Layer* layer = map->getLayer("unitLayer");
@@ -266,9 +321,9 @@ std::string FIFEFacade::createInstance(std::string objectName, std::string insta
     return "ERROR";
 }
 
-void FIFEFacade::deleteInstance(std::string instanceName){
+void FIFEFacade::deleteInstance(std::string instanceName, std::string layerName){
     if (map) {
-        FIFE::Layer* layer {map->getLayer("unitLayer")};
+        FIFE::Layer* layer {map->getLayer(layerName)};
         if (layer) {
             FIFE::Instance* instance {layer->getInstance(instanceName)};
             if (instance) {
@@ -278,9 +333,9 @@ void FIFEFacade::deleteInstance(std::string instanceName){
     }
 }
 
-void FIFEFacade::removeInstance(std::string instanceName){
+void FIFEFacade::removeInstance(std::string instanceName, std::string layerName){
     if (map) {
-        FIFE::Layer* layer {map->getLayer("unitLayer")};
+        FIFE::Layer* layer {map->getLayer(layerName)};
         if (layer) {
             FIFE::Instance* instance {layer->getInstance(instanceName)};
             if (instance) {
@@ -310,13 +365,13 @@ void FIFEFacade::updateLocation(int x, int y) {
 void FIFEFacade::tick()
 {
     keyListener->tick();
+    mouseListener->tick();
 }
 
-
-std::vector<std::string> FIFEFacade::loadTowers()
+std::vector<UnitManager<ATower>*> FIFEFacade::loadTowers()
 {
-    FIFE::Layer* layer = map->getLayer("unitLayer");
-    std::vector<std::string> idList;
+    FIFE::Layer* layer = map->getLayer("towerLayer");
+    std::vector<UnitManager<ATower>*> towers;
     if(layer)
     {
         std::vector<FIFE::Instance*> instances = layer->getInstances();
@@ -327,14 +382,20 @@ std::vector<std::string> FIFEFacade::loadTowers()
             //select instances with tower in their id
             std::string id = instances.at(i)->getId();
 
-            if(id.find("Tower")  != std::string::npos)
+            if(id.find("Tower") != std::string::npos)
             {
-                idList.push_back(id);
+                double x = instances.at(i)->getLocation().getMapCoordinates().x;
+                double y = instances.at(i)->getLocation().getMapCoordinates().y;
+
+                UnitManager<ATower>* tower = generateTower(id, x, y);
+                if (tower != nullptr) {
+                    towers.push_back(tower);
+                }
             }
         }
     }
 
-    return idList;
+    return towers;
 
 
 }

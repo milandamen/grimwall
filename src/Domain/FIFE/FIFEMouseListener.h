@@ -24,6 +24,9 @@ private:
     int dragX;
     int dragY;
 
+    int mousePosX;
+    int mousePosY;
+
     FIFE::MouseEvent::MouseEventType prevEventType;
     FIFE::Instance* instance {nullptr};
 
