@@ -381,8 +381,9 @@ std::vector<UnitManager<ATower>*> FIFEFacade::loadTowers()
                 double y = instances.at(i)->getLocation().getMapCoordinates().y;
 
                 UnitManager<ATower>* tower = generateTower(id, x, y);
-                if (tower != nullptr)
+                if (tower != nullptr) {
                     towers.push_back(tower);
+                }
             }
         }
     }
