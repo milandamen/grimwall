@@ -3,6 +3,8 @@
 FIFEAudio::FIFEAudio(FIFE::SoundClipManager* soundClipManager, FIFE::SoundManager* soundManager)
         : soundClipManager{soundClipManager}, soundManager{soundManager} {
     oggLoader = new FIFE::OggLoader();
+    
+    soundManager->init();
 
     setVolume(100);
 
