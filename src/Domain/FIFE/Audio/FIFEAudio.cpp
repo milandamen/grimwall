@@ -16,22 +16,11 @@ FIFEAudio::FIFEAudio(FIFE::SoundClipManager* soundClipManager, FIFE::SoundManage
 }
 
 FIFEAudio::~FIFEAudio() {
-
+    delete oggLoader;
 }
 
 void FIFEAudio::setVolume(int volume) {
     soundManager->setVolume(0.01 * volume);
 }
 
-void FIFEAudio::playAudio() {
 
-
-}
-
-void FIFEAudio::stopAudio() {
-
-}
-
-void FIFEAudio::playSound() {
-
-}
