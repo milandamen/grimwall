@@ -1,7 +1,7 @@
 
 #include "AUnit.h"
 
-AUnit::AUnit(std::string name, int reach, int attackDelay, int power, int hitPoints, int speed,
+AUnit::AUnit(std::string name, double reach, int attackDelay, int power, int hitPoints, double speed,
              int visibility)
         : name{name}, reach{reach}, attackDelay{attackDelay}, power{power}, hitPoints{hitPoints}, speed{speed}, visibility{visibility}
 {
@@ -15,7 +15,7 @@ std::string AUnit::getName() {
     return this->name;
 }
 
-int AUnit::getReach() {
+double AUnit::getReach() {
     return this->reach;
 }
 
@@ -31,7 +31,7 @@ int AUnit::getHitPoints() {
     return this->hitPoints;
 }
 
-int AUnit::getSpeed() {
+double AUnit::getSpeed() {
     return this->speed;
 }
 
@@ -40,6 +40,8 @@ int AUnit::getVisibility() {
 }
 
 void AUnit::receiveDamage(int power) {
+    std::cout << this->name << "hp: " << this->hitPoints << "power" << power << std::endl;
+
     this->hitPoints -= power;
 }
 

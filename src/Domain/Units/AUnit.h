@@ -8,26 +8,26 @@
 class AUnit : public IUnit {
 protected:
     std::string name;
-    int reach;
+    double reach;
     int attackDelay;
     int power;
     int hitPoints;
-    int speed;
+    double speed;
     int visibility;
 
     double x{0};
     double y{0};
 public:
-    AUnit(std::string name, int reach, int attackDelay, int power, int hitPoints, int speed,
+    AUnit(std::string name, double reach, int attackDelay, int power, int hitPoints, double speed,
     int visibility);
     ~AUnit();
 
     virtual std::string getName();
-    virtual int getReach();
+    virtual double getReach();
     virtual int getAttackDelay();
     virtual int getPower();
     virtual int getHitPoints();
-    virtual int getSpeed();
+    virtual double getSpeed();
     virtual int getVisibility();
     virtual void receiveDamage(int power);
 

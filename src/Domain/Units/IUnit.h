@@ -7,11 +7,11 @@ class IUnit {
 public:
     virtual ~IUnit() = default;
     virtual std::string getName() = 0;
-    virtual int getReach() = 0;
+    virtual double getReach() = 0;
     virtual int getAttackDelay() = 0;
     virtual int getPower() = 0;
     virtual int getHitPoints() = 0;
-    virtual int getSpeed() = 0;
+    virtual double getSpeed() = 0;
     virtual int getVisibility() = 0;
     virtual void receiveDamage(int power) = 0;
 

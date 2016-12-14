@@ -8,7 +8,7 @@ std::string BuffDecorator::getName() {
     return this->m_wrappee->getName();
 }
 
-int BuffDecorator::getReach() {
+double BuffDecorator::getReach() {
     return this->m_wrappee->getReach();
 }
 
@@ -24,7 +24,7 @@ int BuffDecorator::getHitPoints() {
     return this->m_wrappee->getHitPoints();
 }
 
-int BuffDecorator::getSpeed()
+double BuffDecorator::getSpeed()
 {
     return this->m_wrappee->getSpeed();
 }

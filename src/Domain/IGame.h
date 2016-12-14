@@ -11,6 +11,7 @@ public:
     virtual UnitManager<AHero>* getHero() = 0;
     virtual void quit() = 0;
     virtual std::vector<UnitManager<ATower>*> getTowers() = 0;
+    virtual void removeTower(int i) = 0;
 };
 
 #endif

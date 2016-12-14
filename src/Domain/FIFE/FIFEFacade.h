@@ -24,6 +24,7 @@
 #include "../IGame.h"
 #include "../../Input/ICallback.h"
 #include "Camera/FIFECamera.h"
+#include "../TowerFactory.h"
 
 namespace fs = boost::filesystem;
 
@@ -132,8 +133,11 @@ public:
     /**
      *  load towers from map
      */
-    std::vector<std::string> loadTowers() override;
+    std::vector<UnitManager<ATower>*> loadTowers() override;
 
+    bool instanceExists(std::string name, std::string layerName) override;
+    double getInstanceX(std::string name, std::string layerName) override;
+    double getInstanceY(std::string name, std::string layerName) override;
 
     /**
      * Move the character
@@ -168,12 +172,12 @@ public:
     /**
      * Gets the instance from the layer, then both removes and deletes it.
      */
-    void deleteInstance(std::string instanceName) override;
+    void deleteInstance(std::string instanceName, std::string layerName) override;
 
     /**
      * Gets the instance from the layer, then removes it. Beware: this method does not delete the object.
      */
-    void removeInstance(std::string instanceName) override;
+    void removeInstance(std::string instanceName, std::string layerName) override;
     
     /**
      * Run a tick for userland code like input callbacks

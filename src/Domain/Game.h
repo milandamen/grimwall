@@ -10,7 +10,6 @@
 #include "Units/Buff/BoneStormBuff.h"
 
 #include <vector>
-#include "TowerFactory.h"
 
 class Game : public IGame {
 private:
@@ -46,6 +45,7 @@ public:
     virtual UnitManager<AHero>* getHero() override;
     virtual void quit() override;
     virtual std::vector<UnitManager<ATower>*> getTowers() override;
+    void removeTower(int i) override;
 };
 
 

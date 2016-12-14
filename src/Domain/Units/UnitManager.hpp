@@ -16,11 +16,11 @@ public:
     UnitManager(UnitType* unit);
     ~UnitManager();
     std::string getName() override;
-    int getReach() override;
+    double getReach() override;
     int getAttackDelay() override;
     int getPower() override;
     int getHitPoints() override;
-    int getSpeed() override;
+    double getSpeed() override;
     int getVisibility() override;
     void receiveDamage(int power) override;
 
@@ -51,7 +51,7 @@ std::string UnitManager<UnitType>::getName() {
 }
 
 template <typename UnitType>
-int UnitManager<UnitType>::getReach() {
+double UnitManager<UnitType>::getReach() {
     return unit->getReach();
 }
 
@@ -71,7 +71,7 @@ int UnitManager<UnitType>::getHitPoints() {
 }
 
 template <typename UnitType>
-int UnitManager<UnitType>::getSpeed() {
+double UnitManager<UnitType>::getSpeed() {
     return unit->getSpeed();
 }
 

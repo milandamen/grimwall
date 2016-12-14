@@ -13,11 +13,11 @@ public:
     ~BuffDecorator(){};
 
     std::string getName();
-    int getReach();
+    double getReach();
     int getAttackDelay();
     int getPower();
     int getHitPoints();
-    int getSpeed();
+    double getSpeed();
     int getVisibility();
     void receiveDamage(int power);
 
