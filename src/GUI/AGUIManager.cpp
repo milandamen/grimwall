@@ -4,4 +4,4 @@
 
 #include "AGUIManager.h"
 
-AGUIManager::~AGUIManager() {}
+// AGUIManager::~AGUIManager() {}

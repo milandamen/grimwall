@@ -8,7 +8,7 @@
 #include "AGUIWidget.h"
 #include <string>
 
-class GUIWidgetImage : public AGUIWidget {
+class GUIWidgetImage : virtual public AGUIWidget {
 public:
     virtual void setAsset(std::string asset) = 0;
 };

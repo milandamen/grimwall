@@ -15,10 +15,11 @@
 #include "../../../GUI/AGUIManager.h"
 #include "../../../GUI/Widget/AGUIWidget.h"
 
-#include "Widgets/FIFEChanButton.h"
-#include "Widgets/FIFEChanLabel.h"
-#include "Widgets/FIFEChanImage.h"
-#include "Widgets/FIFEChanRadio.h"
+#include "Widget/FIFEChanButton.h"
+#include "Widget/FIFEChanLabel.h"
+#include "Widget/FIFEChanImage.h"
+#include "Widget/FIFEChanRadio.h"
+#include "Widget/FIFEChanContainer.h"
 
 class FIFEChanGuiManager : public AGUIManager {
 
@@ -35,10 +36,16 @@ public:
 
     fcn::Container* getContainer();
 
-    GUIWidgetButton* addButton(std::string caption, int x, int y) override;
-    GUIWidgetLabel* addLabel(std::string caption, int x, int y) override;
-    GUIWidgetImage* addImage(std::string asset, int x, int y, int width, int height) override;
-    GUIWidgetRadio* addRadio(std::string caption, std::string group, int x, int y, bool selected) override;
+    virtual GUIWidgetButton* addButton(std::string caption, int x, int y) override;
+    virtual GUIWidgetButton *createButton(std::string caption) override;
+    virtual GUIWidgetLabel* addLabel(std::string caption, int x, int y) override;
+    virtual GUIWidgetLabel *createLabel(std::string caption) override;
+    virtual GUIWidgetImage* addImage(std::string asset, int x, int y, int width, int height) override;
+    virtual GUIWidgetImage *createImage(std::string asset, int width, int height) override;
+    virtual GUIWidgetRadio* addRadio(std::string caption, std::string group, int x, int y, bool selected) override;
+    virtual GUIWidgetRadio *createRadio(std::string caption, std::string group, bool selected) override;
+    virtual GUIWidgetContainer* addContainer(int x, int y, int width, int height) override;
+    virtual GUIWidgetContainer *createContainer(int width, int height) override;
 };
 
 

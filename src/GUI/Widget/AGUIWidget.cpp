@@ -4,4 +4,12 @@
 
 #include "AGUIWidget.h"
 
-AGUIWidget::~AGUIWidget() {}
+std::string AGUIWidget::getIdentifier()
+{
+    return this->identifier;
+}
+
+void AGUIWidget::setIdentifier(std::string identifier)
+{
+    this->identifier = identifier;
+}

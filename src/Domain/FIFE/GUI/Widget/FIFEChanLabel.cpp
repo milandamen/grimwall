@@ -14,12 +14,27 @@ FIFEChanLabel::~FIFEChanLabel()
     delete this->label;
 }
 
+int FIFEChanLabel::getX()
+{
+    return this->label->getX();
+}
+
 void FIFEChanLabel::setX(int x) {
     this->label->setX(x);
 }
 
+int FIFEChanLabel::getY()
+{
+    return this->label->getY();
+}
+
 void FIFEChanLabel::setY(int y) {
     this->label->setY(y);
+}
+
+int FIFEChanLabel::getWidth()
+{
+    return this->label->getWidth();
 }
 
 void FIFEChanLabel::setWidth(int width)
@@ -27,8 +42,23 @@ void FIFEChanLabel::setWidth(int width)
     this->label->setWidth(width);
 }
 
+int FIFEChanLabel::getHeight()
+{
+    return this->label->getHeight();
+}
+
 void FIFEChanLabel::setHeight(int height){
     this->label->setHeight(height);
+}
+
+bool FIFEChanLabel::isVisible()
+{
+    return this->label->isVisible();
+}
+
+void FIFEChanLabel::setVisible(bool visible)
+{
+    this->label->setVisible(visible);
 }
 
 fcn::Widget* FIFEChanLabel::getWidget() {

@@ -11,8 +11,19 @@
 
 class ScreenGame : public GUI {
 private:
-    IGame* game;
-    AGUIManager* manager;
+    IGame* game {nullptr};
+    AGUIManager* manager {nullptr};
+
+    GUIWidgetButton* rightMenu {nullptr};
+    GUIWidgetContainer* rightMenuContainer {nullptr};
+    GUIWidgetButton* rightMenuBtnSettings {nullptr};
+    GUIWidgetButton* rightMenuBtnQuit {nullptr};
+    GUIWidgetButton* rightMenuBtnPause {nullptr};
+
+    void toggleRightMenu();
+    void togglePauseGame();
+    void showOptions();
+    void quitGame();
 
 public:
     ScreenGame(IGame* game, AGUIManager* manager);

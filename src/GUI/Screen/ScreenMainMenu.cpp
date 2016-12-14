@@ -35,7 +35,7 @@ ScreenMainMenu::ScreenMainMenu(IGame* game, AGUIManager* manager)
     be->setForegroundColor(255, 255, 255, 255);
     be->setBackgroundColor(0, 0, 0, 0);
     be->onClick([&](){
-        game->quit();
+        this->game->quit();
     });
 }
 

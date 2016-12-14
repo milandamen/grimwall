@@ -19,12 +19,27 @@ FIFEChanImageButton::~FIFEChanImageButton()
     delete this->imageButton;
 }
 
+int FIFEChanImageButton::getX()
+{
+    return this->imageButton->getX();
+}
+
 void FIFEChanImageButton::setX(int x) {
     this->imageButton->setX(x);
 }
 
+int FIFEChanImageButton::getY()
+{
+    return this->imageButton->getY();
+}
+
 void FIFEChanImageButton::setY(int y) {
     this->imageButton->setY(y);
+}
+
+int FIFEChanImageButton::getWidth()
+{
+    return this->imageButton->getWidth();
 }
 
 void FIFEChanImageButton::setWidth(int width)
@@ -32,8 +47,23 @@ void FIFEChanImageButton::setWidth(int width)
     this->imageButton->setWidth(width);
 }
 
+int FIFEChanImageButton::getHeight()
+{
+    return this->imageButton->getHeight();
+}
+
 void FIFEChanImageButton::setHeight(int height){
     this->imageButton->setHeight(height);
+}
+
+bool FIFEChanImageButton::isVisible()
+{
+    return this->imageButton->isVisible();
+}
+
+void FIFEChanImageButton::setVisible(bool visible)
+{
+    this->imageButton->setVisible(visible);
 }
 
 fcn::Widget* FIFEChanImageButton::getWidget() {

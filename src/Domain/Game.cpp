@@ -29,14 +29,14 @@ Game::Game()
     // Game loop
     this->curTime = 0;
     this->lastTime = 0;
-    this->isPaused = true;
+    this->paused = true;
 
-    while (this->isRunning)
+    while (this->running)
     {
         updateFPS();
 
         // Check if we are in pause state
-        if(!this->isPaused) {
+        if(!this->paused) {
             // Run an engine tick for userland code
             EngineFacade::engine()->tick();
         }
@@ -66,9 +66,14 @@ int Game::getCurrentScore() {
     return this->score;
 }
 
+bool Game::isPaused()
+{
+    return this->paused;
+}
+
 void Game::setPaused(bool paused)
 {
-    this->isPaused = paused;
+    this->paused = paused;
 }
 
 void Game::setHero(AHero *hero)
@@ -92,7 +97,7 @@ UnitManager<AHero>* Game::getHero() {
 
 void Game::quit()
 {
-    isRunning = false;
+    running = false;
 }
 
 void Game::initInput()

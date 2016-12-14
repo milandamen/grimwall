@@ -10,14 +10,16 @@
 #include <string>
 #include <functional>
 
-class GUIWidgetButton : public AGUIWidget {
+class GUIWidgetButton : virtual public AGUIWidget {
 
 protected:
     std::function<void()> onClickDelegate = [](){}; // Empty delegate
+    std::function<void(AGUIWidget*)> onClickDelegateWithWidget = [](AGUIWidget* widget){};
 
 public:
     virtual void setCaption(std::string caption) = 0;
     virtual void onClick(std::function<void()> delegate);
+    virtual void onClick(std::function<void(AGUIWidget*)> delegate);
     virtual void setHighlightColor(int r, int g, int b, int a) = 0;
 };
 

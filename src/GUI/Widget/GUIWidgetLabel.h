@@ -10,7 +10,7 @@
 #include "GUITextAlignment.h"
 
 
-class GUIWidgetLabel : public AGUIWidget {
+class GUIWidgetLabel : virtual public AGUIWidget {
 public:
     virtual void setCaption(std::string caption) = 0;
     virtual void setAlignment(GUITextAlignment alignment) = 0;

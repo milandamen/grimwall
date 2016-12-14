@@ -31,16 +31,34 @@ void FIFEChanRadio::setSelected(bool selected)
     this->radio->setSelected(selected);
 }
 
-void FIFEChanRadio::onClick(std::function<void()> delegate) {
+void FIFEChanRadio::onClick(std::function<void()> delegate)
+{
     this->onClickDelegate = delegate;
 }
 
-void FIFEChanRadio::setX(int x) {
+int FIFEChanRadio::getX()
+{
+    return this->radio->getX();
+}
+
+void FIFEChanRadio::setX(int x)
+{
     this->radio->setX(x);
 }
 
-void FIFEChanRadio::setY(int y) {
+int FIFEChanRadio::getY()
+{
+    return this->radio->getY();
+}
+
+void FIFEChanRadio::setY(int y)
+{
     this->radio->setY(y);
+}
+
+int FIFEChanRadio::getWidth()
+{
+    return this->radio->getWidth();
 }
 
 void FIFEChanRadio::setWidth(int width)
@@ -48,11 +66,28 @@ void FIFEChanRadio::setWidth(int width)
     this->radio->setWidth(width);
 }
 
-void FIFEChanRadio::setHeight(int height){
+int FIFEChanRadio::getHeight()
+{
+    return this->radio->getHeight();
+}
+
+void FIFEChanRadio::setHeight(int height)
+{
     this->radio->setHeight(height);
 }
 
-fcn::Widget* FIFEChanRadio::getWidget() {
+bool FIFEChanRadio::isVisible()
+{
+    return this->radio->isVisible();
+}
+
+void FIFEChanRadio::setVisible(bool visible)
+{
+    this->radio->setVisible(visible);
+}
+
+fcn::Widget* FIFEChanRadio::getWidget()
+{
     return this->radio;
 }
 

@@ -13,7 +13,7 @@
 #include "../../GUI/Widget/GUIWidgetRadio.h"
 
 
-class GUIWidgetRadio : public AGUIWidget {
+class GUIWidgetRadio : public virtual AGUIWidget {
 protected:
     std::function<void()> onClickDelegate = [](){}; // Empty delegate
 

@@ -40,8 +40,8 @@ private:
     void loadTowers();
     void deleteTowers();
 
-    bool isRunning {true};
-    bool isPaused {false};
+    bool running {true};
+    bool paused {false};
 
     /**
      * Value that denotes the current time
@@ -69,6 +69,7 @@ public:
     ~Game();
 
     virtual void setMap(std::string path) override;
+    virtual bool isPaused() override;
     virtual void setPaused(bool paused) override;
     virtual void setHero(AHero* hero) override;
     virtual void setUI(std::string name) override;
