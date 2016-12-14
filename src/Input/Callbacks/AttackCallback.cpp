@@ -37,9 +37,11 @@ void AttackCallback::execute() {
 
                 delete tower;
                 towers->erase(it);
-            } else
+            } else {
                 ++it;
-        } else
+            }
+        } else {
             ++it;
+        }
     }
 }
