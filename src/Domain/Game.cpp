@@ -6,8 +6,9 @@ Game::Game()
 {
     EngineFacade::setEngine("FIFE", this);
     EngineFacade::engine()->setRenderBackend("OpenGL");
+
     EngineFacade::engine()->setFPSLimit(60);
-    
+
     EngineFacade::engine()->init();
 
     initInput();
@@ -16,7 +17,7 @@ Game::Game()
 
     this->hero = new UnitManager<AHero>(new Dralas());
     this->hero->getBase()->addAbility(new DeathStrike(this->hero));
-
+    
     // Game loop
     curTime = 0;
     lastTime = 0;
@@ -34,7 +35,7 @@ Game::Game()
         curTime = EngineFacade::engine()->getTime();
     }
     
-    EngineFacade::destroy();     // TODO Currently crashes (SEGFAULT), problem not in my code.
+    EngineFacade::destroy();
     delete keyboardMapper;
 }
 
@@ -78,13 +79,7 @@ void Game::loadTowers()
 {
     std::vector<std::string> towerIds = EngineFacade::engine()->loadTowers();
 
-    for (unsigned int i = 0; i < towerIds.size(); ++i)
-    {
-        ATower* tower = new DefaultTower();
-        tower->setId(towerIds.at(i));
-
-        this->towers.push_back(tower);
-    }
+    this->towers = generateTowers(towerIds);
 }
 
 void Game::deleteTowers()
@@ -94,4 +89,8 @@ void Game::deleteTowers()
         delete this->towers.at(i);
     }
     this->towers.clear();
+}
+
+std::vector<UnitManager<ATower> *> Game::getTowers() {
+    return this->towers;
 }

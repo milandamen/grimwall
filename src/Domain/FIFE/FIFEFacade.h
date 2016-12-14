@@ -3,6 +3,9 @@
 
 #include "controller/engine.h"
 #include "controller/enginesettings.h"
+#include "model/model.h"
+#include "model/structures/instance.h"
+#include "view/visual.h"
 #include "loaders/native/map/maploader.h"
 #include "model/structures/map.h"
 #include "model/structures/layer.h"
@@ -16,6 +19,7 @@
 #include "SDL.h"
 
 #include "../IEngineFacade.h"
+#include "FIFEMouseListener.h"
 #include "FIFEKeyListener.h"
 #include "../IGame.h"
 #include "../../Input/ICallback.h"
@@ -28,7 +32,6 @@ private:
     FIFE::Engine* engine {nullptr};
     FIFE::FifechanManager* guimanager {nullptr};
     FIFE::Map* map {nullptr};
-    FIFE::Camera* mainCamera {nullptr};
 
     fcn::Button* btnOptions {nullptr};
     fcn::Button* btnExit {nullptr};
@@ -36,6 +39,8 @@ private:
 
     IGame* game {nullptr};
     FIFEKeyListener* keyListener {nullptr};
+
+    FIFEMouseListener* mouseListener {nullptr};
 
     bool pumpingInitialized {false};
     
@@ -47,11 +52,6 @@ public:
 
     /**** Encapsulation ****/
 
-    /**
-     * Get the GUI Manager
-     * @return
-     */
-    FIFE::FifechanManager* getGuiManager() override;
     void action(const fcn::ActionEvent& actionEvent) override;
     void keyPressed(fcn::KeyEvent& keyEvent) override;
     void mousePressed(fcn::MouseEvent& mouseEvent) override;
@@ -62,7 +62,16 @@ public:
      * Set the render backend used by the engine (OpenGL or SDL).
      */
     void setRenderBackend(std::string engine) override;
-    
+
+    /**
+     * Gets the width of the window.
+     */
+    const uint16_t getScreenWidth();
+    /**
+     * Gets the height of the window.
+     */
+    const uint16_t getScreenHeight();
+
     /**
      * Sets the width of the window.
      */
@@ -102,8 +111,7 @@ public:
      * Load a map specified by the path into the engine.
      */
     void loadMap(std::string path) override;
-    
-    
+
     /**** Running ****/
     
     /**
@@ -127,16 +135,15 @@ public:
     std::vector<std::string> loadTowers() override;
 
 
-
     /**
-     * Get layer by name
+     * Move the character
      */
-    void setInstanceLocation(std::string name, double x, double y) override;
-    
+    void move(std::string name, double x, double y, int moveSpeed) override;
+  
     /**
      * Register a callback with a key combination
      */
-    void registerCallback(std::string, ICallback* callback) override;
+    void registerCallback(std::string keys, ICallback* callback) override;
 
     /**
      * Zoom in
@@ -151,13 +158,28 @@ public:
     /**
      * Update location
      */
-    void updateLocation(std::string location) override;
+    void updateLocation(int x, int y) override;
+
+    /**
+     * Creates a new instance on a given location and returns the name of the object
+     */
+    std::string createInstance(std::string objectName, std::string instanceName, double x, double y) override;
+
+    /**
+     * Gets the instance from the layer, then both removes and deletes it.
+     */
+    void deleteInstance(std::string instanceName) override;
+
+    /**
+     * Gets the instance from the layer, then removes it. Beware: this method does not delete the object.
+     */
+    void removeInstance(std::string instanceName) override;
     
     /**
      * Run a tick for userland code like input callbacks
      */
     void tick() override;
-    
+
 };
 
 #endif
