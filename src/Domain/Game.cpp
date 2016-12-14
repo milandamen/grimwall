@@ -99,30 +99,22 @@ void Game::letTowersAttack() {
     {
         // for each tower check if the hero is within range
 
-        UnitManager<ATower>* tower = towers.at(i);
+        UnitManager<ATower>* tower {towers.at(i)};
 
         //check if attack delay has passed
-        int timeSince = curTime - tower->getBase()->getTimeLastAttack();
+        int timeSince {curTime - tower->getBase()->getTimeLastAttack()};
 
-        if(tower->getBase()->getTimeLastAttack() == -23 || timeSince >= tower->getAttackDelay())
+        if(tower->getBase()->getTimeLastAttack() == 0 || timeSince >= tower->getAttackDelay())
         {
             //time delay passed
             updateLocation(tower, tower->getName());
             updateLocation(this->hero, this->hero->getName());
 
-
-            double unitX = hero->getX();
-            double unitY = hero->getY();
             //calculate distance between unit and tower
-            double xTot = (unitX - tower->getX());
-            double yTot = (unitY - tower->getY());
+            double deltaX {std::pow((hero->getX() - tower->getX()), 2.0)};
+            double deltaY {std::pow((hero->getY() - tower->getY()), 2.0)};
 
-            double deltaX = std::pow(xTot, 2.0);
-            double deltaY = std::pow(yTot, 2.0);
-
-            double sum = deltaX + deltaY;
-
-            double distance = std::sqrt(sum);
+            double distance {std::sqrt(deltaX + deltaY)};
 
             if(distance <= tower->getReach())
             {
@@ -130,7 +122,7 @@ void Game::letTowersAttack() {
 
                 //get tower attack
                 //subtract it from hero hp
-                int damage = tower->getPower();
+                int damage {tower->getPower()};
                 hero->receiveDamage(damage);
 
                 std::cout << "Hero hp: " << hero->getHitPoints() << std::endl;

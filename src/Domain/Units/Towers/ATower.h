@@ -7,7 +7,7 @@
 class ATower : public AUnit {
 private:
     std::string id;
-    int timeLastAttack {-23};
+    int timeLastAttack {0};
 public:
     ATower (std::string name, int reach, int attackDelay, int power, int hitPoints, int visibility);
     virtual std::string getId();
