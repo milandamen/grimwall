@@ -89,11 +89,6 @@ void Game::deleteTowers()
     this->towers.clear();
 }
 
-std::vector<UnitManager<ATower> *> Game::getTowers() {
-    return this->towers;
-}
-
-void Game::removeTower(int i) {
-    delete this->towers[i];
-    this->towers.erase(this->towers.begin()+i);
+std::vector<UnitManager<ATower> *>* Game::getTowers() {
+    return &this->towers;
 }
