@@ -37,6 +37,7 @@ FIFEFacade::~FIFEFacade() {
     delete keyListener;
     delete mouseListener;
     delete fifeCamera;
+    delete fifeAudio;
 }
 
 void FIFEFacade::setRenderBackend(std::string engine)
