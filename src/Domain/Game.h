@@ -13,13 +13,16 @@
 #include "Units/Towers/ATower.h"
 #include "Units/Towers/DefaultTower.h"
 
+#include <vector>
+#include "TowerFactory.h"
+
 class Game : public IGame {
 private:
     UnitManager<AHero>* hero{nullptr};
 
     TroupManager* troupManager;
 
-    std::vector<ATower*> towers;
+    std::vector<UnitManager<ATower>*> towers;
     void loadTowers();
     void deleteTowers();
     /**
@@ -49,6 +52,7 @@ public:
     TroupManager* getTroupManager();
     virtual UnitManager<AHero>* getHero() override;
     virtual void quit() override;
+    virtual std::vector<UnitManager<ATower>*> getTowers() override;
 };
 
 

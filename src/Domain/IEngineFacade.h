@@ -17,10 +17,6 @@ class IEngineFacade
 public:
     virtual ~IEngineFacade() {};
 
-    /** Encapsulation **/
-
-    virtual FIFE::IGUIManager* getGuiManager() = 0;
-
     /** Settings **/
     
     virtual void setRenderBackend(std::string engine) = 0;
@@ -64,8 +60,9 @@ public:
     /**
      * Register a callback with a key combination
      */
-    virtual void registerCallback(std::string, ICallback* callback) = 0;
+    virtual void registerCallback(std::string keys, ICallback* callback) = 0;
 
+    //TODO: register Callback for mouse listener
     /**
      * Zoom in
      */
@@ -79,7 +76,7 @@ public:
     /**
      * Update the screen camera
      */
-    virtual void updateLocation(std::string location) = 0;
+    virtual void updateLocation(int x, int y) = 0;
 
     /**
      * Creates a new instance on a given location and returns the name of the object
@@ -99,7 +96,7 @@ public:
     /**
      * Set the location of an instance
      */
-    virtual void setInstanceLocation(std::string name, double x, double y) = 0;
+    virtual void move(std::string name, double x, double y, int moveSpeed) = 0;
     
     /**
      * Run a tick for userland code like input callbacks

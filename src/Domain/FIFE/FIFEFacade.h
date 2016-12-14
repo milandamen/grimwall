@@ -19,6 +19,7 @@
 #include "SDL.h"
 
 #include "../IEngineFacade.h"
+#include "FIFEMouseListener.h"
 #include "FIFEKeyListener.h"
 #include "../IGame.h"
 #include "../../Input/ICallback.h"
@@ -31,7 +32,6 @@ private:
     FIFE::Engine* engine {nullptr};
     FIFE::FifechanManager* guimanager {nullptr};
     FIFE::Map* map {nullptr};
-    FIFE::Camera* mainCamera {nullptr};
 
     fcn::Button* btnOptions {nullptr};
     fcn::Button* btnExit {nullptr};
@@ -39,6 +39,8 @@ private:
 
     IGame* game {nullptr};
     FIFEKeyListener* keyListener {nullptr};
+
+    FIFEMouseListener* mouseListener {nullptr};
 
     bool pumpingInitialized {false};
     
@@ -50,11 +52,6 @@ public:
 
     /**** Encapsulation ****/
 
-    /**
-     * Get the GUI Manager
-     * @return
-     */
-    FIFE::FifechanManager* getGuiManager() override;
     void action(const fcn::ActionEvent& actionEvent) override;
     void keyPressed(fcn::KeyEvent& keyEvent) override;
     void mousePressed(fcn::MouseEvent& mouseEvent) override;
@@ -65,7 +62,16 @@ public:
      * Set the render backend used by the engine (OpenGL or SDL).
      */
     void setRenderBackend(std::string engine) override;
-    
+
+    /**
+     * Gets the width of the window.
+     */
+    const uint16_t getScreenWidth();
+    /**
+     * Gets the height of the window.
+     */
+    const uint16_t getScreenHeight();
+
     /**
      * Sets the width of the window.
      */
@@ -130,14 +136,14 @@ public:
 
 
     /**
-     * Get layer by name
+     * Move the character
      */
-    void setInstanceLocation(std::string name, double x, double y) override;
-    
+    void move(std::string name, double x, double y, int moveSpeed) override;
+  
     /**
      * Register a callback with a key combination
      */
-    void registerCallback(std::string, ICallback* callback) override;
+    void registerCallback(std::string keys, ICallback* callback) override;
 
     /**
      * Zoom in
@@ -152,7 +158,7 @@ public:
     /**
      * Update location
      */
-    void updateLocation(std::string location) override;
+    void updateLocation(int x, int y) override;
 
     /**
      * Creates a new instance on a given location and returns the name of the object

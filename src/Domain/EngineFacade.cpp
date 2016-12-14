@@ -17,6 +17,19 @@ void EngineFacade::setEngine(std::string engine, IGame* game)
     }
 }
 
+void EngineFacade::setEngine(IEngineFacade* engine)
+{
+    if (_engine != nullptr)
+    {
+        if (_engine == engine) { return; }
+        
+        destroy();
+    }
+    
+    _engine = engine;
+    currentEngineName = "CUSTOM";
+}
+
 void EngineFacade::destroy()
 {
     delete _engine;

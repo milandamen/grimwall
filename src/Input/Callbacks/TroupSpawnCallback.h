@@ -4,7 +4,7 @@
 #define GRIMWALL_TROUPSPAWNCALLBACK_H
 
 #include "../KeypressCallback.h"
-#include "../../Domain/IGame.h"
+#include "../../Domain/Units/Troups/TroupManager.h"
 
 #include <iostream>
 

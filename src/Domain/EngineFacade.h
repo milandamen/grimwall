@@ -5,7 +5,7 @@
 #include <iostream>
 #include "IEngineFacade.h"
 #include "FIFE/FIFEFacade.h"
-class IGame;
+#include "IGame.h"
 
 /**
  * Manager of which enginefacade to use
@@ -17,9 +17,11 @@ private:
     
     EngineFacade();
     ~EngineFacade();
+
 public:
     static IEngineFacade* engine();
     static void setEngine(std::string engine, IGame* game);
+    static void setEngine(IEngineFacade* engine);
     static void destroy();
 };
 
