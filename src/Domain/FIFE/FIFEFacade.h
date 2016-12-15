@@ -18,6 +18,8 @@
 #include "boost/filesystem.hpp"
 #include "SDL.h"
 
+#include <vector>
+
 #include "../IEngineFacade.h"
 #include "FIFEMouseListener.h"
 #include "FIFEKeyListener.h"
@@ -138,7 +140,7 @@ public:
     /**
      * Move the character
      */
-    void move(std::string name, double x, double y, int moveSpeed) override;
+    void move(std::string name, std::string layerName, double x, double y, int moveSpeed) override;
   
     /**
      * Register a callback with a key combination

@@ -20,7 +20,7 @@ class Game : public IGame {
 private:
     UnitManager<AHero>* hero{nullptr};
 
-    TroupManager* troupManager;
+    TroupManager troupManager;
 
     std::vector<UnitManager<ATower>*> towers;
     void loadTowers();
@@ -49,7 +49,7 @@ private:
 public:
     Game();
     ~Game();
-    TroupManager* getTroupManager();
+    virtual TroupManager* getTroupManager() override;
     virtual UnitManager<AHero>* getHero() override;
     virtual void quit() override;
     virtual std::vector<UnitManager<ATower>*> getTowers() override;

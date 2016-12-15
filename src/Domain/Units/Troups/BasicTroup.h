@@ -8,8 +8,8 @@ class BasicTroup : public ATroup {
 
 private:
 public:
-    BasicTroup();
-
+    BasicTroup(std::string name);
+    ~BasicTroup();
 };
 
 

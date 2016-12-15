@@ -92,7 +92,7 @@ void Game::deleteTowers()
 }
 
 TroupManager* Game::getTroupManager() {
-    return this->troupManager;
+    return &this->troupManager;
 }
 
 std::vector<UnitManager<ATower> *> Game::getTowers() {

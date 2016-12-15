@@ -3,19 +3,19 @@
 
 #include <vector>
 #include "ATroup.h"
+#include "BasicTroup.h"
 #include "../../EngineFacade.h"
 
 class TroupManager {
 
 private:
-    std::vector<ATroup*>* troups;
+    std::vector<ATroup*> troups;
 public:
     TroupManager();
     ~TroupManager();
-    std::vector<ATroup*>* getTroups();
+    std::vector<ATroup*> getTroups();
     void moveTroups(double x, double y);
-    void createTroup(std::string objectName,
-                     std::string instanceName,
+    void createTroup(std::string instanceName,
                      double x,
                      double y);
 

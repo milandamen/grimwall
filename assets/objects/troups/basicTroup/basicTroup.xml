@@ -24,8 +24,8 @@
 			<direction delay="130" dir="315" frames="9"/>
 		</animation>
 	</action>
-	<action id="run">
-		<animation atlas="run.png" height="96" width="96">
+	<action id="walk">
+		<animation atlas="walk.png" height="96" width="96">
 			<direction delay="130" dir="0" frames="9"/>
 			<direction delay="130" dir="45" frames="9"/>
 			<direction delay="130" dir="90" frames="9"/>

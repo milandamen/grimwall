@@ -5,7 +5,7 @@
 #include "Units/Troups/ATroup.h"
 #include "Units/UnitManager.hpp"
 #include "Units/Towers/ATower.h"
-//#include "Units/Troups/TroupManager.h"
+#include "Units/Troups/TroupManager.h"
 
 class TroupManager;
 
