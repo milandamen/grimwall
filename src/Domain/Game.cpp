@@ -33,7 +33,7 @@ Game::Game()
         
         // Render a frame
         EngineFacade::engine()->render();
-        
+        letTowersAttack();
         curTime = EngineFacade::engine()->getTime();
     }
     
@@ -103,5 +103,46 @@ ISaveGameManager* Game::getSaveGameManager()
 void Game::setSaveGameManager(ISaveGameManager* saveGameManager)
 {
     this->saveGameManager = saveGameManager;
+}
+
+void Game::letTowersAttack() {
+    //iterate through all towers
+    for(unsigned int i = 0; i < towers.size(); ++i)
+    {
+        // for each tower check if the hero is within range
+
+        UnitManager<ATower>* tower {towers.at(i)};
+
+        //check if attack delay has passed
+        int timeSince {curTime - tower->getBase()->getTimeLastAttack()};
+
+        if(tower->getBase()->getTimeLastAttack() == 0 || timeSince >= tower->getAttackDelay())
+        {
+            //time delay passed
+            updateLocation(tower, tower->getName());
+            updateLocation(this->hero, this->hero->getName());
+
+            //calculate distance between unit and tower
+            double deltaX {std::pow((hero->getX() - tower->getX()), 2.0)};
+            double deltaY {std::pow((hero->getY() - tower->getY()), 2.0)};
+
+            double distance {std::sqrt(deltaX + deltaY)};
+
+            if(distance <= tower->getReach())
+            {
+                //hero in range, attack
+
+                //get tower attack
+                //subtract it from hero hp
+                int damage {tower->getPower()};
+                hero->receiveDamage(damage);
+
+                std::cout << "Hero hp: " << hero->getHitPoints() << std::endl;
+                //update time tower last attacked
+                tower->getBase()->setTimeLastAttack(curTime);
+
+            }
+        }
+    }
 }
 

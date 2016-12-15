@@ -10,6 +10,7 @@
 #include "Units/Buff/BoneStormBuff.h"
 #include "SaveGame/ISaveGameManager.h"
 #include "SaveGame/SaveGameManager.h"
+#include "UnitFactory.h"
 
 #include <vector>
 
@@ -46,6 +47,7 @@ public:
     virtual UnitManager<AHero>* getHero() override;
     virtual void quit() override;
     virtual std::vector<UnitManager<ATower>*>* getTowers() override;
+    virtual void letTowersAttack() override;
     virtual ISaveGameManager* getSaveGameManager() override;
     virtual void setSaveGameManager(ISaveGameManager* saveGameManager) override;
 };
