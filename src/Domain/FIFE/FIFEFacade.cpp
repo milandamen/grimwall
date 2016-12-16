@@ -266,7 +266,8 @@ std::string FIFEFacade::createInstance(std::string objectName, std::string insta
                 location->setLayerCoordinates(mapCoords);
                 //Check if position is occupied
                 if(layer->getInstancesAt(*location).size() == 0) {
-                    layer->createInstance(object, mapCoords, instanceName);
+                    FIFE::Instance* instance {layer->createInstance(object, mapCoords, instanceName)};
+                    FIFE::InstanceVisual::create(instance);
                 }
                 return instanceName;
             }
