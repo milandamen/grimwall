@@ -22,7 +22,7 @@ void TroupManager::moveTroups(double x, double y) {
 }
 
 void TroupManager::createTroup(std::string instanceName, double x, double y){
-    ATroup* tempTroop {new BasicTroup("" + instanceName + std::to_string(troups.size()))};
+    ATroup* tempTroop {new Swordsman("" + instanceName + std::to_string(troups.size()))};
     EngineFacade::engine()->createInstance(instanceName, instanceName + std::to_string(troups.size()), x, y);
     troups.push_back(tempTroop);
 }

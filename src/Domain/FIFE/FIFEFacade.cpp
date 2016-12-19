@@ -253,9 +253,9 @@ void FIFEFacade::move(std::string name, std::string layerName, double x, double 
 }
 
 std::string FIFEFacade::createInstance(std::string objectName, std::string instanceName, double x, double y){
-    if(map){
+    if(map) {
         FIFE::Layer* layer {map->getLayer("unitLayer")};
-        if(layer)  {
+        if(layer) {
             FIFE::Object* object {engine->getModel()->getObject(objectName, "grimwall")};
             if(object) {
                 FIFE::ModelCoordinate mapCoords{};

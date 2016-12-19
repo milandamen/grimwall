@@ -3,7 +3,7 @@
 
 #include <vector>
 #include "ATroup.h"
-#include "BasicTroup.h"
+#include "Swordsman.h"
 #include "../../EngineFacade.h"
 
 class TroupManager {
