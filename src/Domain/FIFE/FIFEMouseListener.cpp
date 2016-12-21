@@ -80,7 +80,7 @@ void FIFEMouseListener::mouseDragged(FIFE::MouseEvent& evt) {
     {
         // unregister the auto-scrolling event
         // we are now scrolling manually and do not
-        // want both trying to do it at the same time
+        // want both trying to do it at the same tim9e
         this->camera->unregisterEvent();
 
         // get the screen coordinates of the mouse

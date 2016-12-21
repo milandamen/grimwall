@@ -73,8 +73,6 @@ void FIFEFacade::setWindowTitle(std::string title)
     this->engine->getSettings().setWindowTitle(title);
     // FIFE's setWindowTitle doesn't work very well, that's why we manually use SDL below. Bad FIFE!
     SDL_SetWindowTitle(this->engine->getRenderBackend()->getWindow(), title.c_str());
-
-    initInput();
 }
 
 AGUIManager* FIFEFacade::createGUIManager() {
@@ -161,7 +159,6 @@ void FIFEFacade::initInput()
         this->engine->getEventManager()->addKeyListener(this->keyListener);
         this->engine->getEventManager()->addMouseListener(this->mouseListener);
     }
-
 }
 
 void FIFEFacade::render()
