@@ -63,6 +63,8 @@ private:
 
     void initInput();
     void updateFPS();
+
+    void tick();
 public:
     Game();
     ~Game();

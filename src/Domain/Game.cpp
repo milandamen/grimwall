@@ -38,6 +38,7 @@ Game::Game()
         if(!this->paused) {
             // Run an engine tick for userland code
             EngineFacade::engine()->tick();
+            this->tick();
         }
 
         // Render a frame
@@ -85,9 +86,15 @@ void Game::setHero(AHero *hero)
 
 void Game::setUI(std::string name)
 {
-    GUI* gui = this->guirepo->getGUI(name);
-    if(gui != nullptr)
+    GUI *gui = this->guirepo->getGUI(name);
+    if (gui != nullptr)
         EngineFacade::engine()->setActiveGUIManager(gui->getGuiManager());
+}
+
+void Game::tick() {
+    updateLocation(this->hero, this->hero->getName());
+
+    this->letTowersAttack();
 }
 
 UnitManager<AHero>* Game::getHero() {
@@ -96,18 +103,18 @@ UnitManager<AHero>* Game::getHero() {
 
 void Game::quit()
 {
-    running = false;
+    this->running = false;
 }
 
 void Game::initInput()
 {
-    keyboardMapper = new KeyboardMapper(this);
+    this->keyboardMapper = new KeyboardMapper(this);
 }
 
 void Game::updateFPS()
 {
     // Update FPS reading approx. every second
-    if ((curTime > 0) && (curTime - lastTime >= 1000))
+    if ((this->curTime > 0) && (this->curTime - this->lastTime >= 1000))
     {
         // Create Title + FPS string
         std::ostringstream oss;
@@ -117,7 +124,7 @@ void Game::updateFPS()
         EngineFacade::engine()->setWindowTitle(oss.str());
         
         // Update the last time FPS was calculated
-        lastTime = EngineFacade::engine()->getTime();
+        this->lastTime = EngineFacade::engine()->getTime();
     }
 }
 
@@ -141,23 +148,22 @@ std::vector<UnitManager<ATower> *>* Game::getTowers() {
 
 void Game::letTowersAttack() {
     //iterate through all towers
-    for(unsigned int i = 0; i < towers.size(); ++i)
+    for(unsigned int i = 0; i < this->towers.size(); ++i)
     {
         // for each tower check if the hero is within range
-        UnitManager<ATower>* tower {towers.at(i)};
+        UnitManager<ATower>* tower {this->towers.at(i)};
 
         //check if attack delay has passed
-        int timeSince {curTime - tower->getBase()->getTimeLastAttack()};
+        int timeSince {this->curTime - tower->getBase()->getTimeLastAttack()};
 
         if(tower->getBase()->getTimeLastAttack() == 0 || timeSince >= tower->getAttackDelay())
         {
             //time delay passed
             updateLocation(tower, tower->getName());
-            updateLocation(this->hero, this->hero->getName());
 
             //calculate distance between unit and tower
-            double deltaX {std::pow((hero->getX() - tower->getX()), 2.0)};
-            double deltaY {std::pow((hero->getY() - tower->getY()), 2.0)};
+            double deltaX {std::pow((this->hero->getX() - tower->getX()), 2.0)};
+            double deltaY {std::pow((this->hero->getY() - tower->getY()), 2.0)};
 
             double distance {std::sqrt(deltaX + deltaY)};
 
@@ -168,11 +174,11 @@ void Game::letTowersAttack() {
                 //get tower attack
                 //subtract it from hero hp
                 int damage {tower->getPower()};
-                hero->receiveDamage(damage);
+                this->hero->receiveDamage(damage);
 
-                std::cout << "Hero hp: " << hero->getHitPoints() << std::endl;
+                std::cout << "Hero hp: " << this->hero->getHitPoints() << std::endl;
                 //update time tower last attacked
-                tower->getBase()->setTimeLastAttack(curTime);
+                tower->getBase()->setTimeLastAttack(this->curTime);
 
             }
         }

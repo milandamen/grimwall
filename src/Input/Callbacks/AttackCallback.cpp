@@ -11,8 +11,6 @@ AttackCallback::AttackCallback(IGame *game)
 void AttackCallback::execute() {
     if (!shouldExecute()) { return; }
 
-    updateLocation(game->getHero(), "Dralas");
-
     double x = game->getHero()->getX();
     double y = game->getHero()->getY();
     double reach = game->getHero()->getReach();
