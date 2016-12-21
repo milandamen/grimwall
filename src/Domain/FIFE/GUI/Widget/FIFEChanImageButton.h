@@ -39,9 +39,4 @@ public:
     void setHighlightColor(int r, int g, int b, int a) override;
 };
 
-
-//void FIFEChanImageButton::setHighlightColor()
-//{}
-
-
 #endif //GRIMWALL_FIFECHANIMAGEBUTTON_H

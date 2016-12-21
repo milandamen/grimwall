@@ -12,8 +12,6 @@ private:
     FIFE::Engine* engine {nullptr};
     FIFE::FifechanManager* guimanager {nullptr};
 
-//    AGUIState* state {nullptr};
-
 public:
     FIFEChan(FIFE::Engine* engine);
     ~FIFEChan();
@@ -22,6 +20,5 @@ public:
 
     FIFE::FifechanManager* getGuiManager();
 };
-
 
 #endif //GRIMWALL_FIFECHAN_H

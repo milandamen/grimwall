@@ -49,7 +49,7 @@ message(STATUS "    Dependencies folder: '${PROJECT_SOURCE_DIR}/dependencies'.")
 message("")
 
 #------------------------------------------------------------------------------
-#                                 Compiler ScreenOptions
+#                                 Compiler Options
 #------------------------------------------------------------------------------
 
 if(WIN32)
