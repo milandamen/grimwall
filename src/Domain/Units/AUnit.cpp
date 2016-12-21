@@ -40,8 +40,6 @@ int AUnit::getVisibility() {
 }
 
 void AUnit::receiveDamage(int power) {
-    std::cout << this->name << "hp: " << this->hitPoints << "power" << power << std::endl;
-
     this->hitPoints -= power;
 }
 

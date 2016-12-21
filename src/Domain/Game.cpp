@@ -29,7 +29,7 @@ Game::Game()
         // Run an engine tick for userland code
         EngineFacade::engine()->tick();
         this->tick();
-        
+
         // Render a frame
         EngineFacade::engine()->render();
         curTime = EngineFacade::engine()->getTime();
@@ -46,8 +46,20 @@ Game::~Game() {
 
 void Game::tick() {
     updateLocation(this->hero, this->hero->getName());
-
     this->letTowersAttack();
+
+    if (hero->getHitPoints() <= 0)
+        this->lose();
+    else if (this->towers.size() <= 0)
+        this->win();
+}
+
+void Game::win() {
+    std::cout << "win";
+}
+
+void Game::lose() {
+    std::cout << "lose";
 }
 
 UnitManager<AHero>* Game::getHero() {
@@ -130,7 +142,6 @@ void Game::letTowersAttack() {
                 int damage {tower->getPower()};
                 hero->receiveDamage(damage);
 
-                std::cout << "Hero hp: " << hero->getHitPoints() << std::endl;
                 //update time tower last attacked
                 tower->getBase()->setTimeLastAttack(curTime);
 
