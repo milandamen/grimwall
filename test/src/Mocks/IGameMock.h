@@ -7,4 +7,5 @@ public:
     virtual ~IGameMock() {}
     MOCK_METHOD0(getHero, UnitManager<AHero>*());
     MOCK_METHOD0(quit, void());
+    MOCK_METHOD0(getTowers, std::vector<UnitManager<ATower>*>*());
 };

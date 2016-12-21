@@ -27,8 +27,6 @@ void TroupManager::moveTroups(double x, double y) {
     }
 }
 
-
-
 void TroupManager::createSwordsman(std::string instanceName, double x, double y){
     UnitManager<ATroup>* tempTroup = new UnitManager<ATroup>(
             new Swordsman(

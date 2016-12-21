@@ -6,7 +6,3 @@ ATroup::ATroup(std::string name, int reach, int attackDelay, int moveSpeed, int 
     :AUnit(name, reach, attackDelay, power, hitPoints, moveSpeed, visibility) {
 
 }
-
-void ATroup::doDamage(int power) {
-    //do the attack
-}

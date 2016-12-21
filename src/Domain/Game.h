@@ -7,14 +7,12 @@
 #include "IGame.h"
 #include "EngineFacade.h"
 #include "../Input/KeyboardMapper.h"
-#include "Units/UnitManager.h"
+#include "Units/UnitManager.hpp"
 #include "Units/Heroes/Dralas.h"
 #include "Units/Buff/BoneStormBuff.h"
-#include "Units/Towers/ATower.h"
-#include "Units/Towers/DefaultTower.h"
+#include "UnitFactory.h"
 
 #include <vector>
-#include "TowerFactory.h"
 
 class Game : public IGame {
 private:
@@ -46,13 +44,16 @@ private:
 
     void initInput();
     void updateFPS();
+
+    void tick();
 public:
     Game();
     ~Game();
     virtual TroupManager* getTroupManager() override;
     virtual UnitManager<AHero>* getHero() override;
     virtual void quit() override;
-    virtual std::vector<UnitManager<ATower>*> getTowers() override;
+    virtual std::vector<UnitManager<ATower>*>* getTowers() override;
+    virtual void letTowersAttack() override;
 };
 
 

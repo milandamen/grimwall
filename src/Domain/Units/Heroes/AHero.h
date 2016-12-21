@@ -16,7 +16,6 @@ public:
     std::string getWeapon();
     void executeAbility(int number);
     void addAbility(AAbility* ability);
-    virtual void doDamage(int power);
 };
 
 #endif //GRIMWALL_AHERO_H

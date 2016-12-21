@@ -11,16 +11,15 @@
 #include "Units/Towers/RangedTower.h"
 #include "Units/UnitManager.hpp"
 
-std::vector<UnitManager<ATower>*> generateTowers(std::vector<std::string> ids);
 
-//class TowerFactory {
-//private:
-//    std::map<std::string, const std::shared_ptr<ATower>> dictionary;
-//    void populateDictionary();
-//public:
-//
-//    std::shared_ptr<ATower> getTower(std::string id);
-//};
+class TowerFactory{
 
+private:
+    std::map<std::string, std::function<UnitManager<ATower>*()>> dictionary;
+
+public:
+    UnitManager<ATower>* createTower(std::string name, double x, double y);
+    TowerFactory();
+};
 
 #endif //GRIMWALL_TOWERFACTORY_H

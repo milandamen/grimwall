@@ -36,3 +36,18 @@ TEST_F(ZoomCameraCallbackTest,ZoomIn){
     delete iGameMock;
     EngineFacade::destroy();
 }
+
+TEST_F(ZoomCameraCallbackTest,ZoomOut){
+    IGameMock* iGameMock {new IGameMock};
+    ZoomCameraCallback zcc {iGameMock, "MINUS"};
+    IEngineFacadeMock* iEngineFacadeMock {new IEngineFacadeMock};
+    EngineFacade::setEngine(iEngineFacadeMock);
+    
+    EXPECT_CALL(*iEngineFacadeMock, zoomOut()).Times(1);
+    EXPECT_CALL(*iEngineFacadeMock, zoomIn()).Times(0);
+    
+    zcc.execute();
+    
+    delete iGameMock;
+    EngineFacade::destroy();
+}
