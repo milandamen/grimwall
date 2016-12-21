@@ -1,5 +1,6 @@
 <?xml version='1.0' encoding='ascii'?>
 <map format="1.0" id="level1_remake">
+    <import file="../objects/tiles/blocker.xml" />
     <import file="../objects/towers/tower.xml" />
     <import file="../objects/tiles/grass.xml" />
     <import file="../objects/tiles/red.xml" />
@@ -12,7 +13,11 @@
     <import file="../objects/tiles/waterM.xml" />
     <import file="../objects/tiles/water.xml" />
     <import file="../objects/agents/girl/object.xml"/>
-    <import file="../objects/troups/standardTroup/standardTroup.xml" />
+    <import file="../objects/troups/Swordsman/Swordsman.xml" />
+    <import file="../objects/troups/Crossbowman/Crossbowman.xml" />
+    <import file="../objects/troups/Horseman/Horseman.xml" />
+    <import file="../objects/troups/Longbowman/Longbowman.xml" />
+    <import file="../objects/troups/Catapult/Catapult.xml" />
     <layer layer_type="interact" layer_type_id="unitLayer" grid_type="square" id="layer1" pathing="cell_edges_and_diagonals" rotation="0" sorting="camera" transparency="0" x_offset="0" x_scale="1" y_offset="0" y_scale="1" z_offset="0">
         <instances>
             <i ns="grimwall" o="grass" r="0"  x="9" y="-11" z="0" />
@@ -408,22 +413,76 @@
             <i o="grass" r="0"  x="-13" y="5" z="0" />
         </instances>
     </layer>
-    <layer layer_type="walkable" grid_type="square" id="unitLayer" pathing="cell_edges_and_diagonals" rotation="0" sorting="camera" transparency="0" x_offset="0" x_scale="1" y_offset="0" y_scale="1" z_offset="0">
+    <layer layer_type="walkable" grid_type="square" id="unitLayer" pathing="cell_edges_and_diagonals" rotation="0" sorting="camera" transparency="0" x_offset="-0.5" x_scale="1" y_offset="0.5" y_scale="1" z_offset="0">
         <instances>
-            <i ns="grimwall" o="tower" r="0" x="9" y="-1" z="0" />
-            <i o="tree" r="0"  x="8" y="-3" z="0" />
+            <i ns="grimwall" id="Dralas" o="girl" x="0" y="0" z="0" r="0" visitor_radius="6" visitor_shape="circle" />
+            
+            <!-- Tower 0 -->
+            <i o="blocker" r="0" x="9" y="-1" z="0" id="defaultTower0" />
+            <i o="blocker" r="0" x="9" y="-2" z="0" />
+            <i o="blocker" r="0" x="10" y="-1" z="0" />
+            <i o="blocker" r="0" x="10" y="-2" z="0" />
+            
+            <!-- Tower 1 -->
+            <i o="blocker" r="0" x="6" y="-7" z="0" id="defaultTower1"/>
+            <i o="blocker" r="0" x="6" y="-8" z="0" />
+            <i o="blocker" r="0" x="7" y="-7" z="0" />
+            <i o="blocker" r="0" x="7" y="-8" z="0" />
+            
+            <!-- Tower 2 -->
+            <i o="blocker" r="0" x="2" y="-8" z="0" id="defaultTower2"/>
+            <i o="blocker" r="0" x="2" y="-9" z="0" />
+            <i o="blocker" r="0" x="3" y="-8" z="0" />
+            <i o="blocker" r="0" x="3" y="-9" z="0" />
+            
+            <!-- Tower 3 -->
+            <i o="blocker" r="0" x="2" y="0" z="0" id="defaultTower3"/>
+            <i o="blocker" r="0" x="2" y="-1" z="0" />
+            <i o="blocker" r="0" x="3" y="0" z="0" />
+            <i o="blocker" r="0" x="3" y="-1" z="0" />
+            
+            <!-- Tower 4 -->
+            <i o="blocker" r="0" x="-5" y="-2" z="0" id="defaultTower4"/>
+            <i o="blocker" r="0" x="-5" y="-3" z="0" />
+            <i o="blocker" r="0" x="-4" y="-2" z="0" />
+            <i o="blocker" r="0" x="-4" y="-3" z="0" />
+            
+            <!-- Tower 5 -->
+            <i o="blocker" r="0" x="-6" y="-6" z="0" id="defaultTower5"/>
+            <i o="blocker" r="0" x="-6" y="-7" z="0" />
+            <i o="blocker" r="0" x="-5" y="-6" z="0" />
+            <i o="blocker" r="0" x="-5" y="-7" z="0" />
+            
+            <!-- Tower 6 -->
+            <i o="blocker" r="0" x="-11" y="-8" z="0" id="defaultTower6"/>
+            <i o="blocker" r="0" x="-11" y="-9" z="0" />
+            <i o="blocker" r="0" x="-10" y="-8" z="0" />
+            <i o="blocker" r="0" x="-10" y="-9" z="0" />
+            
+            <!-- Trees -->
+            <i o="blocker" r="0" x="-1" y="-10" z="0" />
+            <i o="blocker" r="0" x="-1" y="-6" z="0" />
+            <i o="blocker" r="0" x="-1" y="-2" z="0" />
+            <i o="blocker" r="0" x="-11" y="-4" z="0" />
+            <i o="blocker" r="0" x="-11" y="-2" z="0" />
+            <i o="blocker" r="0" x="8" y="-3" z="0" />
+        </instances>
+    </layer>
+    <layer layer_type="walkable" grid_type="square" id="towerLayer" pathing="cell_edges_and_diagonals" rotation="0" sorting="camera" transparency="0" x_offset="0" x_scale="1" y_offset="0" y_scale="1" z_offset="0">
+        <instances>
+            <i ns="grimwall" o="tower" r="0" x="9" y="-1" z="0" id="defaultTower0" />
             <i o="tower" r="0" x="6" y="-7" z="0" id="defaultTower1"/>
             <i o="tower" r="0"  x="2" y="-8" z="0" id="defaultTower2"/>
             <i o="tower" r="0"  x="2" y="0" z="0" id="defaultTower3"/>
-            <i o="tree" r="0"  x="-1" y="-10" z="0" />
-            <i o="tree" r="0"  x="-1" y="-6" z="0" />
-            <i o="tree" r="0"  x="-1" y="-2" z="0" />
             <i o="tower" r="0"  x="-5" y="-2" z="0" id="defaultTower4"/>
             <i o="tower" r="0"  x="-6" y="-6" z="0" id="defaultTower5"/>
             <i o="tower" r="0"  x="-11" y="-8" z="0" id="defaultTower6"/>
+            <i o="tree" r="0"  x="8" y="-3" z="0" />
+            <i o="tree" r="0"  x="-1" y="-10" z="0" />
+            <i o="tree" r="0"  x="-1" y="-6" z="0" />
+            <i o="tree" r="0"  x="-1" y="-2" z="0" />
             <i o="tree" r="0"  x="-11" y="-4" z="0" />
             <i o="tree" r="0"  x="-11" y="-2" z="0" />
-            <i id="Dralas" o="girl" x="0" y="0" z="0" r="0" visitor_radius="6" visitor_shape="circle" />
         </instances>
     </layer>
 

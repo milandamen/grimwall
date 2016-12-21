@@ -11,7 +11,7 @@ private:
 public:
     StealthSpeedBuff(IUnit *inner, int multplier);
 
-    int getSpeed();
+    double getSpeed();
 };
 
 

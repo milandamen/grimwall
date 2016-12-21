@@ -4,8 +4,8 @@
 
 #include <iostream>
 #include "IEngineFacade.h"
-#include "IGame.h"
 #include "FIFE/FIFEFacade.h"
+#include "IGame.h"
 
 /**
  * Manager of which enginefacade to use

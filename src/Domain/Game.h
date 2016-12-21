@@ -2,26 +2,30 @@
 #ifndef GAME_H
 #define GAME_H
 
+#include <vector>
+
 #include "IGame.h"
 #include "EngineFacade.h"
 #include "../Input/KeyboardMapper.h"
-#include "Units/UnitManager.h"
+#include "Units/UnitManager.hpp"
 #include "Units/Heroes/Dralas.h"
 #include "Units/Buff/BoneStormBuff.h"
+#include "UnitFactory.h"
 
 #include <vector>
-#include "TowerFactory.h"
 
 class Game : public IGame {
 private:
     UnitManager<AHero>* hero{nullptr};
 
-    /**
-     * Set this to true to stop the game loop
-     */
+    TroupManager troupManager;
+
     std::vector<UnitManager<ATower>*> towers;
     void loadTowers();
     void deleteTowers();
+    /**
+     * Set this to true to stop the game loop
+     */
     bool running {true};
 
     /**
@@ -40,12 +44,16 @@ private:
 
     void initInput();
     void updateFPS();
+
+    void tick();
 public:
     Game();
     ~Game();
+    virtual TroupManager* getTroupManager() override;
     virtual UnitManager<AHero>* getHero() override;
     virtual void quit() override;
-    virtual std::vector<UnitManager<ATower>*> getTowers() override;
+    virtual std::vector<UnitManager<ATower>*>* getTowers() override;
+    virtual void letTowersAttack() override;
 };
 
 
