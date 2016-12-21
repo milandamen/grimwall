@@ -50,41 +50,44 @@ ScreenGame::ScreenGame(IGame* game, AGUIManager* manager)
 
 ScreenGame::~ScreenGame()
 {
-//    delete this->rightMenu;
-//    delete this->rightMenuBtnQuit;
-//    delete this->rightMenuBtnPause;
-//    delete this->rightMenuBtnSettings;
-//    delete this->rightMenuContainer;
+    delete this->rightMenu;
+    delete this->rightMenuBtnQuit;
+    delete this->rightMenuBtnPause;
+    delete this->rightMenuBtnSettings;
+    delete this->rightMenuContainer;
 }
 
 void ScreenGame::toggleRightMenu()
 {
-//    if(this->rightMenuContainer->isVisible()) {
-//        this->rightMenuContainer->setHeight(50);
-//        this->rightMenuContainer->setVisible(false);
-//    }
+    if(this->rightMenuContainer->isVisible()) {
+        this->rightMenuContainer->setHeight(0);
+        this->rightMenuContainer->setVisible(false);
+    } else {
+        this->rightMenuContainer->setHeight(120);
+        this->rightMenuContainer->setVisible(true);
+    }
 
 }
 
 void ScreenGame::togglePauseGame()
 {
-//    bool paused = this->game->isPaused();
-//    if(paused)
-//        this->rightMenuBtnPause->setCaption("Pause game");
-//    else
-//        this->rightMenuBtnPause->setCaption("Resume game");
-//
-//    this->game->setPaused(!paused);
+    bool paused = this->game->isPaused();
+    if(paused)
+        this->rightMenuBtnPause->setCaption("Pause game");
+    else
+        this->rightMenuBtnPause->setCaption("Resume game");
+
+    this->game->setPaused(!paused);
 }
 
 void ScreenGame::showOptions()
 {
-//    this->game->setPaused(true);
-//    this->game->setUI("Options");
+    this->game->setPaused(true);
+    this->game->setUI("Options");
 }
 
 void ScreenGame::quitGame()
 {
-//    this->game->setPaused(true);
-//    this->game->setUI("MainMenu");
+    this->game->setPaused(true);
+    this->game->setUI("MainMenu");
 }
