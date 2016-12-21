@@ -58,3 +58,11 @@ double AUnit::getY() {
 void AUnit::setY(double y) {
     this->y = y;
 }
+
+void AUnit::setTimeLastAttack(int time) {
+    this->timeLastAttack = time;
+}
+
+int AUnit::getTimeLastAttack() {
+    return this->timeLastAttack;
+}
