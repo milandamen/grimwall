@@ -68,3 +68,11 @@ void AUnit::setPrevious(IUnit *previous) {
 void AUnit::tick() {
 
 }
+
+void AUnit::setTimeLastAttack(int time) {
+    this->timeLastAttack = time;
+}
+
+int AUnit::getTimeLastAttack() {
+    return this->timeLastAttack;
+}
