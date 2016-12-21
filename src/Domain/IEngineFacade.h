@@ -92,6 +92,11 @@ public:
     virtual void deleteInstance(std::string instanceName, std::string layerName = "unitLayer") = 0;
 
     /**
+     * Shows the click ground effect on the given x and y locations.
+     */
+    virtual void clickEffect(double x, double y) = 0;
+
+    /**
      * Gets the instance from the layer, then removes it. Beware: this method does not delete the object.
      */
     virtual void removeInstance(std::string instanceName, std::string layerName = "unitLayer") = 0;

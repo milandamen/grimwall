@@ -297,6 +297,25 @@ void FIFEFacade::move(std::string name, std::string layerName, double x, double 
     }
 }
 
+void FIFEFacade::clickEffect(double x, double y){
+    if(map) {
+        FIFE::Layer* layer {map->getLayer("unitLayer")};
+        if(layer) {
+            FIFE::Object* object {engine->getModel()->getObject("clickground", "grimwall")};
+            if(object) {
+                FIFE::ModelCoordinate mapCoords{};
+                mapCoords.x = x;
+                mapCoords.y = y;
+                mapCoords.z = 0.0;
+                FIFE::Location* location {new FIFE::Location(layer)};
+                location->setLayerCoordinates(mapCoords);
+                FIFE::Instance* instance {layer->createInstance(object, mapCoords, "clickground")};
+                FIFE::InstanceVisual::create(instance);
+            }
+        }
+    }
+}
+
 std::string FIFEFacade::createInstance(std::string objectName, std::string instanceName, double x, double y){
     if(map) {
         FIFE::Layer* layer {map->getLayer("unitLayer")};
