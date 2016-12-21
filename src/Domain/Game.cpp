@@ -48,10 +48,12 @@ void Game::tick() {
     updateLocation(this->hero, this->hero->getName());
     this->letTowersAttack();
 
-    if (this->hero->getHitPoints() <= 0)
+    if (this->hero->getHitPoints() <= 0){
         this->lose();
-    else if (this->towers.size() <= 0)
+    }
+    else if (this->towers.size() <= 0){
         this->win();
+    }
 
     this->hero->tick();
 }
