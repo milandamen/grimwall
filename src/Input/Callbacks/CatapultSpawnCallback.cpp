@@ -6,23 +6,23 @@ CatapultSpawnCallback::CatapultSpawnCallback(IGame* game, std::string value) : K
 
 void CatapultSpawnCallback::execute()
 {
-    game->getTroupManager()->createTroup(
+    game->getTroupManager()->createCatapult(
             "catapult",
             this->game->getHero()->getX() + 1,
             this->game->getHero()->getY()
     );
 
-    game->getTroupManager()->createTroup(
+    game->getTroupManager()->createCatapult(
             "catapult",
             this->game->getHero()->getX() - 1,
             this->game->getHero()->getY()
     );
-    game->getTroupManager()->createTroup(
+    game->getTroupManager()->createCatapult(
             "catapult",
             this->game->getHero()->getX(),
             this->game->getHero()->getY() + 1
     );
-    game->getTroupManager()->createTroup(
+    game->getTroupManager()->createCatapult(
             "catapult",
             this->game->getHero()->getX(),
             this->game->getHero()->getY() - 1
