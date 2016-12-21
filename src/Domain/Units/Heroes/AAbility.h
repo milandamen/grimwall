@@ -6,7 +6,7 @@ private:
     int cost;
 public:
     AAbility(int cost);
-    ~AAbility();
+    virtual ~AAbility() {};
     // return the reducing amount of energy???
     int getCost();
     virtual int execute() = 0;

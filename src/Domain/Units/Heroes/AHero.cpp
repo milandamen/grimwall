@@ -18,7 +18,7 @@ std::string AHero::getWeapon() {
     return this->weapon;
 }
 
-void AHero::executeAbility(int number) {
+void AHero::executeAbility(unsigned int number) {
     if (number < this->abilities.size() && number >= 0)
         this->abilities[number]->execute();
 }
@@ -26,14 +26,3 @@ void AHero::executeAbility(int number) {
 void AHero::addAbility(AAbility *ability) {
     this->abilities.push_back(ability);
 }
-
-
-void AHero::doDamage(int power) {
-    //do the attack
-}
-
-
-
-
-
-

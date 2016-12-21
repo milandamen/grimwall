@@ -1,6 +1,3 @@
-//
-// Created by stephanromer on 11/30/16.
-//
 
 #include "FIFEChanGuiManager.h"
 
@@ -79,7 +76,7 @@ GUIWidgetLabel *FIFEChanGuiManager::createLabel(std::string caption) {
     return label;
 }
 
-GUIWidgetImage* FIFEChanGuiManager::addImage(std::string asset = "", int x = 0, int y = 0, int width = 0, int height = 0)
+GUIWidgetImage* FIFEChanGuiManager::addImage(std::string asset, int x = 0, int y = 0, int width = 0, int height = 0)
 {
     FIFEChanImage* image = new FIFEChanImage();
     image->setX(x);

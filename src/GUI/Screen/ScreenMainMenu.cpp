@@ -1,11 +1,8 @@
-//
-// Created by stephanromer on 11/23/16.
-//
 
 #include "ScreenMainMenu.h"
 
 ScreenMainMenu::ScreenMainMenu(IGame* game, AGUIManager* manager)
-        : game(game), GUI(manager)
+        : GUI(manager), game(game)
 {
     manager->addImage("assets/gui/menubackground.png", 0, 0, 1024, 786);
     manager->addImage("assets/gui/campaignMenuItem.png", 140, 350, 680, 100);

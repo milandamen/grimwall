@@ -1,6 +1,3 @@
-//
-// Created by stephanromer on 12/14/16.
-//
 
 #ifndef GRIMWALL_SELECTLEVEL_H
 #define GRIMWALL_SELECTLEVEL_H

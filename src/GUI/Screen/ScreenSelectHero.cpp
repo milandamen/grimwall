@@ -1,11 +1,8 @@
-//
-// Created by stephanromer on 12/14/16.
-//
 
 #include "ScreenSelectHero.h"
 
 ScreenSelectHero::ScreenSelectHero(IGame* game, AGUIManager* manager)
-        : game(game), GUI(manager)
+        : GUI(manager), game(game)
 {
     manager->addImage("assets/gui/heroSelectBackground.png", 0, 0, 1024, 786);
     manager->addImage("assets/gui/chooseYourHero.png", 140, 80, 680, 100);

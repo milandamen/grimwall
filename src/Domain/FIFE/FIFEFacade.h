@@ -1,33 +1,39 @@
 #ifndef FIFE_FACADE_H
 #define FIFE_FACADE_H
 
-#include "controller/engine.h"
-#include "controller/enginesettings.h"
+#include <audio/soundclipmanager.h>
+#include <audio/soundmanager.h>
+
 #include "model/model.h"
 #include "model/structures/instance.h"
-#include "view/visual.h"
-#include "loaders/native/map/maploader.h"
 #include "model/structures/map.h"
 #include "model/structures/layer.h"
+#include "view/visual.h"
 #include "view/camera.h"
+#include "controller/engine.h"
+#include "controller/enginesettings.h"
+#include "loaders/native/map/maploader.h"
+
+#include "util/log/logger.h"
 #include "util/time/timemanager.h"
 #include "eventchannel/eventmanager.h"
 #include "gui/fifechan/fifechanmanager.h"
-#include "util/log/logger.h"
+#include "GUI/FIFEChanGuiManager.h"
 #include "boost/filesystem.hpp"
 
 #include "SDL.h"
 #include "FIFEChan.h"
 #include "FIFEKeyListener.h"
+#include "FIFEMouseListener.h"
 #include "Camera/FIFECamera.h"
 
-#include "../IEngineFacade.h"
-#include "FIFEMouseListener.h"
-#include "FIFEKeyListener.h"
-#include "../IGame.h"
-#include "../../Input/ICallback.h"
-#include "GUI/FIFEChanGuiManager.h"
+#include "Audio/FIFEAudio.h"
 
+#include "../IGame.h"
+#include "../IEngineFacade.h"
+#include "../IGame.h"
+#include "../TowerFactory.h"
+#include "../../Input/ICallback.h"
 
 class FIFEChanGuiManager;
 
@@ -40,6 +46,7 @@ private:
 
     FIFEChan* fifeChan {nullptr};
     FIFEChanGuiManager* guimanager {nullptr};
+    FIFEAudio* fifeAudio {nullptr};
     FIFECamera* fifeCamera {nullptr};
 
     IGame* game {nullptr};
@@ -65,18 +72,18 @@ public:
      * Gets the width of the window
      * @return Integer The window width
      */
-    int getScreenWidth() override;
-
-    /**
-     * Sets the width of the window.
-     */
-    void setScreenWidth(int width) override;
+    const uint16_t getScreenWidth();
 
     /**
      * Gets the width of the window
      * @return Integer The window width
      */
-    int getScreenHeight() override;
+    const uint16_t getScreenHeight();
+
+    /**
+     * Sets the width of the window.
+     */
+    void setScreenWidth(int width) override;
 
     /**
      * Sets the height of the window.
@@ -148,8 +155,11 @@ public:
     /**
      *  load towers from map
      */
-    std::vector<std::string> loadTowers() override;
+    std::vector<UnitManager<ATower>*> loadTowers() override;
 
+    bool instanceExists(std::string name, std::string layerName) override;
+    double getInstanceX(std::string name, std::string layerName) override;
+    double getInstanceY(std::string name, std::string layerName) override;
 
     /**
      * Move the character
@@ -184,12 +194,12 @@ public:
     /**
      * Gets the instance from the layer, then both removes and deletes it.
      */
-    void deleteInstance(std::string instanceName) override;
+    void deleteInstance(std::string instanceName, std::string layerName) override;
 
     /**
      * Gets the instance from the layer, then removes it. Beware: this method does not delete the object.
      */
-    void removeInstance(std::string instanceName) override;
+    void removeInstance(std::string instanceName, std::string layerName) override;
     
     /**
      * Run a tick for userland code like input callbacks

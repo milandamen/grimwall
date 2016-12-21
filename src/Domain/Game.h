@@ -5,13 +5,12 @@
 #include "IGame.h"
 #include "EngineFacade.h"
 #include "../Input/KeyboardMapper.h"
-#include "Units/UnitManager.h"
+#include "Units/UnitManager.hpp"
 #include "Units/Heroes/Dralas.h"
 #include "Units/Buff/BoneStormBuff.h"
+#include "UnitFactory.h"
 
 #include <vector>
-#include "Units/Towers/ATower.h"
-#include "Units/Towers/DefaultTower.h"
 
 #include "../GUI/GUIRepo.h"
 #include "../GUI/Screen/ScreenMainMenu.h"
@@ -36,7 +35,7 @@ private:
     /**
      * Set this to true to stop the game loop
      */
-    std::vector<ATower*> towers;
+    std::vector<UnitManager<ATower>*> towers;
     void loadTowers();
     void deleteTowers();
 
@@ -76,6 +75,8 @@ public:
     virtual int getCurrentScore() override;
     virtual UnitManager<AHero>* getHero() override;
     virtual void quit() override;
+    virtual std::vector<UnitManager<ATower>*>* getTowers() override;
+    virtual void letTowersAttack() override;
 };
 
 

@@ -1,6 +1,3 @@
-//
-// Created by stephanromer on 12/7/16.
-//
 
 #ifndef GRIMWALL_FIFECHANIMAGE_H
 #define GRIMWALL_FIFECHANIMAGE_H

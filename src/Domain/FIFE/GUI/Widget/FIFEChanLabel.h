@@ -1,6 +1,3 @@
-//
-// Created by stephanromer on 12/7/16.
-//
 
 #ifndef GRIMWALL_FIFECHANLABEL_H
 #define GRIMWALL_FIFECHANLABEL_H

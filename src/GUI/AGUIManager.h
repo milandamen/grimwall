@@ -1,6 +1,3 @@
-//
-// Created by stephanromer on 11/30/16.
-//
 
 #ifndef GRIMWALL_AGUIMANAGER_H
 #define GRIMWALL_AGUIMANAGER_H

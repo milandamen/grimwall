@@ -1,6 +1,3 @@
-//
-// Created by stephanromer on 11/30/16.
-//
 
 #ifndef GRIMWALL_FIFECHANGUIMANAGER_H
 #define GRIMWALL_FIFECHANGUIMANAGER_H
@@ -26,9 +23,6 @@ class FIFEChanGuiManager : public AGUIManager {
 private:
     fcn::Container* container {nullptr};
     std::vector<AGUIWidget*> widgets;
-    int count = 0;
-
-
 
 public:
     FIFEChanGuiManager();

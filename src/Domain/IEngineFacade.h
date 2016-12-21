@@ -11,6 +11,9 @@
 #include "../GUI/AGUIManager.h"
 
 
+#include "Units/UnitManager.hpp"
+#include "Units/Towers/ATower.h"
+
 /**
  * Class to be extended by classes like FIFEFacade
  */
@@ -22,9 +25,9 @@ public:
     /** Settings **/
     
     virtual void setRenderBackend(std::string engine) = 0;
-    virtual int getScreenWidth() = 0;
+    virtual const uint16_t getScreenWidth() = 0;
     virtual void setScreenWidth(int width) = 0;
-    virtual int getScreenHeight() = 0;
+    virtual const uint16_t getScreenHeight() = 0;
     virtual void setScreenHeight(int height) = 0;
     virtual void setFullScreen(bool fullScreen) = 0;
     virtual void setWindowTitle(std::string title) = 0;
@@ -104,12 +107,16 @@ public:
     /**
     * Gets the instance from the layer, then both removes and deletes it.
     */
-    virtual void deleteInstance(std::string instanceName) = 0;
+    virtual void deleteInstance(std::string instanceName, std::string layerName = "unitLayer") = 0;
 
     /**
      * Gets the instance from the layer, then removes it. Beware: this method does not delete the object.
      */
-    virtual void removeInstance(std::string instanceName) = 0;
+    virtual void removeInstance(std::string instanceName, std::string layerName = "unitLayer") = 0;
+
+    virtual bool instanceExists(std::string name, std::string layerName = "unitLayer") = 0;
+    virtual double getInstanceX(std::string name, std::string layerName = "unitLayer") = 0;
+    virtual double getInstanceY(std::string name, std::string layerName = "unitLayer") = 0;
 
     /**
      * Set the location of an instance
@@ -124,7 +131,7 @@ public:
     /**
      *  load towers from map
      */
-    virtual std::vector<std::string> loadTowers() = 0;
+    virtual std::vector<UnitManager<ATower>*> loadTowers() = 0;
 
 };
 

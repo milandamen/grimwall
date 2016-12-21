@@ -1,12 +1,8 @@
-//
-// Created by stephanromer on 12/14/16.
-//
 
 #include "ScreenGame.h"
 
-
 ScreenGame::ScreenGame(IGame* game, AGUIManager* manager)
-        : game(game), GUI(manager)
+        : GUI(manager), game(game)
 {
     this->rightMenuContainer = manager->addContainer(924, 40, 100, 120);
 

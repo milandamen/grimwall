@@ -14,9 +14,8 @@ public:
     AHero(std::string name, int reach, int attackDelay, int moveSpeed, int power, int hitPoints, int visibility);
     ~AHero();
     std::string getWeapon();
-    void executeAbility(int number);
+    void executeAbility(unsigned int number);
     void addAbility(AAbility* ability);
-    virtual void doDamage(int power);
 };
 
 #endif //GRIMWALL_AHERO_H

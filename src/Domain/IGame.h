@@ -3,6 +3,7 @@
 
 #include "Units/Heroes/AHero.h"
 #include "Units/UnitManager.hpp"
+#include "Units/Towers/ATower.h"
 
 class IGame
 {
@@ -15,6 +16,8 @@ public:
     virtual int getCurrentScore() = 0;
     virtual UnitManager<AHero>* getHero() = 0;
     virtual void quit() = 0;
+    virtual std::vector<UnitManager<ATower>*>* getTowers() = 0;
+    virtual void letTowersAttack() = 0;
 };
 
 #endif

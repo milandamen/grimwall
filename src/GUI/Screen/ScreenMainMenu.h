@@ -1,6 +1,3 @@
-//
-// Created by stephanromer on 11/23/16.
-//
 
 #ifndef GRIMWALL_MAINMENU_H
 #define GRIMWALL_MAINMENU_H
