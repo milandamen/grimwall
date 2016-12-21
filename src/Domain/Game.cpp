@@ -30,10 +30,10 @@ Game::Game()
         
         // Run an engine tick for userland code
         EngineFacade::engine()->tick();
+        this->tick();
         
         // Render a frame
         EngineFacade::engine()->render();
-        letTowersAttack();
         curTime = EngineFacade::engine()->getTime();
     }
     
@@ -44,6 +44,12 @@ Game::Game()
 Game::~Game() {
     delete this->hero;
     this->deleteTowers();
+}
+
+void Game::tick() {
+    updateLocation(this->hero, this->hero->getName());
+
+    this->letTowersAttack();
 }
 
 UnitManager<AHero>* Game::getHero() {
@@ -120,7 +126,6 @@ void Game::letTowersAttack() {
         {
             //time delay passed
             updateLocation(tower, tower->getName());
-            updateLocation(this->hero, this->hero->getName());
 
             //calculate distance between unit and tower
             double deltaX {std::pow((hero->getX() - tower->getX()), 2.0)};

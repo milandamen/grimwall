@@ -41,6 +41,8 @@ private:
     void updateFPS();
     void loadTowers();
     void deleteTowers();
+    void tick();
+    
 public:
     Game();
     ~Game();
