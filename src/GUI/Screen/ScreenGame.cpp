@@ -71,13 +71,9 @@ void ScreenGame::toggleRightMenu()
 
 void ScreenGame::togglePauseGame()
 {
-    bool paused = this->game->isPaused();
-    if(paused)
-        this->rightMenuBtnPause->setCaption("Pause game");
-    else
-        this->rightMenuBtnPause->setCaption("Resume game");
-
-    this->game->setPaused(!paused);
+    this->game->setUI("Pause");
+    this->game->setPaused(true);
+    this->toggleRightMenu();
 }
 
 void ScreenGame::showOptions()

@@ -9,6 +9,7 @@ FIFEChanGuiManager::FIFEChanGuiManager()
     this->container->setFocusable(false);
     this->container->setTabInEnabled(false);
     this->container->setTabOutEnabled(false);
+    this->container->setEnabled(false);
     this->container->setX(0);
     this->container->setY(0);
     //this->container->setWidth(EngineFacade::engine()->getScreenWidth());

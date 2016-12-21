@@ -19,6 +19,7 @@
 #include "../GUI/Screen/ScreenGameOver.h"
 #include "../GUI/Screen/ScreenWon.h"
 #include "../GUI/Screen/ScreenOptions.h"
+#include "../GUI/Screen/ScreenPause.h"
 #include "../GUI/Screen/ScreenGame.h"
 
 

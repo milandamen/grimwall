@@ -2,7 +2,6 @@
 #ifndef GRIMWALL_MAINMENU_H
 #define GRIMWALL_MAINMENU_H
 
-
 #include <fifechan.hpp>
 #include <gui/fifechan/fifechanmanager.h>
 #include "../GUI.h"
