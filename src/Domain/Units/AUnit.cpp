@@ -58,3 +58,13 @@ double AUnit::getY() {
 void AUnit::setY(double y) {
     this->y = y;
 }
+
+void AUnit::setNext(IUnit *next) {}
+
+void AUnit::setPrevious(IUnit *previous) {
+    this->previous = previous;
+}
+
+void AUnit::tick() {
+
+}

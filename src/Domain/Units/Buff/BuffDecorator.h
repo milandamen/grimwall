@@ -5,12 +5,14 @@
 
 class BuffDecorator : public IUnit {
 private:
-    IUnit *m_wrappee;
+    IUnit *next;
+    IUnit *previous;
 protected:
     int duration;
+    int time;
 public:
-    BuffDecorator(IUnit *inner, int duration);
-    ~BuffDecorator(){};
+    BuffDecorator(IUnit *next, int duration);
+    ~BuffDecorator();
 
     std::string getName();
     double getReach();
@@ -26,7 +28,10 @@ public:
     double getY();
     void setY(double y);
 
-    void remove();
+    void setNext(IUnit *next);
+    void setPrevious(IUnit *previous);
+
+    void tick() override ;
 };
 
 
