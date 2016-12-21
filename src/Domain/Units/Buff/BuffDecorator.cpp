@@ -69,7 +69,9 @@ void BuffDecorator::setPrevious(IUnit *previous) {
 void BuffDecorator::tick() {
     this->next->tick();
 
+    // increment the buff time per tick by 1, then check if the duration has passed
     if (++this->time >= this->duration){
+        // if the buff has expired, detach the buff from the linked list and self destruct
         this->next->setPrevious(this->previous);
         this->previous->setNext(this->next);
         delete this;
