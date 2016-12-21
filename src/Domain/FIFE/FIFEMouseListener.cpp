@@ -42,13 +42,11 @@ void FIFEMouseListener::mouseReleased(FIFE::MouseEvent& evt) {
 }
 
 void FIFEMouseListener::mouseLeftButtonPressed(FIFE::MouseEvent &evt) {
-    EngineFacade::engine()->clickEffect(evt.getX(), evt.getY());
     EngineFacade::engine()->move(this->game->getHero()->getName(), "unitLayer", evt.getX(), evt.getY(), this->game->getHero()->getSpeed());
     setPreviousMouseEvent(evt.getType());
 }
 
 void FIFEMouseListener::mouseRightButtonPressed(FIFE::MouseEvent &evt) {
-    EngineFacade::engine()->clickEffect(evt.getX(), evt.getY());
     game->getTroupManager()->moveTroups(evt.getX(), evt.getY());
     setPreviousMouseEvent(evt.getType());
 }

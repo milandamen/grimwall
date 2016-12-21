@@ -280,6 +280,7 @@ void FIFEFacade::move(std::string name, std::string layerName, double x, double 
 
         if (layer) {
             FIFE::Instance* instance = layer->getInstance(name);
+            FIFE::Object* object {engine->getModel()->getObject("clickground", "grimwall")};
 
             if (instance) {
                 ///Keep this for now
@@ -290,27 +291,10 @@ void FIFEFacade::move(std::string name, std::string layerName, double x, double 
                     FIFE::ExactModelCoordinate mapCoords = fifeCamera->camera()->toMapCoordinates(screenPoint, false);
                     mapCoords.z = 0.0;
                     destination.setMapCoordinates(mapCoords);
+                    FIFE::Instance* clickground {layer->createInstance(object, mapCoords, "clickground")};
+                    FIFE::InstanceVisual::create(clickground);
                     instance->move("walk", destination, moveSpeed);
                 }
-            }
-        }
-    }
-}
-
-void FIFEFacade::clickEffect(double x, double y){
-    if(map) {
-        FIFE::Layer* layer {map->getLayer("unitLayer")};
-        if(layer) {
-            FIFE::Object* object {engine->getModel()->getObject("clickground", "grimwall")};
-            if(object) {
-                FIFE::ModelCoordinate mapCoords{};
-                mapCoords.x = x;
-                mapCoords.y = y;
-                mapCoords.z = 0.0;
-                FIFE::Location* location {new FIFE::Location(layer)};
-                location->setLayerCoordinates(mapCoords);
-                FIFE::Instance* instance {layer->createInstance(object, mapCoords, "clickground")};
-                FIFE::InstanceVisual::create(instance);
             }
         }
     }

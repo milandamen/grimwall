@@ -177,11 +177,6 @@ public:
     std::string createInstance(std::string objectName, std::string instanceName, double x, double y) override;
 
     /**
-     * Shows the click ground effect on the given x and y locations.
-     */
-    void clickEffect(double x, double y) override;
-
-    /**
      * Gets the instance from the layer, then both removes and deletes it.
      */
     void deleteInstance(std::string instanceName, std::string layerName) override;
