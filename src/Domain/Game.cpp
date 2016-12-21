@@ -41,7 +41,6 @@ Game::Game()
 
 Game::~Game() {
     delete this->hero;
-    delete troupManager;
     this->deleteTowers();
 }
 
