@@ -372,6 +372,7 @@ std::vector<UnitManager<ATower>*> FIFEFacade::loadTowers()
 {
     FIFE::Layer* layer = map->getLayer("towerLayer");
     std::vector<UnitManager<ATower>*> towers;
+    TowerFactory factory;
     if(layer)
     {
         std::vector<FIFE::Instance*> instances = layer->getInstances();
@@ -387,7 +388,7 @@ std::vector<UnitManager<ATower>*> FIFEFacade::loadTowers()
                 double x = instances.at(i)->getLocation().getMapCoordinates().x;
                 double y = instances.at(i)->getLocation().getMapCoordinates().y;
 
-                UnitManager<ATower>* tower = generateTower(id, x, y);
+                UnitManager<ATower>* tower = factory.createTower(id, x, y);
                 if (tower != nullptr) {
                     towers.push_back(tower);
                 }
