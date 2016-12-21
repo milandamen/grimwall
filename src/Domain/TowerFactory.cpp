@@ -1,19 +1,23 @@
 #include "TowerFactory.h"
 
-UnitManager<ATower>* generateTower(std::string name, double x, double y) {
 
-    static std::map<std::string, std::function<UnitManager<ATower>*()>> dictionary =
+TowerFactory::TowerFactory()
+{
+    this->dictionary =
             {
                     {"defaultTower", [](){return new UnitManager<ATower>(new DefaultTower()); }},
                     {"rangedTower", [](){return new UnitManager<ATower>(new RangedTower()); }},
                     {"armouredTower", [](){return new UnitManager<ATower>(new ArmouredTower()); }},
             };
+}
+
+UnitManager<ATower>* TowerFactory::createTower(std::string name, double x, double y) {
 
 
     std::string key = name.substr(0, name.length()-1);
-    auto tower = dictionary.find(key);
+    auto tower = this->dictionary.find(key);
 
-    if(tower != dictionary.end()) {
+    if(tower != this->dictionary.end()) {
         //dictionary contains key
         UnitManager<ATower>* t  = tower->second();
         t->setX(x);
@@ -24,6 +28,7 @@ UnitManager<ATower>* generateTower(std::string name, double x, double y) {
     }
 
     return nullptr;
-}
 
+
+}
 
