@@ -29,6 +29,7 @@ public:
 
     void addWidget(AGUIWidget* widget, int x, int y) override;
     void removeWidget(AGUIWidget* widget) override;
+    void resizeToContent() override;
 
     virtual void setForegroundColor(int r, int g, int b, int a) override;
     virtual void setBackgroundColor(int r, int g, int b, int a) override;

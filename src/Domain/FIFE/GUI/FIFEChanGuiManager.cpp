@@ -7,10 +7,12 @@ FIFEChanGuiManager::FIFEChanGuiManager()
     this->container->setBackgroundColor(fcn::Color(0,0,0,0));
     this->container->setBaseColor(fcn::Color(0,0,0,0));
     this->container->setFocusable(false);
+    this->container->setTabInEnabled(false);
+    this->container->setTabOutEnabled(false);
     this->container->setX(0);
     this->container->setY(0);
-    this->container->setWidth(EngineFacade::engine()->getScreenWidth());
-    this->container->setHeight(EngineFacade::engine()->getScreenHeight());
+    //this->container->setWidth(EngineFacade::engine()->getScreenWidth());
+    //this->container->setHeight(EngineFacade::engine()->getScreenHeight());
 }
 
 FIFEChanGuiManager::~FIFEChanGuiManager()
@@ -39,6 +41,7 @@ GUIWidgetButton* FIFEChanGuiManager::addButton(std::string caption = "", int x =
 
     this->widgets.push_back(button);
     this->container->add(button->getWidget());
+    this->container->resizeToContent();
 
     return button;
 }
@@ -63,6 +66,7 @@ GUIWidgetLabel* FIFEChanGuiManager::addLabel(std::string caption = "", int x = 0
 
     this->widgets.push_back(label);
     this->container->add(label->getWidget());
+    this->container->resizeToContent();
 
     return label;
 }
@@ -87,6 +91,7 @@ GUIWidgetImage* FIFEChanGuiManager::addImage(std::string asset, int x = 0, int y
 
     this->widgets.push_back(image);
     this->container->add(image->getWidget());
+    this->container->resizeToContent();
 
     return image;
 }
@@ -115,6 +120,7 @@ GUIWidgetRadio* FIFEChanGuiManager::addRadio(std::string caption, std::string gr
 
     this->widgets.push_back(radio);
     this->container->add(radio->getWidget());
+    this->container->resizeToContent();
 
     return radio;
 }
@@ -142,6 +148,7 @@ GUIWidgetContainer* FIFEChanGuiManager::addContainer(int x = 0, int y = 0, int w
 
     this->widgets.push_back(container);
     this->container->add(container->getWidget());
+    this->container->resizeToContent();
 
     return container;
 }

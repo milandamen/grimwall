@@ -110,7 +110,7 @@ void FIFEFacade::init()
 
 void FIFEFacade::loadMap(std::string path)
 {
-    if(this->map){
+    if(this->fifeCamera != nullptr) {
         delete this->fifeCamera;
     }
 
@@ -134,7 +134,6 @@ void FIFEFacade::loadMap(std::string path)
 
         // done with map loader safe to delete
         delete mapLoader;
-        mapLoader = 0;
     }
 
     this->mouseListener->setCamera(this->fifeCamera);

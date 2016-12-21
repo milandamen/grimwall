@@ -6,6 +6,7 @@ Game::Game()
 {
     EngineFacade::setEngine("FIFE", this);
     EngineFacade::engine()->setRenderBackend("OpenGL");
+    EngineFacade::engine()->setFPSLimit(60);
     EngineFacade::engine()->init();
 
     this->guirepo = new GUIRepo();
@@ -18,8 +19,6 @@ Game::Game()
     this->guirepo->addGUI("Game", new ScreenGame(this, EngineFacade::engine()->createGUIManager()));
 
     EngineFacade::engine()->setActiveGUIManager(this->guirepo->getGUI("MainMenu")->getGuiManager());
-    EngineFacade::engine()->setFPSLimit(60);
-    EngineFacade::engine()->init();
 
     this->initInput();
 

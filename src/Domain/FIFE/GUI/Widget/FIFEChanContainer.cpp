@@ -79,6 +79,11 @@ void FIFEChanContainer::removeWidget(AGUIWidget *widget)
     this->container->remove(dynamic_cast<AFIFEChanWidget*>(widget)->getWidget());
 }
 
+void FIFEChanContainer::resizeToContent()
+{
+    this->container->resizeToContent();
+}
+
 void FIFEChanContainer::setForegroundColor(int r = 0, int g = 0, int b = 0, int a = 0)
 {
     this->container->setForegroundColor(fcn::Color(r, g, b, a));

@@ -8,6 +8,7 @@ class GUIWidgetContainer : virtual public AGUIWidget {
 public:
     virtual void addWidget(AGUIWidget* widget, int x = 0, int y = 0) = 0;
     virtual void removeWidget(AGUIWidget* widget) = 0;
+    virtual void resizeToContent() = 0;
 };
 
 
