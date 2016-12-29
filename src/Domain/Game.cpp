@@ -33,7 +33,7 @@ Game::Game()
         // Run an engine tick for userland code
         EngineFacade::engine()->tick();
         this->tick();
-        
+
         // Render a frame
         EngineFacade::engine()->render();
         curTime = EngineFacade::engine()->getTime();
@@ -51,7 +51,23 @@ Game::~Game() {
 void Game::tick() {
     updateLocation(this->hero, this->hero->getName());
     this->towerManager.tick(curTime);
-//    this->letTowersAttack();
+
+    if (this->hero->getHitPoints() <= 0){
+        this->lose();
+    }
+    else if (this->towers.size() <= 0){
+        this->win();
+    }
+
+    this->hero->tick();
+}
+
+void Game::win() {
+    std::cout << "win";
+}
+
+void Game::lose() {
+    std::cout << "lose";
 }
 
 UnitManager<AHero>* Game::getHero() {
