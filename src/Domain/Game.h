@@ -50,7 +50,6 @@ public:
     virtual UnitManager<AHero>* getHero() override;
     virtual void quit() override;
     virtual std::vector<UnitManager<ATower>*>* getTowers() override;
-    virtual void letTowersAttack() override;
 };
 
 

@@ -10,7 +10,7 @@
 class TowerManager {
 
 private:
-    std::vector<UnitManager<ATower>*> towers;
+    std::vector<UnitManager<ATower>*>* towers;
     std::vector<UnitManager<AUnit>*> friendlyUnits;
     UnitManager<AHero>* hero {nullptr};
 public:
@@ -18,7 +18,7 @@ public:
 
     void tick(int curTime);
 
-    void setTowers(std::vector<UnitManager<ATower>*> towers);
+    void setTowers(std::vector<UnitManager<ATower>*>* towers);
     void setUnits(std::vector<UnitManager<AUnit>*> friendlyUnits);
     void setHero(UnitManager<AHero>* hero);
 

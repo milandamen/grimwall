@@ -10,11 +10,11 @@ void TowerManager::tick(int curTime) {
     //called once every cycle
 
 
-    for(unsigned int i = 0; i < towers.size(); ++i)
+    for(unsigned int i = 0; i < towers->size(); ++i)
     {
         // for each tower check if the hero is within range
 
-        UnitManager<ATower>* tower {towers.at(i)};
+        UnitManager<ATower>* tower {towers->at(i)};
         UnitManager<AUnit>* unit {nullptr};
         bool heroIsTarget {nullptr};
 
@@ -110,7 +110,7 @@ void TowerManager::setUnits(std::vector<UnitManager<AUnit> *> friendlyUnits)
     this->friendlyUnits = friendlyUnits;
 }
 
-void TowerManager::setTowers(std::vector<UnitManager<ATower> *> towers)
+void TowerManager::setTowers(std::vector<UnitManager<ATower> *>* towers)
 {
     this->towers = towers;
 }
