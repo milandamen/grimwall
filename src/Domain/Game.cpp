@@ -17,7 +17,11 @@ Game::Game()
 
     this->hero = new UnitManager<AHero>(new Dralas());
     this->hero->getBase()->addAbility(new DeathStrike(this->hero));
-    
+
+
+    this->towerManager.setTowers(this->towers);
+    this->towerManager.setHero(hero);
+
     // Game loop
     curTime = 0;
     lastTime = 0;
@@ -46,8 +50,8 @@ Game::~Game() {
 
 void Game::tick() {
     updateLocation(this->hero, this->hero->getName());
-
-    this->letTowersAttack();
+    this->towerManager.tick(curTime);
+//    this->letTowersAttack();
 }
 
 UnitManager<AHero>* Game::getHero() {

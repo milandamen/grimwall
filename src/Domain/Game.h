@@ -9,6 +9,7 @@
 #include "Units/Heroes/Dralas.h"
 #include "Units/Buff/BoneStormBuff.h"
 #include "UnitFactory.h"
+#include "TowerManager.h"
 
 #include <vector>
 
@@ -37,6 +38,7 @@ private:
      * Handles mapping of key combinations to callbacks
      */
     KeyboardMapper* keyboardMapper {nullptr};
+    TowerManager towerManager;
 
     void initInput();
     void updateFPS();
