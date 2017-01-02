@@ -40,8 +40,6 @@ int AUnit::getVisibility() {
 }
 
 void AUnit::receiveDamage(int power) {
-    std::cout << this->name << "hp: " << this->hitPoints << "power" << power << std::endl;
-
     this->hitPoints -= power;
 }
 
@@ -59,6 +57,16 @@ double AUnit::getY() {
 
 void AUnit::setY(double y) {
     this->y = y;
+}
+
+void AUnit::setNext(IUnit *next) {}
+
+void AUnit::setPrevious(IUnit *previous) {
+    this->previous = previous;
+}
+
+void AUnit::tick() {
+
 }
 
 void AUnit::setTimeLastAttack(int time) {

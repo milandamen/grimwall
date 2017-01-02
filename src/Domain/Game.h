@@ -42,7 +42,9 @@ private:
     void loadTowers();
     void deleteTowers();
     void tick();
-    
+    void win();
+    void lose();
+
 public:
     Game();
     ~Game();
