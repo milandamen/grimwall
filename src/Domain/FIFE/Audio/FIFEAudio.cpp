@@ -7,8 +7,8 @@ FIFEAudio::FIFEAudio(FIFE::SoundClipManager* musicSoundClipManager, FIFE::SoundM
     //Music
     musicSoundManager->init();
 
-    musicMap = loadMusicMaps("assets/sounds/music");
-    effectMap = loadMusicMaps("assets/sounds/effects");
+    musicMap = loadMusicMaps("assets/sounds/music/");
+    effectMap = loadMusicMaps("assets/sounds/effects/");
 }
 
 FIFEAudio::~FIFEAudio() {
@@ -17,20 +17,36 @@ FIFEAudio::~FIFEAudio() {
     delete effectMap;
 }
 
+std::vector<std::string> explode(const std::string& s, const char& c)
+{
+    std::string buff{""};
+    std::vector<std::string> v;
+
+    for(auto n:s)
+    {
+        if(n != c) buff+=n; else
+        if(n == c && buff != "") { v.push_back(buff); buff = ""; }
+    }
+    if(buff != "") v.push_back(buff);
+
+    return v;
+}
+
 std::map<std::string, std::string>* FIFEAudio::loadMusicMaps(std::string musicType) {
-    //load all music files, make clips and store them to the musicMap
     std::map<std::string, std::string> *map = new std::map<std::string, std::string>();
 
-    DIR *pDIR = nullptr;
-    dirent *entry = nullptr;
-    const char* dirname = musicType.c_str();
+    fs::path p(musicType);
+    for (auto i = fs::directory_iterator(p); i != fs::directory_iterator(); i++)
+    {
+        if (!is_directory(i->path())) //we eliminate directories in a list
+        {
+            std::cout << i->path().filename().string() << std::endl;
+            std::string asset = musicType + i->path().filename().string();
 
-    if((pDIR = opendir(dirname)) != nullptr){
-        while((entry = readdir(pDIR)) != nullptr){
-            std::string asset = musicType + entry->d_name;
-            map->insert("AD", "BD");
+            std::vector<std::string> v {explode(i->path().filename().string(), '.')};
+
+            map->insert(std::make_pair(v[0], asset));
         }
-        closedir(pDIR);
     }
 
     return map;
@@ -57,6 +73,7 @@ void FIFEAudio::playSoundEffect(std::string asset) {
 
     effectSoundEmmiter->play();
 }
+
 
 
 

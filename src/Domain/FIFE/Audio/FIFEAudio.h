@@ -4,7 +4,7 @@
 #include<stdio.h>
 #include<cstdlib>
 #include<iostream>
-#include<string.h>
+#include<string>
 #include<fstream>
 #include<dirent.h>
 
@@ -13,6 +13,9 @@
 #include <audio/soundclip.h>
 #include <audio/soundemitter.h>
 #include <loaders/native/audio/ogg_loader.h>
+#include <boost/filesystem.hpp>
+
+namespace fs = boost::filesystem;
 
 class FIFEAudio {
 private:
@@ -26,7 +29,6 @@ private:
     std::map<std::string, std::string> *musicMap;
     std::map<std::string, std::string> *effectMap;
 
-    //void loadMusicMaps(std::map<std::string, std::string>&, std::string musicType);
     std::map<std::string, std::string>* loadMusicMaps(std::string musicType);
 public:
     FIFEAudio(FIFE::SoundClipManager* musicSoundClipManager, FIFE::SoundManager* musicSoundManager);
