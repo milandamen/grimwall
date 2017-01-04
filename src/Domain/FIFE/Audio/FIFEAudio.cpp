@@ -17,21 +17,6 @@ FIFEAudio::~FIFEAudio() {
     delete effectMap;
 }
 
-std::vector<std::string> explode(const std::string& s, const char& c)
-{
-    std::string buff{""};
-    std::vector<std::string> v;
-
-    for(auto n:s)
-    {
-        if(n != c) buff+=n; else
-        if(n == c && buff != "") { v.push_back(buff); buff = ""; }
-    }
-    if(buff != "") v.push_back(buff);
-
-    return v;
-}
-
 std::map<std::string, std::string>* FIFEAudio::loadMusicMaps(std::string musicType) {
     std::map<std::string, std::string> *map = new std::map<std::string, std::string>();
 
@@ -43,9 +28,10 @@ std::map<std::string, std::string>* FIFEAudio::loadMusicMaps(std::string musicTy
             std::cout << i->path().filename().string() << std::endl;
             std::string asset = musicType + i->path().filename().string();
 
-            std::vector<std::string> v {explode(i->path().filename().string(), '.')};
+            std::vector<std::string> strs;
+            boost::split(strs, i->path().filename().string(), boost::is_any_of("."));
 
-            map->insert(std::make_pair(v[0], asset));
+            map->insert(std::make_pair(strs[0], asset));
         }
     }
 

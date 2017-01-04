@@ -14,6 +14,7 @@
 #include <audio/soundemitter.h>
 #include <loaders/native/audio/ogg_loader.h>
 #include <boost/filesystem.hpp>
+#include <boost/algorithm/string.hpp>
 
 namespace fs = boost::filesystem;
 
