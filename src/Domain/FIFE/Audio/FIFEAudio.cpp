@@ -12,6 +12,7 @@ FIFEAudio::FIFEAudio(FIFE::SoundClipManager* musicSoundClipManager, FIFE::SoundM
 }
 
 FIFEAudio::~FIFEAudio() {
+
     delete musicMap;
     delete effectMap;
     delete oggLoader;
@@ -60,7 +61,7 @@ void FIFEAudio::playMusic(std::string asset) {
 void FIFEAudio::playSoundEffect(std::string asset) {
     effectSoundEmmiter = musicSoundManager->createEmitter();
 
-    musicSoundEmmiter->setSoundClip(getSoundEffect(asset));
+    effectSoundEmmiter->setSoundClip(getSoundEffect(asset));
 
     effectSoundEmmiter->play();
 }

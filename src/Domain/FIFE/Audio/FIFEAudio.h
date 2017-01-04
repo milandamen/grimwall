@@ -23,9 +23,10 @@ private:
     FIFE::SoundClipManager* musicSoundClipManager;
     FIFE::SoundManager* musicSoundManager;
     FIFE::SoundEmitter* musicSoundEmmiter;
+    FIFE::SoundEmitter* effectSoundEmmiter;
     FIFE::OggLoader* oggLoader;
 
-    FIFE::SoundEmitter* effectSoundEmmiter;
+
 
     std::map<std::string, std::string> *musicMap;
     std::map<std::string, std::string> *effectMap;

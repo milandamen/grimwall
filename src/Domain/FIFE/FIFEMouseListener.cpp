@@ -46,7 +46,7 @@ void FIFEMouseListener::mouseReleased(FIFE::MouseEvent& evt) {
 
 
 void FIFEMouseListener::mouseLeftButtonPressed(FIFE::MouseEvent &evt) {
-    EngineFacade::engine()->playSoundEffect("assets/sounds/click.ogg");
+    EngineFacade::engine()->playSoundEffect("click");
     EngineFacade::engine()->move(this->game->getHero()->getName(), evt.getX(), evt.getY(), this->game->getHero()->getSpeed());
     setPreviousMouseEvent(evt.getType());
 }
