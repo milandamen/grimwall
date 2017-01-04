@@ -12,14 +12,14 @@ FIFEAudio::FIFEAudio(FIFE::SoundClipManager* musicSoundClipManager, FIFE::SoundM
 }
 
 FIFEAudio::~FIFEAudio() {
-
     delete musicMap;
     delete effectMap;
     delete oggLoader;
 }
 
-std::map<std::string, std::string>* FIFEAudio::loadMusicMaps(std::string musicType) {
-    std::map<std::string, std::string> *map = new std::map<std::string, std::string>();
+std::map<std::string, FIFE::SoundClipPtr>* FIFEAudio::loadMusicMaps(std::string musicType) {
+
+    std::map<std::string, FIFE::SoundClipPtr> *map = new std::map<std::string, FIFE::SoundClipPtr>();
 
     fs::path p(musicType);
     for (auto i = fs::directory_iterator(p); i != fs::directory_iterator(); i++)
@@ -31,7 +31,7 @@ std::map<std::string, std::string>* FIFEAudio::loadMusicMaps(std::string musicTy
             std::vector<std::string> strs;
             boost::split(strs, i->path().filename().string(), boost::is_any_of("."));
 
-            map->insert(std::make_pair(strs[0], asset));
+            map->insert(std::make_pair(strs[0], musicSoundClipManager->load(asset, oggLoader)));
         }
     }
 
@@ -43,11 +43,11 @@ void FIFEAudio::setVolume(int volume) {
 }
 
 FIFE::SoundClipPtr FIFEAudio::getSoundEffect(std::string soundName) {
-    return musicSoundClipManager->load(effectMap->at(soundName), oggLoader);
+    return effectMap->at(soundName);
 }
 
 FIFE::SoundClipPtr FIFEAudio::getSoundClip(std::string soundName) {
-    return musicSoundClipManager->load(musicMap->at(soundName), oggLoader);
+    return musicMap->at(soundName);
 }
 
 void FIFEAudio::playMusic(std::string asset) {
