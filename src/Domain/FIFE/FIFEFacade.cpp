@@ -93,6 +93,9 @@ void FIFEFacade::init()
 
     //initialize the audio
     fifeAudio = new FIFEAudio(engine->getSoundClipManager(), engine->getSoundManager());
+    fifeAudio->setVolume(100);
+    fifeAudio->playMusic("assets/sounds/intro.ogg");
+
 
     // setup the gui
     guimanager->setDefaultFont(
@@ -143,7 +146,6 @@ void FIFEFacade::mousePressed(fcn::MouseEvent& mouseEvent)
     } else {
         game->quit();
     }
-
 }
 
 void FIFEFacade::keyPressed(fcn::KeyEvent &keyEvent)
@@ -295,6 +297,7 @@ void FIFEFacade::move(std::string name, double x, double y, int moveSpeed) {
             }
         }
     }
+
 }
 
 std::string FIFEFacade::createInstance(std::string objectName, std::string instanceName, double x, double y){
@@ -394,8 +397,13 @@ std::vector<UnitManager<ATower>*> FIFEFacade::loadTowers()
             }
         }
     }
-
     return towers;
+}
 
+void FIFEFacade::playMusic(std::string asset) {
+    fifeAudio->playMusic(asset);
+}
 
+void FIFEFacade::playSoundEffect(std::string asset) {
+    fifeAudio->playSoundEffect(asset);
 }

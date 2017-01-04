@@ -115,6 +115,15 @@ public:
      */
     virtual std::vector<UnitManager<ATower>*> loadTowers() = 0;
 
+    /**
+     * Play music
+     */
+    virtual void playMusic(std::string asset) = 0;
+
+    /*
+     * Play sound effect
+     */
+    virtual void playSoundEffect(std::string asset) = 0;
 };
 
 #endif
