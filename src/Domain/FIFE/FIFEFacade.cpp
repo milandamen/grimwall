@@ -94,7 +94,7 @@ void FIFEFacade::init()
     //initialize the audio
     fifeAudio = new FIFEAudio(engine->getSoundClipManager(), engine->getSoundManager());
     fifeAudio->setVolume(100);
-    fifeAudio->playMusic("assets/sounds/intro.ogg");
+    fifeAudio->playMusic("intro");
 
 
     // setup the gui

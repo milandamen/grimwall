@@ -27,18 +27,19 @@ private:
 
     FIFE::SoundEmitter* effectSoundEmmiter;
 
-    std::map<std::string, std::string> *musicMap;
-    std::map<std::string, std::string> *effectMap;
+    std::map<std::string, FIFE::SoundClipPtr> *musicMap;
+    std::map<std::string, FIFE::SoundClipPtr> *effectMap;
 
-    std::map<std::string, std::string>* loadMusicMaps(std::string musicType);
+    std::map<std::string, FIFE::SoundClipPtr>* loadMusicMaps(std::string musicType);
 public:
     FIFEAudio(FIFE::SoundClipManager* musicSoundClipManager, FIFE::SoundManager* musicSoundManager);
     ~FIFEAudio();
 
-    //set volume, enable/disable music
     void setVolume(int volume);
     void playMusic(std::string asset);
     void playSoundEffect(std::string asset);
+    FIFE::SoundClipPtr getSoundEffect(std::string soundName);
+    FIFE::SoundClipPtr getSoundClip(std::string soundName);
 };
 
 
