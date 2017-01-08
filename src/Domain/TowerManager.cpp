@@ -6,14 +6,11 @@ TowerManager::TowerManager()
 {}
 
 void TowerManager::tick(int curTime) {
-
     //called once every cycle
-
 
     for(unsigned int i = 0; i < towers->size(); ++i)
     {
         // for each tower check if the hero is within range
-
         UnitManager<ATower>* tower {towers->at(i)};
         UnitManager<AUnit>* unit {nullptr};
         bool heroIsTarget {nullptr};
@@ -41,8 +38,6 @@ void TowerManager::tick(int curTime) {
                     //checked all units, now check the hero
                     unitX = this->hero->getX();
                     unitY = this->hero->getY();
-
-
                 }
                 else
                 {
@@ -75,13 +70,6 @@ void TowerManager::tick(int curTime) {
                 }
             }
 
-            //determine if hero is the closest target
-
-
-
-
-
-            //check if target was found
             if(heroIsTarget)
             {
                 this->hero->receiveDamage(tower->getPower());
@@ -100,7 +88,6 @@ void TowerManager::tick(int curTime) {
                 //update time tower last attacked
                 tower->getBase()->setTimeLastAttack(curTime);
             }
-
         }
     }
 }
@@ -119,5 +106,3 @@ void TowerManager::setHero(UnitManager<AHero>* hero)
 {
     this->hero = hero;
 }
-
-
