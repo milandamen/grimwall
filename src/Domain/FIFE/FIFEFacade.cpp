@@ -80,8 +80,9 @@ AGUIManager* FIFEFacade::createGUIManager() {
 }
 
 void FIFEFacade::setActiveGUIManager(AGUIManager* manager) {
-    if(this->guimanager != nullptr)
+    if(this->guimanager != nullptr) {
         this->fifeChan->getGuiManager()->remove(this->guimanager->getContainer());
+    }
 
     this->guimanager = static_cast<FIFEChanGuiManager*>(manager);
     this->fifeChan->getGuiManager()->add(this->guimanager->getContainer());

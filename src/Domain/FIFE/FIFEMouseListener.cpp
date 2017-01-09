@@ -27,8 +27,9 @@ void FIFEMouseListener::mousePressed(FIFE::MouseEvent& evt) {
 }
 
 void FIFEMouseListener::setCamera(FIFECamera* camera) {
-    if(this->camera == nullptr)
+    if(this->camera == nullptr) {
         this->camera = camera;
+    }
 }
 
 void FIFEMouseListener::mouseReleased(FIFE::MouseEvent& evt) {

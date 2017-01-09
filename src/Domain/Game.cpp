@@ -79,8 +79,9 @@ void Game::setPaused(bool paused)
 
 void Game::setHero(AHero *hero)
 {
-    if(this->hero != nullptr)
+    if(this->hero != nullptr) {
         delete this->hero;
+    }
 
     this->hero = new UnitManager<AHero>(hero);
 }
@@ -88,8 +89,9 @@ void Game::setHero(AHero *hero)
 void Game::setUI(std::string name)
 {
     GUI *gui = this->guirepo->getGUI(name);
-    if (gui != nullptr)
+    if (gui != nullptr) {
         EngineFacade::engine()->setActiveGUIManager(gui->getGuiManager());
+    }
 }
 
 void Game::tick() {

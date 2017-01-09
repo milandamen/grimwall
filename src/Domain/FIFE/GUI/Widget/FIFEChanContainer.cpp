@@ -50,9 +50,11 @@ bool FIFEChanContainer::isVisible(){
     std::list<fcn::Widget*>::const_iterator it;
 
     bool visible = false;
-    for(it = widgets.begin(); it != widgets.end(); ++it)
-        if(visible != (*it)->isVisible())
+    for(it = widgets.begin(); it != widgets.end(); ++it) {
+        if (visible != (*it)->isVisible()) {
             return !visible;
+        }
+    }
 
     return visible;
 }
@@ -61,8 +63,9 @@ void FIFEChanContainer::setVisible(bool visible)
 {
     std::list<fcn::Widget*> widgets = this->container->getChildren();
     std::list<fcn::Widget*>::const_iterator it;
-    for(it = widgets.begin(); it != widgets.end(); ++it)
+    for(it = widgets.begin(); it != widgets.end(); ++it) {
         (*it)->setVisible(visible);
+    }
 }
 
 fcn::Widget* FIFEChanContainer::getWidget() {
