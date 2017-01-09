@@ -96,8 +96,24 @@ void Game::setUI(std::string name)
 
 void Game::tick() {
     updateLocation(this->hero, this->hero->getName());
-
     this->letTowersAttack();
+
+    if (this->hero->getHitPoints() <= 0){
+        this->lose();
+    }
+    else if (this->towers.size() <= 0){
+        this->win();
+    }
+
+    this->hero->tick();
+}
+
+void Game::win() {
+    std::cout << "win";
+}
+
+void Game::lose() {
+    std::cout << "lose";
 }
 
 UnitManager<AHero>* Game::getHero() {
@@ -180,6 +196,7 @@ void Game::letTowersAttack() {
                 this->hero->receiveDamage(damage);
 
                 std::cout << "Hero hp: " << this->hero->getHitPoints() << std::endl;
+
                 //update time tower last attacked
                 tower->getBase()->setTimeLastAttack(this->curTime);
 

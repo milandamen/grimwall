@@ -19,6 +19,11 @@ public:
     virtual void setX(double x) = 0;
     virtual double getY() = 0;
     virtual void setY(double y) = 0;
+
+    virtual void setNext(IUnit *next) = 0;
+    virtual void setPrevious(IUnit *previous) = 0;
+
+    virtual void tick() = 0;
 };
 
 
