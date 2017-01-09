@@ -17,7 +17,11 @@ Game::Game()
 
     this->hero = new UnitManager<AHero>(new Dralas());
     this->hero->getBase()->addAbility(new DeathStrike(this->hero));
-    
+
+
+    this->towerManager.setTowers(this->getTowers());
+    this->towerManager.setHero(hero);
+
     // Game loop
     curTime = 0;
     lastTime = 0;
@@ -46,7 +50,7 @@ Game::~Game() {
 
 void Game::tick() {
     updateLocation(this->hero, this->hero->getName());
-    this->letTowersAttack();
+    this->towerManager.tick(curTime);
 
     if (this->hero->getHitPoints() <= 0){
         this->lose();
@@ -115,42 +119,4 @@ std::vector<UnitManager<ATower> *>* Game::getTowers() {
     return &this->towers;
 }
 
-void Game::letTowersAttack() {
-    //iterate through all towers
-    for(unsigned int i = 0; i < towers.size(); ++i)
-    {
-        // for each tower check if the hero is within range
-
-        UnitManager<ATower>* tower {towers.at(i)};
-
-        //check if attack delay has passed
-        int timeSince {curTime - tower->getBase()->getTimeLastAttack()};
-
-        if(tower->getBase()->getTimeLastAttack() == 0 || timeSince >= tower->getAttackDelay())
-        {
-            //time delay passed
-            updateLocation(tower, tower->getName());
-
-            //calculate distance between unit and tower
-            double deltaX {std::pow((hero->getX() - tower->getX()), 2.0)};
-            double deltaY {std::pow((hero->getY() - tower->getY()), 2.0)};
-
-            double distance {std::sqrt(deltaX + deltaY)};
-
-            if(distance <= tower->getReach())
-            {
-                //hero in range, attack
-
-                //get tower attack
-                //subtract it from hero hp
-                int damage {tower->getPower()};
-                hero->receiveDamage(damage);
-
-                //update time tower last attacked
-                tower->getBase()->setTimeLastAttack(curTime);
-
-            }
-        }
-    }
-}
 
