@@ -7,6 +7,12 @@
 ScreenPause::ScreenPause(IGame *game, AGUIManager *manager)
         : GUI(manager), game(game)
 {
+    GUIWidgetLabel* l = manager->addLabel("", 0, 0);
+    l->setWidth(1024);
+    l->setHeight(768);
+    l->setForegroundColor(0,0,0,255);
+    l->setBackgroundColor(0,0,0,200);
+
     manager->addImage("assets/ads/advert.png", 212, 50, 600, 70);
     GUIWidgetButton* ba = manager->addButton("", 212, 50);
     ba->setWidth(600);
@@ -16,7 +22,7 @@ ScreenPause::ScreenPause(IGame *game, AGUIManager *manager)
         system("firefox https://www.linux.com/");
     });
 
-    GUIWidgetButton* br = manager->addButton("", 350, 50);
+    GUIWidgetButton* br = manager->addButton("", 172, 500);
     br->setWidth(600);
     br->setHeight(70);
     br->setForegroundColor(255, 255, 255, 255);
