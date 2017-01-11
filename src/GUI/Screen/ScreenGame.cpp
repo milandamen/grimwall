@@ -55,10 +55,11 @@ void ScreenGame::hasBecomeInactive()
 void ScreenGame::updateStats()
 {
     int hp = this->game->getHero()->getHitPoints();
+    int mp = this->game->getHero()->getBase()->getMana();
     this->pgb_hero_hp->setWidth(hp);
     this->lbl_hero_hp->setCaption("HP: "+std::to_string(hp));
-    this->pgb_hero_mp->setWidth(hp);
-    this->lbl_hero_mp->setCaption("Mana: "+std::to_string(hp));
+    this->pgb_hero_mp->setWidth(mp);
+    this->lbl_hero_mp->setCaption("Mana: "+std::to_string(mp));
 }
 
 void ScreenGame::quitGame()
