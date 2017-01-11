@@ -179,6 +179,23 @@ int FIFEFacade::getTime()
     return engine->getTimeManager()->getTime();
 }
 
+// Function to animate an instance only once
+void FIFEFacade::setInstanceAction(std::string name, std::string action, std::string layerName = "unitLayer") {
+    // Initial checks if we can actually perform an animation on the instance
+    if (map) {
+        FIFE::Layer *layer = map->getLayer(layerName);
+
+        if (layer) {
+            FIFE::Instance *instance = layer->getInstance(name);
+
+            if (instance) {
+                // End of checks, now perform the animation.
+                instance->actOnce(action);
+            }
+        }
+    }
+}
+
 bool FIFEFacade::instanceExists(std::string name, std::string layerName = "unitLayer") {
     if (map) {
         FIFE::Layer *layer = map->getLayer(layerName);
