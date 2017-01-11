@@ -2,12 +2,14 @@
 #define IENGINEFACADE_H
 
 #include <iostream>
+
 #include <gui/guimanager.h>
 #include <util/structures/rect.h>
 #include <vector>
-
 #include "eventchannel/mouse/ec_mouseevent.h"
 #include "../Input/ICallback.h"
+#include "../GUI/AGUIManager.h"
+
 
 #include "Units/UnitManager.hpp"
 #include "Units/Towers/ATower.h"
@@ -23,7 +25,9 @@ public:
     /** Settings **/
     
     virtual void setRenderBackend(std::string engine) = 0;
+    virtual const uint16_t getScreenWidth() = 0;
     virtual void setScreenWidth(int width) = 0;
+    virtual const uint16_t getScreenHeight() = 0;
     virtual void setScreenHeight(int height) = 0;
     virtual void setFullScreen(bool fullScreen) = 0;
     virtual void setWindowTitle(std::string title) = 0;
@@ -42,7 +46,21 @@ public:
      * Load a map specified by the path into the engine.
      */
     virtual void loadMap(std::string path) = 0;
-    
+
+    /** GUIManager **/
+
+    /**
+     * Method to create a GUI manager
+     * @return Pointer to instance of AGUIManager
+     */
+    virtual AGUIManager* createGUIManager() = 0;
+
+    /**
+     * Method to set the active GUI manager
+     * @param manager Pointer to AGUIManager instance
+     */
+    virtual void setActiveGUIManager(AGUIManager* manager) = 0;
+
     /** Running **/
     
     /**

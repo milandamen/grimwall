@@ -99,7 +99,7 @@ set(Boost_USE_STATIC_LIBS ON)
 set(Boost_USE_MULTITHREADED ON)
 
 #------------------------------------------------------------------------------
-#                                Confifure Grimwall
+#                                Configure Grimwall
 #------------------------------------------------------------------------------
 
 # Add all files in src/Domain to be builded

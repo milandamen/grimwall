@@ -1,0 +1,2 @@
+
+#include "GUIWidgetImage.h"

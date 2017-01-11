@@ -8,8 +8,9 @@ AHero::AHero(std::string name, int reach, int attackDelay, int moveSpeed, int po
 }
 
 AHero::~AHero() {
-    for (auto& ability : this->abilities)
+    for (auto& ability : this->abilities) {
         delete ability;
+    }
 
     this->abilities.clear();
 }
@@ -18,7 +19,7 @@ std::string AHero::getWeapon() {
     return this->weapon;
 }
 
-void AHero::executeAbility(int number) {
+void AHero::executeAbility(unsigned int number) {
     if (number < this->abilities.size() && number >= 0){
         if (this->abilities[number]->getCost() <= this->mana) {
             this->mana -= this->abilities[number]->getCost();

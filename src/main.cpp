@@ -2,9 +2,9 @@
 #include "Domain/Game.h"
 
 int main() {
-    std::cout << "Starting Grimwall" << std::endl;
-
     Game game;
-    
+
+    std::cout << "test";
+
     return 0;
 }
