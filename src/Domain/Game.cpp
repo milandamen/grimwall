@@ -26,6 +26,8 @@ Game::Game()
     this->hero = new UnitManager<AHero>(new Dralas());
     this->hero->getBase()->addAbility(new DeathStrike(this->hero));
 
+    setSaveGameManager(new SaveGameManager {"TEXT"});
+
     this->towerManager.setTowers(this->getTowers());
     this->towerManager.setHero(hero);
 
@@ -165,4 +167,14 @@ void Game::deleteTowers()
 
 std::vector<UnitManager<ATower> *>* Game::getTowers() {
     return &this->towers;
+}
+
+ISaveGameManager* Game::getSaveGameManager()
+{
+    return this->saveGameManager;
+}
+
+void Game::setSaveGameManager(ISaveGameManager* saveGameManager)
+{
+    this->saveGameManager = saveGameManager;
 }
