@@ -7,6 +7,8 @@
 
 class AUnit : public IUnit {
 protected:
+    IUnit *previous;
+
     std::string name;
     double reach;
     int attackDelay;
@@ -17,6 +19,8 @@ protected:
 
     double x{0};
     double y{0};
+
+    int timeLastAttack {0};
 public:
     AUnit(std::string name, double reach, int attackDelay, int power, int hitPoints, double speed,
     int visibility);
@@ -35,6 +39,14 @@ public:
     void setX(double x) override;
     double getY() override;
     void setY(double y) override;
+    
+    void setNext(IUnit *next);
+    void setPrevious(IUnit *previous);
+
+    void tick() override;
+
+    void setTimeLastAttack(int time);
+    int getTimeLastAttack();
 };
 
 

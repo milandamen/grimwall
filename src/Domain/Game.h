@@ -42,6 +42,8 @@ private:
     void updateFPS();
 
     void tick();
+    void win();
+    void lose();
 public:
     Game();
     ~Game();

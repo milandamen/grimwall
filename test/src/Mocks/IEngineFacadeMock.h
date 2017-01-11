@@ -20,10 +20,13 @@ public:
     MOCK_METHOD0(zoomOut, void());
     MOCK_METHOD2(updateLocation, void(int x, int y));
     MOCK_METHOD4(createInstance, std::string(std::string objectName, std::string instanceName, double x, double y));
-    MOCK_METHOD1(deleteInstance, void(std::string instanceName));
-    MOCK_METHOD1(removeInstance, void(std::string instanceName));
+    MOCK_METHOD2(deleteInstance, void(std::string instanceName, std::string layerName));
+    MOCK_METHOD2(removeInstance, void(std::string instanceName, std::string layerName));
+    MOCK_METHOD2(instanceExists, bool(std::string name, std::string layerName));
+    MOCK_METHOD2(getInstanceX, double(std::string name, std::string layerName));
+    MOCK_METHOD2(getInstanceY, double(std::string name, std::string layerName));
     MOCK_METHOD4(move, void(std::string name, double x, double y, int moveSpeed));
     MOCK_METHOD0(tick, void());
-    MOCK_METHOD0(loadTowers, std::vector<std::string>());
+    MOCK_METHOD0(loadTowers, std::vector<UnitManager<ATower>*>());
     
 };
