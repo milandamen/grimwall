@@ -101,7 +101,7 @@ void FIFEFacade::init()
     this->fifeChan->init();
     //initialize the audio
     this->fifeAudio = new FIFEAudio(engine->getSoundClipManager(), engine->getSoundManager());
-
+    this->fifeAudio->playMusic("intro");
     this->initInput();
 
     this->engine->getEventManager()->addSdlEventListener(this->fifeChan->getGuiManager());
