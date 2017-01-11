@@ -207,6 +207,15 @@ public:
      */
     void tick() override;
 
+    /**
+     * Play music
+     */
+    void playMusic(std::string asset) override;
+
+    /**
+     * Play sound effect
+     */
+    void playSoundEffect(std::string asset) override;
 };
 
 #endif
