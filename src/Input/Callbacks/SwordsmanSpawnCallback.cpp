@@ -1,5 +1,5 @@
 #include "SwordsmanSpawnCallback.h"
-SwordsmanSpawnCallback::SwordsmanSpawnCallback(IGame* game, std::string value) : KeypressCallback(game, 0), value{value}
+SwordsmanSpawnCallback::SwordsmanSpawnCallback(IGame* game) : KeypressCallback(game, 0), value{value}
 {
 
 }

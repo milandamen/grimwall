@@ -30,7 +30,6 @@ void TroupManager::moveTroups(double x, double y) {
 void TroupManager::createSwordsman(std::string instanceName, double x, double y){
     UnitManager<ATroup>* tempTroup = new UnitManager<ATroup>(
             new Swordsman(
-                    "" +
                     instanceName +
                     std::to_string(troups.size())
             ));
@@ -41,7 +40,6 @@ void TroupManager::createSwordsman(std::string instanceName, double x, double y)
 void TroupManager::createCrossbowman(std::string instanceName, double x, double y){
     UnitManager<ATroup>* tempTroup = new UnitManager<ATroup>(
             new Crossbowman(
-                    "" +
                     instanceName +
                     std::to_string(troups.size())
             ));
@@ -52,7 +50,6 @@ void TroupManager::createCrossbowman(std::string instanceName, double x, double 
 void TroupManager::createLongbowman(std::string instanceName, double x, double y){
     UnitManager<ATroup>* tempTroup = new UnitManager<ATroup>(
             new Longbowman(
-                    "" +
                     instanceName +
                     std::to_string(troups.size())
             ));
@@ -63,7 +60,6 @@ void TroupManager::createLongbowman(std::string instanceName, double x, double y
 void TroupManager::createHorseman(std::string instanceName, double x, double y){
     UnitManager<ATroup>* tempTroup = new UnitManager<ATroup>(
             new Horseman(
-                    "" +
                     instanceName +
                     std::to_string(troups.size())
             ));
@@ -74,7 +70,6 @@ void TroupManager::createHorseman(std::string instanceName, double x, double y){
 void TroupManager::createCatapult(std::string instanceName, double x, double y){
     UnitManager<ATroup>* tempTroup = new UnitManager<ATroup>(
             new Catapult(
-                    "" +
                     instanceName +
                     std::to_string(troups.size())
             ));

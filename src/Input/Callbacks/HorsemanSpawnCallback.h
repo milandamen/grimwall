@@ -10,7 +10,7 @@ class HorsemanSpawnCallback : public KeypressCallback{
 private:
     std::string value;
 public:
-    HorsemanSpawnCallback(IGame* game, std::string value);
+    HorsemanSpawnCallback(IGame* game);
     virtual void execute() override;
 };
 

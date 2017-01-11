@@ -11,7 +11,6 @@
 #include <iostream>
 
 #include "../Units/IUnit.h"
-//#include "../IGame.h"
 #include "Camera/FIFECamera.h"
 class IGame;
 

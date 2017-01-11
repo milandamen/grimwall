@@ -23,21 +23,11 @@ public:
     void moveTroups(double x, double y);
 
     // Create methods
-    void createSwordsman(std::string instanceName,
-                     double x,
-                     double y);
-    void createCrossbowman(std::string instanceName,
-                     double x,
-                     double y);
-    void createLongbowman(std::string instanceName,
-                     double x,
-                     double y);
-    void createHorseman(std::string instanceName,
-                     double x,
-                     double y);
-    void createCatapult(std::string instanceName,
-                     double x,
-                     double y);
+    void createSwordsman(std::string instanceName, double x, double y);
+    void createCrossbowman(std::string instanceName, double x, double y);
+    void createLongbowman(std::string instanceName, double x, double y);
+    void createHorseman(std::string instanceName, double x, double y);
+    void createCatapult(std::string instanceName, double x, double y);
 
 };
 

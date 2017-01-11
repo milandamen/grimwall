@@ -10,7 +10,7 @@ class LongbowmanSpawnCallback : public KeypressCallback{
 private:
     std::string value;
 public:
-    LongbowmanSpawnCallback(IGame* game, std::string value);
+    LongbowmanSpawnCallback(IGame* game);
     virtual void execute() override;
 };
 
