@@ -27,7 +27,9 @@ void FIFEMouseListener::mousePressed(FIFE::MouseEvent& evt) {
 }
 
 void FIFEMouseListener::setCamera(FIFECamera* camera) {
-    this->camera = camera;
+    if(this->camera == nullptr) {
+        this->camera = camera;
+    }
 }
 
 void FIFEMouseListener::mouseReleased(FIFE::MouseEvent& evt) {
@@ -82,8 +84,8 @@ void FIFEMouseListener::mouseDragged(FIFE::MouseEvent& evt) {
     {
         // unregister the auto-scrolling event
         // we are now scrolling manually and do not
-        // want both trying to do it at the same time
-        camera->unregisterEvent();
+        // want both trying to do it at the same tim9e
+        this->camera->unregisterEvent();
 
         // get the screen coordinates of the mouse
         int currX = evt.getX();
@@ -101,11 +103,11 @@ void FIFEMouseListener::mouseDragged(FIFE::MouseEvent& evt) {
         FIFE::ExactModelCoordinate mapCoords = camera->camera()->toMapCoordinates(cameraScreenCoords, false);
         mapCoords.z = 0.0;
         camLocation.setMapCoordinates(mapCoords);
-        camera->camera()->setLocation(camLocation);
+        this->camera->camera()->setLocation(camLocation);
 
         // update last saved x,y values for dragging
-        dragX = currX;
-        dragY = currY;
+        this->dragX = currX;
+        this->dragY = currY;
     }
 
     // make sure to save that the last event was drag

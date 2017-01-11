@@ -29,6 +29,11 @@ public:
     double getY() override;
     void setY(double y) override;
 
+    void setNext(IUnit *next) override;
+    void setPrevious(IUnit *previous) override;
+
+    void tick() override;
+
     UnitType* getBase();
     IUnit* getUnit();
 
@@ -38,7 +43,9 @@ public:
 template <typename UnitType>
 UnitManager<UnitType>::UnitManager(UnitType *unit)
         : base{unit}, unit{unit}
-{}
+{
+    this->unit->setPrevious(this);
+}
 
 template <typename UnitType>
 UnitManager<UnitType>::~UnitManager() {
@@ -116,8 +123,22 @@ UnitType* UnitManager<UnitType>::getBase() {
 }
 
 template <typename UnitType>
+void UnitManager<UnitType>::setNext(IUnit *next) {
+    this->unit = next;
+}
+
+template <typename UnitType>
+void UnitManager<UnitType>::setPrevious(IUnit *previous) {}
+
+template <typename UnitType>
+void UnitManager<UnitType>::tick() {
+    this->unit->tick();
+}
+
+template <typename UnitType>
 void UnitManager<UnitType>::buff(BuffDecorator *decorator) {
     this->unit = decorator;
+    this->unit->setPrevious(this);
 }
 
 

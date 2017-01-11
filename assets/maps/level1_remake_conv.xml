@@ -3,7 +3,6 @@
     <import file="../objects/tiles/blocker.xml" />
     <import file="../objects/towers/tower.xml" />
     <import file="../objects/tiles/grass.xml" />
-    <import file="../objects/tiles/red.xml" />
     <import file="../objects/towers/tree.xml" />
     <import file="../objects/tiles/sand.xml" />
     <import file="../objects/tiles/waterL.xml" />
@@ -448,10 +447,10 @@
             <i o="blocker" r="0" x="-4" y="-3" z="0" />
             
             <!-- Tower 5 -->
-            <i o="blocker" r="0" x="-6" y="-6" z="0" id="defaultTower5"/>
-            <i o="blocker" r="0" x="-6" y="-7" z="0" />
-            <i o="blocker" r="0" x="-5" y="-6" z="0" />
-            <i o="blocker" r="0" x="-5" y="-7" z="0" />
+            <i o="blocker" r="0" x="-5" y="-8" z="0" id="defaultTower5"/>
+            <i o="blocker" r="0" x="-5" y="-9" z="0" />
+            <i o="blocker" r="0" x="-4" y="-8" z="0" />
+            <i o="blocker" r="0" x="-4" y="-9" z="0" />
             
             <!-- Tower 6 -->
             <i o="blocker" r="0" x="-11" y="-8" z="0" id="defaultTower6"/>
@@ -465,7 +464,109 @@
             <i o="blocker" r="0" x="-1" y="-2" z="0" />
             <i o="blocker" r="0" x="-11" y="-4" z="0" />
             <i o="blocker" r="0" x="-11" y="-2" z="0" />
-            <i o="blocker" r="0" x="8" y="-3" z="0" />
+            <i o="blocker" r="0" x="8" y="-4" z="0" />
+            
+            <!-- Water top-right -->
+            <i o="blocker" r="0" x="7" y="-3" z="0" />
+            <i o="blocker" r="0" x="6" y="-3" z="0" />
+            <i o="blocker" r="0" x="5" y="-3" z="0" />
+            <i o="blocker" r="0" x="7" y="-2" z="0" />
+            <i o="blocker" r="0" x="7" y="-1" z="0" />
+            <i o="blocker" r="0" x="7" y="0" z="0" />
+            <i o="blocker" r="0" x="7" y="1" z="0" />
+            <i o="blocker" r="0" x="7" y="2" z="0" />
+            <i o="blocker" r="0" x="7" y="3" z="0" />
+            <i o="blocker" r="0" x="7" y="4" z="0" />
+            <i o="blocker" r="0" x="5" y="-2" z="0" />
+            <i o="blocker" r="0" x="5" y="-1" z="0" />
+            <i o="blocker" r="0" x="5" y="0" z="0" />
+            <i o="blocker" r="0" x="5" y="1" z="0" />
+            <i o="blocker" r="0" x="5" y="2" z="0" />
+            <i o="blocker" r="0" x="5" y="3" z="0" />
+            <i o="blocker" r="0" x="5" y="4" z="0" />
+            
+            <!-- Water right -->
+            <i o="blocker" r="0" x="-1" y="-1" z="0" />
+            <i o="blocker" r="0" x="-1" y="0" z="0" />
+            <i o="blocker" r="0" x="-1" y="1" z="0" />
+            <i o="blocker" r="0" x="-1" y="2" z="0" />
+            <i o="blocker" r="0" x="-1" y="3" z="0" />
+            <i o="blocker" r="0" x="-1" y="4" z="0" />
+
+            <!-- Water bottom-left -->
+            <i o="blocker" r="0" x="-9" y="-12" z="0" />
+            <i o="blocker" r="0" x="-9" y="-11" z="0" />
+            <i o="blocker" r="0" x="-8" y="-11" z="0" />
+            <i o="blocker" r="0" x="-8" y="-10" z="0" />
+            <i o="blocker" r="0" x="-8" y="-9" z="0" />
+            <i o="blocker" r="0" x="-8" y="-8" z="0" />
+            <i o="blocker" r="0" x="-8" y="-7" z="0" />
+            <i o="blocker" r="0" x="-8" y="-6" z="0" />
+            <i o="blocker" r="0" x="-8" y="-5" z="0" />
+            <i o="blocker" r="0" x="-7" y="-9" z="0" />
+            <i o="blocker" r="0" x="-7" y="-8" z="0" />
+            <i o="blocker" r="0" x="-7" y="-7" z="0" />
+            <i o="blocker" r="0" x="-7" y="-6" z="0" />
+            <i o="blocker" r="0" x="-7" y="-5" z="0" />
+            
+            <!-- Water bottom-right -->
+            <i o="blocker" r="0" x="-8" y="-3" z="0" />
+            <i o="blocker" r="0" x="-8" y="-2" z="0" />
+            <i o="blocker" r="0" x="-8" y="-1" z="0" />
+            <i o="blocker" r="0" x="-8" y="0" z="0" />
+            <i o="blocker" r="0" x="-8" y="1" z="0" />
+            <i o="blocker" r="0" x="-8" y="2" z="0" />
+            <i o="blocker" r="0" x="-8" y="3" z="0" />
+            <i o="blocker" r="0" x="-8" y="4" z="0" />
+            <i o="blocker" r="0" x="-7" y="-3" z="0" />
+            <i o="blocker" r="0" x="-7" y="-2" z="0" />
+            <i o="blocker" r="0" x="-7" y="-1" z="0" />
+            <i o="blocker" r="0" x="-7" y="0" z="0" />
+            <i o="blocker" r="0" x="-7" y="1" z="0" />
+            <i o="blocker" r="0" x="-7" y="2" z="0" />
+            
+            <!-- Map edge -->
+            <i o="blocker" r="0" x="10" y="5" z="0" />
+            <i o="blocker" r="0" x="9" y="5" z="0" />
+            <i o="blocker" r="0" x="8" y="5" z="0" />
+            <i o="blocker" r="0" x="7" y="5" z="0" />
+            <i o="blocker" r="0" x="6" y="5" z="0" />
+            <i o="blocker" r="0" x="5" y="5" z="0" />
+            <i o="blocker" r="0" x="4" y="5" z="0" />
+            <i o="blocker" r="0" x="3" y="5" z="0" />
+            <i o="blocker" r="0" x="2" y="5" z="0" />
+            <i o="blocker" r="0" x="1" y="5" z="0" />
+            <i o="blocker" r="0" x="0" y="5" z="0" />
+            <i o="blocker" r="0" x="-1" y="5" z="0" />
+            <i o="blocker" r="0" x="-2" y="5" z="0" />
+            <i o="blocker" r="0" x="-3" y="5" z="0" />
+            <i o="blocker" r="0" x="-4" y="5" z="0" />
+            <i o="blocker" r="0" x="-5" y="5" z="0" />
+            <i o="blocker" r="0" x="-6" y="5" z="0" />
+            <i o="blocker" r="0" x="-7" y="5" z="0" />
+            <i o="blocker" r="0" x="-8" y="5" z="0" />
+            <i o="blocker" r="0" x="-9" y="5" z="0" />
+            <i o="blocker" r="0" x="-10" y="5" z="0" />
+            <i o="blocker" r="0" x="-11" y="5" z="0" />
+            <i o="blocker" r="0" x="-12" y="5" z="0" />
+            <i o="blocker" r="0" x="-13" y="5" z="0" />
+            <i o="blocker" r="0" x="-13" y="4" z="0" />
+            <i o="blocker" r="0" x="-13" y="3" z="0" />
+            <i o="blocker" r="0" x="-13" y="2" z="0" />
+            <i o="blocker" r="0" x="-13" y="1" z="0" />
+            <i o="blocker" r="0" x="-13" y="0" z="0" />
+            <i o="blocker" r="0" x="-13" y="-1" z="0" />
+            <i o="blocker" r="0" x="-13" y="-2" z="0" />
+            <i o="blocker" r="0" x="-13" y="-3" z="0" />
+            <i o="blocker" r="0" x="-13" y="-4" z="0" />
+            <i o="blocker" r="0" x="-13" y="-5" z="0" />
+            <i o="blocker" r="0" x="-13" y="-6" z="0" />
+            <i o="blocker" r="0" x="-13" y="-7" z="0" />
+            <i o="blocker" r="0" x="-13" y="-8" z="0" />
+            <i o="blocker" r="0" x="-13" y="-9" z="0" />
+            <i o="blocker" r="0" x="-13" y="-10" z="0" />
+            <i o="blocker" r="0" x="-13" y="-11" z="0" />
+            <i o="blocker" r="0" x="-13" y="-12" z="0" />
         </instances>
     </layer>
     <layer layer_type="walkable" grid_type="square" id="towerLayer" pathing="cell_edges_and_diagonals" rotation="0" sorting="camera" transparency="0" x_offset="0" x_scale="1" y_offset="0" y_scale="1" z_offset="0">
@@ -475,9 +576,9 @@
             <i o="tower" r="0"  x="2" y="-8" z="0" id="defaultTower2"/>
             <i o="tower" r="0"  x="2" y="0" z="0" id="defaultTower3"/>
             <i o="tower" r="0"  x="-5" y="-2" z="0" id="defaultTower4"/>
-            <i o="tower" r="0"  x="-6" y="-6" z="0" id="defaultTower5"/>
+            <i o="tower" r="0"  x="-5" y="-8" z="0" id="defaultTower5"/>
             <i o="tower" r="0"  x="-11" y="-8" z="0" id="defaultTower6"/>
-            <i o="tree" r="0"  x="8" y="-3" z="0" />
+            <i o="tree" r="0"  x="8" y="-4" z="0" />
             <i o="tree" r="0"  x="-1" y="-10" z="0" />
             <i o="tree" r="0"  x="-1" y="-6" z="0" />
             <i o="tree" r="0"  x="-1" y="-2" z="0" />
