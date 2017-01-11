@@ -12,8 +12,15 @@ private:
     AGUIManager* manager {nullptr};
 
     GUIWidgetContainer* container {nullptr};
+    GUIWidgetLabel* lbl_hero_name {nullptr};
+    GUIWidgetLabel* lbl_hero_hitpoints {nullptr};
+    GUIWidgetLabel* lbl_hero_mana {nullptr};
 
+    void updateStats();
     void quitGame();
+
+    void hasBecomeActive() override;
+    void hasBecomeInactive() override;
 
 public:
     ScreenGame(IGame* game, AGUIManager* manager);

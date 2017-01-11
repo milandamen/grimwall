@@ -12,6 +12,8 @@ FIFEChanGuiManager::FIFEChanGuiManager()
     this->container->setEnabled(false);
     this->container->setX(0);
     this->container->setY(0);
+    this->container->setWidth(EngineFacade::engine()->getScreenWidth());
+    this->container->setHeight(EngineFacade::engine()->getScreenHeight());
 }
 
 FIFEChanGuiManager::~FIFEChanGuiManager()
@@ -68,9 +70,11 @@ GUIWidgetLabel* FIFEChanGuiManager::addLabel(std::string caption = "", int x = 0
     return label;
 }
 
-GUIWidgetLabel *FIFEChanGuiManager::createLabel(std::string caption) {
+GUIWidgetLabel *FIFEChanGuiManager::createLabel(std::string caption, int width = 200, int height = 20) {
     FIFEChanLabel* label = new FIFEChanLabel();
     label->setCaption(caption);
+    label->setWidth(width);
+    label->setHeight(height);
 
     this->widgets.push_back(label);
 

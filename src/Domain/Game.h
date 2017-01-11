@@ -37,6 +37,7 @@ private:
      * Manages the GUI's and prevents duplicates
      */
     GUIRepo* guirepo {nullptr};
+    GUI* activeGUI {nullptr};
 
     UnitManager<AHero>* hero {nullptr};
 

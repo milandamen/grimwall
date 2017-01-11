@@ -33,7 +33,7 @@ public:
     virtual GUIWidgetButton* addButton(std::string caption, int x, int y) override;
     virtual GUIWidgetButton *createButton(std::string caption) override;
     virtual GUIWidgetLabel* addLabel(std::string caption, int x, int y) override;
-    virtual GUIWidgetLabel *createLabel(std::string caption) override;
+    virtual GUIWidgetLabel *createLabel(std::string caption, int width, int height) override;
     virtual GUIWidgetImage* addImage(std::string asset, int x, int y, int width, int height) override;
     virtual GUIWidgetImage *createImage(std::string asset, int width, int height) override;
     virtual GUIWidgetRadio* addRadio(std::string caption, std::string group, int x, int y, bool selected) override;

@@ -92,8 +92,14 @@ void Game::setHero(AHero *hero)
 
 void Game::setUI(std::string name)
 {
+    if(this->activeGUI != nullptr) {
+        this->activeGUI->hasBecomeInactive();
+    }
+
     GUI *gui = this->guirepo->getGUI(name);
     if (gui != nullptr) {
+        this->activeGUI = gui;
+        gui->hasBecomeActive();
         EngineFacade::engine()->setActiveGUIManager(gui->getGuiManager());
     }
 }
