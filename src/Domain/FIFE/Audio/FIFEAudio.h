@@ -22,16 +22,13 @@ class FIFEAudio {
 private:
     FIFE::SoundClipManager* musicSoundClipManager;
     FIFE::SoundManager* musicSoundManager;
-    FIFE::SoundEmitter* musicSoundEmmiter;
-    FIFE::SoundEmitter* effectSoundEmmiter;
+    FIFE::SoundEmitter* emitter;
     FIFE::OggLoader* oggLoader;
 
+    std::map<std::string, FIFE::SoundEmitter*> *musicMap;
+    std::map<std::string, FIFE::SoundEmitter*> *effectMap;
 
-
-    std::map<std::string, std::string> *musicMap;
-    std::map<std::string, std::string> *effectMap;
-
-    std::map<std::string, std::string>* loadMusicMaps(std::string musicType);
+    std::map<std::string, FIFE::SoundEmitter*>* loadMusicMaps(std::string musicType);
 public:
     FIFEAudio(FIFE::SoundClipManager* musicSoundClipManager, FIFE::SoundManager* musicSoundManager);
     ~FIFEAudio();
@@ -39,8 +36,9 @@ public:
     void setVolume(int volume);
     void playMusic(std::string asset);
     void playSoundEffect(std::string asset);
-    FIFE::SoundClipPtr getSoundEffect(std::string soundName);
-    FIFE::SoundClipPtr getSoundClip(std::string soundName);
+    void releaseMap(std::map<std::string, FIFE::SoundEmitter *> *map);
+    FIFE::SoundEmitter* getSoundEffect(std::string soundName);
+    FIFE::SoundEmitter* getSoundClip(std::string soundName);
 };
 
 
