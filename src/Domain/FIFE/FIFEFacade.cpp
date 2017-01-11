@@ -1,7 +1,7 @@
 #include "FIFEFacade.h"
 
 FIFEFacade::FIFEFacade(IGame* game)
-    : game{game}
+        : game{game}
 {
     this->engine = new FIFE::Engine();
     this->fifeChan = new FIFEChan(this->engine);
@@ -15,7 +15,7 @@ FIFEFacade::FIFEFacade(IGame* game)
     settings.setScreenHeight(768);
     settings.setDefaultFontGlyphs("abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789.,!?-+/():;%&amp;`'*#=[]\"");
     settings.setDefaultFontPath(defaultFontPath.string());
-    
+
     // If you want logging from the engine, uncomment this code:
 //     FIFE::LogManager* logManager {engine->getLogManager()};
 //     logManager->setLogToPrompt(true);
@@ -30,12 +30,12 @@ FIFEFacade::FIFEFacade(IGame* game)
 }
 
 FIFEFacade::~FIFEFacade() {
+    delete engine;
     delete keyListener;
     delete mouseListener;
     delete fifeCamera;
     delete fifeChan;
     delete fifeAudio;
-    delete engine;
 }
 
 void FIFEFacade::setRenderBackend(std::string engine)
@@ -79,67 +79,6 @@ AGUIManager* FIFEFacade::createGUIManager() {
     return new FIFEChanGuiManager();
 }
 
-void FIFEFacade::init()
-{
-    engine->init();
-
-    //initialize the audio
-    fifeAudio = new FIFEAudio(engine->getSoundClipManager(), engine->getSoundManager());
-    fifeAudio->setVolume(100);
-    fifeAudio->playMusic("intro");
-
-
-    // setup the gui
-    guimanager->setDefaultFont(
-            engine->getSettings().getDefaultFontPath(),
-            engine->getSettings().getDefaultFontSize(),
-            engine->getSettings().getDefaultFontGlyphs()
-    );
-
-    guimanager->init(
-            engine->getRenderBackend()->getName(),
-            engine->getRenderBackend()->getScreenWidth(),
-            engine->getRenderBackend()->getScreenHeight()
-    );
-
-    engine->setGuiManager(guimanager);
-    engine->getEventManager()->addSdlEventListener(guimanager);
-
-    initInput();
-
-    btnOptions = new fcn::Button();
-    btnOptions->setId("btnOptions");
-    btnOptions->setActionEventId("clickBtnOptions");
-    btnOptions->setWidth(300);
-    btnOptions->setHeight(50);
-    btnOptions->setPosition(300, 200);
-    btnOptions->setCaption("Play");
-    btnOptions->addActionListener(this);
-    btnOptions->addMouseListener(this);
-    guimanager->add(btnOptions);
-
-    btnExit = new fcn::Button();
-    btnExit->setId("btnExit");
-    btnExit->setActionEventId("clickBtnExit");
-    btnExit->setWidth(300);
-    btnExit->setHeight(50);
-    btnExit->setPosition(300, 300);
-    btnExit->setCaption("Quit to desktop");
-    btnExit->addActionListener(this);
-    btnExit->addKeyListener(this);
-    btnExit->addMouseListener(this);
-    guimanager->add(btnExit);
-}
-
-void FIFEFacade::mousePressed(fcn::MouseEvent& mouseEvent)
-{
-    if(mouseEvent.getSource() == btnOptions) {
-        guimanager->getTopContainer()->setVisible(false);
-    } else {
-        game->quit();
-    }
-}
-
 void FIFEFacade::setActiveGUIManager(AGUIManager* manager) {
     if(this->guimanager != nullptr) {
         this->fifeChan->getGuiManager()->remove(this->guimanager->getContainer());
@@ -148,7 +87,6 @@ void FIFEFacade::setActiveGUIManager(AGUIManager* manager) {
     this->guimanager = static_cast<FIFEChanGuiManager*>(manager);
     this->fifeChan->getGuiManager()->add(this->guimanager->getContainer());
     this->engine->getEventManager()->addSdlEventListener(this->fifeChan->getGuiManager());
-
 }
 
 void FIFEFacade::setFPSLimit(int fpsLimit)
@@ -179,10 +117,10 @@ void FIFEFacade::loadMap(std::string path)
         this->engine->getRenderBackend())
     {
         // create the default loader for the FIFE map format
-        //FIFE::DefaultMapLoader* mapLoader = FIFE::createDefaultMapLoader(engine->getModel(), engine->getVFS(), 
+        //FIFE::DefaultMapLoader* mapLoader = FIFE::createDefaultMapLoader(engine->getModel(), engine->getVFS(),
         //  engine->getImagePool(), engine->getAnimationPool(), engine->getRenderBackend());
         FIFE::MapLoader* mapLoader = new FIFE::MapLoader(this->engine->getModel(), this->engine->getVFS(),
-            this->engine->getImageManager(), this->engine->getRenderBackend());
+                                                         this->engine->getImageManager(), this->engine->getRenderBackend());
 
         fs::path mapPath(path);
 
@@ -232,7 +170,7 @@ void FIFEFacade::render()
 int FIFEFacade::getFPS()
 {
     if (this->engine == nullptr || !this->pumpingInitialized) { return 0; }
-    
+
     return static_cast<int>(1000/this->engine->getTimeManager()->getAverageFrameTime());
 }
 
@@ -300,7 +238,6 @@ void FIFEFacade::move(std::string name, double x, double y, int moveSpeed) {
             }
         }
     }
-
 }
 
 std::string FIFEFacade::createInstance(std::string objectName, std::string instanceName, double x, double y){
@@ -401,6 +338,7 @@ std::vector<UnitManager<ATower>*> FIFEFacade::loadTowers()
             }
         }
     }
+
     return towers;
 }
 
