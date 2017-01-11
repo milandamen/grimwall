@@ -8,6 +8,9 @@
 
 class AHero : public AUnit {
 protected:
+    int mana = 0;
+    int manaRegenTimeout = 60;
+
     std::string weapon;
     std::vector<AAbility*> abilities;
 public:
@@ -16,6 +19,8 @@ public:
     std::string getWeapon();
     void executeAbility(unsigned int number);
     void addAbility(AAbility* ability);
+
+    void tick() override;
 };
 
 #endif //GRIMWALL_AHERO_H

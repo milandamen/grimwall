@@ -2,6 +2,7 @@
 #define GRIMWALL_IUNIT_H
 
 #include <iostream>
+#include <functional>
 
 class IUnit {
 public:
@@ -24,6 +25,7 @@ public:
     virtual void setPrevious(IUnit *previous) = 0;
 
     virtual void tick() = 0;
+    virtual void setStatsListener(std::function<void()> delegate) = 0;
 };
 
 

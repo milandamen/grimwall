@@ -1,7 +1,7 @@
 #include "FIFEFacade.h"
 
 FIFEFacade::FIFEFacade(IGame* game)
-    : game{game}
+        : game{game}
 {
     this->engine = new FIFE::Engine();
     this->fifeChan = new FIFEChan(this->engine);
@@ -15,13 +15,13 @@ FIFEFacade::FIFEFacade(IGame* game)
     settings.setScreenHeight(768);
     settings.setDefaultFontGlyphs("abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789.,!?-+/():;%&amp;`'*#=[]\"");
     settings.setDefaultFontPath(defaultFontPath.string());
-    
+
     // If you want logging from the engine, uncomment this code:
 //     FIFE::LogManager* logManager {engine->getLogManager()};
 //     logManager->setLogToPrompt(true);
 //     logManager->setLevelFilter(FIFE::LogManager::LEVEL_DEBUG);
 //     logManager->addVisibleModule(LM_CONTROLLER);
-//     
+//
 //     // Add logging from all modules
 //     for (int i {0}; i < logmodule_t::LM_MODULE_MAX; i++)
 //     {
@@ -101,7 +101,7 @@ void FIFEFacade::init()
     this->fifeChan->init();
     //initialize the audio
     this->fifeAudio = new FIFEAudio(engine->getSoundClipManager(), engine->getSoundManager());
-
+    this->fifeAudio->playMusic("intro");
     this->initInput();
 
     this->engine->getEventManager()->addSdlEventListener(this->fifeChan->getGuiManager());
@@ -117,10 +117,10 @@ void FIFEFacade::loadMap(std::string path)
         this->engine->getRenderBackend())
     {
         // create the default loader for the FIFE map format
-        //FIFE::DefaultMapLoader* mapLoader = FIFE::createDefaultMapLoader(engine->getModel(), engine->getVFS(), 
+        //FIFE::DefaultMapLoader* mapLoader = FIFE::createDefaultMapLoader(engine->getModel(), engine->getVFS(),
         //  engine->getImagePool(), engine->getAnimationPool(), engine->getRenderBackend());
         FIFE::MapLoader* mapLoader = new FIFE::MapLoader(this->engine->getModel(), this->engine->getVFS(),
-            this->engine->getImageManager(), this->engine->getRenderBackend());
+                                                         this->engine->getImageManager(), this->engine->getRenderBackend());
 
         fs::path mapPath(path);
 
@@ -170,7 +170,7 @@ void FIFEFacade::render()
 int FIFEFacade::getFPS()
 {
     if (this->engine == nullptr || !this->pumpingInitialized) { return 0; }
-    
+
     return static_cast<int>(1000/this->engine->getTimeManager()->getAverageFrameTime());
 }
 
@@ -217,10 +217,10 @@ double FIFEFacade::getInstanceY(std::string name, std::string layerName) {
     return 0;
 }
 
-void FIFEFacade::move(std::string name, double x, double y, int moveSpeed) {
-    if (this->map) {
-        FIFE::Layer* layer = this->map->getLayer("unitLayer");
 
+void FIFEFacade::move(std::string name, std::string layerName, double x, double y, int moveSpeed) {
+    if (this->map) {
+        FIFE::Layer* layer = this->map->getLayer(layerName);
         if (layer) {
             FIFE::Instance* instance = layer->getInstance(name);
 
@@ -246,17 +246,17 @@ std::string FIFEFacade::createInstance(std::string objectName, std::string insta
         if(layer)  {
             FIFE::Object* object {this->engine->getModel()->getObject(objectName, "grimwall")};
             if(object) {
-                FIFE::ExactModelCoordinate mapCoords{};
+                FIFE::ModelCoordinate mapCoords{};
                 mapCoords.x = x;
                 mapCoords.y = y;
                 mapCoords.z = 0.0;
                 FIFE::Location* location {new FIFE::Location(layer)};
-                location->setMapCoordinates(mapCoords);
+                location->setLayerCoordinates(mapCoords);
                 //Check if position is occupied
                 if(layer->getInstancesAt(*location).size() == 0) {
-                    layer->createInstance(object, mapCoords, instanceName);
+                    FIFE::Instance* instance {layer->createInstance(object, mapCoords, instanceName)};
+                    FIFE::InstanceVisual::create(instance);
                 }
-                delete location;
                 return instanceName;
             }
         }
@@ -340,4 +340,13 @@ std::vector<UnitManager<ATower>*> FIFEFacade::loadTowers()
     }
 
     return towers;
+}
+
+void FIFEFacade::playMusic(std::string asset) {
+    fifeAudio->playMusic(asset);
+}
+
+void FIFEFacade::playSoundEffect(std::string asset) {
+    fifeAudio->playSoundEffect(asset);
+
 }

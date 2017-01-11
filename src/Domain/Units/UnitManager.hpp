@@ -12,9 +12,12 @@ class UnitManager : public IUnit {
 private:
     UnitType* base {nullptr};
     IUnit* unit {nullptr};
+protected:
+    std::function<void()> updateStatsListener = [](){};
 public:
     UnitManager(UnitType* unit);
     ~UnitManager();
+
     std::string getName() override;
     double getReach() override;
     int getAttackDelay() override;
@@ -38,6 +41,8 @@ public:
     IUnit* getUnit();
 
     void buff(BuffDecorator* decorator);
+
+    void setStatsListener(std::function<void()> delegate) override;
 };
 
 template <typename UnitType>
@@ -139,6 +144,14 @@ template <typename UnitType>
 void UnitManager<UnitType>::buff(BuffDecorator *decorator) {
     this->unit = decorator;
     this->unit->setPrevious(this);
+
+    this->updateStatsListener();
+}
+
+template <typename UnitType>
+void UnitManager<UnitType>::setStatsListener(std::function<void()> delegate) {
+    this->updateStatsListener = delegate;
+    this->unit->setStatsListener(delegate);
 }
 
 

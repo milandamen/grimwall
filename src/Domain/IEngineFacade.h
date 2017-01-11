@@ -121,7 +121,7 @@ public:
     /**
      * Set the location of an instance
      */
-    virtual void move(std::string name, double x, double y, int moveSpeed) = 0;
+    virtual void move(std::string name, std::string layerName, double x, double y, int moveSpeed) = 0;
     
     /**
      * Run a tick for userland code like input callbacks
@@ -133,6 +133,15 @@ public:
      */
     virtual std::vector<UnitManager<ATower>*> loadTowers() = 0;
 
+    /**
+     * Play music
+     */
+    virtual void playMusic(std::string asset) = 0;
+
+    /*
+     * Play sound effect
+     */
+    virtual void playSoundEffect(std::string asset) = 0;
 };
 
 #endif

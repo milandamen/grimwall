@@ -76,3 +76,7 @@ void AUnit::setTimeLastAttack(int time) {
 int AUnit::getTimeLastAttack() {
     return this->timeLastAttack;
 }
+
+void AUnit::setStatsListener(std::function<void()> delegate) {
+    this->updateStatsListener = delegate;
+}
