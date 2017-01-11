@@ -20,7 +20,7 @@ std::string AHero::getWeapon() {
 
 void AHero::executeAbility(int number) {
     if (number < this->abilities.size() && number >= 0){
-        if (this->abilities[number]->getCost() < this->mana) {
+        if (this->abilities[number]->getCost() <= this->mana) {
             this->mana -= this->abilities[number]->getCost();
             this->abilities[number]->execute();
         }
