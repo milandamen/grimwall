@@ -6,47 +6,96 @@ Game::Game()
 {
     EngineFacade::setEngine("FIFE", this);
     EngineFacade::engine()->setRenderBackend("OpenGL");
-
     EngineFacade::engine()->setFPSLimit(60);
-
     EngineFacade::engine()->init();
 
-    initInput();
-    EngineFacade::engine()->loadMap("assets/maps/level1_remake_conv.xml");
-    loadTowers();
+    this->guirepo = new GUIRepo();
+    this->guirepo->addGUI("MainMenu", new ScreenMainMenu(this, EngineFacade::engine()->createGUIManager()));
+    this->guirepo->addGUI("GameOver", new ScreenGameOver(this, EngineFacade::engine()->createGUIManager()));
+    this->guirepo->addGUI("Won", new ScreenWon(this, EngineFacade::engine()->createGUIManager()));
+    this->guirepo->addGUI("SelectHero", new ScreenSelectHero(this, EngineFacade::engine()->createGUIManager()));
+    this->guirepo->addGUI("SelectLevel", new ScreenSelectLevel(this, EngineFacade::engine()->createGUIManager()));
+    this->guirepo->addGUI("Options", new ScreenOptions(this, EngineFacade::engine()->createGUIManager()));
+    this->guirepo->addGUI("Pause", new ScreenPause(this, EngineFacade::engine()->createGUIManager()));
+    this->guirepo->addGUI("Game", new ScreenGame(this, EngineFacade::engine()->createGUIManager()));
+
+    EngineFacade::engine()->setActiveGUIManager(this->guirepo->getGUI("MainMenu")->getGuiManager());
+
+    this->initInput();
 
     this->hero = new UnitManager<AHero>(new Dralas());
     this->hero->getBase()->addAbility(new DeathStrike(this->hero));
-    
+
     setSaveGameManager(new SaveGameManager {"TEXT"});
-    
+
     this->towerManager.setTowers(this->getTowers());
     this->towerManager.setHero(hero);
 
     // Game loop
-    curTime = 0;
-    lastTime = 0;
+    this->curTime = 0;
+    this->lastTime = 0;
+    this->paused = true;
 
-    while (running)
+    while (this->running)
     {
         updateFPS();
-        
-        // Run an engine tick for userland code
-        EngineFacade::engine()->tick();
-        this->tick();
+
+        // Check if we are in pause state
+        if(!this->paused) {
+            // Run an engine tick for userland code
+            EngineFacade::engine()->tick();
+            this->tick();
+        }
 
         // Render a frame
         EngineFacade::engine()->render();
-        curTime = EngineFacade::engine()->getTime();
+        this->curTime = EngineFacade::engine()->getTime();
     }
     
     EngineFacade::destroy();
-    delete keyboardMapper;
+    delete this->keyboardMapper;
 }
 
 Game::~Game() {
     delete this->hero;
     this->deleteTowers();
+}
+
+void Game::setMap(std::string path)
+{
+    EngineFacade::engine()->loadMap(path);
+    this->loadTowers();
+}
+
+int Game::getCurrentScore() {
+    return this->score;
+}
+
+bool Game::isPaused()
+{
+    return this->paused;
+}
+
+void Game::setPaused(bool paused)
+{
+    this->paused = paused;
+}
+
+void Game::setHero(AHero *hero)
+{
+    if(this->hero != nullptr) {
+        delete this->hero;
+    }
+
+    this->hero = new UnitManager<AHero>(hero);
+}
+
+void Game::setUI(std::string name)
+{
+    GUI *gui = this->guirepo->getGUI(name);
+    if (gui != nullptr) {
+        EngineFacade::engine()->setActiveGUIManager(gui->getGuiManager());
+    }
 }
 
 void Game::tick() {
@@ -77,18 +126,18 @@ UnitManager<AHero>* Game::getHero() {
 
 void Game::quit()
 {
-    running = false;
+    this->running = false;
 }
 
 void Game::initInput()
 {
-    keyboardMapper = new KeyboardMapper(this);
+    this->keyboardMapper = new KeyboardMapper(this);
 }
 
 void Game::updateFPS()
 {
     // Update FPS reading approx. every second
-    if ((curTime > 0) && (curTime - lastTime >= 1000))
+    if ((this->curTime > 0) && (this->curTime - this->lastTime >= 1000))
     {
         // Create Title + FPS string
         std::ostringstream oss;
@@ -98,7 +147,7 @@ void Game::updateFPS()
         EngineFacade::engine()->setWindowTitle(oss.str());
         
         // Update the last time FPS was calculated
-        lastTime = EngineFacade::engine()->getTime();
+        this->lastTime = EngineFacade::engine()->getTime();
     }
 }
 
@@ -129,4 +178,3 @@ void Game::setSaveGameManager(ISaveGameManager* saveGameManager)
 {
     this->saveGameManager = saveGameManager;
 }
-
