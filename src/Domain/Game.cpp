@@ -113,7 +113,8 @@ void Game::tick() {
 }
 
 void Game::win() {
-    std::cout << "win";
+    this->paused = true;
+    EngineFacade::engine()->setActiveGUIManager(this->guirepo->getGUI("Won")->getGuiManager());
 }
 
 void Game::lose() {
