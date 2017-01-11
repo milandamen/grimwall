@@ -117,7 +117,9 @@ void Game::win() {
 }
 
 void Game::lose() {
-    std::cout << "lose";
+    this->paused = true;
+    EngineFacade::engine()->setActiveGUIManager(this->guirepo->getGUI("GameOver")->getGuiManager());
+
 }
 
 UnitManager<AHero>* Game::getHero() {
