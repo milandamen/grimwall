@@ -1,5 +1,5 @@
 #include "LongbowmanSpawnCallback.h"
-LongbowmanSpawnCallback::LongbowmanSpawnCallback(IGame* game) : KeypressCallback(game, 0), value{value}
+LongbowmanSpawnCallback::LongbowmanSpawnCallback(IGame* game) : KeypressCallback(game, 0)
 {
 
 }

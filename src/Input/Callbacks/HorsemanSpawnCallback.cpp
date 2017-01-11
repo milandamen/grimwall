@@ -1,5 +1,5 @@
 #include "HorsemanSpawnCallback.h"
-HorsemanSpawnCallback::HorsemanSpawnCallback(IGame* game) : KeypressCallback(game, 0), value{value}
+HorsemanSpawnCallback::HorsemanSpawnCallback(IGame* game) : KeypressCallback(game, 0)
 {
 
 }

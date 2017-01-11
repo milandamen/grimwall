@@ -1,5 +1,5 @@
 #include "CatapultSpawnCallback.h"
-CatapultSpawnCallback::CatapultSpawnCallback(IGame* game) : KeypressCallback(game, 0), value{value}
+CatapultSpawnCallback::CatapultSpawnCallback(IGame* game) : KeypressCallback(game, 0)
 {
 
 }

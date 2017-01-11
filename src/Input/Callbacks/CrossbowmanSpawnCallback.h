@@ -7,8 +7,6 @@
 #include <iostream>
 
 class CrossbowmanSpawnCallback : public KeypressCallback{
-private:
-    std::string value;
 public:
     CrossbowmanSpawnCallback(IGame* game);
     virtual void execute() override;

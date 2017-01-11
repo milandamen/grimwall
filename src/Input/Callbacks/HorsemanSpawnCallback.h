@@ -7,8 +7,6 @@
 #include <iostream>
 
 class HorsemanSpawnCallback : public KeypressCallback{
-private:
-    std::string value;
 public:
     HorsemanSpawnCallback(IGame* game);
     virtual void execute() override;

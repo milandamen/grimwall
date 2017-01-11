@@ -7,8 +7,6 @@
 #include <iostream>
 
 class CatapultSpawnCallback : public KeypressCallback{
-private:
-    std::string value;
 public:
     CatapultSpawnCallback(IGame* game);
     virtual void execute() override;
