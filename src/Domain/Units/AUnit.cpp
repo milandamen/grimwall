@@ -41,6 +41,7 @@ int AUnit::getVisibility() {
 
 void AUnit::receiveDamage(int power) {
     this->hitPoints -= power;
+    this->updateStatsListener();
 }
 
 double AUnit::getX() {
