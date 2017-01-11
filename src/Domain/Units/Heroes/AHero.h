@@ -20,6 +20,8 @@ public:
     void executeAbility(unsigned int number);
     void addAbility(AAbility* ability);
 
+    int getMana();
+
     void tick() override;
 };
 

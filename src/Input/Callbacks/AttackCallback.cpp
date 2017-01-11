@@ -17,6 +17,10 @@ void AttackCallback::execute() {
         double reach = game->getHero()->getReach();
         int power = game->getHero()->getPower();
 
+        // Commence the attack animation on the unit.
+        // TODO: Replace "talk" with a more fitting animation.
+        EngineFacade::engine()->setInstanceAction(game->getHero()->getName(), "talk");
+
         std::vector<UnitManager<ATower> *> *towers = game->getTowers();
         UnitManager<ATower> *tower;
         for (std::vector<UnitManager<ATower> *>::iterator it = towers->begin(); it != towers->end();) {

@@ -34,6 +34,10 @@ void AHero::addAbility(AAbility *ability) {
     this->abilities.push_back(ability);
 }
 
+int AHero::getMana() {
+    return this->mana;
+}
+
 void AHero::tick() {
     AUnit::tick();
 
