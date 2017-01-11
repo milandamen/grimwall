@@ -37,7 +37,6 @@ void AHero::tick() {
     this->manaRegenTimeout--;
     if (this->manaRegenTimeout == 0) {
         this->manaRegenTimeout = 60;
-        std::cout << this->mana << std::endl;
 
         if (this->mana < 100)
             this->mana++;
