@@ -11,6 +11,7 @@
 #include "SaveGame/ISaveGameManager.h"
 #include "SaveGame/SaveGameManager.h"
 #include "UnitFactory.h"
+#include "TowerManager.h"
 
 #include <vector>
 
@@ -36,6 +37,7 @@ private:
     KeyboardMapper* keyboardMapper {nullptr};
     
     ISaveGameManager* saveGameManager {nullptr};
+    TowerManager towerManager;
 
     void initInput();
     void updateFPS();
@@ -51,7 +53,6 @@ public:
     virtual UnitManager<AHero>* getHero() override;
     virtual void quit() override;
     virtual std::vector<UnitManager<ATower>*>* getTowers() override;
-    virtual void letTowersAttack() override;
     virtual ISaveGameManager* getSaveGameManager() override;
     virtual void setSaveGameManager(ISaveGameManager* saveGameManager) override;
 };

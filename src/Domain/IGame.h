@@ -12,7 +12,6 @@ public:
     virtual UnitManager<AHero>* getHero() = 0;
     virtual void quit() = 0;
     virtual std::vector<UnitManager<ATower>*>* getTowers() = 0;
-    virtual void letTowersAttack() = 0;
     virtual ISaveGameManager* getSaveGameManager() = 0;
     virtual void setSaveGameManager(ISaveGameManager* saveGameManager) = 0;
 };
