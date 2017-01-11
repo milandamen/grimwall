@@ -10,6 +10,8 @@ private:
 protected:
     int duration;
     int time;
+
+    std::function<void()> updateStatsListener = [](){};
 public:
     BuffDecorator(IUnit *next, int duration);
     ~BuffDecorator();
@@ -32,6 +34,8 @@ public:
     void setPrevious(IUnit *previous);
 
     void tick() override ;
+
+    void setStatsListener(std::function<void()> delegate) override;
 };
 
 
