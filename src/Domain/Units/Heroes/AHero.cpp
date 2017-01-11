@@ -19,10 +19,27 @@ std::string AHero::getWeapon() {
 }
 
 void AHero::executeAbility(int number) {
-    if (number < this->abilities.size() && number >= 0)
-        this->abilities[number]->execute();
+    if (number < this->abilities.size() && number >= 0){
+        if (this->abilities[number]->getCost() < this->mana) {
+            this->mana -= this->abilities[number]->getCost();
+            this->abilities[number]->execute();
+        }
+    }
 }
 
 void AHero::addAbility(AAbility *ability) {
     this->abilities.push_back(ability);
+}
+
+void AHero::tick() {
+    AUnit::tick();
+
+    this->manaRegenTimeout--;
+    if (this->manaRegenTimeout == 0) {
+        this->manaRegenTimeout = 60;
+        std::cout << this->mana << std::endl;
+
+        if (this->mana < 100)
+            this->mana++;
+    }
 }

@@ -43,7 +43,7 @@ public:
     void setNext(IUnit *next);
     void setPrevious(IUnit *previous);
 
-    void tick() override;
+    virtual void tick() override;
 
     void setTimeLastAttack(int time);
     int getTimeLastAttack();
