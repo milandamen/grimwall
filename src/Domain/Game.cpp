@@ -23,9 +23,12 @@ Game::Game()
 
     this->initInput();
 
-    //this->hero = new UnitManager<AHero>(new Dralas());
-    //this->hero->getBase()->addAbility(new DeathStrike(this->hero));
-    
+    this->hero = new UnitManager<AHero>(new Dralas());
+    this->hero->getBase()->addAbility(new DeathStrike(this->hero));
+
+    this->towerManager.setTowers(this->getTowers());
+    this->towerManager.setHero(hero);
+
     // Game loop
     this->curTime = 0;
     this->lastTime = 0;
@@ -44,7 +47,6 @@ Game::Game()
 
         // Render a frame
         EngineFacade::engine()->render();
-        letTowersAttack();
         this->curTime = EngineFacade::engine()->getTime();
     }
     
@@ -96,7 +98,7 @@ void Game::setUI(std::string name)
 
 void Game::tick() {
     updateLocation(this->hero, this->hero->getName());
-    this->letTowersAttack();
+    this->towerManager.tick(curTime);
 
     if (this->hero->getHitPoints() <= 0){
         this->lose();
@@ -164,44 +166,3 @@ void Game::deleteTowers()
 std::vector<UnitManager<ATower> *>* Game::getTowers() {
     return &this->towers;
 }
-
-void Game::letTowersAttack() {
-    //iterate through all towers
-    for(unsigned int i = 0; i < this->towers.size(); ++i)
-    {
-        // for each tower check if the hero is within range
-        UnitManager<ATower>* tower {this->towers.at(i)};
-
-        //check if attack delay has passed
-        int timeSince {this->curTime - tower->getBase()->getTimeLastAttack()};
-
-        if(tower->getBase()->getTimeLastAttack() == 0 || timeSince >= tower->getAttackDelay())
-        {
-            //time delay passed
-            updateLocation(tower, tower->getName());
-
-            //calculate distance between unit and tower
-            double deltaX {std::pow((this->hero->getX() - tower->getX()), 2.0)};
-            double deltaY {std::pow((this->hero->getY() - tower->getY()), 2.0)};
-
-            double distance {std::sqrt(deltaX + deltaY)};
-
-            if(distance <= tower->getReach())
-            {
-                //hero in range, attack
-
-                //get tower attack
-                //subtract it from hero hp
-                int damage {tower->getPower()};
-                this->hero->receiveDamage(damage);
-
-                std::cout << "Hero hp: " << this->hero->getHitPoints() << std::endl;
-
-                //update time tower last attacked
-                tower->getBase()->setTimeLastAttack(this->curTime);
-
-            }
-        }
-    }
-}
-
