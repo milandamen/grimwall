@@ -8,6 +8,8 @@
 #include "Units/UnitManager.hpp"
 #include "Units/Heroes/Dralas.h"
 #include "Units/Buff/BoneStormBuff.h"
+#include "SaveGame/ISaveGameManager.h"
+#include "SaveGame/SaveGameManager.h"
 #include "UnitFactory.h"
 #include "TowerManager.h"
 
@@ -17,12 +19,7 @@ class Game : public IGame {
 private:
     UnitManager<AHero>* hero{nullptr};
 
-    /**
-     * Set this to true to stop the game loop
-     */
     std::vector<UnitManager<ATower>*> towers;
-    void loadTowers();
-    void deleteTowers();
     bool running {true};
 
     /**
@@ -38,20 +35,26 @@ private:
      * Handles mapping of key combinations to callbacks
      */
     KeyboardMapper* keyboardMapper {nullptr};
+    
+    ISaveGameManager* saveGameManager {nullptr};
     TowerManager towerManager;
 
     void initInput();
     void updateFPS();
-
+    void loadTowers();
+    void deleteTowers();
     void tick();
     void win();
     void lose();
+
 public:
     Game();
     ~Game();
     virtual UnitManager<AHero>* getHero() override;
     virtual void quit() override;
     virtual std::vector<UnitManager<ATower>*>* getTowers() override;
+    virtual ISaveGameManager* getSaveGameManager() override;
+    virtual void setSaveGameManager(ISaveGameManager* saveGameManager) override;
 };
 
 
