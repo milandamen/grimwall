@@ -10,7 +10,7 @@ ScreenSelectLevel::ScreenSelectLevel(IGame* game, AGUIManager* manager)
     bh->setHeight(556);
 
     bh->onClick([&]() {
-        this->game->setMap("assets/maps/level1_remake_conv.xml");
+        this->game->setMap("assets/maps/tutorial_conv.xml");
         this->game->setPaused(false);
         this->game->setUI("Game");
     });

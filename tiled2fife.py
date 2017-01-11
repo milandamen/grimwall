@@ -115,7 +115,6 @@ for layer in layers:
             t.set("y", str(startY + y))
             t.set("z", "0")
             t.set("r", "0")
-            t.set("blocking", "1")
             t.set("stackpos", "0")
         
         count += 1
