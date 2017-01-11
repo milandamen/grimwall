@@ -10,68 +10,68 @@ FIFECamera::FIFECamera(FIFE::Map *map, FIFE::EventManager* eventManager, FIFE::T
 
 FIFECamera::~FIFECamera()
 {
-    delete cameraScroller;
+    delete this->cameraScroller;
     // No need to delete the rest as they will be deleted on Engine Destroy()
 }
 
 void FIFECamera::initView() {
-    if(map){
+    if(this->map){
         // get the main camera for this map
-        mainCamera = map->getCamera("main");
+        this->mainCamera = map->getCamera("main");
 
-        if (mainCamera)
+        if (this->mainCamera)
         {
-            mainCamera->setEnabled(true);
+            this->mainCamera->setEnabled(true);
 
             // get the renderer associated with viewing objects on the map
-            FIFE::RendererBase* renderer = mainCamera->getRenderer("InstanceRenderer");
+            FIFE::RendererBase* renderer = this->mainCamera->getRenderer("InstanceRenderer");
 
             if (renderer)
             {
                 // activate all layers associated with the renderer
                 // for this map, this must be done to see anything
-                renderer->activateAllLayers(map);
+                renderer->activateAllLayers(this->map);
             }
         }
-        cameraScroller = new FIFECameraScroller(mainCamera, eventManager, timeManager);
+        this->cameraScroller = new FIFECameraScroller(this->mainCamera, this->eventManager, this->timeManager);
     }
 
 }
 
 FIFE::Camera* FIFECamera::camera() const {
-    return mainCamera;
+    return this->mainCamera;
 }
 
 void FIFECamera::zoomIn() {
-    if (mainCamera)
+    if (this->mainCamera)
     {
         // calculate the zoom in level
-        double zoom = mainCamera->getZoom() / zoomIncrement;
+        double zoom = this->mainCamera->getZoom() / this->zoomIncrement;
 
-        if (zoom <= maxZoom)
+        if (zoom <= this->maxZoom)
         {
-            mainCamera->setZoom(zoom);
+            this->mainCamera->setZoom(zoom);
         }
     }
 }
 
 void FIFECamera::unregisterEvent() {
-    cameraScroller->unregisterEvent();
+    this->cameraScroller->unregisterEvent();
 }
 
 void FIFECamera::zoomOut(){
-    if (mainCamera)
+    if (this->mainCamera)
     {
         // calculate the zoom out level
-        double zoom = mainCamera->getZoom() * zoomIncrement;
+        double zoom = mainCamera->getZoom() * this->zoomIncrement;
 
-        if (zoom >= minZoom)
+        if (zoom >= this->minZoom)
         {
-            mainCamera->setZoom(zoom);
+            this->mainCamera->setZoom(zoom);
         }
     }
 }
 
 void FIFECamera::updateLocation(int x, int y) {
-    cameraScroller->updateLocation(x,y);
+    this->cameraScroller->updateLocation(x,y);
 }

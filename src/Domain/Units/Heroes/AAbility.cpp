@@ -6,11 +6,6 @@ AAbility::AAbility(int cost)
 
 }
 
-AAbility::~AAbility()
-{
-
-}
-
 int AAbility::getCost() {
     return this->cost;
 }

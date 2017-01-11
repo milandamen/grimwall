@@ -1,46 +1,52 @@
 #ifndef FIFE_FACADE_H
 #define FIFE_FACADE_H
 
-#include "controller/engine.h"
-#include "controller/enginesettings.h"
+#include <audio/soundclipmanager.h>
+#include <audio/soundmanager.h>
+
 #include "model/model.h"
 #include "model/structures/instance.h"
-#include "view/visual.h"
-#include "loaders/native/map/maploader.h"
 #include "model/structures/map.h"
 #include "model/structures/layer.h"
+#include "view/visual.h"
 #include "view/camera.h"
+#include "controller/engine.h"
+#include "controller/enginesettings.h"
+#include "loaders/native/map/maploader.h"
+
+#include "util/log/logger.h"
 #include "util/time/timemanager.h"
 #include "eventchannel/eventmanager.h"
 #include "gui/fifechan/fifechanmanager.h"
-#include "util/log/logger.h"
-
+#include "GUI/FIFEChanGuiManager.h"
 #include "boost/filesystem.hpp"
+
 #include "SDL.h"
-
-#include "../IEngineFacade.h"
-#include "FIFEMouseListener.h"
+#include "FIFEChan.h"
 #include "FIFEKeyListener.h"
-#include "../IGame.h"
-#include "../../Input/ICallback.h"
+#include "FIFEMouseListener.h"
 #include "Camera/FIFECamera.h"
-#include <audio/soundclipmanager.h>
-#include <audio/soundmanager.h>
-#include "Audio/FIFEAudio.h"
-#include "../TowerFactory.h"
 
+#include "Audio/FIFEAudio.h"
+
+#include "../IGame.h"
+#include "../IEngineFacade.h"
+#include "../IGame.h"
+#include "../TowerFactory.h"
+#include "../../Input/ICallback.h"
+
+class FIFEChanGuiManager;
 
 namespace fs = boost::filesystem;
 
-class FIFEFacade : public IEngineFacade, fcn::ActionListener, fcn::KeyListener, fcn::MouseListener {
+class FIFEFacade : public IEngineFacade {
 private:
     FIFE::Engine* engine {nullptr};
-    FIFE::FifechanManager* guimanager {nullptr};
     FIFE::Map* map {nullptr};
 
+    FIFEChan* fifeChan {nullptr};
+    FIFEChanGuiManager* guimanager {nullptr};
     FIFEAudio* fifeAudio {nullptr};
-    fcn::Button* btnOptions {nullptr};
-    fcn::Button* btnExit {nullptr};
     FIFECamera* fifeCamera {nullptr};
 
     IGame* game {nullptr};
@@ -56,25 +62,21 @@ public:
     FIFEFacade(IGame* game);
     ~FIFEFacade();
 
-    /**** Encapsulation ****/
-
-    void action(const fcn::ActionEvent& actionEvent) override;
-    void keyPressed(fcn::KeyEvent& keyEvent) override;
-    void mousePressed(fcn::MouseEvent& mouseEvent) override;
-
     /**** Settings ****/
-    
     /**
      * Set the render backend used by the engine (OpenGL or SDL).
      */
     void setRenderBackend(std::string engine) override;
 
     /**
-     * Gets the width of the window.
+     * Gets the width of the window
+     * @return Integer The window width
      */
     const uint16_t getScreenWidth();
+
     /**
-     * Gets the height of the window.
+     * Gets the width of the window
+     * @return Integer The window width
      */
     const uint16_t getScreenHeight();
 
@@ -82,7 +84,7 @@ public:
      * Sets the width of the window.
      */
     void setScreenWidth(int width) override;
-    
+
     /**
      * Sets the height of the window.
      */
@@ -117,6 +119,21 @@ public:
      * Load a map specified by the path into the engine.
      */
     void loadMap(std::string path) override;
+
+
+    /**** GUIManager ****/
+
+    /**
+     * Method to create a GUI manager
+     * @return Pointer to instance of AGUIManager
+     */
+    AGUIManager* createGUIManager() override;
+
+    /**
+     * Method to set the active GUI manager
+     * @param manager Pointer to AGUIManager instance
+     */
+    void setActiveGUIManager(AGUIManager* manager) override;
 
     /**** Running ****/
     
