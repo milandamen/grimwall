@@ -12,14 +12,16 @@ FIFEAudio::FIFEAudio(FIFE::SoundClipManager* musicSoundClipManager, FIFE::SoundM
 }
 
 FIFEAudio::~FIFEAudio() {
+    releaseMap(musicMap);
+    releaseMap(effectMap);
     delete musicMap;
     delete effectMap;
     delete oggLoader;
 }
 
-std::map<std::string, FIFE::SoundClipPtr>* FIFEAudio::loadMusicMaps(std::string musicType) {
+std::map<std::string, FIFE::SoundEmitter*>* FIFEAudio::loadMusicMaps(std::string musicType) {
 
-    std::map<std::string, FIFE::SoundClipPtr> *map = new std::map<std::string, FIFE::SoundClipPtr>();
+    std::map<std::string, FIFE::SoundEmitter*> *map = new std::map<std::string, FIFE::SoundEmitter*>();
 
     fs::path p(musicType);
     for (auto i = fs::directory_iterator(p); i != fs::directory_iterator(); i++)
@@ -30,40 +32,42 @@ std::map<std::string, FIFE::SoundClipPtr>* FIFEAudio::loadMusicMaps(std::string 
 
             std::vector<std::string> strs;
             boost::split(strs, i->path().filename().string(), boost::is_any_of("."));
-
-            map->insert(std::make_pair(strs[0], musicSoundClipManager->load(asset, oggLoader)));
+            emitter = musicSoundManager->createEmitter();
+            emitter->setSoundClip(musicSoundClipManager->load(asset, oggLoader));
+            map->insert(std::make_pair(strs[0], emitter));
         }
     }
 
     return map;
 }
 
+void FIFEAudio::releaseMap(std::map<std::string, FIFE::SoundEmitter *> *map) {
+    if(map->size() != 0){
+        std::map<std::string, FIFE::SoundEmitter*>::iterator it;
+        for ( it = map->begin(); it != map->end(); it++ ){
+            it->second->reset(true);
+        }
+    }
+}
+
 void FIFEAudio::setVolume(int volume) {
     musicSoundManager->setVolume(0.01 * volume);
 }
 
-FIFE::SoundClipPtr FIFEAudio::getSoundEffect(std::string soundName) {
+FIFE::SoundEmitter* FIFEAudio::getSoundEffect(std::string soundName) {
     return effectMap->at(soundName);
 }
 
-FIFE::SoundClipPtr FIFEAudio::getSoundClip(std::string soundName) {
+FIFE::SoundEmitter* FIFEAudio::getSoundClip(std::string soundName) {
     return musicMap->at(soundName);
 }
 
 void FIFEAudio::playMusic(std::string asset) {
-    musicSoundEmmiter = musicSoundManager->createEmitter();
-
-    musicSoundEmmiter->setSoundClip(getSoundClip(asset));
-
-    musicSoundEmmiter->play();
+    getSoundClip(asset)->play();
 }
 
 void FIFEAudio::playSoundEffect(std::string asset) {
-    effectSoundEmmiter = musicSoundManager->createEmitter();
-
-    effectSoundEmmiter->setSoundClip(getSoundEffect(asset));
-
-    effectSoundEmmiter->play();
+    getSoundEffect(asset)->play();
 }
 
 
