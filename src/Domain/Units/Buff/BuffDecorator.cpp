@@ -66,6 +66,10 @@ void BuffDecorator::setPrevious(IUnit *previous) {
     this->previous = previous;
 }
 
+bool BuffDecorator::attack() {
+    this->next->attack();
+}
+
 void BuffDecorator::tick() {
     this->next->tick();
 
