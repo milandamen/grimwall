@@ -15,8 +15,9 @@
 #include <functional>
 #include <cctype>
 
-#include "../IGame.h"
 #include "../../Input/ICallback.h"
+
+class IGame;
 
 //! handler for listening to keyboard input
 class FIFEKeyListener : public FIFE::IKeyListener

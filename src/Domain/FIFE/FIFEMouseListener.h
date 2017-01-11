@@ -11,8 +11,8 @@
 #include <iostream>
 
 #include "../Units/IUnit.h"
-#include "../IGame.h"
 #include "Camera/FIFECamera.h"
+class IGame;
 
 
 class FIFEMouseListener : public FIFE::IMouseListener
@@ -31,6 +31,7 @@ private:
     FIFE::Instance* instance {nullptr};
 
     void mouseLeftButtonPressed(FIFE::MouseEvent& evt);
+    void mouseRightButtonPressed(FIFE::MouseEvent& evt);
 
 public:
     FIFEMouseListener(IGame* game, FIFECamera* camera);

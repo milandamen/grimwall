@@ -11,8 +11,14 @@ KeyboardMapper::KeyboardMapper(IGame* game)
     EngineFacade::engine()->registerCallback("-", new ZoomCameraCallback(game, "MINUS"));
 
     // TROUPS
-    EngineFacade::engine()->registerCallback("5", new TroupSpawnCallback(game, "1"));
-    
+    EngineFacade::engine()->registerCallback("5", new SwordsmanSpawnCallback(game));
+    EngineFacade::engine()->registerCallback("6", new CrossbowmanSpawnCallback(game));
+    EngineFacade::engine()->registerCallback("7", new LongbowmanSpawnCallback(game));
+    EngineFacade::engine()->registerCallback("8", new HorsemanSpawnCallback(game));
+    EngineFacade::engine()->registerCallback("9", new CatapultSpawnCallback(game));
+
+
+
     // Abilities
     EngineFacade::engine()->registerCallback("SPACE", new AttackCallback(game));
     EngineFacade::engine()->registerCallback("1", new UseAbilityCallback(game, 0));

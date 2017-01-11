@@ -21,7 +21,7 @@ FIFEFacade::FIFEFacade(IGame* game)
 //     logManager->setLogToPrompt(true);
 //     logManager->setLevelFilter(FIFE::LogManager::LEVEL_DEBUG);
 //     logManager->addVisibleModule(LM_CONTROLLER);
-//     
+//
 //     // Add logging from all modules
 //     for (int i {0}; i < logmodule_t::LM_MODULE_MAX; i++)
 //     {
@@ -217,10 +217,10 @@ double FIFEFacade::getInstanceY(std::string name, std::string layerName) {
     return 0;
 }
 
-void FIFEFacade::move(std::string name, double x, double y, int moveSpeed) {
-    if (this->map) {
-        FIFE::Layer* layer = this->map->getLayer("unitLayer");
 
+void FIFEFacade::move(std::string name, std::string layerName, double x, double y, int moveSpeed) {
+    if (this->map) {
+        FIFE::Layer* layer = this->map->getLayer(layerName);
         if (layer) {
             FIFE::Instance* instance = layer->getInstance(name);
 
@@ -246,17 +246,17 @@ std::string FIFEFacade::createInstance(std::string objectName, std::string insta
         if(layer)  {
             FIFE::Object* object {this->engine->getModel()->getObject(objectName, "grimwall")};
             if(object) {
-                FIFE::ExactModelCoordinate mapCoords{};
+                FIFE::ModelCoordinate mapCoords{};
                 mapCoords.x = x;
                 mapCoords.y = y;
                 mapCoords.z = 0.0;
                 FIFE::Location* location {new FIFE::Location(layer)};
-                location->setMapCoordinates(mapCoords);
+                location->setLayerCoordinates(mapCoords);
                 //Check if position is occupied
                 if(layer->getInstancesAt(*location).size() == 0) {
-                    layer->createInstance(object, mapCoords, instanceName);
+                    FIFE::Instance* instance {layer->createInstance(object, mapCoords, instanceName)};
+                    FIFE::InstanceVisual::create(instance);
                 }
-                delete location;
                 return instanceName;
             }
         }

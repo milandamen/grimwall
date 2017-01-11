@@ -168,8 +168,14 @@ void Game::deleteTowers()
     this->towers.clear();
 }
 
+
+TroupManager* Game::getTroupManager() {
+    return &this->troupManager;
+}
+
 std::vector<UnitManager<ATower> *>* Game::getTowers() {
     return &this->towers;
+
 }
 
 ISaveGameManager* Game::getSaveGameManager()
