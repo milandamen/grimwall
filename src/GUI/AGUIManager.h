@@ -22,6 +22,11 @@ public:
     virtual GUIWidgetRadio* createRadio(std::string caption = "", std::string group = "", bool selected = false) = 0;
     virtual GUIWidgetContainer* addContainer(int x = 0, int y = 0, int width = 0, int height = 0) = 0;
     virtual GUIWidgetContainer* createContainer(int width = 0, int height = 0) = 0;
+
+    virtual void setX(int x) = 0;
+    virtual void setY(int y) = 0;
+    virtual void setWidth(int width) = 0;
+    virtual void setHeight(int height) = 0;
 };
 
 

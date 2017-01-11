@@ -11,15 +11,8 @@ private:
     IGame* game {nullptr};
     AGUIManager* manager {nullptr};
 
-    GUIWidgetButton* rightMenu {nullptr};
-    GUIWidgetContainer* rightMenuContainer {nullptr};
-    GUIWidgetButton* rightMenuBtnSettings {nullptr};
-    GUIWidgetButton* rightMenuBtnQuit {nullptr};
-    GUIWidgetButton* rightMenuBtnPause {nullptr};
+    GUIWidgetContainer* container {nullptr};
 
-    void toggleRightMenu();
-    void togglePauseGame();
-    void showOptions();
     void quitGame();
 
 public:

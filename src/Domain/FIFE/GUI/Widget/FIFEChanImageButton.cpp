@@ -67,6 +67,12 @@ fcn::Widget* FIFEChanImageButton::getWidget() {
     return this->imageButton;
 }
 
+void FIFEChanImageButton::mousePressed(fcn::MouseEvent &mouseEvent)
+{
+    this->onClickDelegate();
+    this->onClickDelegateWithWidget(this);
+}
+
 void FIFEChanImageButton::setCaption(std::string asset)
 {
     this->imageButton->setCaption(asset);

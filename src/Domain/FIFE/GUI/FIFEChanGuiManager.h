@@ -40,6 +40,11 @@ public:
     virtual GUIWidgetRadio *createRadio(std::string caption, std::string group, bool selected) override;
     virtual GUIWidgetContainer* addContainer(int x, int y, int width, int height) override;
     virtual GUIWidgetContainer *createContainer(int width, int height) override;
+
+    virtual void setX(int x);
+    virtual void setY(int y);
+    virtual void setWidth(int width);
+    virtual void setHeight(int height);
 };
 
 
