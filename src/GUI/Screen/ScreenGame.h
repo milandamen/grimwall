@@ -13,8 +13,10 @@ private:
 
     GUIWidgetContainer* container {nullptr};
     GUIWidgetLabel* lbl_hero_name {nullptr};
-    GUIWidgetLabel* lbl_hero_hitpoints {nullptr};
-    GUIWidgetLabel* lbl_hero_mana {nullptr};
+    GUIWidgetLabel* lbl_hero_hp {nullptr};
+    GUIWidgetLabel* lbl_hero_mp {nullptr};
+    GUIWidgetContainer* pgb_hero_hp {nullptr};
+    GUIWidgetContainer* pgb_hero_mp {nullptr};
 
     void updateStats();
     void quitGame();

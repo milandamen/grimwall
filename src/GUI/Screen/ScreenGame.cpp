@@ -14,12 +14,20 @@ ScreenGame::ScreenGame(IGame* game, AGUIManager* manager)
     this->manager->setHeight(200);
 
     this->lbl_hero_name = manager->createLabel("Dit is tekst A");
-    this->lbl_hero_hitpoints = manager->createLabel("");
-    this->lbl_hero_mana = manager->createLabel("");
+    this->pgb_hero_hp = manager->createContainer(200, 20);
+    this->pgb_hero_hp->setBackgroundColor(0, 255, 0, 255);
+    this->lbl_hero_hp = manager->createLabel("");
+    //this->lbl_hero_hp->setForegroundColor(0, 0, 0, 255);
+    this->pgb_hero_mp = manager->createContainer(200, 20);
+    this->pgb_hero_mp->setBackgroundColor(0, 0, 255, 255);
+    this->lbl_hero_mp = manager->createLabel("");
+    //this->lbl_hero_mp->setForegroundColor(0, 0, 0, 255);
 
     this->container->addWidget(this->lbl_hero_name, 10, 10);
-    this->container->addWidget(this->lbl_hero_hitpoints, 10, 30);
-    this->container->addWidget(this->lbl_hero_mana, 10, 50);
+    this->container->addWidget(this->pgb_hero_hp, 10, 30);
+    this->container->addWidget(this->lbl_hero_hp, 10, 30);
+    this->container->addWidget(this->pgb_hero_mp, 10, 50);
+    this->container->addWidget(this->lbl_hero_mp, 10, 50);
 }
 
 ScreenGame::~ScreenGame()
@@ -46,8 +54,11 @@ void ScreenGame::hasBecomeInactive()
 
 void ScreenGame::updateStats()
 {
-    this->lbl_hero_hitpoints->setCaption("HP: "+std::to_string(this->game->getHero()->getHitPoints()));
-    this->lbl_hero_mana->setCaption("Mana: "+std::to_string(this->game->getHero()->getHitPoints()));
+    int hp = this->game->getHero()->getHitPoints();
+    this->pgb_hero_hp->setWidth(hp);
+    this->lbl_hero_hp->setCaption("HP: "+std::to_string(hp));
+    this->pgb_hero_mp->setWidth(hp);
+    this->lbl_hero_mp->setCaption("Mana: "+std::to_string(hp));
 }
 
 void ScreenGame::quitGame()
