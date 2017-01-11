@@ -113,11 +113,14 @@ void Game::tick() {
 }
 
 void Game::win() {
-    std::cout << "win";
+    this->paused = true;
+    EngineFacade::engine()->setActiveGUIManager(this->guirepo->getGUI("Won")->getGuiManager());
 }
 
 void Game::lose() {
-    std::cout << "lose";
+    this->paused = true;
+    EngineFacade::engine()->setActiveGUIManager(this->guirepo->getGUI("GameOver")->getGuiManager());
+
 }
 
 UnitManager<AHero>* Game::getHero() {
@@ -165,8 +168,14 @@ void Game::deleteTowers()
     this->towers.clear();
 }
 
+
+TroupManager* Game::getTroupManager() {
+    return &this->troupManager;
+}
+
 std::vector<UnitManager<ATower> *>* Game::getTowers() {
     return &this->towers;
+
 }
 
 ISaveGameManager* Game::getSaveGameManager()

@@ -1,6 +1,4 @@
 <?fife type="atlas"?>
-
-
 <atlas name="waterR.png" namespace="grimwall" width="98" height="48">
 	<image source="waterR.png" xpos="0" ypos="0" width="98" height="48"/>
 </atlas>

@@ -21,6 +21,7 @@
 #include "GUI/FIFEChanGuiManager.h"
 #include "boost/filesystem.hpp"
 
+#include <vector>
 #include "SDL.h"
 #include "FIFEChan.h"
 #include "FIFEKeyListener.h"
@@ -164,7 +165,7 @@ public:
     /**
      * Move the character
      */
-    void move(std::string name, double x, double y, int moveSpeed) override;
+    void move(std::string name, std::string layerName, double x, double y, int moveSpeed) override;
   
     /**
      * Register a callback with a key combination

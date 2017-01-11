@@ -38,18 +38,21 @@ void FIFEMouseListener::mouseReleased(FIFE::MouseEvent& evt) {
     // only activate the move action if the mouse was pressed and released without dragging
     if (evt.getButton() == FIFE::MouseEvent::RIGHT && prevEventType != FIFE::MouseEvent::DRAGGED)
     {
-        std::cout << "move the unit group" << std::endl;
-        setPreviousMouseEvent(evt.getType());
+        mouseRightButtonPressed(evt);
     }
     else if(evt.getButton() == FIFE::MouseEvent::LEFT && prevEventType != FIFE::MouseEvent::DRAGGED){
         mouseLeftButtonPressed(evt);
     }
 }
 
-
 void FIFEMouseListener::mouseLeftButtonPressed(FIFE::MouseEvent &evt) {
     EngineFacade::engine()->playSoundEffect("click");
-    EngineFacade::engine()->move(this->game->getHero()->getName(), evt.getX(), evt.getY(), this->game->getHero()->getSpeed());
+    EngineFacade::engine()->move(this->game->getHero()->getName(), "unitLayer", evt.getX(), evt.getY(), this->game->getHero()->getSpeed());
+    setPreviousMouseEvent(evt.getType());
+}
+
+void FIFEMouseListener::mouseRightButtonPressed(FIFE::MouseEvent &evt) {
+    game->getTroupManager()->moveTroups(evt.getX(), evt.getY());
     setPreviousMouseEvent(evt.getType());
 }
 

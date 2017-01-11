@@ -2,6 +2,8 @@
 #ifndef GAME_H
 #define GAME_H
 
+#include <vector>
+
 #include "IGame.h"
 #include "EngineFacade.h"
 #include "../Input/KeyboardMapper.h"
@@ -29,6 +31,8 @@
 class Game : public IGame {
 private:
 
+    TroupManager troupManager;
+
     /**
      * Manages the GUI's and prevents duplicates
      */
@@ -38,6 +42,9 @@ private:
 
     std::vector<UnitManager<ATower>*> towers;
 
+    /**
+     * Set this to true to stop the game loop
+     */
     bool running {true};
     bool paused {false};
 
@@ -74,7 +81,7 @@ private:
 public:
     Game();
     ~Game();
-
+    virtual TroupManager* getTroupManager() override;
     virtual void setMap(std::string path) override;
     virtual bool isPaused() override;
     virtual void setPaused(bool paused) override;
