@@ -22,6 +22,8 @@ protected:
 
     int timeLastAttack {0};
 
+    int attackWait{0};
+
     std::function<void()> updateStatsListener = [](){};
 public:
     AUnit(std::string name, double reach, int attackDelay, int power, int hitPoints, double speed,
@@ -44,6 +46,8 @@ public:
     
     void setNext(IUnit *next);
     void setPrevious(IUnit *previous);
+
+    bool attack() override;
 
     virtual void tick() override;
     void setStatsListener(std::function<void()> delegate) override;

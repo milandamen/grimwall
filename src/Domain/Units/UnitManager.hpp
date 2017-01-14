@@ -35,6 +35,8 @@ public:
     void setNext(IUnit *next) override;
     void setPrevious(IUnit *previous) override;
 
+    bool attack() override;
+
     void tick() override;
 
     UnitType* getBase();
@@ -115,6 +117,11 @@ double UnitManager<UnitType>::getY() {
 template <typename UnitType>
 void UnitManager<UnitType>::setY(double y) {
     unit->setY(y);
+}
+
+template <typename UnitType>
+bool UnitManager<UnitType>::attack() {
+    unit->attack();
 }
 
 template <typename UnitType>

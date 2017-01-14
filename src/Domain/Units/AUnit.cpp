@@ -67,7 +67,17 @@ void AUnit::setPrevious(IUnit *previous) {
 }
 
 void AUnit::tick() {
+    if (this->attackWait > 0)
+        this->attackWait--;
+}
 
+bool AUnit::attack() {
+    if (this->attackWait <= 0) {
+        this->attackWait = this->attackDelay;
+        return true;
+    }
+    
+    return false;
 }
 
 void AUnit::setTimeLastAttack(int time) {

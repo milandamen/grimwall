@@ -33,6 +33,8 @@ public:
     void setNext(IUnit *next);
     void setPrevious(IUnit *previous);
 
+    bool attack() override;
+
     void tick() override ;
 
     void setStatsListener(std::function<void()> delegate) override;
