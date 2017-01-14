@@ -26,6 +26,7 @@ public:
     double getSpeed() override;
     int getVisibility() override;
     void receiveDamage(int power) override;
+    void setInvincible(bool invincible) override;
 
     double getX() override;
     void setX(double x) override;
@@ -100,6 +101,11 @@ void UnitManager<UnitType>::receiveDamage(int power) {
 }
 
 template <typename UnitType>
+void UnitManager<UnitType>::setInvincible(bool invincible) {
+    base->setInvincible(invincible);
+}
+
+template <typename UnitType>
 double UnitManager<UnitType>::getX() {
     return unit->getX();
 }
@@ -121,7 +127,7 @@ void UnitManager<UnitType>::setY(double y) {
 
 template <typename UnitType>
 bool UnitManager<UnitType>::attack() {
-    unit->attack();
+    return unit->attack();
 }
 
 template <typename UnitType>

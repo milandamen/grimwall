@@ -11,6 +11,8 @@
 #include "Callbacks/CatapultSpawnCallback.h"
 #include "Callbacks/UseAbilityCallback.h"
 #include "Callbacks/AttackCallback.h"
+#include "Callbacks/InfHealthCallback.h"
+#include "Callbacks/InfManaCallback.h"
 #include "../Domain/IGame.h"
 
 class KeyboardMapper

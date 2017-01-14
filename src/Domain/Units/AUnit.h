@@ -14,6 +14,7 @@ protected:
     int attackDelay;
     int power;
     int hitPoints;
+    bool invincible {false};
     double speed;
     int visibility;
 
@@ -38,6 +39,7 @@ public:
     virtual double getSpeed();
     virtual int getVisibility();
     virtual void receiveDamage(int power);
+    virtual void setInvincible(bool invincible);
 
     double getX() override;
     void setX(double x) override;
