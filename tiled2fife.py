@@ -89,8 +89,17 @@ for layer in layers:
     lay.set("rotation", "0")
     lay.set("grid_type", "square")
     lay.set("transparency", "0")
-    lay.set("pathing", "cell_edges_only")
+    lay.set("pathing", "cell_edges_and_diagonals")
     lay.set("sorting", "camera")
+
+    if layer[0] == "layer1":
+        lay.set("layer_type", "interact")
+        lay.set("layer_type_id", "unitLayer")
+    else:
+        lay.set("layer_type", "walkable")
+    if layer[0] == "unitLayer":
+        lay.set("x_offset", "-0.5")
+        lay.set("y_offset", "0.5")
     
     width = int(layer[1])
     height = int(layer[2])
@@ -127,11 +136,10 @@ ET.SubElement(fiferoot, "cellcaches")
 # Camera
 camera = ET.SubElement(fiferoot, "camera")
 camera.set("id", "main")
-camera.set("ref_layer_id", layers[0][0])
+camera.set("ref_layer_id", layers[1][0])
 camera.set("zoom", "1")
 camera.set("tilt", tilt)
 camera.set("rotation", rotation)
-camera.set("viewport", viewport_x + "," + viewport_y + "," + viewport_width + "," + viewport_height)
 camera.set("ref_cell_width", ref_cell_width)
 camera.set("ref_cell_height", ref_cell_height)
 

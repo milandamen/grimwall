@@ -1,17 +1,17 @@
 <?xml version='1.0' encoding='ascii'?>
 <map format="1.0" id="tutorial">
-    <import file="../objects/towers/tree.xml" />
-    <import file="../objects/tiles/sand.xml" />
-    <import file="../objects/tiles/waterM.xml" />
-    <import file="../objects/tiles/gravell.xml" />
-    <import file="../objects/tiles/red.xml" />
-    <import file="../objects/tiles/waterR.xml" />
     <import file="../objects/tiles/snow.xml" />
-    <import file="../objects/tiles/water.xml" />
-    <import file="../objects/tiles/grass.xml" />
-    <import file="../objects/towers/tower.xml" />
     <import file="../objects/tiles/waterL.xml" />
-    <layer grid_type="square" id="layer1" pathing="cell_edges_only" rotation="0" sorting="camera" transparency="0" x_offset="0" x_scale="1" y_offset="0" y_scale="1" z_offset="0">
+    <import file="../objects/towers/tree.xml" />
+    <import file="../objects/tiles/red.xml" />
+    <import file="../objects/tiles/sand.xml" />
+    <import file="../objects/tiles/water.xml" />
+    <import file="../objects/tiles/waterR.xml" />
+    <import file="../objects/tiles/grass.xml" />
+    <import file="../objects/tiles/gravell.xml" />
+    <import file="../objects/towers/tower.xml" />
+    <import file="../objects/tiles/waterM.xml" />
+    <layer grid_type="square" id="layer1" layer_type="interact" layer_type_id="unitLayer" pathing="cell_edges_and_diagonals" rotation="0" sorting="camera" transparency="0" x_offset="0" x_scale="1" y_offset="0" y_scale="1" z_offset="0">
         <instances>
             <i ns="grimwall" o="water" r="0" stackpos="0" x="19" y="-12" z="0" />
             <i o="water" r="0" stackpos="0" x="19" y="-11" z="0" />
@@ -170,7 +170,7 @@
             <i o="sand" r="0" stackpos="0" x="12" y="-5" z="0" />
             <i o="grass" r="0" stackpos="0" x="12" y="-4" z="0" />
             <i o="sand" r="0" stackpos="0" x="12" y="-3" z="0" />
-            <i o="water" r="0" stackpos="0" x="12" y="-2" z="0" />
+            <i o="waterL" r="0" stackpos="0" x="12" y="-2" z="0" />
             <i o="water" r="0" stackpos="0" x="12" y="-1" z="0" />
             <i o="water" r="0" stackpos="0" x="12" y="0" z="0" />
             <i o="water" r="0" stackpos="0" x="12" y="1" z="0" />
@@ -200,7 +200,7 @@
             <i o="gravell" r="0" stackpos="0" x="11" y="-4" z="0" />
             <i o="grass" r="0" stackpos="0" x="11" y="-3" z="0" />
             <i o="sand" r="0" stackpos="0" x="11" y="-2" z="0" />
-            <i o="water" r="0" stackpos="0" x="11" y="-1" z="0" />
+            <i o="waterL" r="0" stackpos="0" x="11" y="-1" z="0" />
             <i o="water" r="0" stackpos="0" x="11" y="0" z="0" />
             <i o="water" r="0" stackpos="0" x="11" y="1" z="0" />
             <i o="water" r="0" stackpos="0" x="11" y="2" z="0" />
@@ -230,7 +230,7 @@
             <i o="gravell" r="0" stackpos="0" x="10" y="-4" z="0" />
             <i o="gravell" r="0" stackpos="0" x="10" y="-3" z="0" />
             <i o="grass" r="0" stackpos="0" x="10" y="-2" z="0" />
-            <i o="water" r="0" stackpos="0" x="10" y="-1" z="0" />
+            <i o="waterL" r="0" stackpos="0" x="10" y="-1" z="0" />
             <i o="water" r="0" stackpos="0" x="10" y="0" z="0" />
             <i o="water" r="0" stackpos="0" x="10" y="1" z="0" />
             <i o="water" r="0" stackpos="0" x="10" y="2" z="0" />
@@ -261,7 +261,7 @@
             <i o="gravell" r="0" stackpos="0" x="9" y="-4" z="0" />
             <i o="grass" r="0" stackpos="0" x="9" y="-3" z="0" />
             <i o="sand" r="0" stackpos="0" x="9" y="-2" z="0" />
-            <i o="water" r="0" stackpos="0" x="9" y="-1" z="0" />
+            <i o="waterL" r="0" stackpos="0" x="9" y="-1" z="0" />
             <i o="water" r="0" stackpos="0" x="9" y="0" z="0" />
             <i o="water" r="0" stackpos="0" x="9" y="1" z="0" />
             <i o="water" r="0" stackpos="0" x="9" y="2" z="0" />
@@ -288,11 +288,11 @@
             <i o="water" r="0" stackpos="0" x="8" y="-9" z="0" />
             <i o="water" r="0" stackpos="0" x="8" y="-8" z="0" />
             <i o="water" r="0" stackpos="0" x="8" y="-7" z="0" />
-            <i o="water" r="0" stackpos="0" x="8" y="-6" z="0" />
+            <i o="waterR" r="0" stackpos="0" x="8" y="-6" z="0" />
             <i o="sand" r="0" stackpos="0" x="8" y="-5" z="0" />
             <i o="gravell" r="0" stackpos="0" x="8" y="-4" z="0" />
             <i o="sand" r="0" stackpos="0" x="8" y="-3" z="0" />
-            <i o="water" r="0" stackpos="0" x="8" y="-2" z="0" />
+            <i o="waterM" r="0" stackpos="0" x="8" y="-2" z="0" />
             <i o="water" r="0" stackpos="0" x="8" y="-1" z="0" />
             <i o="water" r="0" stackpos="0" x="8" y="0" z="0" />
             <i o="water" r="0" stackpos="0" x="8" y="1" z="0" />
@@ -322,9 +322,9 @@
             <i o="water" r="0" stackpos="0" x="7" y="-8" z="0" />
             <i o="water" r="0" stackpos="0" x="7" y="-7" z="0" />
             <i o="water" r="0" stackpos="0" x="7" y="-6" z="0" />
-            <i o="water" r="0" stackpos="0" x="7" y="-5" z="0" />
+            <i o="waterR" r="0" stackpos="0" x="7" y="-5" z="0" />
             <i o="gravell" r="0" stackpos="0" x="7" y="-4" z="0" />
-            <i o="water" r="0" stackpos="0" x="7" y="-3" z="0" />
+            <i o="waterM" r="0" stackpos="0" x="7" y="-3" z="0" />
             <i o="water" r="0" stackpos="0" x="7" y="-2" z="0" />
             <i o="water" r="0" stackpos="0" x="7" y="-1" z="0" />
             <i o="water" r="0" stackpos="0" x="7" y="0" z="0" />
@@ -358,7 +358,7 @@
             <i o="water" r="0" stackpos="0" x="6" y="-6" z="0" />
             <i o="water" r="0" stackpos="0" x="6" y="-5" z="0" />
             <i o="gravell" r="0" stackpos="0" x="6" y="-4" z="0" />
-            <i o="water" r="0" stackpos="0" x="6" y="-3" z="0" />
+            <i o="waterL" r="0" stackpos="0" x="6" y="-3" z="0" />
             <i o="water" r="0" stackpos="0" x="6" y="-2" z="0" />
             <i o="water" r="0" stackpos="0" x="6" y="-1" z="0" />
             <i o="water" r="0" stackpos="0" x="6" y="0" z="0" />
@@ -394,7 +394,7 @@
             <i o="sand" r="0" stackpos="0" x="5" y="-5" z="0" />
             <i o="gravell" r="0" stackpos="0" x="5" y="-4" z="0" />
             <i o="grass" r="0" stackpos="0" x="5" y="-3" z="0" />
-            <i o="water" r="0" stackpos="0" x="5" y="-2" z="0" />
+            <i o="waterL" r="0" stackpos="0" x="5" y="-2" z="0" />
             <i o="water" r="0" stackpos="0" x="5" y="-1" z="0" />
             <i o="water" r="0" stackpos="0" x="5" y="0" z="0" />
             <i o="water" r="0" stackpos="0" x="5" y="1" z="0" />
@@ -429,7 +429,7 @@
             <i o="grass" r="0" stackpos="0" x="4" y="-5" z="0" />
             <i o="gravell" r="0" stackpos="0" x="4" y="-4" z="0" />
             <i o="grass" r="0" stackpos="0" x="4" y="-3" z="0" />
-            <i o="water" r="0" stackpos="0" x="4" y="-2" z="0" />
+            <i o="waterL" r="0" stackpos="0" x="4" y="-2" z="0" />
             <i o="water" r="0" stackpos="0" x="4" y="-1" z="0" />
             <i o="water" r="0" stackpos="0" x="4" y="0" z="0" />
             <i o="water" r="0" stackpos="0" x="4" y="1" z="0" />
@@ -465,7 +465,7 @@
             <i o="gravell" r="0" stackpos="0" x="3" y="-4" z="0" />
             <i o="grass" r="0" stackpos="0" x="3" y="-3" z="0" />
             <i o="grass" r="0" stackpos="0" x="3" y="-2" z="0" />
-            <i o="water" r="0" stackpos="0" x="3" y="-1" z="0" />
+            <i o="waterL" r="0" stackpos="0" x="3" y="-1" z="0" />
             <i o="water" r="0" stackpos="0" x="3" y="0" z="0" />
             <i o="water" r="0" stackpos="0" x="3" y="1" z="0" />
             <i o="water" r="0" stackpos="0" x="3" y="2" z="0" />
@@ -501,7 +501,7 @@
             <i o="grass" r="0" stackpos="0" x="2" y="-3" z="0" />
             <i o="grass" r="0" stackpos="0" x="2" y="-2" z="0" />
             <i o="sand" r="0" stackpos="0" x="2" y="-1" z="0" />
-            <i o="water" r="0" stackpos="0" x="2" y="0" z="0" />
+            <i o="waterL" r="0" stackpos="0" x="2" y="0" z="0" />
             <i o="water" r="0" stackpos="0" x="2" y="1" z="0" />
             <i o="water" r="0" stackpos="0" x="2" y="2" z="0" />
             <i o="water" r="0" stackpos="0" x="2" y="3" z="0" />
@@ -536,7 +536,7 @@
             <i o="grass" r="0" stackpos="0" x="1" y="-3" z="0" />
             <i o="grass" r="0" stackpos="0" x="1" y="-2" z="0" />
             <i o="sand" r="0" stackpos="0" x="1" y="-1" z="0" />
-            <i o="water" r="0" stackpos="0" x="1" y="0" z="0" />
+            <i o="waterL" r="0" stackpos="0" x="1" y="0" z="0" />
             <i o="water" r="0" stackpos="0" x="1" y="1" z="0" />
             <i o="water" r="0" stackpos="0" x="1" y="2" z="0" />
             <i o="water" r="0" stackpos="0" x="1" y="3" z="0" />
@@ -571,7 +571,7 @@
             <i o="gravell" r="0" stackpos="0" x="0" y="-3" z="0" />
             <i o="grass" r="0" stackpos="0" x="0" y="-2" z="0" />
             <i o="grass" r="0" stackpos="0" x="0" y="-1" z="0" />
-            <i o="water" r="0" stackpos="0" x="0" y="0" z="0" />
+            <i o="waterL" r="0" stackpos="0" x="0" y="0" z="0" />
             <i o="water" r="0" stackpos="0" x="0" y="1" z="0" />
             <i o="water" r="0" stackpos="0" x="0" y="2" z="0" />
             <i o="water" r="0" stackpos="0" x="0" y="3" z="0" />
@@ -606,7 +606,7 @@
             <i o="gravell" r="0" stackpos="0" x="-1" y="-3" z="0" />
             <i o="grass" r="0" stackpos="0" x="-1" y="-2" z="0" />
             <i o="grass" r="0" stackpos="0" x="-1" y="-1" z="0" />
-            <i o="water" r="0" stackpos="0" x="-1" y="0" z="0" />
+            <i o="waterL" r="0" stackpos="0" x="-1" y="0" z="0" />
             <i o="water" r="0" stackpos="0" x="-1" y="1" z="0" />
             <i o="water" r="0" stackpos="0" x="-1" y="2" z="0" />
             <i o="water" r="0" stackpos="0" x="-1" y="3" z="0" />
@@ -634,13 +634,13 @@
             <i o="water" r="0" stackpos="0" x="-2" y="-10" z="0" />
             <i o="water" r="0" stackpos="0" x="-2" y="-9" z="0" />
             <i o="water" r="0" stackpos="0" x="-2" y="-8" z="0" />
-            <i o="water" r="0" stackpos="0" x="-2" y="-7" z="0" />
+            <i o="waterR" r="0" stackpos="0" x="-2" y="-7" z="0" />
             <i o="sand" r="0" stackpos="0" x="-2" y="-6" z="0" />
             <i o="grass" r="0" stackpos="0" x="-2" y="-5" z="0" />
             <i o="gravell" r="0" stackpos="0" x="-2" y="-4" z="0" />
             <i o="gravell" r="0" stackpos="0" x="-2" y="-3" z="0" />
             <i o="sand" r="0" stackpos="0" x="-2" y="-2" z="0" />
-            <i o="water" r="0" stackpos="0" x="-2" y="-1" z="0" />
+            <i o="waterM" r="0" stackpos="0" x="-2" y="-1" z="0" />
             <i o="water" r="0" stackpos="0" x="-2" y="0" z="0" />
             <i o="water" r="0" stackpos="0" x="-2" y="1" z="0" />
             <i o="water" r="0" stackpos="0" x="-2" y="2" z="0" />
@@ -670,11 +670,11 @@
             <i o="water" r="0" stackpos="0" x="-3" y="-9" z="0" />
             <i o="water" r="0" stackpos="0" x="-3" y="-8" z="0" />
             <i o="water" r="0" stackpos="0" x="-3" y="-7" z="0" />
-            <i o="water" r="0" stackpos="0" x="-3" y="-6" z="0" />
+            <i o="waterR" r="0" stackpos="0" x="-3" y="-6" z="0" />
             <i o="sand" r="0" stackpos="0" x="-3" y="-5" z="0" />
             <i o="gravell" r="0" stackpos="0" x="-3" y="-4" z="0" />
             <i o="gravell" r="0" stackpos="0" x="-3" y="-3" z="0" />
-            <i o="water" r="0" stackpos="0" x="-3" y="-2" z="0" />
+            <i o="waterM" r="0" stackpos="0" x="-3" y="-2" z="0" />
             <i o="water" r="0" stackpos="0" x="-3" y="-1" z="0" />
             <i o="water" r="0" stackpos="0" x="-3" y="0" z="0" />
             <i o="water" r="0" stackpos="0" x="-3" y="1" z="0" />
@@ -706,10 +706,10 @@
             <i o="water" r="0" stackpos="0" x="-4" y="-8" z="0" />
             <i o="water" r="0" stackpos="0" x="-4" y="-7" z="0" />
             <i o="water" r="0" stackpos="0" x="-4" y="-6" z="0" />
-            <i o="water" r="0" stackpos="0" x="-4" y="-5" z="0" />
+            <i o="waterR" r="0" stackpos="0" x="-4" y="-5" z="0" />
             <i o="gravell" r="0" stackpos="0" x="-4" y="-4" z="0" />
             <i o="gravell" r="0" stackpos="0" x="-4" y="-3" z="0" />
-            <i o="water" r="0" stackpos="0" x="-4" y="-2" z="0" />
+            <i o="waterL" r="0" stackpos="0" x="-4" y="-2" z="0" />
             <i o="water" r="0" stackpos="0" x="-4" y="-1" z="0" />
             <i o="water" r="0" stackpos="0" x="-4" y="0" z="0" />
             <i o="water" r="0" stackpos="0" x="-4" y="1" z="0" />
@@ -733,7 +733,7 @@
             <i o="sand" r="0" stackpos="0" x="-5" y="-16" z="0" />
             <i o="sand" r="0" stackpos="0" x="-5" y="-15" z="0" />
             <i o="sand" r="0" stackpos="0" x="-5" y="-14" z="0" />
-            <i o="water" r="0" stackpos="0" x="-5" y="-13" z="0" />
+            <i o="waterL" r="0" stackpos="0" x="-5" y="-13" z="0" />
             <i o="water" r="0" stackpos="0" x="-5" y="-12" z="0" />
             <i o="water" r="0" stackpos="0" x="-5" y="-11" z="0" />
             <i o="water" r="0" stackpos="0" x="-5" y="-10" z="0" />
@@ -744,7 +744,7 @@
             <i o="water" r="0" stackpos="0" x="-5" y="-5" z="0" />
             <i o="gravell" r="0" stackpos="0" x="-5" y="-4" z="0" />
             <i o="gravell" r="0" stackpos="0" x="-5" y="-3" z="0" />
-            <i o="water" r="0" stackpos="0" x="-5" y="-2" z="0" />
+            <i o="waterL" r="0" stackpos="0" x="-5" y="-2" z="0" />
             <i o="water" r="0" stackpos="0" x="-5" y="-1" z="0" />
             <i o="water" r="0" stackpos="0" x="-5" y="0" z="0" />
             <i o="water" r="0" stackpos="0" x="-5" y="1" z="0" />
@@ -770,7 +770,7 @@
             <i o="sand" r="0" stackpos="0" x="-6" y="-14" z="0" />
             <i o="sand" r="0" stackpos="0" x="-6" y="-13" z="0" />
             <i o="sand" r="0" stackpos="0" x="-6" y="-12" z="0" />
-            <i o="water" r="0" stackpos="0" x="-6" y="-11" z="0" />
+            <i o="waterL" r="0" stackpos="0" x="-6" y="-11" z="0" />
             <i o="water" r="0" stackpos="0" x="-6" y="-10" z="0" />
             <i o="water" r="0" stackpos="0" x="-6" y="-9" z="0" />
             <i o="water" r="0" stackpos="0" x="-6" y="-8" z="0" />
@@ -779,7 +779,7 @@
             <i o="water" r="0" stackpos="0" x="-6" y="-5" z="0" />
             <i o="gravell" r="0" stackpos="0" x="-6" y="-4" z="0" />
             <i o="gravell" r="0" stackpos="0" x="-6" y="-3" z="0" />
-            <i o="water" r="0" stackpos="0" x="-6" y="-2" z="0" />
+            <i o="waterL" r="0" stackpos="0" x="-6" y="-2" z="0" />
             <i o="water" r="0" stackpos="0" x="-6" y="-1" z="0" />
             <i o="water" r="0" stackpos="0" x="-6" y="0" z="0" />
             <i o="water" r="0" stackpos="0" x="-6" y="1" z="0" />
@@ -807,14 +807,14 @@
             <i o="grass" r="0" stackpos="0" x="-7" y="-12" z="0" />
             <i o="sand" r="0" stackpos="0" x="-7" y="-11" z="0" />
             <i o="sand" r="0" stackpos="0" x="-7" y="-10" z="0" />
-            <i o="water" r="0" stackpos="0" x="-7" y="-9" z="0" />
+            <i o="waterL" r="0" stackpos="0" x="-7" y="-9" z="0" />
             <i o="water" r="0" stackpos="0" x="-7" y="-8" z="0" />
             <i o="water" r="0" stackpos="0" x="-7" y="-7" z="0" />
             <i o="water" r="0" stackpos="0" x="-7" y="-6" z="0" />
             <i o="water" r="0" stackpos="0" x="-7" y="-5" z="0" />
             <i o="gravell" r="0" stackpos="0" x="-7" y="-4" z="0" />
             <i o="sand" r="0" stackpos="0" x="-7" y="-3" z="0" />
-            <i o="water" r="0" stackpos="0" x="-7" y="-2" z="0" />
+            <i o="waterL" r="0" stackpos="0" x="-7" y="-2" z="0" />
             <i o="water" r="0" stackpos="0" x="-7" y="-1" z="0" />
             <i o="water" r="0" stackpos="0" x="-7" y="0" z="0" />
             <i o="water" r="0" stackpos="0" x="-7" y="1" z="0" />
@@ -843,14 +843,14 @@
             <i o="grass" r="0" stackpos="0" x="-8" y="-11" z="0" />
             <i o="sand" r="0" stackpos="0" x="-8" y="-10" z="0" />
             <i o="sand" r="0" stackpos="0" x="-8" y="-9" z="0" />
-            <i o="water" r="0" stackpos="0" x="-8" y="-8" z="0" />
+            <i o="waterL" r="0" stackpos="0" x="-8" y="-8" z="0" />
             <i o="water" r="0" stackpos="0" x="-8" y="-7" z="0" />
             <i o="water" r="0" stackpos="0" x="-8" y="-6" z="0" />
             <i o="sand" r="0" stackpos="0" x="-8" y="-5" z="0" />
             <i o="gravell" r="0" stackpos="0" x="-8" y="-4" z="0" />
             <i o="grass" r="0" stackpos="0" x="-8" y="-3" z="0" />
             <i o="sand" r="0" stackpos="0" x="-8" y="-2" z="0" />
-            <i o="water" r="0" stackpos="0" x="-8" y="-1" z="0" />
+            <i o="waterL" r="0" stackpos="0" x="-8" y="-1" z="0" />
             <i o="water" r="0" stackpos="0" x="-8" y="0" z="0" />
             <i o="water" r="0" stackpos="0" x="-8" y="1" z="0" />
             <i o="water" r="0" stackpos="0" x="-8" y="2" z="0" />
@@ -879,13 +879,13 @@
             <i o="gravell" r="0" stackpos="0" x="-9" y="-10" z="0" />
             <i o="grass" r="0" stackpos="0" x="-9" y="-9" z="0" />
             <i o="sand" r="0" stackpos="0" x="-9" y="-8" z="0" />
-            <i o="water" r="0" stackpos="0" x="-9" y="-7" z="0" />
+            <i o="waterL" r="0" stackpos="0" x="-9" y="-7" z="0" />
             <i o="water" r="0" stackpos="0" x="-9" y="-6" z="0" />
             <i o="sand" r="0" stackpos="0" x="-9" y="-5" z="0" />
             <i o="gravell" r="0" stackpos="0" x="-9" y="-4" z="0" />
             <i o="grass" r="0" stackpos="0" x="-9" y="-3" z="0" />
             <i o="sand" r="0" stackpos="0" x="-9" y="-2" z="0" />
-            <i o="water" r="0" stackpos="0" x="-9" y="-1" z="0" />
+            <i o="waterL" r="0" stackpos="0" x="-9" y="-1" z="0" />
             <i o="water" r="0" stackpos="0" x="-9" y="0" z="0" />
             <i o="water" r="0" stackpos="0" x="-9" y="1" z="0" />
             <i o="water" r="0" stackpos="0" x="-9" y="2" z="0" />
@@ -920,7 +920,7 @@
             <i o="gravell" r="0" stackpos="0" x="-10" y="-4" z="0" />
             <i o="grass" r="0" stackpos="0" x="-10" y="-3" z="0" />
             <i o="grass" r="0" stackpos="0" x="-10" y="-2" z="0" />
-            <i o="water" r="0" stackpos="0" x="-10" y="-1" z="0" />
+            <i o="waterL" r="0" stackpos="0" x="-10" y="-1" z="0" />
             <i o="water" r="0" stackpos="0" x="-10" y="0" z="0" />
             <i o="water" r="0" stackpos="0" x="-10" y="1" z="0" />
             <i o="water" r="0" stackpos="0" x="-10" y="2" z="0" />
@@ -949,12 +949,12 @@
             <i o="gravell" r="0" stackpos="0" x="-11" y="-10" z="0" />
             <i o="grass" r="0" stackpos="0" x="-11" y="-9" z="0" />
             <i o="sand" r="0" stackpos="0" x="-11" y="-8" z="0" />
-            <i o="water" r="0" stackpos="0" x="-11" y="-7" z="0" />
-            <i o="water" r="0" stackpos="0" x="-11" y="-6" z="0" />
+            <i o="waterM" r="0" stackpos="0" x="-11" y="-7" z="0" />
+            <i o="waterR" r="0" stackpos="0" x="-11" y="-6" z="0" />
             <i o="grass" r="0" stackpos="0" x="-11" y="-5" z="0" />
             <i o="grass" r="0" stackpos="0" x="-11" y="-4" z="0" />
             <i o="sand" r="0" stackpos="0" x="-11" y="-3" z="0" />
-            <i o="water" r="0" stackpos="0" x="-11" y="-2" z="0" />
+            <i o="waterM" r="0" stackpos="0" x="-11" y="-2" z="0" />
             <i o="water" r="0" stackpos="0" x="-11" y="-1" z="0" />
             <i o="water" r="0" stackpos="0" x="-11" y="0" z="0" />
             <i o="water" r="0" stackpos="0" x="-11" y="1" z="0" />
@@ -983,12 +983,12 @@
             <i o="gravell" r="0" stackpos="0" x="-12" y="-11" z="0" />
             <i o="grass" r="0" stackpos="0" x="-12" y="-10" z="0" />
             <i o="sand" r="0" stackpos="0" x="-12" y="-9" z="0" />
-            <i o="water" r="0" stackpos="0" x="-12" y="-8" z="0" />
+            <i o="waterM" r="0" stackpos="0" x="-12" y="-8" z="0" />
             <i o="water" r="0" stackpos="0" x="-12" y="-7" z="0" />
             <i o="water" r="0" stackpos="0" x="-12" y="-6" z="0" />
-            <i o="water" r="0" stackpos="0" x="-12" y="-5" z="0" />
-            <i o="water" r="0" stackpos="0" x="-12" y="-4" z="0" />
-            <i o="water" r="0" stackpos="0" x="-12" y="-3" z="0" />
+            <i o="waterR" r="0" stackpos="0" x="-12" y="-5" z="0" />
+            <i o="waterR" r="0" stackpos="0" x="-12" y="-4" z="0" />
+            <i o="waterR" r="0" stackpos="0" x="-12" y="-3" z="0" />
             <i o="water" r="0" stackpos="0" x="-12" y="-2" z="0" />
             <i o="water" r="0" stackpos="0" x="-12" y="-1" z="0" />
             <i o="water" r="0" stackpos="0" x="-12" y="0" z="0" />
@@ -1007,7 +1007,7 @@
             <i o="water" r="0" stackpos="0" x="-13" y="-22" z="0" />
             <i o="water" r="0" stackpos="0" x="-13" y="-21" z="0" />
             <i o="water" r="0" stackpos="0" x="-13" y="-20" z="0" />
-            <i o="water" r="0" stackpos="0" x="-13" y="-19" z="0" />
+            <i o="waterR" r="0" stackpos="0" x="-13" y="-19" z="0" />
             <i o="sand" r="0" stackpos="0" x="-13" y="-18" z="0" />
             <i o="grass" r="0" stackpos="0" x="-13" y="-17" z="0" />
             <i o="gravell" r="0" stackpos="0" x="-13" y="-16" z="0" />
@@ -1018,7 +1018,7 @@
             <i o="gravell" r="0" stackpos="0" x="-13" y="-11" z="0" />
             <i o="grass" r="0" stackpos="0" x="-13" y="-10" z="0" />
             <i o="sand" r="0" stackpos="0" x="-13" y="-9" z="0" />
-            <i o="water" r="0" stackpos="0" x="-13" y="-8" z="0" />
+            <i o="waterL" r="0" stackpos="0" x="-13" y="-8" z="0" />
             <i o="water" r="0" stackpos="0" x="-13" y="-7" z="0" />
             <i o="water" r="0" stackpos="0" x="-13" y="-6" z="0" />
             <i o="water" r="0" stackpos="0" x="-13" y="-5" z="0" />
@@ -1053,7 +1053,7 @@
             <i o="grass" r="0" stackpos="0" x="-14" y="-11" z="0" />
             <i o="grass" r="0" stackpos="0" x="-14" y="-10" z="0" />
             <i o="sand" r="0" stackpos="0" x="-14" y="-9" z="0" />
-            <i o="water" r="0" stackpos="0" x="-14" y="-8" z="0" />
+            <i o="waterL" r="0" stackpos="0" x="-14" y="-8" z="0" />
             <i o="water" r="0" stackpos="0" x="-14" y="-7" z="0" />
             <i o="water" r="0" stackpos="0" x="-14" y="-6" z="0" />
             <i o="water" r="0" stackpos="0" x="-14" y="-5" z="0" />
@@ -1078,7 +1078,7 @@
             <i o="water" r="0" stackpos="0" x="-15" y="-21" z="0" />
             <i o="water" r="0" stackpos="0" x="-15" y="-20" z="0" />
             <i o="water" r="0" stackpos="0" x="-15" y="-19" z="0" />
-            <i o="water" r="0" stackpos="0" x="-15" y="-18" z="0" />
+            <i o="waterR" r="0" stackpos="0" x="-15" y="-18" z="0" />
             <i o="sand" r="0" stackpos="0" x="-15" y="-17" z="0" />
             <i o="sand" r="0" stackpos="0" x="-15" y="-16" z="0" />
             <i o="sand" r="0" stackpos="0" x="-15" y="-15" z="0" />
@@ -1087,7 +1087,7 @@
             <i o="sand" r="0" stackpos="0" x="-15" y="-12" z="0" />
             <i o="sand" r="0" stackpos="0" x="-15" y="-11" z="0" />
             <i o="sand" r="0" stackpos="0" x="-15" y="-10" z="0" />
-            <i o="water" r="0" stackpos="0" x="-15" y="-9" z="0" />
+            <i o="waterM" r="0" stackpos="0" x="-15" y="-9" z="0" />
             <i o="water" r="0" stackpos="0" x="-15" y="-8" z="0" />
             <i o="water" r="0" stackpos="0" x="-15" y="-7" z="0" />
             <i o="water" r="0" stackpos="0" x="-15" y="-6" z="0" />
@@ -1114,14 +1114,14 @@
             <i o="water" r="0" stackpos="0" x="-16" y="-20" z="0" />
             <i o="water" r="0" stackpos="0" x="-16" y="-19" z="0" />
             <i o="water" r="0" stackpos="0" x="-16" y="-18" z="0" />
-            <i o="water" r="0" stackpos="0" x="-16" y="-17" z="0" />
-            <i o="water" r="0" stackpos="0" x="-16" y="-16" z="0" />
+            <i o="waterR" r="0" stackpos="0" x="-16" y="-17" z="0" />
+            <i o="waterR" r="0" stackpos="0" x="-16" y="-16" z="0" />
             <i o="sand" r="0" stackpos="0" x="-16" y="-15" z="0" />
             <i o="gravell" r="0" stackpos="0" x="-16" y="-14" z="0" />
             <i o="sand" r="0" stackpos="0" x="-16" y="-13" z="0" />
-            <i o="water" r="0" stackpos="0" x="-16" y="-12" z="0" />
-            <i o="water" r="0" stackpos="0" x="-16" y="-11" z="0" />
-            <i o="water" r="0" stackpos="0" x="-16" y="-10" z="0" />
+            <i o="waterM" r="0" stackpos="0" x="-16" y="-12" z="0" />
+            <i o="waterR" r="0" stackpos="0" x="-16" y="-11" z="0" />
+            <i o="waterR" r="0" stackpos="0" x="-16" y="-10" z="0" />
             <i o="water" r="0" stackpos="0" x="-16" y="-9" z="0" />
             <i o="water" r="0" stackpos="0" x="-16" y="-8" z="0" />
             <i o="water" r="0" stackpos="0" x="-16" y="-7" z="0" />
@@ -1151,9 +1151,9 @@
             <i o="water" r="0" stackpos="0" x="-17" y="-18" z="0" />
             <i o="water" r="0" stackpos="0" x="-17" y="-17" z="0" />
             <i o="water" r="0" stackpos="0" x="-17" y="-16" z="0" />
-            <i o="water" r="0" stackpos="0" x="-17" y="-15" z="0" />
+            <i o="waterR" r="0" stackpos="0" x="-17" y="-15" z="0" />
             <i o="gravell" r="0" stackpos="0" x="-17" y="-14" z="0" />
-            <i o="water" r="0" stackpos="0" x="-17" y="-13" z="0" />
+            <i o="waterM" r="0" stackpos="0" x="-17" y="-13" z="0" />
             <i o="water" r="0" stackpos="0" x="-17" y="-12" z="0" />
             <i o="water" r="0" stackpos="0" x="-17" y="-11" z="0" />
             <i o="water" r="0" stackpos="0" x="-17" y="-10" z="0" />
@@ -1187,7 +1187,7 @@
             <i o="water" r="0" stackpos="0" x="-18" y="-16" z="0" />
             <i o="water" r="0" stackpos="0" x="-18" y="-15" z="0" />
             <i o="gravell" r="0" stackpos="0" x="-18" y="-14" z="0" />
-            <i o="water" r="0" stackpos="0" x="-18" y="-13" z="0" />
+            <i o="waterL" r="0" stackpos="0" x="-18" y="-13" z="0" />
             <i o="water" r="0" stackpos="0" x="-18" y="-12" z="0" />
             <i o="water" r="0" stackpos="0" x="-18" y="-11" z="0" />
             <i o="water" r="0" stackpos="0" x="-18" y="-10" z="0" />
@@ -1220,7 +1220,7 @@
             <i o="water" r="0" stackpos="0" x="-19" y="-16" z="0" />
             <i o="water" r="0" stackpos="0" x="-19" y="-15" z="0" />
             <i o="gravell" r="0" stackpos="0" x="-19" y="-14" z="0" />
-            <i o="water" r="0" stackpos="0" x="-19" y="-13" z="0" />
+            <i o="waterL" r="0" stackpos="0" x="-19" y="-13" z="0" />
             <i o="water" r="0" stackpos="0" x="-19" y="-12" z="0" />
             <i o="water" r="0" stackpos="0" x="-19" y="-11" z="0" />
             <i o="water" r="0" stackpos="0" x="-19" y="-10" z="0" />
@@ -1254,7 +1254,7 @@
             <i o="gravell" r="0" stackpos="0" x="-20" y="-14" z="0" />
             <i o="grass" r="0" stackpos="0" x="-20" y="-13" z="0" />
             <i o="sand" r="0" stackpos="0" x="-20" y="-12" z="0" />
-            <i o="water" r="0" stackpos="0" x="-20" y="-11" z="0" />
+            <i o="waterL" r="0" stackpos="0" x="-20" y="-11" z="0" />
             <i o="water" r="0" stackpos="0" x="-20" y="-10" z="0" />
             <i o="water" r="0" stackpos="0" x="-20" y="-9" z="0" />
             <i o="water" r="0" stackpos="0" x="-20" y="-8" z="0" />
@@ -1286,7 +1286,7 @@
             <i o="grass" r="0" stackpos="0" x="-21" y="-13" z="0" />
             <i o="grass" r="0" stackpos="0" x="-21" y="-12" z="0" />
             <i o="sand" r="0" stackpos="0" x="-21" y="-11" z="0" />
-            <i o="water" r="0" stackpos="0" x="-21" y="-10" z="0" />
+            <i o="waterL" r="0" stackpos="0" x="-21" y="-10" z="0" />
             <i o="water" r="0" stackpos="0" x="-21" y="-9" z="0" />
             <i o="water" r="0" stackpos="0" x="-21" y="-8" z="0" />
             <i o="water" r="0" stackpos="0" x="-21" y="-7" z="0" />
@@ -1316,7 +1316,7 @@
             <i o="gravell" r="0" stackpos="0" x="-22" y="-13" z="0" />
             <i o="grass" r="0" stackpos="0" x="-22" y="-12" z="0" />
             <i o="sand" r="0" stackpos="0" x="-22" y="-11" z="0" />
-            <i o="water" r="0" stackpos="0" x="-22" y="-10" z="0" />
+            <i o="waterL" r="0" stackpos="0" x="-22" y="-10" z="0" />
             <i o="water" r="0" stackpos="0" x="-22" y="-9" z="0" />
             <i o="water" r="0" stackpos="0" x="-22" y="-8" z="0" />
             <i o="water" r="0" stackpos="0" x="-22" y="-7" z="0" />
@@ -1345,7 +1345,7 @@
             <i o="gravell" r="0" stackpos="0" x="-23" y="-13" z="0" />
             <i o="grass" r="0" stackpos="0" x="-23" y="-12" z="0" />
             <i o="grass" r="0" stackpos="0" x="-23" y="-11" z="0" />
-            <i o="water" r="0" stackpos="0" x="-23" y="-10" z="0" />
+            <i o="waterL" r="0" stackpos="0" x="-23" y="-10" z="0" />
             <i o="water" r="0" stackpos="0" x="-23" y="-9" z="0" />
             <i o="water" r="0" stackpos="0" x="-23" y="-8" z="0" />
             <i o="water" r="0" stackpos="0" x="-23" y="-7" z="0" />
@@ -1372,7 +1372,7 @@
             <i o="gravell" r="0" stackpos="0" x="-24" y="-13" z="0" />
             <i o="grass" r="0" stackpos="0" x="-24" y="-12" z="0" />
             <i o="sand" r="0" stackpos="0" x="-24" y="-11" z="0" />
-            <i o="water" r="0" stackpos="0" x="-24" y="-10" z="0" />
+            <i o="waterL" r="0" stackpos="0" x="-24" y="-10" z="0" />
             <i o="water" r="0" stackpos="0" x="-24" y="-9" z="0" />
             <i o="water" r="0" stackpos="0" x="-24" y="-8" z="0" />
             <i o="water" r="0" stackpos="0" x="-24" y="-7" z="0" />
@@ -1397,7 +1397,7 @@
             <i o="grass" r="0" stackpos="0" x="-25" y="-13" z="0" />
             <i o="grass" r="0" stackpos="0" x="-25" y="-12" z="0" />
             <i o="sand" r="0" stackpos="0" x="-25" y="-11" z="0" />
-            <i o="water" r="0" stackpos="0" x="-25" y="-10" z="0" />
+            <i o="waterL" r="0" stackpos="0" x="-25" y="-10" z="0" />
             <i o="water" r="0" stackpos="0" x="-25" y="-9" z="0" />
             <i o="water" r="0" stackpos="0" x="-25" y="-8" z="0" />
             <i o="water" r="0" stackpos="0" x="-25" y="-7" z="0" />
@@ -1413,13 +1413,13 @@
             <i o="water" r="0" stackpos="0" x="-26" y="-20" z="0" />
             <i o="water" r="0" stackpos="0" x="-26" y="-19" z="0" />
             <i o="water" r="0" stackpos="0" x="-26" y="-18" z="0" />
-            <i o="water" r="0" stackpos="0" x="-26" y="-17" z="0" />
+            <i o="waterR" r="0" stackpos="0" x="-26" y="-17" z="0" />
             <i o="sand" r="0" stackpos="0" x="-26" y="-16" z="0" />
             <i o="sand" r="0" stackpos="0" x="-26" y="-15" z="0" />
             <i o="sand" r="0" stackpos="0" x="-26" y="-14" z="0" />
             <i o="grass" r="0" stackpos="0" x="-26" y="-13" z="0" />
             <i o="grass" r="0" stackpos="0" x="-26" y="-12" z="0" />
-            <i o="water" r="0" stackpos="0" x="-26" y="-11" z="0" />
+            <i o="waterM" r="0" stackpos="0" x="-26" y="-11" z="0" />
             <i o="water" r="0" stackpos="0" x="-26" y="-10" z="0" />
             <i o="water" r="0" stackpos="0" x="-26" y="-9" z="0" />
             <i o="water" r="0" stackpos="0" x="-26" y="-8" z="0" />
@@ -1435,11 +1435,11 @@
             <i o="water" r="0" stackpos="0" x="-27" y="-19" z="0" />
             <i o="water" r="0" stackpos="0" x="-27" y="-18" z="0" />
             <i o="water" r="0" stackpos="0" x="-27" y="-17" z="0" />
-            <i o="water" r="0" stackpos="0" x="-27" y="-16" z="0" />
-            <i o="water" r="0" stackpos="0" x="-27" y="-15" z="0" />
-            <i o="water" r="0" stackpos="0" x="-27" y="-14" z="0" />
-            <i o="water" r="0" stackpos="0" x="-27" y="-13" z="0" />
-            <i o="water" r="0" stackpos="0" x="-27" y="-12" z="0" />
+            <i o="waterR" r="0" stackpos="0" x="-27" y="-16" z="0" />
+            <i o="waterR" r="0" stackpos="0" x="-27" y="-15" z="0" />
+            <i o="waterR" r="0" stackpos="0" x="-27" y="-14" z="0" />
+            <i o="waterR" r="0" stackpos="0" x="-27" y="-13" z="0" />
+            <i o="waterR" r="0" stackpos="0" x="-27" y="-12" z="0" />
             <i o="water" r="0" stackpos="0" x="-27" y="-11" z="0" />
             <i o="water" r="0" stackpos="0" x="-27" y="-10" z="0" />
             <i o="water" r="0" stackpos="0" x="-27" y="-9" z="0" />
@@ -1521,34 +1521,35 @@
             <i o="water" r="0" stackpos="0" x="-32" y="-8" z="0" />
         </instances>
     </layer>
-    <layer grid_type="square" id="layer2" pathing="cell_edges_only" rotation="0" sorting="camera" transparency="0" x_offset="0" x_scale="1" y_offset="0" y_scale="1" z_offset="0">
+    <layer grid_type="square" id="unitLayer" layer_type="walkable" pathing="cell_edges_and_diagonals" rotation="0" sorting="camera" transparency="0" x_offset="-0.5" x_scale="1" y_offset="0.5" y_scale="1" z_offset="0">
         <instances>
-            <i ns="grimwall" o="red" r="0" stackpos="0" x="11" y="-5" z="0" />
-            <i o="tree" r="0" stackpos="0" x="5" y="-3" z="0" />
-            <i o="tree" r="0" stackpos="0" x="3" y="-6" z="0" />
-            <i o="tower" r="0" stackpos="0" x="2" y="-3" z="0" />
-            <i o="tower" r="0" stackpos="0" x="-1" y="-5" z="0" />
-            <i o="tree" r="0" stackpos="0" x="-1" y="-1" z="0" />
-            <i o="tree" r="0" stackpos="0" x="-7" y="-15" z="0" />
-            <i o="red" r="0" stackpos="0" x="-8" y="-18" z="0" />
-            <i o="tree" r="0" stackpos="0" x="-8" y="-12" z="0" />
-            <i o="red" r="0" stackpos="0" x="-8" y="-5" z="0" />
-            <i o="tree" r="0" stackpos="0" x="-8" y="-3" z="0" />
-            <i o="tree" r="0" stackpos="0" x="-10" y="-15" z="0" />
-            <i o="tree" r="0" stackpos="0" x="-10" y="-12" z="0" />
-            <i o="tree" r="0" stackpos="0" x="-10" y="-2" z="0" />
-            <i o="tree" r="0" stackpos="0" x="-11" y="-5" z="0" />
-            <i o="tree" r="0" stackpos="0" x="-12" y="-18" z="0" />
-            <i o="tree" r="0" stackpos="0" x="-12" y="-10" z="0" />
-            <i o="tree" r="0" stackpos="0" x="-14" y="-16" z="0" />
-            <i o="tree" r="0" stackpos="0" x="-14" y="-10" z="0" />
-            <i o="tree" r="0" stackpos="0" x="-15" y="-13" z="0" />
-            <i o="red" r="0" stackpos="0" x="-21" y="-16" z="0" />
-            <i o="tree" r="0" stackpos="0" x="-21" y="-12" z="0" />
-            <i o="red" r="0" stackpos="0" x="-23" y="-14" z="0" />
-            <i o="tree" r="0" stackpos="0" x="-24" y="-16" z="0" />
-            <i o="tree" r="0" stackpos="0" x="-24" y="-12" z="0" />
-            <i o="tree" r="0" stackpos="0" x="-26" y="-13" z="0" />
+            <i ns="grimwall" id="Dralas" o="girl" x="-22" y="-15" z="0" r="0" visitor_radius="6" visitor_shape="circle" />
+            
+            <i ns="grimwall" o="red" r="0" stackpos="0" x="12" y="-6" z="0" />
+            <i o="tree" r="0" stackpos="0" x="6" y="-4" z="0" />
+            <i o="tree" r="0" stackpos="0" x="4" y="-7" z="0" />
+            <i o="tower" r="0" stackpos="0" x="3" y="-4" z="0" />
+            <i o="tower" r="0" stackpos="0" x="0" y="-6" z="0" />
+            <i o="tree" r="0" stackpos="0" x="0" y="-2" z="0" />
+            <i o="tree" r="0" stackpos="0" x="-6" y="-16" z="0" />
+            <i o="red" r="0" stackpos="0" x="-7" y="-19" z="0" />
+            <i o="tree" r="0" stackpos="0" x="-7" y="-13" z="0" />
+            <i o="red" r="0" stackpos="0" x="-7" y="-6" z="0" />
+            <i o="tree" r="0" stackpos="0" x="-7" y="-4" z="0" />
+            <i o="tree" r="0" stackpos="0" x="-9" y="-16" z="0" />
+            <i o="tree" r="0" stackpos="0" x="-9" y="-13" z="0" />
+            <i o="tree" r="0" stackpos="0" x="-9" y="-3" z="0" />
+            <i o="tree" r="0" stackpos="0" x="-10" y="-6" z="0" />
+            <i o="tree" r="0" stackpos="0" x="-11" y="-19" z="0" />
+            <i o="tree" r="0" stackpos="0" x="-11" y="-11" z="0" />
+            <i o="tree" r="0" stackpos="0" x="-13" y="-17" z="0" />
+            <i o="tree" r="0" stackpos="0" x="-13" y="-11" z="0" />
+            <i o="tree" r="0" stackpos="0" x="-14" y="-14" z="0" />
+            <i o="red" r="0" stackpos="0" x="-20" y="-17" z="0" />
+            <i o="tree" r="0" stackpos="0" x="-20" y="-13" z="0" />
+            <i o="tree" r="0" stackpos="0" x="-23" y="-17" z="0" />
+            <i o="tree" r="0" stackpos="0" x="-23" y="-13" z="0" />
+            <i o="tree" r="0" stackpos="0" x="-25" y="-14" z="0" />
         </instances>
     </layer>
     <cellcaches />
