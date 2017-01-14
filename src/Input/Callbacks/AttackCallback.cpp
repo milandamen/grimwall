@@ -20,7 +20,7 @@ void AttackCallback::execute() {
 
     // Commence the attack animation on the unit.
     // TODO: Replace "talk" with a more fitting animation.
-    EngineFacade::engine()->setInstanceAction(hero->getName(), "talk");
+    EngineFacade::engine()->setInstanceAction(hero->getName(), "attack");
 
 
     std::vector<UnitManager<ATower>*>* towers = game->getTowers();
