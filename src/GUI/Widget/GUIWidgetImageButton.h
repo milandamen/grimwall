@@ -1,6 +1,3 @@
-//
-// Created by stephanromer on 1/11/17.
-//
 
 #ifndef GRIMWALL_GUIWIDGETIMAGEBUTTON_H
 #define GRIMWALL_GUIWIDGETIMAGEBUTTON_H

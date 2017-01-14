@@ -1,6 +1,3 @@
-//
-// Created by stephanromer on 1/11/17.
-//
 
 #include "GUIWidgetImageButton.h"
 

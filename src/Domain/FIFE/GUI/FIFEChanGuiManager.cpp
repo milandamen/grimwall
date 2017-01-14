@@ -1,5 +1,6 @@
 
 #include "FIFEChanGuiManager.h"
+#include "Widget/FIFEChanImageButton.h"
 
 FIFEChanGuiManager::FIFEChanGuiManager()
 {
@@ -105,6 +106,35 @@ GUIWidgetImage *FIFEChanGuiManager::createImage(std::string asset, int width, in
     this->widgets.push_back(image);
 
     return image;
+}
+
+GUIWidgetImageButton* FIFEChanGuiManager::addImageButton(std::string caption, std::string asset, int x = 0, int y = 0, int width = 0, int height = 0)
+{
+    FIFEChanImageButton* ib = new FIFEChanImageButton();
+    ib->setX(x);
+    ib->setY(y);
+    ib->setWidth(width);
+    ib->setHeight(height);
+    ib->setCaption(caption);
+    ib->setAsset(asset);
+
+    this->widgets.push_back(ib);
+    this->container->add(ib->getWidget());
+
+    return ib;
+}
+
+GUIWidgetImageButton* FIFEChanGuiManager::createImageButton(std::string caption, std::string asset, int width = 0, int height = 0)
+{
+    FIFEChanImageButton* ib = new FIFEChanImageButton();
+    ib->setWidth(width);
+    ib->setHeight(height);
+    ib->setCaption(caption);
+    ib->setAsset(asset);
+
+    this->widgets.push_back(ib);
+
+    return ib;
 }
 
 GUIWidgetRadio* FIFEChanGuiManager::addRadio(std::string caption, std::string group, int x = 0, int y = 0, bool selected = false)

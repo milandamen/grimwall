@@ -4,6 +4,9 @@
 FIFEChanImageButton::FIFEChanImageButton()
 {
     this->imageButton = new fcn::ImageButton();
+    this->imageButton->addMouseListener(this);
+    this->setForegroundColor(0,0,0,0); // Transparent
+    this->setBackgroundColor(0,0,0,0); // Transparent
 }
 
 FIFEChanImageButton::~FIFEChanImageButton()

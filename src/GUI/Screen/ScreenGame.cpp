@@ -13,33 +13,39 @@ ScreenGame::ScreenGame(IGame* game, AGUIManager* manager)
     this->manager->setWidth(1024);
     this->manager->setHeight(200);
 
-    this->lbl_hero_name = manager->createLabel("Dit is tekst A");
-    this->pgb_hero_hp = manager->createContainer(200, 20);
-    this->pgb_hero_hp->setBackgroundColor(0, 255, 0, 255);
-    this->lbl_hero_hp = manager->createLabel("");
-    //this->lbl_hero_hp->setForegroundColor(0, 0, 0, 255);
-    this->pgb_hero_mp = manager->createContainer(200, 20);
-    this->pgb_hero_mp->setBackgroundColor(0, 0, 255, 255);
-    this->lbl_hero_mp = manager->createLabel("");
-    //this->lbl_hero_mp->setForegroundColor(0, 0, 0, 255);
+    this->lblHeroName = manager->createLabel("Dit is tekst A");
+    this->pgbHeroHP = manager->createContainer(200, 20);
+    this->pgbHeroHP->setBackgroundColor(0, 255, 0, 255);
+    this->lblHeroHP = manager->createLabel("");
+    this->pgbHeroMP = manager->createContainer(200, 20);
+    this->pgbHeroMP->setBackgroundColor(0, 0, 255, 255);
+    this->lblHeroMP = manager->createLabel("");
 
-    this->container->addWidget(this->lbl_hero_name, 10, 10);
-    this->container->addWidget(this->pgb_hero_hp, 10, 30);
-    this->container->addWidget(this->lbl_hero_hp, 10, 30);
-    this->container->addWidget(this->pgb_hero_mp, 10, 50);
-    this->container->addWidget(this->lbl_hero_mp, 10, 50);
+    this->btnPause = manager->addButton("Pause", 1024-40, 20);
+    this->btnPause->setWidth(40);
+    this->btnPause->setHeight(40);
+    this->btnPause->onClick([&](){ this->pause(); });
+
+    this->container->addWidget(this->lblHeroName, 10, 10);
+    this->container->addWidget(this->pgbHeroHP, 10, 30);
+    this->container->addWidget(this->lblHeroHP, 10, 30);
+    this->container->addWidget(this->pgbHeroMP, 10, 50);
+    this->container->addWidget(this->lblHeroMP, 10, 50);
 }
 
 ScreenGame::~ScreenGame()
 {
     delete this->container;
+    delete this->lblHeroName;
+    delete this->pgbHeroHP;
+    delete this->lblHeroHP;
+    delete this->pgbHeroMP;
+    delete this->lblHeroMP;
 }
 
 void ScreenGame::hasBecomeActive()
 {
-    this->lbl_hero_name->setCaption(this->game->getHero()->getName());
-
-    // Notifies us when a change on hero has happened
+    this->lblHeroName->setCaption(this->game->getHero()->getName());
     this->game->getHero()->setStatsListener([&]() {
         this->updateStats();
     });
@@ -56,10 +62,16 @@ void ScreenGame::updateStats()
 {
     int hp = this->game->getHero()->getHitPoints();
     int mp = this->game->getHero()->getBase()->getMana();
-    this->pgb_hero_hp->setWidth(hp);
-    this->lbl_hero_hp->setCaption("HP: "+std::to_string(hp));
-    this->pgb_hero_mp->setWidth(mp);
-    this->lbl_hero_mp->setCaption("Mana: "+std::to_string(mp));
+    this->pgbHeroHP->setWidth(hp);
+    this->lblHeroHP->setCaption("HP: "+std::to_string(hp));
+    this->pgbHeroMP->setWidth(mp);
+    this->lblHeroMP->setCaption("Mana: "+std::to_string(mp));
+}
+
+void ScreenGame::pause()
+{
+    this->game->setPaused(true);
+    this->game->setUI("Pause");
 }
 
 void ScreenGame::quitGame()

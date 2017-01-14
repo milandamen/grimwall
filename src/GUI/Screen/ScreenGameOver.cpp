@@ -4,6 +4,8 @@
 ScreenGameOver::ScreenGameOver(IGame* game,AGUIManager* manager)
         : GUI(manager), game(game)
 {
+
+
     manager->addImage("assets/gui/menubackground.png", 0, 0, 1024, 786);
     manager->addLabel("Game Over!", 140, 350);
 
@@ -19,4 +21,6 @@ ScreenGameOver::ScreenGameOver(IGame* game,AGUIManager* manager)
 }
 
 ScreenGameOver::~ScreenGameOver()
-{}
+{
+    delete this->
+}

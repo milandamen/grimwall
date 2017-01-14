@@ -15,6 +15,10 @@ private:
     IGame* game;
     AGUIManager* manager;
 
+    GUIWidgetContainer * fog {nullptr};
+    GUIWidgetImageButton* btnAd {nullptr};
+    GUIWidgetImageButton* btnReturn {nullptr};
+
 public:
     ScreenPause(IGame* game, AGUIManager* manager);
     ~ScreenPause();

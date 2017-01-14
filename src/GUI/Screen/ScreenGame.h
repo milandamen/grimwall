@@ -12,14 +12,16 @@ private:
     AGUIManager* manager {nullptr};
 
     GUIWidgetContainer* container {nullptr};
-    GUIWidgetLabel* lbl_hero_name {nullptr};
-    GUIWidgetLabel* lbl_hero_hp {nullptr};
-    GUIWidgetLabel* lbl_hero_mp {nullptr};
-    GUIWidgetContainer* pgb_hero_hp {nullptr};
-    GUIWidgetContainer* pgb_hero_mp {nullptr};
+    GUIWidgetLabel* lblHeroName {nullptr};
+    GUIWidgetLabel* lblHeroHP {nullptr};
+    GUIWidgetLabel* lblHeroMP {nullptr};
+    GUIWidgetContainer* pgbHeroHP {nullptr};
+    GUIWidgetContainer* pgbHeroMP {nullptr};
+    GUIWidgetButton* btnPause {nullptr};
 
     void updateStats();
     void quitGame();
+    void pause();
 
     void hasBecomeActive() override;
     void hasBecomeInactive() override;

@@ -36,6 +36,8 @@ public:
     virtual GUIWidgetLabel *createLabel(std::string caption, int width, int height) override;
     virtual GUIWidgetImage* addImage(std::string asset, int x, int y, int width, int height) override;
     virtual GUIWidgetImage *createImage(std::string asset, int width, int height) override;
+    virtual GUIWidgetImageButton* addImageButton(std::string caption, std::string asset, int x, int y, int width, int height) override;
+    virtual GUIWidgetImageButton* createImageButton(std::string caption, std::string asset, int width, int height) override;
     virtual GUIWidgetRadio* addRadio(std::string caption, std::string group, int x, int y, bool selected) override;
     virtual GUIWidgetRadio *createRadio(std::string caption, std::string group, bool selected) override;
     virtual GUIWidgetContainer* addContainer(int x, int y, int width, int height) override;
