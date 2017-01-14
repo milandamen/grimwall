@@ -19,15 +19,18 @@ std::string AHero::getWeapon() {
     return this->weapon;
 }
 
-void AHero::executeAbility(unsigned int number) {
+bool AHero::executeAbility(unsigned int number) {
     if (number < this->abilities.size() && number >= 0){
         if (this->abilities[number]->getCost() <= this->mana) {
             this->mana -= this->abilities[number]->getCost();
             this->abilities[number]->execute();
 
             this->updateStatsListener();
+            return true;
         }
     }
+
+    return false;
 }
 
 void AHero::addAbility(AAbility *ability) {
