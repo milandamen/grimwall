@@ -18,7 +18,7 @@ public:
     AHero(std::string name, int reach, int attackDelay, int moveSpeed, int power, int hitPoints, int visibility);
     ~AHero();
     std::string getWeapon();
-    void executeAbility(unsigned int number);
+    bool executeAbility(unsigned int number);
     void addAbility(AAbility* ability);
 
     int getMana();
