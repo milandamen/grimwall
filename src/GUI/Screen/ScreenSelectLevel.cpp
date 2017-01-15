@@ -10,7 +10,7 @@ ScreenSelectLevel::ScreenSelectLevel(IGame* game, AGUIManager* manager)
     bh->setHeight(556);
 
     bh->onClick([&]() {
-        this->game->setMap("assets/maps/level1_remake_conv.xml");
+        this->game->setMap("assets/maps/level1_complete.xml");
 
         // TODO: Set hero on spawn location
         EngineFacade::engine()->createInstance(this->game->getHero()->getName(), this->game->getHero()->getName(), 0, 0);

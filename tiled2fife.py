@@ -2,7 +2,7 @@
 
 import xml.etree.ElementTree as ET
 
-levelname = "level1_remake"
+levelname = "level1_complete"
 namespace = "grimwall"
 tilt = "60"
 rotation = "45"
@@ -138,4 +138,4 @@ camera.set("ref_cell_height", ref_cell_height)
 
 indent(fiferoot)
 fifetree = ET.ElementTree(fiferoot)
-fifetree.write("assets/maps/level1_remake_conv.xml", encoding="ascii", xml_declaration=True)
+fifetree.write("assets/maps/level1_complete.xml", encoding="ascii", xml_declaration=True)
