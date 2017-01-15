@@ -365,5 +365,26 @@ void FIFEFacade::playMusic(std::string asset) {
 
 void FIFEFacade::playSoundEffect(std::string asset) {
     fifeAudio->playSoundEffect(asset);
+}
 
+FIFE::ModelCoordinate FIFEFacade::getHerospawnPoint() {
+    FIFE::Layer* layer = this->map->getLayer("unitLayer");
+
+    if(layer)
+    {
+        std::vector<FIFE::Instance*> instances = layer->getInstances();
+
+        //get the towers
+        for (unsigned int i = 0; i < instances.size(); ++i)
+        {
+            //select instances with tower in their id
+            if(instances.at(i)->getId() == "spawnLocation")
+            {
+                heroPoint = instances.at(i)->getLocation().getLayerCoordinates();
+                break;
+            }
+        }
+    }
+
+    return heroPoint;
 }

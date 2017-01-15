@@ -13,6 +13,7 @@
 
 #include "Units/UnitManager.hpp"
 #include "Units/Towers/ATower.h"
+#include "view/camera.h"
 
 /**
  * Class to be extended by classes like FIFEFacade
@@ -143,6 +144,11 @@ public:
      * Play sound effect
      */
     virtual void playSoundEffect(std::string asset) = 0;
+
+    /**
+     * Get the spawnLocation for the hero
+     */
+     virtual FIFE::ModelCoordinate getHerospawnPoint() = 0;
 };
 
 #endif

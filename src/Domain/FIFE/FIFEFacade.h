@@ -55,6 +55,8 @@ private:
 
     FIFEMouseListener* mouseListener {nullptr};
 
+    FIFE::ModelCoordinate heroPoint;
+
     bool pumpingInitialized {false};
     
     void initView();
@@ -217,6 +219,11 @@ public:
      * Play sound effect
      */
     void playSoundEffect(std::string asset) override;
+
+    /**
+     * Get the spawnLocation for the hero
+     */
+    virtual FIFE::ModelCoordinate getHerospawnPoint() override;
 };
 
 #endif
