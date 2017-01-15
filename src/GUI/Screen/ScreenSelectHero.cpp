@@ -1,5 +1,6 @@
 
 #include "ScreenSelectHero.h"
+#include "../../Domain/Units/Heroes/Abilities/DeathStrike.h"
 
 ScreenSelectHero::ScreenSelectHero(IGame* game, AGUIManager* manager)
         : GUI(manager), game(game)
@@ -15,6 +16,7 @@ ScreenSelectHero::ScreenSelectHero(IGame* game, AGUIManager* manager)
         bd->setBackgroundColor(0, 0, 0, 0);
         bd->onClick([&]() {
             this->game->setHero(new Dralas());
+            this->game->getHero()->getBase()->addAbility(new DeathStrike(this->game->getHero()));
             this->game->setUI("SelectLevel");
         });
 
