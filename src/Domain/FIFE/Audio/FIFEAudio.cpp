@@ -73,13 +73,15 @@ void FIFEAudio::playSoundEffect(std::string asset) {
 }
 
 void FIFEAudio::stopMusic() {
-    if(currentMusic != nullptr)
+    if(currentMusic != nullptr){
         currentMusic->stop();
+    }
 }
 
 void FIFEAudio::stopSoundEffect() {
-    if(currentEffect != nullptr)
+    if(currentEffect != nullptr) {
         currentEffect->stop();
+    }
 }
 
 void FIFEAudio::stopAllSound() {
