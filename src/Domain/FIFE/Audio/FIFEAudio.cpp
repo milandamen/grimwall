@@ -76,7 +76,6 @@ void FIFEAudio::stopMusic() {
     if(currentMusic != nullptr){
         currentMusic->stop();
     }
-
 }
 
 void FIFEAudio::stopSoundEffect() {
