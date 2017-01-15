@@ -14,12 +14,9 @@ ScreenSelectLevel::ScreenSelectLevel(IGame* game, AGUIManager* manager)
         this->game->setMap("assets/maps/level1_complete.xml");
 
         // TODO: Set hero on spawn location
-        spawnPos = EngineFacade::engine()->getHerospawnPoint();
-        std::cout << "X:        " << spawnPos.x << "          Y: " << spawnPos.y;
+        std::vector<int> spawnPos = EngineFacade::engine()->getHerospawnPoint();
 
-        // if using spawnPos.x&spawnPos.y the hero gets invisible
-        EngineFacade::engine()->createInstance(this->game->getHero()->getName(), this->game->getHero()->getName(), 0, 0);
-
+        EngineFacade::engine()->createInstance(this->game->getHero()->getName(), this->game->getHero()->getName(), spawnPos.at(0), spawnPos.at(1));
 
         this->game->setPaused(false);
         this->game->setUI("Game");

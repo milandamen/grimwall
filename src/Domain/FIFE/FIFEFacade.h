@@ -55,8 +55,6 @@ private:
 
     FIFEMouseListener* mouseListener {nullptr};
 
-    FIFE::ModelCoordinate heroPoint;
-
     bool pumpingInitialized {false};
     
     void initView();
@@ -223,7 +221,7 @@ public:
     /**
      * Get the spawnLocation for the hero
      */
-    virtual FIFE::ModelCoordinate getHerospawnPoint() override;
+    std::vector<int> getHerospawnPoint() override;
 };
 
 #endif

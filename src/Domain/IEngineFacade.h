@@ -148,7 +148,7 @@ public:
     /**
      * Get the spawnLocation for the hero
      */
-     virtual FIFE::ModelCoordinate getHerospawnPoint() = 0;
+     virtual std::vector<int> getHerospawnPoint() = 0;
 };
 
 #endif

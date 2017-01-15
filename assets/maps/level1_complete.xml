@@ -2550,11 +2550,11 @@
 <!-- Tower 10 -->
       <i  o="blocker" r="0"  x="-19" y="-8" z="0" id="defaultTower10"/>
 
-<!-- SpawnLocation -->
-<i o="empty" r="0"  x="-24" y="17" z="0" id="spawnLocation" />
+        <!-- SpawnLocation -->
+        <i o="empty" r="0"  x="-22" y="16" z="0" id="spawnLocation" />
 
-<!-- water... -->
-<!-- map edge... -->
+        <!-- water... -->
+        <!-- map edge... -->
     </instances>
   </layer>
 

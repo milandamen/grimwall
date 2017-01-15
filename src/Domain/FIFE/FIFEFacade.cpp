@@ -269,8 +269,9 @@ std::string FIFEFacade::createInstance(std::string objectName, std::string insta
                 mapCoords.z = 0.0;
                 FIFE::Location* location {new FIFE::Location(layer)};
                 location->setLayerCoordinates(mapCoords);
-                //Check if position is occupied
-                if(layer->getInstancesAt(*location).size() == 0) {
+                
+                // Check if position is occupied
+                if(layer->getInstancesAt(*location).size() == 0 || layer->getInstancesAt(*location).at(0)->getId() == "spawnLocation") {
                     FIFE::Instance* instance {layer->createInstance(object, mapCoords, instanceName)};
                     FIFE::InstanceVisual::create(instance);
                 }
@@ -367,7 +368,12 @@ void FIFEFacade::playSoundEffect(std::string asset) {
     fifeAudio->playSoundEffect(asset);
 }
 
-FIFE::ModelCoordinate FIFEFacade::getHerospawnPoint() {
+std::vector<int> FIFEFacade::getHerospawnPoint() {
+    std::vector<int> ret;
+    ret.push_back(0);   // x
+    ret.push_back(0);   // y
+    ret.push_back(0);   // z
+    
     FIFE::Layer* layer = this->map->getLayer("unitLayer");
 
     if(layer)
@@ -380,11 +386,15 @@ FIFE::ModelCoordinate FIFEFacade::getHerospawnPoint() {
             //select instances with tower in their id
             if(instances.at(i)->getId() == "spawnLocation")
             {
-                heroPoint = instances.at(i)->getLocation().getLayerCoordinates();
+                FIFE::ModelCoordinate heroPoint = instances.at(i)->getLocation().getLayerCoordinates();
+                ret.clear();
+                ret.push_back(heroPoint[0]);
+                ret.push_back(heroPoint[1]);
+                ret.push_back(heroPoint[2]);
                 break;
             }
         }
     }
 
-    return heroPoint;
+    return ret;
 }
