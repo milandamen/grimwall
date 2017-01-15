@@ -362,7 +362,20 @@ void FIFEFacade::playMusic(std::string asset) {
     fifeAudio->playMusic(asset);
 }
 
+void FIFEFacade::stopMusic() {
+    fifeAudio->stopMusic();
+}
+
 void FIFEFacade::playSoundEffect(std::string asset) {
     fifeAudio->playSoundEffect(asset);
-
 }
+
+void FIFEFacade::stopSoundEffect() {
+    fifeAudio->stopSoundEffect();
+}
+
+void FIFEFacade::stopAllMusic() {
+    fifeAudio->stopAllSound();
+}
+
+
