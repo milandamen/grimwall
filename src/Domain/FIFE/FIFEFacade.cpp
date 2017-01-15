@@ -91,8 +91,16 @@ void FIFEFacade::setActiveGUIManager(AGUIManager* manager) {
 
 void FIFEFacade::setFPSLimit(int fpsLimit)
 {
-    this->engine->getSettings().setFrameLimit(fpsLimit);
-    this->engine->getSettings().setFrameLimitEnabled(true);
+    if (!this->initialized)
+    {
+        this->engine->getSettings().setFrameLimitEnabled(fpsLimit != 0);
+        this->engine->getSettings().setFrameLimit(fpsLimit);
+    }
+    else
+    {
+        this->engine->getRenderBackend()->setFrameLimitEnabled(fpsLimit != 0);
+        this->engine->getRenderBackend()->setFrameLimit(fpsLimit);
+    }
 }
 
 void FIFEFacade::init()
@@ -105,6 +113,8 @@ void FIFEFacade::init()
     this->initInput();
 
     this->engine->getEventManager()->addSdlEventListener(this->fifeChan->getGuiManager());
+    
+    this->initialized = true;
 }
 
 void FIFEFacade::loadMap(std::string path)

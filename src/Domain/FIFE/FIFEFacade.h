@@ -55,6 +55,7 @@ private:
 
     FIFEMouseListener* mouseListener {nullptr};
 
+    bool initialized {false};
     bool pumpingInitialized {false};
     
     void initView();
