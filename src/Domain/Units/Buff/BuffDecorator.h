@@ -36,6 +36,8 @@ public:
 
     bool attack() override;
 
+    bool canAttack() override;
+
     void tick() override ;
 
     void setStatsListener(std::function<void()> delegate) override;

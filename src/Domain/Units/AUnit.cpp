@@ -89,14 +89,10 @@ bool AUnit::attack() {
     return false;
 }
 
-void AUnit::setTimeLastAttack(int time) {
-    this->timeLastAttack = time;
-}
-
-int AUnit::getTimeLastAttack() {
-    return this->timeLastAttack;
-}
-
 void AUnit::setStatsListener(std::function<void()> delegate) {
     this->updateStatsListener = delegate;
+}
+
+bool AUnit::canAttack() {
+    return this->attackWait <= 0;
 }

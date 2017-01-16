@@ -21,8 +21,6 @@ protected:
     double x{0};
     double y{0};
 
-    int timeLastAttack {0};
-
     int attackWait{0};
 
     std::function<void()> updateStatsListener = [](){};
@@ -50,12 +48,10 @@ public:
     void setPrevious(IUnit *previous);
 
     bool attack() override;
+    bool canAttack() override;
 
     virtual void tick() override;
     void setStatsListener(std::function<void()> delegate) override;
-
-    void setTimeLastAttack(int time);
-    int getTimeLastAttack();
 };
 
 

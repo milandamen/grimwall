@@ -38,6 +38,8 @@ public:
 
     bool attack() override;
 
+    bool canAttack() override;
+
     void tick() override;
 
     UnitType* getBase();
@@ -167,5 +169,9 @@ void UnitManager<UnitType>::setStatsListener(std::function<void()> delegate) {
     this->unit->setStatsListener(delegate);
 }
 
+template <typename UnitType>
+bool UnitManager<UnitType>::canAttack() {
+    return unit->canAttack();
+}
 
 #endif //GRIMWALL_UNITMANAGER_H

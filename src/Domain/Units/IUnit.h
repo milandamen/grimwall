@@ -26,6 +26,7 @@ public:
     virtual void setPrevious(IUnit *previous) = 0;
 
     virtual bool attack() = 0;
+    virtual bool canAttack() = 0;
 
     virtual void tick() = 0;
     virtual void setStatsListener(std::function<void()> delegate) = 0;

@@ -16,7 +16,8 @@ void TowerManager::tick() {
         bool heroIsTarget {false};
         tower->tick();
         //check if tower can attack
-        if(tower->attack())
+        bool canAttack {tower->canAttack()};
+        if(canAttack)
         {
             //time delay passed
             updateLocation(tower, tower->getName());
@@ -70,6 +71,7 @@ void TowerManager::tick() {
 
             if(heroIsTarget)
             {
+                tower->attack();
                 this->hero->receiveDamage(tower->getPower());
 
                 std::cout << "Hero hp: " << this->hero->getHitPoints() << std::endl;
@@ -78,6 +80,7 @@ void TowerManager::tick() {
             }
             else if(unit)
             {
+                tower->attack();
                 //get tower attack
                 //subtract it from unit hp
                 unit->receiveDamage(tower->getPower());
