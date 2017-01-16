@@ -60,6 +60,8 @@ private:
     KeyboardMapper* keyboardMapper {nullptr};
     
     ISaveGameManager* saveGameManager {nullptr};
+    SaveGame* currentSave {nullptr};
+
     TowerManager towerManager;
 
     void initInput();
@@ -85,6 +87,8 @@ public:
     virtual std::vector<UnitManager<ATower>*>* getTowers() override;
     virtual ISaveGameManager* getSaveGameManager() override;
     virtual void setSaveGameManager(ISaveGameManager* saveGameManager) override;
+    virtual void loadGame(std::string fileName) override;
+    virtual void saveGame() override;
 };
 
 

@@ -4,6 +4,7 @@
 #include "../GUI.h"
 #include "../AGUIManager.h"
 #include "../../Domain/IGame.h"
+#include "../../Domain/SaveGame/SaveGameManager.h"
 
 class ScreenLoad : public GUI {
 private:
@@ -19,8 +20,6 @@ private:
     GUIWidgetLabel* loadSave {nullptr};
 
     GUIWidgetImageButton* btnReturn {nullptr};
-
-
 
 public:
     ScreenLoad(IGame* game, AGUIManager* manager);

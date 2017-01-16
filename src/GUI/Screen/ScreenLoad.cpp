@@ -8,14 +8,26 @@ ScreenLoad::ScreenLoad(IGame* game, AGUIManager* manager)
     gameSlot1 = manager->addButton("SLOT 1", 230, 325);
     gameSlot1->setWidth(150);
     gameSlot1->setHeight(150);
+    gameSlot1->onClick([&](){
+        this->game->loadGame("slot1.sav");
+        this->game->setUI("SelectHero");
+    });
 
     gameSlot2 = manager->addButton("SLOT 2", 440, 325);
     gameSlot2->setWidth(150);
     gameSlot2->setHeight(150);
+    gameSlot2->onClick([&](){
+        this->game->loadGame("slot2.sav");
+        this->game->setUI("SelectHero");
+    });
 
     gameSlot3 = manager->addButton("SLOT 3", 650, 325);
     gameSlot3->setWidth(150);
     gameSlot3->setHeight(150);
+    gameSlot3->onClick([&](){
+        this->game->loadGame("slot3.sav");
+        this->game->setUI("SelectHero");
+    });
 
 
     loadSave = manager->addLabel("Load/Save", 50, 100);

@@ -2,7 +2,6 @@
 #define SAVEGAME_H
 
 #include <iostream>
-
 #include "ISaveGameManager.h"
 
 class ISaveGameManager;

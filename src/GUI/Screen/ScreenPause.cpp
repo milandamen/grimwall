@@ -1,7 +1,3 @@
-//
-// Created by stephanromer on 12/21/16.
-//
-
 #include "ScreenPause.h"
 
 ScreenPause::ScreenPause(IGame *game, AGUIManager *manager)
@@ -14,6 +10,13 @@ ScreenPause::ScreenPause(IGame *game, AGUIManager *manager)
     this->btnAd->setBackgroundColor(0, 0, 0, 0);
     this->btnAd->onClick([](){
         system("firefox https://www.linux.com/");
+    });
+
+    this->btnSave = manager->addButton("Save Game", 212, 200);
+    this->btnSave->setWidth(400);
+    this->btnSave->setHeight(125);
+    this->btnSave->onClick([&](){
+        this->game->saveGame();
     });
 
     this->btnHelp = manager->addImageButton("", "assets/gui/btnHelp.png", 213, 400, 600, 80);

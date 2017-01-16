@@ -185,3 +185,20 @@ void Game::setSaveGameManager(ISaveGameManager* saveGameManager)
 {
     this->saveGameManager = saveGameManager;
 }
+
+void Game::loadGame(std::string fileName){
+    SaveGame* temp = this->saveGameManager->load(fileName);
+    if(temp == nullptr){
+        temp = this->saveGameManager->create(fileName);
+    }
+
+    this->currentSave = temp;
+}
+
+void Game::saveGame(){
+    if(currentSave != nullptr){
+
+        this->currentSave->lastUsedHero = this->getHero()->getName();
+        this->currentSave->save();
+    }
+}
