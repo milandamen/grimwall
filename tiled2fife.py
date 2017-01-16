@@ -2,7 +2,7 @@
 
 import xml.etree.ElementTree as ET
 
-levelname = "level3"
+levelname = "level1_complete"
 namespace = "grimwall"
 tilt = "60"
 rotation = "45"
@@ -116,8 +116,6 @@ for layer in layers:
             t.set("y", str(startY + y))
             t.set("z", "0")
             t.set("r", "0")
-            t.set("blocking", "1")
-            t.set("stackpos", "0")
         
         count += 1
         x = width - int(count / width)
@@ -133,10 +131,9 @@ camera.set("ref_layer_id", layers[0][0])
 camera.set("zoom", "1")
 camera.set("tilt", tilt)
 camera.set("rotation", rotation)
-camera.set("viewport", viewport_x + "," + viewport_y + "," + viewport_width + "," + viewport_height)
 camera.set("ref_cell_width", ref_cell_width)
 camera.set("ref_cell_height", ref_cell_height)
 
 indent(fiferoot)
 fifetree = ET.ElementTree(fiferoot)
-fifetree.write("assets/maps/level3_test_with_towers.xml", encoding="ascii", xml_declaration=True)
+fifetree.write("assets/maps/level1_edge.xml", encoding="ascii", xml_declaration=True)
