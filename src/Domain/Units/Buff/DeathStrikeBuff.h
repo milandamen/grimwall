@@ -7,7 +7,7 @@ class DeathStrikeBuff : public BuffDecorator {
 private:
     int multiplier;
 public:
-    DeathStrikeBuff(IUnit *inner, int multiplier);
+    DeathStrikeBuff(int multiplier);
 
     int getPower();
 };

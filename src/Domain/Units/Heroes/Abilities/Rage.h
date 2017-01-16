@@ -1,22 +1,21 @@
-#ifndef GRIMWALL_STEALTH_H
-#define GRIMWALL_STEALTH_H
 
+
+#ifndef GRIMWALL_RAGE_H
+#define GRIMWALL_RAGE_H
 
 
 #include "../AAbility.h"
 #include "../AHero.h"
 #include "../../UnitManager.hpp"
 
-class Stealth : public AAbility{
-
+class Rage : public AAbility {
 private:
     UnitManager<AHero>* hero;
 public:
-    Stealth(UnitManager<AHero>* hero);
+    Rage(UnitManager<AHero>* hero);
 
     int execute();
-
 };
 
 
-#endif //GRIMWALL_STEALTH_H
+#endif //GRIMWALL_RAGE_H

@@ -7,7 +7,7 @@ class BoneStormBuff : public BuffDecorator {
 private:
     int multiplier;
 public:
-    BoneStormBuff(IUnit *inner, int multiplier);
+    BoneStormBuff(int multiplier);
 
     int getAttackDelay();
 

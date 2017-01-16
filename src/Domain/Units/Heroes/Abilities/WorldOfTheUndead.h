@@ -4,15 +4,16 @@
 #include <iostream>
 #include <vector>
 #include "../AAbility.h"
-#include "../../IUnit.h"
+#include "../../UnitManager.hpp"
+#include "../AHero.h"
 
 using std::vector;
 
-class RaiseUndead : public AAbility {
+class WorldOfTheUndead : public AAbility {
 private:
-    vector<IUnit*> troups;
+    UnitManager<AHero>* hero;
 public:
-    RaiseUndead(vector<IUnit*> troups);
+    WorldOfTheUndead(UnitManager<AHero>* hero);
     int execute();
 };
 

@@ -19,10 +19,10 @@ KeyboardMapper::KeyboardMapper(IGame* game)
 
     // Abilities
     EngineFacade::engine()->registerCallback("SPACE", new AttackCallback(game));
-    EngineFacade::engine()->registerCallback("1", new UseAbilityCallback(game, 0));
-    EngineFacade::engine()->registerCallback("2", new UseAbilityCallback(game, 1));
-    EngineFacade::engine()->registerCallback("3", new UseAbilityCallback(game, 2));
-    EngineFacade::engine()->registerCallback("4", new UseAbilityCallback(game, 3));
+    EngineFacade::engine()->registerCallback("Q", new UseAbilityCallback(game, 0));
+    EngineFacade::engine()->registerCallback("W", new UseAbilityCallback(game, 1));
+    EngineFacade::engine()->registerCallback("E", new UseAbilityCallback(game, 2));
+    EngineFacade::engine()->registerCallback("R", new UseAbilityCallback(game, 3));
     
     // Cheats
     EngineFacade::engine()->registerCallback("CTRL+1", new InfHealthCallback(game));
