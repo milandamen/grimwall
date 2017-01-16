@@ -33,8 +33,6 @@ void FIFEMouseListener::setCamera(FIFECamera* camera) {
 }
 
 void FIFEMouseListener::mouseReleased(FIFE::MouseEvent& evt) {
-
-
     // only activate the move action if the mouse was pressed and released without dragging
     if (evt.getButton() == FIFE::MouseEvent::RIGHT && prevEventType != FIFE::MouseEvent::DRAGGED)
     {
@@ -60,8 +58,10 @@ void FIFEMouseListener::mouseClicked(FIFE::MouseEvent& evt) {
     setPreviousMouseEvent(evt.getType());
 }
 void FIFEMouseListener::mouseWheelMovedUp(FIFE::MouseEvent& evt) {
-    // zoom in
-    camera->zoomIn();
+    // zoom in only if we have a camera
+    if(camera != nullptr){
+        camera->zoomIn();
+    }
 
     // save mouse position
     dragX = evt.getX();
@@ -70,8 +70,10 @@ void FIFEMouseListener::mouseWheelMovedUp(FIFE::MouseEvent& evt) {
     setPreviousMouseEvent(evt.getType());
 }
 void FIFEMouseListener::mouseWheelMovedDown(FIFE::MouseEvent& evt) {
-    // zoom out
-    camera->zoomOut();
+    // zoom out only if we have a camera
+    if(camera != nullptr){
+        camera->zoomOut();
+    }
 
     setPreviousMouseEvent(evt.getType());
 }
