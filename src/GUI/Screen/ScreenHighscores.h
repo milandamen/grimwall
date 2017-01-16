@@ -14,9 +14,17 @@ private:
     IGame* game;
     AGUIManager* manager;
 
+    bool loaded {false};
+
     GUIWidgetImage* imgBg {nullptr};
     GUIWidgetImage* imgHelp {nullptr};
     GUIWidgetImageButton* btnReturn {nullptr};
+
+    GUIWidgetLabel* lblSlot1 {nullptr};
+    GUIWidgetLabel* lblSlot2 {nullptr};
+    GUIWidgetLabel* lblSlot3 {nullptr};
+
+    void hasBecomeActive() override;
 
 public:
     ScreenHighscores(IGame* game, AGUIManager* manager);
