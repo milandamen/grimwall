@@ -116,7 +116,7 @@ void Game::tick() {
     updateLocation(this->hero, this->hero->getName());
 
 
-    this->towerManager.tick(curTime);
+    this->towerManager.tick();
 
     for(unsigned i = 0; i < this->troupManager.getTroups()->size(); ++i){
         updateLocation(this->troupManager.getTroups()->at(i), this->troupManager.getTroups()->at(i)->getName());
