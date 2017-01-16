@@ -16,16 +16,11 @@
 ScreenSelectHero::ScreenSelectHero(IGame* game, AGUIManager* manager)
         : GUI(manager), game(game)
 {
-    manager->addImage("assets/gui/heroSelectBackground.png", 0, 0, 1024, 786);
-    manager->addImage("assets/gui/chooseYourHero.png", 140, 80, 680, 100);
-
-    manager->addImage("assets/gui/heroDralas.png", 50, 180, 304, 575);
-    GUIWidgetButton* bd = manager->addButton("", 60, 182);
-        bd->setWidth(284);
-        bd->setHeight(556);
-        bd->setForegroundColor(255, 255, 255, 255);
-        bd->setBackgroundColor(0, 0, 0, 0);
-        bd->onClick([&]() {
+    this->imgBg = manager->addImage("assets/gui/heroSelectBackground.png", 0, 0, 1024, 786);
+    this->imgChooseYourHero = manager->addImage("assets/gui/chooseYourHero.png", 140, 80, 680, 100);
+    
+    this->btnDralas = manager->addImageButton("", "assets/gui/heroDralas.png", 50, 180, 304, 575);
+    this->btnDralas->onClick([&]() {
             this->game->setHero(new Dralas());
             this->game->getHero()->getBase()->addAbility(new DeathStrike(this->game->getHero()));
             this->game->getHero()->getBase()->addAbility(new BoneStorm(this->game->getTowers()));
@@ -34,13 +29,8 @@ ScreenSelectHero::ScreenSelectHero(IGame* game, AGUIManager* manager)
             this->game->setUI("SelectLevel");
         });
 
-    manager->addImage("assets/gui/heroHorwen.png", 375, 180, 304, 575);
-    GUIWidgetButton* bh = manager->addButton("", 385, 182);
-        bh->setWidth(285);
-        bh->setHeight(556);
-        bh->setForegroundColor(255, 255, 255, 255);
-        bh->setBackgroundColor(0, 0, 0, 0);
-        bh->onClick([&]() {
+    this->btnHorwen = manager->addImageButton("", "assets/gui/heroHorwen.png", 375, 180, 304, 575);
+    this->btnHorwen->onClick([&]() {
             this->game->setHero(new Horwen());
             this->game->getHero()->getBase()->addAbility(new StrikeOfReflection(this->game->getHero()));
             this->game->getHero()->getBase()->addAbility(new Rage(this->game->getHero()));
@@ -49,13 +39,8 @@ ScreenSelectHero::ScreenSelectHero(IGame* game, AGUIManager* manager)
             this->game->setUI("SelectLevel");
         });
 
-    manager->addImage("assets/gui/heroZarrku.png", 700, 180, 304, 575);
-    GUIWidgetButton* bz = manager->addButton("", 710, 182);
-        bz->setWidth(284);
-        bz->setHeight(556);
-        bz->setForegroundColor(255, 255, 255, 255);
-        bz->setBackgroundColor(0, 0, 0, 0);
-        bz->onClick([&]() {
+    this->btnZarrku = manager->addImageButton("", "assets/gui/heroZarrku.png", 700, 180, 304, 575);
+    this->btnZarrku->onClick([&]() {
             this->game->setHero(new Zarrku());
             this->game->getHero()->getBase()->addAbility(new Bomb(this->game->getHero(), this->game->getTowers()));
             this->game->getHero()->getBase()->addAbility(new Stealth(this->game->getHero()));
@@ -66,4 +51,10 @@ ScreenSelectHero::ScreenSelectHero(IGame* game, AGUIManager* manager)
 }
 
 ScreenSelectHero::~ScreenSelectHero()
-{}
+{
+    delete this->imgBg;
+    delete this->imgChooseYourHero;
+    delete this->btnDralas;
+    delete this->btnHorwen;
+    delete this->btnZarrku;
+}

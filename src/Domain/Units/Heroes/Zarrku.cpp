@@ -3,7 +3,7 @@
 #include "AHero.h"
 
 Zarrku::Zarrku()
-        :AHero("Zarrku", 2, 200, 10, 40, 150, 100)
+        :AHero("Zarrku", 100, 0, 100, 100, 150, 100)
 {
 
 }

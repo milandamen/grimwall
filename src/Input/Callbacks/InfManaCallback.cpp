@@ -1,7 +1,7 @@
 
 #include "InfManaCallback.h"
 
-InfManaCallback::InfManaCallback(IGame *game)
+InfManaCallback::InfManaCallback(IGame* game)
     : KeypressCallback(game, 0)
 {}
 
