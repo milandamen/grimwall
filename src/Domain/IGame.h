@@ -27,6 +27,8 @@ public:
     virtual std::vector<UnitManager<ATower>*>* getTowers() = 0;
     virtual ISaveGameManager* getSaveGameManager() = 0;
     virtual void setSaveGameManager(ISaveGameManager* saveGameManager) = 0;
+    virtual void saveGame() = 0;
+    virtual void loadGame(std::string fileName) = 0;
     virtual void setSpeedHack(bool enabled) = 0;
 };
 

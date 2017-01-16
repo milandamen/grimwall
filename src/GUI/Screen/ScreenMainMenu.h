@@ -18,6 +18,7 @@ private:
     GUIWidgetImageButton* btnCampaign {nullptr};
     GUIWidgetImageButton* btnOptions {nullptr};
     GUIWidgetImageButton* btnExit {nullptr};
+    GUIWidgetButton* btnLoad {nullptr};
 
     void hasBecomeActive() override;
 public:
