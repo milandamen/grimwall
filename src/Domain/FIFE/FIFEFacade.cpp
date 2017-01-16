@@ -435,10 +435,8 @@ void FIFEFacade::disableCamera()
     }
 }
 
-
 void FIFEFacade::enableCamera()
-{
-}
+{}
 
 void FIFEFacade::drawBox(double x1, double y1, double x2, double y2){
     engine->getRenderBackend()->fillRectangle(FIFE::Point(x1, y1), (x2 - x1), (y2 - y1), 100, 100, 255, 100);

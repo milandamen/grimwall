@@ -5,7 +5,7 @@
 #include "Abilities/RageOfTheUndead.h"
 
 Dralas::Dralas()
-        : AHero("Dralas", 100, 0, 100, 500, 200, 100)
+        : AHero("Dralas", 3, 350, 7, 500, 200, 100)
 {}
 
 Dralas::~Dralas() {}
