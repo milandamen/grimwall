@@ -20,6 +20,7 @@ public:
     std::string getWeapon();
     bool executeAbility(unsigned int number);
     void addAbility(AAbility* ability);
+    AAbility* getAbility(unsigned int number);
 
     int getMana();
     void setInfMana(bool infMana);

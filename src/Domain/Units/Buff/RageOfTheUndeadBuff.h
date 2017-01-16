@@ -7,8 +7,9 @@ class RageOfTheUndeadBuff : public BuffDecorator {
 private:
     int multiplier;
 public:
-    RageOfTheUndeadBuff(IUnit *inner, int multiplier);
-    int getPower();
+    RageOfTheUndeadBuff(int multiplier);
+    double getSpeed() override;
+    int getPower() override;
 };
 
 

@@ -75,6 +75,5 @@ void FIFECamera::zoomOut(){
 }
 
 void FIFECamera::updateLocation(int x, int y) {
-    if(this->cameraScroller != nullptr)
-        this->cameraScroller->updateLocation(x,y);
+    this->cameraScroller->updateLocation(x,y);
 }

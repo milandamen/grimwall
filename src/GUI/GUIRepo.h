@@ -17,6 +17,7 @@
 #include "../GUI/Screen/ScreenCredits.h"
 #include "../GUI/Screen/ScreenHighscores.h"
 #include "../GUI/Screen/ScreenGame.h"
+#include "../GUI/Screen/ScreenLoad.h"
 
 class GUIRepo {
 

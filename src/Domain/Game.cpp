@@ -40,6 +40,8 @@ void Game::init()
     this->towerManager.setUnits(this->troupManager.getTroups());
     this->towerManager.setHero(hero);
 
+    this->troupManager.setTowers(this->getTowers());
+
     // Game loop
     this->curTime = 0;
     this->lastTime = 0;
@@ -51,8 +53,6 @@ void Game::init()
 
         // Check if we are in pause state
         if(!this->paused) {
-            // Run an engine tick for userland code
-            EngineFacade::engine()->tick();
             this->tick();
         }
 
@@ -109,17 +109,43 @@ void Game::setUI(std::string name)
 }
 
 void Game::tick() {
+    // Run an engine tick for userland code
+    EngineFacade::engine()->tick();
+    if (this->speedHackEnabled) {
+        for (int i {0}; i < 3; i++) {
+            EngineFacade::engine()->tick();
+        }
+    }
+    
     updateLocation(this->hero, this->hero->getName());
+
+
     this->towerManager.tick();
+
+    for(unsigned i = 0; i < this->troupManager.getTroups()->size(); ++i){
+        updateLocation(this->troupManager.getTroups()->at(i), this->troupManager.getTroups()->at(i)->getName());
+    }
+
+    this->troupManager.tick();
+
+    if(++this->scoreCount % 60 == 0) {
+        this->scoreCount = 0;
+        this->score--;
+    }
 
     if (this->hero->getHitPoints() <= 0){
         this->lose();
-    }
-    else if (this->towers.size() <= 0){
+    } else if (this->towers.size() <= 0) {
         this->win();
     }
 
     this->hero->tick();
+
+    EngineFacade::engine()->drawBox(
+            troupManager.sStartX,
+            troupManager.sStartY,
+            troupManager.sEndX,
+            troupManager.sEndY);
 }
 
 void Game::win() {
@@ -213,4 +239,30 @@ ISaveGameManager* Game::getSaveGameManager()
 void Game::setSaveGameManager(ISaveGameManager* saveGameManager)
 {
     this->saveGameManager = saveGameManager;
+}
+
+void Game::loadGame(std::string fileName){
+    SaveGame* temp = this->saveGameManager->load(fileName);
+    if(temp == nullptr){
+        temp = this->saveGameManager->create(fileName);
+    }
+
+    this->currentSave = temp;
+}
+
+void Game::saveGame(){
+    if(currentSave != nullptr){
+        // Fetch the hero and the level and put it into the save file.
+        this->currentSave->lastUsedHero = this->getHero()->getName();
+        this->currentSave->lastUnlockedLevel = this->currentLevel->getName();
+        this->currentSave->score = std::to_string(this->getCurrentScore());
+
+        this->currentSave->save();
+    }
+}
+
+void Game::setSpeedHack(bool enabled)
+{
+    this->speedHackEnabled = enabled;
+    this->towerManager.setSpeedHack(enabled);
 }

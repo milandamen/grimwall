@@ -55,6 +55,7 @@ private:
 
     FIFEMouseListener* mouseListener {nullptr};
 
+    bool initialized {false};
     bool pumpingInitialized {false};
     
     void initView();
@@ -217,6 +218,11 @@ public:
      * Play sound effect
      */
     void playSoundEffect(std::string asset) override;
+
+    /**
+     * Draw a box
+     */
+    void drawBox(double x1, double y1, double x2, double y2) override;
 
     /*
      * Stop playing sound effect

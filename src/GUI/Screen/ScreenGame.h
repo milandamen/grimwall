@@ -19,6 +19,19 @@ private:
     GUIWidgetContainer* pgbHeroMP {nullptr};
     GUIWidgetButton* btnPause {nullptr};
 
+    GUIWidgetLabel* lblAbilitie1Name {nullptr};
+    GUIWidgetLabel* lblAbilitie1Key {nullptr};
+    GUIWidgetLabel* lblAbilitie2Name {nullptr};
+    GUIWidgetLabel* lblAbilitie2Key {nullptr};
+    GUIWidgetLabel* lblAbilitie3Name {nullptr};
+    GUIWidgetLabel* lblAbilitie3Key {nullptr};
+    GUIWidgetLabel* lblAbilitie4Name {nullptr};
+    GUIWidgetLabel* lblAbilitie4Key {nullptr};
+
+    std::vector<GUIWidgetLabel*> lblBuffs;
+
+    void deleteBuffs();
+
     void updateStats();
     void quitGame();
     void pause();

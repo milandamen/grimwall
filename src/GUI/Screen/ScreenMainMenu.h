@@ -19,6 +19,7 @@ private:
     GUIWidgetImageButton* btnHighscores {nullptr};
     GUIWidgetImageButton* btnOptions {nullptr};
     GUIWidgetImageButton* btnExit {nullptr};
+    GUIWidgetButton* btnLoad {nullptr};
 
 public:
     ScreenMainMenu(IGame* game, AGUIManager* manager);

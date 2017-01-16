@@ -52,11 +52,14 @@ private:
      * Value that denotes the last time the FPS was updated
      */
     int lastTime {};
+    
+    bool speedHackEnabled {false};
 
     /**
      * Value that denotes the score of the game
      */
-    int score = 0;
+    int score {1000};
+    int scoreCount {0};
     
     /**
      * Handles mapping of key combinations to callbacks
@@ -64,6 +67,8 @@ private:
     KeyboardMapper* keyboardMapper {nullptr};
     
     ISaveGameManager* saveGameManager {nullptr};
+    SaveGame* currentSave {nullptr};
+
     TowerManager towerManager;
 
     ILevel* currentLevel {nullptr};
@@ -95,6 +100,9 @@ public:
     virtual std::vector<UnitManager<ATower>*>* getTowers() override;
     virtual ISaveGameManager* getSaveGameManager() override;
     virtual void setSaveGameManager(ISaveGameManager* saveGameManager) override;
+    virtual void loadGame(std::string fileName) override;
+    virtual void saveGame() override;
+    virtual void setSpeedHack(bool enabled) override;
 };
 
 

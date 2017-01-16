@@ -91,8 +91,16 @@ void FIFEFacade::setActiveGUIManager(AGUIManager* manager) {
 
 void FIFEFacade::setFPSLimit(int fpsLimit)
 {
-    this->engine->getSettings().setFrameLimit(fpsLimit);
-    this->engine->getSettings().setFrameLimitEnabled(true);
+    if (!this->initialized)
+    {
+        this->engine->getSettings().setFrameLimitEnabled(fpsLimit != 0);
+        this->engine->getSettings().setFrameLimit(fpsLimit);
+    }
+    else
+    {
+        this->engine->getRenderBackend()->setFrameLimitEnabled(fpsLimit != 0);
+        this->engine->getRenderBackend()->setFrameLimit(fpsLimit);
+    }
 }
 
 void FIFEFacade::init()
@@ -104,13 +112,14 @@ void FIFEFacade::init()
     this->initInput();
 
     this->engine->getEventManager()->addSdlEventListener(this->fifeChan->getGuiManager());
+    
+    this->initialized = true;
 }
 
 void FIFEFacade::loadMap(std::string path)
 {
     if(this->pumpingInitialized)
         this->engine->finalizePumping();
-
 
     if (this->engine->getModel() && this->engine->getVFS() && this->engine->getImageManager() && this->engine->getRenderBackend())
     {
@@ -125,7 +134,7 @@ void FIFEFacade::loadMap(std::string path)
         if (mapLoader) {
             // load the map
             this->map = mapLoader->load(mapPath.string());
-            if(this->fifeCamera != nullptr) this->fifeCamera->unregisterEvent();
+            //if(this->fifeCamera != nullptr) this->fifeCamera->unregisterEvent();
             this->fifeCamera = new FIFECamera(this->map, this->engine->getEventManager(), this->engine->getTimeManager());
             this->fifeCamera->initView();
             this->mouseListener->setCamera(this->fifeCamera);
@@ -206,7 +215,6 @@ bool FIFEFacade::instanceExists(std::string name, std::string layerName = "unitL
             }
         }
     }
-
     return false;
 }
 
@@ -217,7 +225,6 @@ double FIFEFacade::getInstanceX(std::string name, std::string layerName) {
 
         return instance->getLocation().getMapCoordinates().x;
     }
-
     return 0;
 }
 
@@ -228,7 +235,6 @@ double FIFEFacade::getInstanceY(std::string name, std::string layerName) {
 
         return instance->getLocation().getMapCoordinates().y;
     }
-
     return 0;
 }
 
@@ -272,8 +278,11 @@ std::string FIFEFacade::createInstance(std::string objectName, std::string insta
                 if(layer->getInstancesAt(*location).size() == 0 || layer->getInstancesAt(*location).at(0)->getId() == "spawnLocation") {
                     FIFE::Instance* instance {layer->createInstance(object, mapCoords, instanceName)};
                     FIFE::InstanceVisual::create(instance);
+                    return instanceName;
                 }
-                return instanceName;
+                else {
+                    return "ERROR";
+                }
             }
         }
     }
@@ -429,4 +438,8 @@ void FIFEFacade::disableCamera()
 
 void FIFEFacade::enableCamera()
 {
+}
+
+void FIFEFacade::drawBox(double x1, double y1, double x2, double y2){
+    engine->getRenderBackend()->fillRectangle(FIFE::Point(x1, y1), (x2 - x1), (y2 - y1), 100, 100, 255, 100);
 }

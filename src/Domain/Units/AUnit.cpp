@@ -53,6 +53,11 @@ void AUnit::setInvincible(bool invincible)
     this->invincible = invincible;
 }
 
+std::vector<std::string> AUnit::getBuffs() {
+    std::vector<std::string> buffs;
+    return buffs;
+}
+
 double AUnit::getX() {
     return this->x;
 }

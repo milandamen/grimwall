@@ -1,8 +1,6 @@
 
 
 #include "AttackCallback.h"
-#include "../../Domain/UnitFactory.h"
-#include "../../Domain/EngineFacade.h"
 
 AttackCallback::AttackCallback(IGame *game)
     : KeypressCallback(game, 0)

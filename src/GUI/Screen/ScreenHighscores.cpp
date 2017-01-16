@@ -8,12 +8,18 @@ ScreenHighscores::ScreenHighscores(IGame* game,AGUIManager* manager)
 
     this->lblSlot1 = manager->addLabel("", 172, 300);
     this->lblSlot1->setWidth(200);
+    this->lblSlot1->setHeight(100);
+    this->lblSlot1->setAlignment(GUITextAlignment::Center);
 
     this->lblSlot2 = manager->addLabel("", 402, 300);
     this->lblSlot2->setWidth(200);
+    this->lblSlot2->setHeight(100);
+    this->lblSlot2->setAlignment(GUITextAlignment::Center);
 
     this->lblSlot3 = manager->addLabel("", 632, 300);
     this->lblSlot3->setWidth(200);
+    this->lblSlot3->setHeight(100);
+    this->lblSlot3->setAlignment(GUITextAlignment::Center);
 
     this->btnReturn = manager->addImageButton("", "assets/gui/settingReturn.png", 172, 650, 680, 100);
     this->btnReturn->setForegroundColor(255, 255, 255, 255);
@@ -38,9 +44,9 @@ void ScreenHighscores::hasBecomeActive()
         SaveGame* s2 = this->game->getSaveGameManager()->load("slot2.sav");
         SaveGame* s3 = this->game->getSaveGameManager()->load("slot3.sav");
 
-        this->lblSlot1->setCaption("Score: ");
-        this->lblSlot2->setCaption("Score: ");
-        this->lblSlot3->setCaption("Score: ");
+        this->lblSlot1->setCaption("Score: " + s1->score);
+        this->lblSlot2->setCaption("Score: " + s2->score);
+        this->lblSlot3->setCaption("Score: " + s3->score);
 
         delete s1;
         delete s2;

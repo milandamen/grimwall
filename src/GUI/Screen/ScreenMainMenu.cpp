@@ -9,8 +9,8 @@ ScreenMainMenu::ScreenMainMenu(IGame* game, AGUIManager* manager)
     this->btnCampaign = manager->addImageButton("", "assets/gui/campaignMenuItem.png", 172, 200, 680, 100);
     this->btnCampaign->setForegroundColor(255, 255, 255, 255);
     this->btnCampaign->setBackgroundColor(0, 0, 0, 0);
-    this->btnCampaign->onClick([&]() {
-        this->game->setUI("SelectHero");
+    this->btnCampaign->onClick([&](){
+        this->game->setUI("Load");
     });
 
     this->btnOptions = manager->addImageButton("", "assets/gui/optionsMenuItem.png", 172, 300, 680, 100);
@@ -40,6 +40,7 @@ ScreenMainMenu::ScreenMainMenu(IGame* game, AGUIManager* manager)
     this->btnExit->onClick([&]() {
         this->game->quit();
     });
+
 }
 
 ScreenMainMenu::~ScreenMainMenu()
