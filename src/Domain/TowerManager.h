@@ -9,6 +9,9 @@
 #include <math.h>
 #include <iostream>
 #include <random>
+#include <tgmath.h>
+#include "UnitFactory.h"
+#include "EngineFacade.h"
 
 class TowerManager {
 

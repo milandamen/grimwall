@@ -5,5 +5,11 @@
 
 <object id="tower" namespace="grimwall" blocking="1" static="1">
 	<image source="tower.png" direction="0" />
+	<action id="attack">
+		<animation atlas="tower_atk_sheet.png" height="12" width="84">
+			<direction delay="130" dir="0" frames="7"/>
+
+		</animation>
+	</action>
 </object>
 
