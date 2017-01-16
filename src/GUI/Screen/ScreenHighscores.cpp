@@ -40,16 +40,22 @@ void ScreenHighscores::hasBecomeActive()
     if(!this->loaded) {
         this->loaded = true;
 
-        SaveGame* s1 = this->game->getSaveGameManager()->load("slot1.sav");
-        SaveGame* s2 = this->game->getSaveGameManager()->load("slot2.sav");
-        SaveGame* s3 = this->game->getSaveGameManager()->load("slot3.sav");
+        try {
+            SaveGame *s1 = this->game->getSaveGameManager()->load("slot1.sav");
+            SaveGame *s2 = this->game->getSaveGameManager()->load("slot2.sav");
+            SaveGame *s3 = this->game->getSaveGameManager()->load("slot3.sav");
 
-        this->lblSlot1->setCaption("Score: " + s1->score);
-        this->lblSlot2->setCaption("Score: " + s2->score);
-        this->lblSlot3->setCaption("Score: " + s3->score);
+            this->lblSlot1->setCaption("Score: " + (s1 != nullptr ? s1->score : 0));
+            this->lblSlot2->setCaption("Score: " + (s2 != nullptr ? s2->score : 0));
+            this->lblSlot3->setCaption("Score: " + (s3 != nullptr ? s3->score : 0));
 
-        delete s1;
-        delete s2;
-        delete s3;
+            delete s1;
+            delete s2;
+            delete s3;
+        } catch(...) {
+            this->lblSlot1->setCaption("Score: 0");
+            this->lblSlot2->setCaption("Score: 0");
+            this->lblSlot3->setCaption("Score: 0");
+        }
     }
 }
