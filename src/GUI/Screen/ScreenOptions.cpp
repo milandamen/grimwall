@@ -10,7 +10,6 @@ ScreenOptions::ScreenOptions(IGame* game, AGUIManager* manager)
     this->stnMusic = manager->addImageButton("", "assets/gui/settingOn.png", 560, 340, 160, 80);
     this->stnMusic->onClick([&]() {
         int volume = EngineFacade::engine()->getVolume();
-
         if(volume == 0) {
             this->stnMusic->setAsset("assets/gui/settingOff.png");
             EngineFacade::engine()->setVolume(100);
@@ -23,9 +22,10 @@ ScreenOptions::ScreenOptions(IGame* game, AGUIManager* manager)
     /*this->imgSFX = manager->addImage("assets/gui/settingSFX.png", 220, 440, 300, 80);
     this->stnSFX = manager->addImageButton("", "assets/gui/settingOn.png", 560, 440, 160, 80);
     this->stnSFX->onClick([&]() {
-        //if(sfxOn)
+        //if(sfxOn){
             this->stnSFX->setAsset("assets/gui/settingOff.png");
-        //else
+        //}
+        //else{
             this->stnSFX->setAsset("assets/gui/settingOn.png");
     });*/
 

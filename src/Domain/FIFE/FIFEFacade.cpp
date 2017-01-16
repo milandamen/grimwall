@@ -217,7 +217,6 @@ bool FIFEFacade::instanceExists(std::string name, std::string layerName = "unitL
             }
         }
     }
-
     return false;
 }
 
@@ -228,7 +227,6 @@ double FIFEFacade::getInstanceX(std::string name, std::string layerName) {
 
         return instance->getLocation().getMapCoordinates().x;
     }
-
     return 0;
 }
 
@@ -239,7 +237,6 @@ double FIFEFacade::getInstanceY(std::string name, std::string layerName) {
 
         return instance->getLocation().getMapCoordinates().y;
     }
-
     return 0;
 }
 
@@ -283,8 +280,11 @@ std::string FIFEFacade::createInstance(std::string objectName, std::string insta
                 if(layer->getInstancesAt(*location).size() == 0 || layer->getInstancesAt(*location).at(0)->getId() == "spawnLocation") {
                     FIFE::Instance* instance {layer->createInstance(object, mapCoords, instanceName)};
                     FIFE::InstanceVisual::create(instance);
+                    return instanceName;
                 }
-                return instanceName;
+                else {
+                    return "ERROR";
+                }
             }
         }
     }
@@ -429,3 +429,8 @@ std::vector<int> FIFEFacade::getHerospawnPoint() {
 
     return ret;
 }
+
+void FIFEFacade::drawBox(double x1, double y1, double x2, double y2){
+    engine->getRenderBackend()->fillRectangle(FIFE::Point(x1, y1), (x2 - x1), (y2 - y1), 100, 100, 255, 100);
+}
+

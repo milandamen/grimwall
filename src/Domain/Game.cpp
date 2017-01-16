@@ -28,6 +28,8 @@ Game::Game()
     this->towerManager.setUnits(this->troupManager.getTroups());
     this->towerManager.setHero(hero);
 
+    this->troupManager.setTowers(this->getTowers());
+
     // Game loop
     this->curTime = 0;
     this->lastTime = 0;
@@ -52,8 +54,9 @@ Game::Game()
 }
 
 Game::~Game() {
-    for(auto level : this->levels)
+    for(auto level : this->levels){
         delete level.second;
+    }
 
     delete this->hero;
     this->deleteTowers();
@@ -113,9 +116,15 @@ void Game::tick() {
     
     updateLocation(this->hero, this->hero->getName());
 
+
     this->towerManager.tick();
 
-    if (this->hero->getHitPoints() <= 0) {
+    for(unsigned i = 0; i < this->troupManager.getTroups()->size(); ++i){
+        updateLocation(this->troupManager.getTroups()->at(i), this->troupManager.getTroups()->at(i)->getName());
+    }
+    this->troupManager.tick();
+
+    if (this->hero->getHitPoints() <= 0){
         this->lose();
     }
     else if (this->towers.size() <= 0) {
@@ -123,6 +132,12 @@ void Game::tick() {
     }
 
     this->hero->tick();
+
+    EngineFacade::engine()->drawBox(
+            troupManager.sStartX,
+            troupManager.sStartY,
+            troupManager.sEndX,
+            troupManager.sEndY);
 }
 
 void Game::win() {
@@ -213,6 +228,25 @@ ISaveGameManager* Game::getSaveGameManager()
 void Game::setSaveGameManager(ISaveGameManager* saveGameManager)
 {
     this->saveGameManager = saveGameManager;
+}
+
+void Game::loadGame(std::string fileName){
+    SaveGame* temp = this->saveGameManager->load(fileName);
+    if(temp == nullptr){
+        temp = this->saveGameManager->create(fileName);
+    }
+
+    this->currentSave = temp;
+}
+
+void Game::saveGame(){
+    if(currentSave != nullptr){
+        // Fetch the hero and the level and put it into the save file.
+        this->currentSave->lastUsedHero = this->getHero()->getName();
+        this->currentSave->lastUnlockedLevel = this->currentLevel->getName();
+
+        this->currentSave->save();
+    }
 }
 
 void Game::setSpeedHack(bool enabled)
