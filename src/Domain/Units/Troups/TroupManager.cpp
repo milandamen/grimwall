@@ -22,7 +22,6 @@ std::vector<UnitManager<ATroup>*>* TroupManager::getTroups(){
 void TroupManager::setSelectionStart(double x, double y){
     this->sStartX = x;
     this->sStartY = y;
-    std::cout << "Selection started.." << std::endl;
 }
 
 void TroupManager::setSelectionEnd(double x, double y){
@@ -30,7 +29,6 @@ void TroupManager::setSelectionEnd(double x, double y){
 
     this->sEndX = x;
     this->sEndY = y;
-    std::cout << "Selection ended." << std::endl;
 
     double upLeftx;
     double upLefty;
@@ -45,17 +43,12 @@ void TroupManager::setSelectionEnd(double x, double y){
     downRightx = sEndX + diff;
     downRighty = sEndY;
 
-    std::cout << "selecting troups between " << upLeftx << "," << upLefty << " and " << downRightx << "," << downRighty << std::endl;
-
-
     for(unsigned i = 0; i < troups.size(); ++i){
-        std::cout << troups.at(i)->getName() << " at " << troups.at(i)->getX() << "," << troups.at(i)->getY() << std::endl;
         if(troups.at(i)->getX() > upLeftx &&
            troups.at(i)->getX() < downRightx &&
            troups.at(i)->getY() > upLefty &&
            troups.at(i)->getY() < downRighty){
             selectedTroups.push_back(troups.at(i));
-            std::cout << "selected " << troups.at(i)->getName() << std::endl;
         }
     }
 
@@ -73,7 +66,6 @@ void TroupManager::setTarget(UnitManager<ATower>* target){
 
 void TroupManager::targetEnemy(double x, double y, std::vector<UnitManager<ATower> *> *targets) {
     bool targetAccuired = false;
-    std::cout << "Accuiring target " << selectionDistance << " around click position (" << x << "," << y << ")" << std::endl;
     for(unsigned i = 0; i < targets->size(); ++i) {
         //Find the target that has been clicked on
         if(targets->at(i)->getX() >= (x - selectionDistance)
@@ -84,13 +76,11 @@ void TroupManager::targetEnemy(double x, double y, std::vector<UnitManager<ATowe
             //Set the current target to the clicked target
             setTarget(targets->at(i));
             targetAccuired = true;
-            std::cout << "Current Target: " << targets->at(i)->getName() << std::endl;
         }
     }
     //If no target is found on the clicked location, remove the target
     if(!targetAccuired){
         setTarget(nullptr);
-        std::cout << "Current Target: none" << std::endl;
     }
 }
 
@@ -103,8 +93,6 @@ void TroupManager::attackTarget(){
 
             if (distance <= troups.at(i)->getReach()) {
                 if(troups.at(i)->attack()) {
-                    std::cout << "Attacked! Tower health: " << troups.at(i)->getBase()->target->getHitPoints()
-                              << std::endl;
                     troups.at(i)->getBase()->target->receiveDamage(troups.at(i)->getPower());
 
                     if (troups.at(i)->getBase()->target->getHitPoints() <= 0) {
