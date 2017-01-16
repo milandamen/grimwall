@@ -14,7 +14,7 @@ private:
 
     GUIWidgetImage* imgBg {nullptr};
     GUIWidgetImage* imgGameOver {nullptr};
-    GUIWidgetImageButton btnExit {nullptr};
+    GUIWidgetImageButton* btnExit {nullptr};
 
 public:
     ScreenGameOver(IGame* game, AGUIManager* manager);

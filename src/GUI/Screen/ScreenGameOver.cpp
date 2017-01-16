@@ -5,22 +5,21 @@ ScreenGameOver::ScreenGameOver(IGame* game,AGUIManager* manager)
         : GUI(manager), game(game)
 {
 
+    this->imgBg = manager->addImage("assets/gui/menubackground.png", 0, 0, 1024, 786);
 
-    manager->addImage("assets/gui/menubackground.png", 0, 0, 1024, 786);
-    manager->addLabel("Game Over!", 140, 350);
+    //this->imgGameOver = manager->addImage("assets/gui/exitMenuItem.png", 140, 300, 680, 100);
 
-    manager->addImage("assets/gui/exitMenuItem.png", 140, 550, 680, 100);
-    GUIWidgetButton* b = manager->addButton("Quit", 140, 550);
-    b->setWidth(680);
-    b->setHeight(100);
-    b->setForegroundColor(255, 255, 255, 255);
-    b->setBackgroundColor(0, 0, 0, 0);
-    b->onClick([&]() {
+    this->btnExit = manager->addImageButton("", "assets/gui/exitMenuItem.png", 140, 550, 680, 100);
+    this->btnExit->setForegroundColor(255, 255, 255, 255);
+    this->btnExit->setBackgroundColor(0, 0, 0, 0);
+    this->btnExit->onClick([&]() {
         game->quit();
     });
 }
 
 ScreenGameOver::~ScreenGameOver()
 {
-    delete this->
+    delete this->imgBg;
+    delete this->imgGameOver;
+    delete this->btnExit;
 }
