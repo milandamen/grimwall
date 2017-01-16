@@ -1,6 +1,6 @@
 #include "Game.h"
 
-#include "Units/Heroes/Abilities/DeathStrike.h"
+
 
 Game::Game()
 {
@@ -24,6 +24,7 @@ Game::Game()
     this->initInput();
 
     this->levels["level1"] = new Level1();
+    this->levels["level2"] = new Level2();
 
     this->hero = new UnitManager<AHero>(new Dralas());
     this->hero->getBase()->addAbility(new DeathStrike(this->hero));
@@ -164,7 +165,6 @@ void Game::loadLevel(std::string levelName) {
 
     this->setMap(l->getMap());
 
-    // TODO: Set hero on spawn location
     std::vector<int> spawnPos = EngineFacade::engine()->getHerospawnPoint();
     EngineFacade::engine()->createInstance(this->getHero()->getName(), this->getHero()->getName(), spawnPos.at(0), spawnPos.at(1));
 }

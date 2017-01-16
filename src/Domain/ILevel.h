@@ -5,9 +5,10 @@
 #ifndef GRIMWALL_LEVEL_H
 #define GRIMWALL_LEVEL_H
 
+#include <iostream>
 
 class ILevel {
-private:
+protected:
     std::string map {""};
     int spawnHeroX {0};
     int spawnHeroY {0};
