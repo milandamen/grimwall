@@ -1,5 +1,6 @@
 <?xml version='1.0' encoding='ascii'?>
 <map format="1.0" id="level2">
+    <import file="../objects/tiles/red.xml" />
     <import file="../objects/tiles/empty.xml" />
     <import file="../objects/tiles/blocker.xml" />
     <import file="../objects/towers/tower.xml" />

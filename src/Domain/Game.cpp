@@ -1,5 +1,5 @@
 #include "Game.h"
-
+#include "Levels/Level3.h"
 
 
 Game::Game()
@@ -25,6 +25,7 @@ Game::Game()
 
     this->levels["level1"] = new Level1();
     this->levels["level2"] = new Level2();
+    this->levels["level3"] = new Level3();
 
     this->hero = new UnitManager<AHero>(new Dralas());
     this->hero->getBase()->addAbility(new DeathStrike(this->hero));

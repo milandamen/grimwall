@@ -12,7 +12,7 @@ ScreenSelectLevel::ScreenSelectLevel(IGame* game, AGUIManager* manager)
 
     bh->onClick([&]() {
         // load level
-        this->game->loadLevel("level2");
+        this->game->loadLevel("level3");
 
         this->game->setPaused(false);
         this->game->setUI("Game");
