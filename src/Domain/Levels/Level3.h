@@ -1,5 +1,3 @@
-
-
 #ifndef GRIMWALL_LEVEL3_H
 #define GRIMWALL_LEVEL3_H
 

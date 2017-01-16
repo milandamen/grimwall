@@ -18,6 +18,7 @@
 #include "Levels/Level1.h"
 #include "Levels/Level2.h"
 #include "Levels/Level3.h"
+#include "Units/Heroes/Abilities/DeathStrike.h"
 
 #include <vector>
 
