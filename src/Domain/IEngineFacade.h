@@ -146,6 +146,17 @@ public:
     virtual void playSoundEffect(std::string asset) = 0;
 
     /**
+     * Gets the volume
+     */
+    virtual int getVolume() = 0;
+
+    /**
+     * Changes the volume
+     * @param volume The volume to be set
+     */
+    virtual void setVolume(int volume) = 0;
+
+    /**
      * Get the spawnLocation for the hero
      */
      virtual std::vector<int> getHerospawnPoint() = 0;

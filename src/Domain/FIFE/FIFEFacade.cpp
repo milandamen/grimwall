@@ -368,6 +368,16 @@ void FIFEFacade::playSoundEffect(std::string asset) {
     fifeAudio->playSoundEffect(asset);
 }
 
+void FIFEFacade::setVolume(int volume)
+{
+    this->fifeAudio->setVolume(volume);
+}
+
+int FIFEFacade::getVolume()
+{
+    return this->fifeAudio->getVolume();
+}
+
 std::vector<int> FIFEFacade::getHerospawnPoint() {
     std::vector<int> ret;
     ret.push_back(0);   // x

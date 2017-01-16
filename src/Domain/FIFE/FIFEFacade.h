@@ -219,6 +219,17 @@ public:
     void playSoundEffect(std::string asset) override;
 
     /**
+     * Gets the current volume
+     */
+    int getVolume() override;
+
+    /**
+     * Change the volume of the player
+     * @param volume The volume to be set
+     */
+    void setVolume(int volume) override;
+
+    /**
      * Get the spawnLocation for the hero
      */
     std::vector<int> getHerospawnPoint() override;

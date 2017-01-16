@@ -20,6 +20,8 @@ namespace fs = boost::filesystem;
 
 class FIFEAudio {
 private:
+    int volume {100};
+
     FIFE::SoundClipManager* musicSoundClipManager;
     FIFE::SoundManager* musicSoundManager;
     FIFE::SoundEmitter* emitter;
@@ -34,6 +36,7 @@ public:
     ~FIFEAudio();
 
     void setVolume(int volume);
+    int getVolume();
     void playMusic(std::string asset);
     void playSoundEffect(std::string asset);
     void releaseMap(std::map<std::string, FIFE::SoundEmitter *> *map);
