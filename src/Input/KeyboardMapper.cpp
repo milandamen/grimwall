@@ -1,6 +1,7 @@
 #include "KeyboardMapper.h"
 
 
+
 KeyboardMapper::KeyboardMapper(IGame* game)
 {
     // SYSTEM
@@ -28,4 +29,6 @@ KeyboardMapper::KeyboardMapper(IGame* game)
     EngineFacade::engine()->registerCallback("CTRL+2", new InfManaCallback(game));
     EngineFacade::engine()->registerCallback("CTRL+3", new GameSpeedCallback(game, true));
     EngineFacade::engine()->registerCallback("CTRL+4", new GameSpeedCallback(game, false));
+    EngineFacade::engine()->registerCallback("CTRL+5", new InvisibleCallback(game));
+
 }

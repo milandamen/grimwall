@@ -143,6 +143,22 @@ public:
      * Play sound effect
      */
     virtual void playSoundEffect(std::string asset) = 0;
+
+    /*
+     * Stop playing music
+     */
+    virtual void stopMusic() = 0;
+
+    /*
+     * Stop playing sound effect
+     */
+    virtual void stopSoundEffect() = 0;
+
+    /*
+     * Stop playing music&soundEffect
+     */
+    virtual void stopAllMusic() = 0;
+
 };
 
 #endif

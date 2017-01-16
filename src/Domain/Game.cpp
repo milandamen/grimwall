@@ -9,15 +9,7 @@ Game::Game()
     EngineFacade::engine()->setFPSLimit(60);
     EngineFacade::engine()->init();
 
-    this->guirepo = new GUIRepo();
-    this->guirepo->addGUI("MainMenu", new ScreenMainMenu(this, EngineFacade::engine()->createGUIManager()));
-    this->guirepo->addGUI("GameOver", new ScreenGameOver(this, EngineFacade::engine()->createGUIManager()));
-    this->guirepo->addGUI("Won", new ScreenWon(this, EngineFacade::engine()->createGUIManager()));
-    this->guirepo->addGUI("SelectHero", new ScreenSelectHero(this, EngineFacade::engine()->createGUIManager()));
-    this->guirepo->addGUI("SelectLevel", new ScreenSelectLevel(this, EngineFacade::engine()->createGUIManager()));
-    this->guirepo->addGUI("Options", new ScreenOptions(this, EngineFacade::engine()->createGUIManager()));
-    this->guirepo->addGUI("Pause", new ScreenPause(this, EngineFacade::engine()->createGUIManager()));
-    this->guirepo->addGUI("Game", new ScreenGame(this, EngineFacade::engine()->createGUIManager()));
+    this->guirepo = new GUIRepo(this);
 
     EngineFacade::engine()->setActiveGUIManager(this->guirepo->getGUI("MainMenu")->getGuiManager());
 
@@ -29,6 +21,7 @@ Game::Game()
     setSaveGameManager(new SaveGameManager {"TEXT"});
 
     this->towerManager.setTowers(this->getTowers());
+    this->towerManager.setUnits(this->troupManager.getTroups());
     this->towerManager.setHero(hero);
 
     // Game loop
@@ -90,8 +83,14 @@ void Game::setHero(AHero *hero)
 
 void Game::setUI(std::string name)
 {
+    if(this->activeGUI != nullptr) {
+        this->activeGUI->hasBecomeInactive();
+    }
+
     GUI *gui = this->guirepo->getGUI(name);
     if (gui != nullptr) {
+        this->activeGUI = gui;
+        gui->hasBecomeActive();
         EngineFacade::engine()->setActiveGUIManager(gui->getGuiManager());
     }
 }
@@ -106,8 +105,8 @@ void Game::tick() {
     }
     
     updateLocation(this->hero, this->hero->getName());
-    
-    this->towerManager.tick(curTime);
+
+    this->towerManager.tick();
 
     if (this->hero->getHitPoints() <= 0) {
         this->lose();

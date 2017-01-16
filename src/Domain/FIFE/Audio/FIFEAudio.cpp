@@ -63,11 +63,30 @@ FIFE::SoundEmitter* FIFEAudio::getSoundClip(std::string soundName) {
 }
 
 void FIFEAudio::playMusic(std::string asset) {
-    getSoundClip(asset)->play();
+    currentMusic = getSoundClip(asset);
+    currentMusic->play();
 }
 
 void FIFEAudio::playSoundEffect(std::string asset) {
-    getSoundEffect(asset)->play();
+    currentEffect = getSoundEffect(asset);
+    currentEffect->play();
+}
+
+void FIFEAudio::stopMusic() {
+    if(currentMusic != nullptr){
+        currentMusic->stop();
+    }
+}
+
+void FIFEAudio::stopSoundEffect() {
+    if(currentEffect != nullptr) {
+        currentEffect->stop();
+    }
+}
+
+void FIFEAudio::stopAllSound() {
+    stopMusic();
+    stopSoundEffect();
 }
 
 

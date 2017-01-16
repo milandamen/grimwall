@@ -1,5 +1,6 @@
 
 #include "FIFEChanGuiManager.h"
+#include "Widget/FIFEChanImageButton.h"
 
 FIFEChanGuiManager::FIFEChanGuiManager()
 {
@@ -12,8 +13,8 @@ FIFEChanGuiManager::FIFEChanGuiManager()
     this->container->setEnabled(false);
     this->container->setX(0);
     this->container->setY(0);
-    //this->container->setWidth(EngineFacade::engine()->getScreenWidth());
-    //this->container->setHeight(EngineFacade::engine()->getScreenHeight());
+    this->container->setWidth(EngineFacade::engine()->getScreenWidth());
+    this->container->setHeight(EngineFacade::engine()->getScreenHeight());
 }
 
 FIFEChanGuiManager::~FIFEChanGuiManager()
@@ -42,7 +43,6 @@ GUIWidgetButton* FIFEChanGuiManager::addButton(std::string caption = "", int x =
 
     this->widgets.push_back(button);
     this->container->add(button->getWidget());
-    this->container->resizeToContent();
 
     return button;
 }
@@ -67,14 +67,15 @@ GUIWidgetLabel* FIFEChanGuiManager::addLabel(std::string caption = "", int x = 0
 
     this->widgets.push_back(label);
     this->container->add(label->getWidget());
-    this->container->resizeToContent();
 
     return label;
 }
 
-GUIWidgetLabel *FIFEChanGuiManager::createLabel(std::string caption) {
+GUIWidgetLabel *FIFEChanGuiManager::createLabel(std::string caption, int width = 200, int height = 20) {
     FIFEChanLabel* label = new FIFEChanLabel();
     label->setCaption(caption);
+    label->setWidth(width);
+    label->setHeight(height);
 
     this->widgets.push_back(label);
 
@@ -92,7 +93,6 @@ GUIWidgetImage* FIFEChanGuiManager::addImage(std::string asset, int x = 0, int y
 
     this->widgets.push_back(image);
     this->container->add(image->getWidget());
-    this->container->resizeToContent();
 
     return image;
 }
@@ -108,6 +108,35 @@ GUIWidgetImage *FIFEChanGuiManager::createImage(std::string asset, int width, in
     return image;
 }
 
+GUIWidgetImageButton* FIFEChanGuiManager::addImageButton(std::string caption, std::string asset, int x = 0, int y = 0, int width = 0, int height = 0)
+{
+    FIFEChanImageButton* ib = new FIFEChanImageButton();
+    ib->setX(x);
+    ib->setY(y);
+    ib->setWidth(width);
+    ib->setHeight(height);
+    ib->setCaption(caption);
+    ib->setAsset(asset);
+
+    this->widgets.push_back(ib);
+    this->container->add(ib->getWidget());
+
+    return ib;
+}
+
+GUIWidgetImageButton* FIFEChanGuiManager::createImageButton(std::string caption, std::string asset, int width = 0, int height = 0)
+{
+    FIFEChanImageButton* ib = new FIFEChanImageButton();
+    ib->setWidth(width);
+    ib->setHeight(height);
+    ib->setCaption(caption);
+    ib->setAsset(asset);
+
+    this->widgets.push_back(ib);
+
+    return ib;
+}
+
 GUIWidgetRadio* FIFEChanGuiManager::addRadio(std::string caption, std::string group, int x = 0, int y = 0, bool selected = false)
 {
     FIFEChanRadio* radio = new FIFEChanRadio();
@@ -121,7 +150,6 @@ GUIWidgetRadio* FIFEChanGuiManager::addRadio(std::string caption, std::string gr
 
     this->widgets.push_back(radio);
     this->container->add(radio->getWidget());
-    this->container->resizeToContent();
 
     return radio;
 }
@@ -149,12 +177,11 @@ GUIWidgetContainer* FIFEChanGuiManager::addContainer(int x = 0, int y = 0, int w
 
     this->widgets.push_back(container);
     this->container->add(container->getWidget());
-    this->container->resizeToContent();
 
     return container;
 }
 
-GUIWidgetContainer *FIFEChanGuiManager::createContainer(int width, int height) {
+GUIWidgetContainer* FIFEChanGuiManager::createContainer(int width, int height) {
     FIFEChanContainer* container = new FIFEChanContainer();
     container->setWidth(width);
     container->setHeight(height);
@@ -165,3 +192,22 @@ GUIWidgetContainer *FIFEChanGuiManager::createContainer(int width, int height) {
 }
 
 
+void FIFEChanGuiManager::setX(int x)
+{
+    this->container->setX(x);
+}
+
+void FIFEChanGuiManager::setY(int y)
+{
+    this->container->setY(y);
+}
+
+void FIFEChanGuiManager::setWidth(int width)
+{
+    this->container->setWidth(width);
+}
+
+void FIFEChanGuiManager::setHeight(int height)
+{
+    this->container->setHeight(height);
+}

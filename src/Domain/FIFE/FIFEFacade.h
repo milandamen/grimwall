@@ -218,6 +218,21 @@ public:
      * Play sound effect
      */
     void playSoundEffect(std::string asset) override;
+
+    /*
+ * Stop playing sound effect
+ */
+    virtual void stopSoundEffect() override;
+
+    /*
+     * Stop playing music&soundEffect
+     */
+    virtual void stopAllMusic() override;
+
+    /*
+     * Stop playing music
+     */
+    virtual void stopMusic() override;
 };
 
 #endif

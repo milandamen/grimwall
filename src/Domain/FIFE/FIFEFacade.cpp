@@ -109,7 +109,6 @@ void FIFEFacade::init()
     this->fifeChan->init();
     //initialize the audio
     this->fifeAudio = new FIFEAudio(engine->getSoundClipManager(), engine->getSoundManager());
-    this->fifeAudio->playMusic("intro");
     this->initInput();
 
     this->engine->getEventManager()->addSdlEventListener(this->fifeChan->getGuiManager());
@@ -373,7 +372,20 @@ void FIFEFacade::playMusic(std::string asset) {
     fifeAudio->playMusic(asset);
 }
 
+void FIFEFacade::stopMusic() {
+    fifeAudio->stopMusic();
+}
+
 void FIFEFacade::playSoundEffect(std::string asset) {
     fifeAudio->playSoundEffect(asset);
-
 }
+
+void FIFEFacade::stopSoundEffect() {
+    fifeAudio->stopSoundEffect();
+}
+
+void FIFEFacade::stopAllMusic() {
+    fifeAudio->stopAllSound();
+}
+
+
