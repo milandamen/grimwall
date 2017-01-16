@@ -15,12 +15,15 @@ GUIRepo::GUIRepo(IGame* game)
     this->addGUI("Credits", new ScreenCredits(game, EngineFacade::engine()->createGUIManager()));
     this->addGUI("Game", new ScreenGame(game, EngineFacade::engine()->createGUIManager()));
     this->addGUI("Loading", new ScreenLoading(game, EngineFacade::engine()->createGUIManager()));
+    this->addGUI("Load", new ScreenLoad(game, EngineFacade::engine()->createGUIManager()));
 }
 
 GUIRepo::~GUIRepo()
 {
     for(auto gui : this->guis)
+    {
         delete gui.second;
+    }
 }
 
 void GUIRepo::addGUI(std::string name, GUI *gui)

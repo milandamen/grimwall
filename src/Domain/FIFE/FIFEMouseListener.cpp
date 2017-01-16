@@ -23,6 +23,16 @@ void FIFEMouseListener::mousePressed(FIFE::MouseEvent& evt) {
         dragY = evt.getY();
     }
 
+    if (evt.getButton() == FIFE::MouseEvent::RIGHT)
+    {
+        rightMouseDown = true;
+        FIFE::ScreenPoint screenPoint(evt.getX(), evt.getY());
+        if(this->camera != nullptr) {
+            FIFE::ExactModelCoordinate mapCoords = this->camera->camera()->toMapCoordinates(screenPoint, false);
+            game->getTroupManager()->setSelectionStart(mapCoords.x, mapCoords.y);
+        }
+    }
+
     setPreviousMouseEvent(evt.getType());
 }
 
@@ -36,10 +46,28 @@ void FIFEMouseListener::mouseReleased(FIFE::MouseEvent& evt) {
     // only activate the move action if the mouse was pressed and released without dragging
     if (evt.getButton() == FIFE::MouseEvent::RIGHT && prevEventType != FIFE::MouseEvent::DRAGGED)
     {
+        rightMouseDown = false;
         mouseRightButtonPressed(evt);
     }
     else if(evt.getButton() == FIFE::MouseEvent::LEFT && prevEventType != FIFE::MouseEvent::DRAGGED){
         mouseLeftButtonPressed(evt);
+    }
+    else if(evt.getButton() == FIFE::MouseEvent::RIGHT && prevEventType == FIFE::MouseEvent::DRAGGED){
+        rightMouseDown = false;
+
+        if(initialRdragX < RdragX && initialRdragY < RdragY) {
+            FIFE::ScreenPoint screenPoint(evt.getX(), evt.getY());
+            if (this->camera != nullptr) {
+                FIFE::ExactModelCoordinate mapCoords = this->camera->camera()->toMapCoordinates(screenPoint, false);
+                game->getTroupManager()->setSelectionEnd(mapCoords.x, mapCoords.y);
+            }
+        }
+
+        //reset box draw
+        initialRdragX = 0;
+        initialRdragY = 0;
+        RdragX = 0;
+        RdragY = 0;
     }
 }
 
@@ -50,6 +78,12 @@ void FIFEMouseListener::mouseLeftButtonPressed(FIFE::MouseEvent &evt) {
 }
 
 void FIFEMouseListener::mouseRightButtonPressed(FIFE::MouseEvent &evt) {
+    // pass game->getTowers() to ensure SOC with troup manager
+    FIFE::ScreenPoint screenPoint(evt.getX(), evt.getY());
+    if(this->camera != nullptr) {
+        FIFE::ExactModelCoordinate mapCoords = this->camera->camera()->toMapCoordinates(screenPoint, false);
+        game->getTroupManager()->targetEnemy(mapCoords.x, mapCoords.y, game->getTowers());
+    }
     game->getTroupManager()->moveTroups(evt.getX(), evt.getY());
     setPreviousMouseEvent(evt.getType());
 }
@@ -114,6 +148,15 @@ void FIFEMouseListener::mouseDragged(FIFE::MouseEvent& evt) {
         this->dragX = currX;
         this->dragY = currY;
     }
+    if (evt.getButton() == FIFE::MouseEvent::RIGHT){
+        if(initialRdragX == 0 && initialRdragY == 0){
+            initialRdragX = evt.getX();
+            initialRdragY = evt.getY();
+        }
+        this->RdragX = evt.getX();
+        this->RdragY = evt.getY();
+
+    }
 
     // make sure to save that the last event was drag
     // this is important to get around the drag & click problem
@@ -127,5 +170,10 @@ void FIFEMouseListener::setPreviousMouseEvent(FIFE::MouseEvent::MouseEventType t
 
 void FIFEMouseListener::tick() {
     camera->updateLocation(mousePosX, mousePosY);
+    if(rightMouseDown){
+        if(initialRdragX < RdragX && initialRdragY < RdragY) {
+            EngineFacade::engine()->drawBox(initialRdragX, initialRdragY, RdragX, RdragY);
+        }
+    }
 }
 
