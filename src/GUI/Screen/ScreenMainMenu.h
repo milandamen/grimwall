@@ -19,6 +19,7 @@ private:
     GUIWidgetImageButton* btnOptions {nullptr};
     GUIWidgetImageButton* btnExit {nullptr};
 
+    void hasBecomeActive() override;
 public:
     ScreenMainMenu(IGame* game, AGUIManager* manager);
     ~ScreenMainMenu();

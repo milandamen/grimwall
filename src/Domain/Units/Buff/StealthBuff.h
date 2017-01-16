@@ -4,14 +4,15 @@
 
 #include "BuffDecorator.h"
 
-class StealthSpeedBuff : public BuffDecorator{
+class StealthBuff : public BuffDecorator{
 private:
     int multiplier;
 
 public:
-    StealthSpeedBuff(IUnit *inner, int multplier);
+    StealthBuff(int multiplier);
 
     double getSpeed();
+    int getVisibility();
 };
 
 

@@ -4,15 +4,15 @@
 
 
 #include "../AAbility.h"
-#include "../../IUnit.h"
+#include "../AHero.h"
+#include "../../UnitManager.hpp"
 
-class Stealth : AAbility{
+class Stealth : public AAbility{
 
 private:
-    IUnit *hero;
-
+    UnitManager<AHero>* hero;
 public:
-    Stealth(IUnit *hero);
+    Stealth(UnitManager<AHero>* hero);
 
     int execute();
 

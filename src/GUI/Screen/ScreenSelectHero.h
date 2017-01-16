@@ -14,6 +14,12 @@ private:
     IGame* game;
     AGUIManager* manager;
 
+    GUIWidgetImage* imgBg {nullptr};
+    GUIWidgetImage* imgChooseYourHero {nullptr};
+    GUIWidgetImageButton* btnDralas {nullptr};
+    GUIWidgetImageButton* btnHorwen {nullptr};
+    GUIWidgetImageButton* btnZarrku {nullptr};
+
 public:
     ScreenSelectHero(IGame* game, AGUIManager* manager);
     ~ScreenSelectHero();

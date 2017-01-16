@@ -11,12 +11,19 @@ void TowerManager::tick() {
     {
         // for each tower check if the hero or troup is within range
         UnitManager<ATower>* tower {towers->at(i)};
+
+//         //check if attack delay has passed
+//         int timeSince {curTime - tower->getBase()->getTimeLastAttack()};
+// 
+//         if(tower->getBase()->getTimeLastAttack() == 0 || timeSince >= tower->getAttackDelay()
+//             || (this->speedHackEnabled && timeSince*3 >= tower->getAttackDelay()))
+
         UnitManager<ATroup>* unit {nullptr};
         bool heroIsTarget {false};
         tower->tick();
         //check if tower can attack
         bool canAttack {tower->canAttack()};
-        if(canAttack)
+        if(canAttack || (this->speedHackEnabled && ++this->speedHackLastTick % 3 == 0))
         {
             //time delay passed
             updateLocation(tower, tower->getName());
@@ -26,7 +33,6 @@ void TowerManager::tick() {
             for(unsigned int t = 0; t <= friendlyUnits->size(); ++t)
             {
                 //calculate distance between unit and tower
-
 
                 double unitX;
                 double unitY;
@@ -118,4 +124,9 @@ void TowerManager::setTowers(std::vector<UnitManager<ATower> *>* towers)
 void TowerManager::setHero(UnitManager<AHero>* hero)
 {
     this->hero = hero;
+}
+
+void TowerManager::setSpeedHack(bool enabled)
+{
+    this->speedHackEnabled = enabled;
 }

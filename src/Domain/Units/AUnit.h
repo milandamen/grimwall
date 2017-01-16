@@ -38,6 +38,7 @@ public:
     virtual int getVisibility();
     virtual void receiveDamage(int power);
     virtual void setInvincible(bool invincible);
+    virtual std::vector<std::string> getBuffs();
     virtual void setInvisible(bool invisible);
 
     double getX() override;

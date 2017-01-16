@@ -4,15 +4,16 @@
 #include <iostream>
 #include <vector>
 #include "../AAbility.h"
+#include "../../UnitManager.hpp"
 #include "../../Towers/ATower.h"
 
 using std::vector;
 
 class BoneStorm : public AAbility {
 private:
-    vector<IUnit*> towers;
+    std::vector<UnitManager<ATower> *>* towers;
 public:
-    BoneStorm(vector<IUnit*> towers);
+    BoneStorm(std::vector<UnitManager<ATower> *>* towers);
     int execute();
 };
 
