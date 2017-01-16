@@ -1,11 +1,12 @@
 #include "EvasiveManeuvers.h"
+#include "../../Buff/EvasiveManeuversBuff.h"
 
-EvasiveManeuvers::EvasiveManeuvers()
-        : AAbility(15)
+EvasiveManeuvers::EvasiveManeuvers(UnitManager<AHero>* hero)
+        : AAbility("Evasive Maneuvers", 15), hero{hero}
 {}
 
 int EvasiveManeuvers::execute()
 {
-    //TODO implement dodge manuevers
+    this->hero->buff(new EvasiveManeuversBuff(this->hero->getUnit(), 2));
     return 1;
 }

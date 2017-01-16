@@ -2,7 +2,7 @@
 #include "../../Buff/DeathStrikeBuff.h"
 
 DeathStrike::DeathStrike(UnitManager<AHero>* hero)
-        : AAbility(25), hero{hero}
+        : AAbility("Death Strike", 25), hero{hero}
 {
     
 }

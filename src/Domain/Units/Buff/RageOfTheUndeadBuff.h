@@ -8,7 +8,8 @@ private:
     int multiplier;
 public:
     RageOfTheUndeadBuff(IUnit *inner, int multiplier);
-    int getPower();
+    double getSpeed() override;
+    int getPower() override;
 };
 
 

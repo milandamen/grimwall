@@ -1,10 +1,9 @@
 #include "SmokeBombBuff.h"
 
-SmokeBombBuff::SmokeBombBuff(IUnit *inner, int divisor)
-        : BuffDecorator{inner, 5000}, divisor{divisor}
+SmokeBombBuff::SmokeBombBuff(IUnit *inner)
+        : BuffDecorator{inner, 5000}
 {}
 
-double SmokeBombBuff::getReach()
-{
-    return BuffDecorator::getReach() / this->divisor;
+int SmokeBombBuff::getVisibility() {
+    return 0;
 }

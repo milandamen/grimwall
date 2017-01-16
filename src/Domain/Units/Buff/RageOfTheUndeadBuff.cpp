@@ -5,6 +5,10 @@ RageOfTheUndeadBuff::RageOfTheUndeadBuff(IUnit *inner, int multiplier)
 {
 }
 
+double RageOfTheUndeadBuff::getSpeed() {
+    return BuffDecorator::getSpeed() * this->multiplier;
+}
+
 int RageOfTheUndeadBuff::getPower() {
     return BuffDecorator::getPower() * this->multiplier;
 }

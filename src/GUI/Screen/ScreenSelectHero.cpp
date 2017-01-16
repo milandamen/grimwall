@@ -1,6 +1,13 @@
 
 #include "ScreenSelectHero.h"
 #include "../../Domain/Units/Heroes/Abilities/DeathStrike.h"
+#include "../../Domain/Units/Heroes/Abilities/BoneStorm.h"
+#include "../../Domain/Units/Heroes/Abilities/RageOfTheUndead.h"
+#include "../../Domain/Units/Heroes/Abilities/WorldOfTheUndead.h"
+#include "../../Domain/Units/Heroes/Abilities/Bomb.h"
+#include "../../Domain/Units/Heroes/Abilities/Stealth.h"
+#include "../../Domain/Units/Heroes/Abilities/EvasiveManeuvers.h"
+#include "../../Domain/Units/Heroes/Abilities/SmokeBomb.h"
 
 ScreenSelectHero::ScreenSelectHero(IGame* game, AGUIManager* manager)
         : GUI(manager), game(game)
@@ -17,6 +24,9 @@ ScreenSelectHero::ScreenSelectHero(IGame* game, AGUIManager* manager)
         bd->onClick([&]() {
             this->game->setHero(new Dralas());
             this->game->getHero()->getBase()->addAbility(new DeathStrike(this->game->getHero()));
+            this->game->getHero()->getBase()->addAbility(new BoneStorm(this->game->getTowers()));
+            this->game->getHero()->getBase()->addAbility(new RageOfTheUndead(this->game->getTroupManager()->getTroups()));
+            this->game->getHero()->getBase()->addAbility(new WorldOfTheUndead(this->game->getHero()));
             this->game->setUI("SelectLevel");
         });
 
@@ -40,6 +50,10 @@ ScreenSelectHero::ScreenSelectHero(IGame* game, AGUIManager* manager)
         bz->setBackgroundColor(0, 0, 0, 0);
         bz->onClick([&]() {
             this->game->setHero(new Zarrku());
+            this->game->getHero()->getBase()->addAbility(new Bomb(this->game->getHero(), this->game->getTowers()));
+            this->game->getHero()->getBase()->addAbility(new Stealth(this->game->getHero()));
+            this->game->getHero()->getBase()->addAbility(new EvasiveManeuvers(this->game->getHero()));
+            this->game->getHero()->getBase()->addAbility(new SmokeBomb(this->game->getHero()));
             this->game->setUI("SelectLevel");
         });
 }

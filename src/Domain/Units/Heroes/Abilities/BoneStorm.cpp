@@ -1,8 +1,8 @@
 #include "BoneStorm.h"
 #include "../../Buff/BoneStormBuff.h"
 
-BoneStorm::BoneStorm(vector<IUnit*> towers)
-        : AAbility(40), towers{towers}
+BoneStorm::BoneStorm(std::vector<UnitManager<ATower>*>* towers)
+        : AAbility("Bone Storm", 40), towers{towers}
 {
     
 }
@@ -10,7 +10,10 @@ BoneStorm::BoneStorm(vector<IUnit*> towers)
 
 int BoneStorm::execute()
 {
-    for (size_t i = 0; i < this->towers.size(); ++i)
-        this->towers[i] = new BoneStormBuff(this->towers[i], 2);
+    UnitManager<ATower> *tower;
+    for (std::vector<UnitManager<ATower> *>::iterator it = towers->begin(); it != towers->end(); ++it) {
+        tower = *it;
+        tower->buff(new BoneStormBuff(tower->getUnit(), 2));
+    }
     return 1;
 }

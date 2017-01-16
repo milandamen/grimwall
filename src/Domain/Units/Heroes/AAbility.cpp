@@ -1,9 +1,13 @@
 #include "AAbility.h"
 
-AAbility::AAbility(int cost)
-        :cost{cost}
+AAbility::AAbility(std::string name, int cost)
+        :name{name}, cost{cost}
 {
 
+}
+
+std::string AAbility::getName() {
+    return this->name;
 }
 
 int AAbility::getCost() {
