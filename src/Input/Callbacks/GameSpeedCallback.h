@@ -7,9 +7,9 @@
 
 class GameSpeedCallback : public KeypressCallback {
 private:
-    int limit;
+    bool speedHackEnabled;
 public:
-    GameSpeedCallback(int limit);
+    GameSpeedCallback(IGame* game, bool speedHackEnabled);
     virtual void execute() override;
 };
 

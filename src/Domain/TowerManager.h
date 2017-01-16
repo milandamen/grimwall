@@ -13,6 +13,7 @@ private:
     std::vector<UnitManager<ATower>*>* towers;
     std::vector<UnitManager<AUnit>*> friendlyUnits;
     UnitManager<AHero>* hero {nullptr};
+    bool speedHackEnabled {false};
 public:
     TowerManager();
 
@@ -21,7 +22,7 @@ public:
     void setTowers(std::vector<UnitManager<ATower>*>* towers);
     void setUnits(std::vector<UnitManager<AUnit>*> friendlyUnits);
     void setHero(UnitManager<AHero>* hero);
-
+    void setSpeedHack(bool enabled);
 };
 
 

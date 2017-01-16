@@ -26,6 +26,6 @@ KeyboardMapper::KeyboardMapper(IGame* game)
     // Cheats
     EngineFacade::engine()->registerCallback("CTRL+1", new InfHealthCallback(game));
     EngineFacade::engine()->registerCallback("CTRL+2", new InfManaCallback(game));
-    EngineFacade::engine()->registerCallback("CTRL+3", new GameSpeedCallback(10));
-    EngineFacade::engine()->registerCallback("CTRL+4", new GameSpeedCallback(60));
+    EngineFacade::engine()->registerCallback("CTRL+3", new GameSpeedCallback(game, true));
+    EngineFacade::engine()->registerCallback("CTRL+4", new GameSpeedCallback(game, false));
 }

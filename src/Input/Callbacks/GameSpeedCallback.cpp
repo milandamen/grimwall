@@ -2,12 +2,12 @@
 #include "GameSpeedCallback.h"
 #include "../../Domain/EngineFacade.h"
 
-GameSpeedCallback::GameSpeedCallback(int limit)
-    : KeypressCallback(game, 0), limit{limit}
+GameSpeedCallback::GameSpeedCallback(IGame* game, bool speedHackEnabled)
+    : KeypressCallback(game, 0), speedHackEnabled{speedHackEnabled}
 {}
 
 void GameSpeedCallback::execute() {
     if (!shouldExecute()) { return; }
 
-    EngineFacade::engine()->setFPSLimit(limit);
+    this->game->setSpeedHack(this->speedHackEnabled);
 }

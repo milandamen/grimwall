@@ -56,6 +56,8 @@ private:
      * Value that denotes the last time the FPS was updated
      */
     int lastTime {};
+    
+    bool speedHackEnabled {false};
 
     /**
      * Value that denotes the score of the game
@@ -93,6 +95,7 @@ public:
     virtual std::vector<UnitManager<ATower>*>* getTowers() override;
     virtual ISaveGameManager* getSaveGameManager() override;
     virtual void setSaveGameManager(ISaveGameManager* saveGameManager) override;
+    virtual void setSpeedHack(bool enabled) override;
 };
 
 
