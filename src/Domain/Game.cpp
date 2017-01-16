@@ -1,7 +1,5 @@
 #include "Game.h"
 
-#include "Units/Heroes/Abilities/DeathStrike.h"
-
 Game::Game()
 {
     EngineFacade::setEngine("FIFE", this);
@@ -9,19 +7,17 @@ Game::Game()
     EngineFacade::engine()->setFPSLimit(60);
     EngineFacade::engine()->init();
 
-    this->guirepo = new GUIRepo();
-    this->guirepo->addGUI("MainMenu", new ScreenMainMenu(this, EngineFacade::engine()->createGUIManager()));
-    this->guirepo->addGUI("GameOver", new ScreenGameOver(this, EngineFacade::engine()->createGUIManager()));
-    this->guirepo->addGUI("Won", new ScreenWon(this, EngineFacade::engine()->createGUIManager()));
-    this->guirepo->addGUI("SelectHero", new ScreenSelectHero(this, EngineFacade::engine()->createGUIManager()));
-    this->guirepo->addGUI("SelectLevel", new ScreenSelectLevel(this, EngineFacade::engine()->createGUIManager()));
-    this->guirepo->addGUI("Options", new ScreenOptions(this, EngineFacade::engine()->createGUIManager()));
-    this->guirepo->addGUI("Pause", new ScreenPause(this, EngineFacade::engine()->createGUIManager()));
-    this->guirepo->addGUI("Game", new ScreenGame(this, EngineFacade::engine()->createGUIManager()));
-
-    EngineFacade::engine()->setActiveGUIManager(this->guirepo->getGUI("MainMenu")->getGuiManager());
+    this->guirepo = new GUIRepo(this);
+    this->setUI("MainMenu");
 
     this->initInput();
+
+    ILevel* l = new Level1();
+    this->levels[l->getName()] = l;
+    l = new Level2();
+    this->levels[l->getName()] = l;
+    l = new Level3();
+    this->levels[l->getName()] = l;
 
     this->hero = new UnitManager<AHero>(new Dralas());
     this->hero->getBase()->addAbility(new DeathStrike(this->hero));
@@ -29,6 +25,7 @@ Game::Game()
     setSaveGameManager(new SaveGameManager {"TEXT"});
 
     this->towerManager.setTowers(this->getTowers());
+    this->towerManager.setUnits(this->troupManager.getTroups());
     this->towerManager.setHero(hero);
 
     this->troupManager.setTowers(this->getTowers());
@@ -44,8 +41,6 @@ Game::Game()
 
         // Check if we are in pause state
         if(!this->paused) {
-            // Run an engine tick for userland code
-            EngineFacade::engine()->tick();
             this->tick();
         }
 
@@ -59,6 +54,9 @@ Game::Game()
 }
 
 Game::~Game() {
+    for(auto level : this->levels)
+        delete level.second;
+
     delete this->hero;
     this->deleteTowers();
 }
@@ -94,14 +92,29 @@ void Game::setHero(AHero *hero)
 
 void Game::setUI(std::string name)
 {
+    if(this->activeGUI != nullptr) {
+        this->activeGUI->hasBecomeInactive();
+    }
+
     GUI *gui = this->guirepo->getGUI(name);
     if (gui != nullptr) {
+        this->activeGUI = gui;
+        gui->hasBecomeActive();
         EngineFacade::engine()->setActiveGUIManager(gui->getGuiManager());
     }
 }
 
 void Game::tick() {
+    // Run an engine tick for userland code
+    EngineFacade::engine()->tick();
+    if (this->speedHackEnabled) {
+        for (int i {0}; i < 3; i++) {
+            EngineFacade::engine()->tick();
+        }
+    }
+    
     updateLocation(this->hero, this->hero->getName());
+
 
     this->towerManager.tick(curTime);
 
@@ -113,7 +126,7 @@ void Game::tick() {
     if (this->hero->getHitPoints() <= 0){
         this->lose();
     }
-    else if (this->towers.size() <= 0){
+    else if (this->towers.size() <= 0) {
         this->win();
     }
 
@@ -128,12 +141,12 @@ void Game::tick() {
 
 void Game::win() {
     this->paused = true;
-    EngineFacade::engine()->setActiveGUIManager(this->guirepo->getGUI("Won")->getGuiManager());
+    this->setUI("Won");
 }
 
 void Game::lose() {
     this->paused = true;
-    EngineFacade::engine()->setActiveGUIManager(this->guirepo->getGUI("GameOver")->getGuiManager());
+    this->setUI("GameOver");
 
 }
 
@@ -168,6 +181,20 @@ void Game::updateFPS()
     }
 }
 
+void Game::loadLevel(std::string levelName)
+{
+    this->currentLevel = this->levels[levelName];
+    this->setMap(this->currentLevel->getMap());
+
+    std::vector<int> spawnPos = EngineFacade::engine()->getHerospawnPoint();
+    EngineFacade::engine()->createInstance(this->getHero()->getName(), this->getHero()->getName(), spawnPos.at(0), spawnPos.at(1));
+}
+
+ILevel* Game::getCurrentLevel()
+{
+    return this->currentLevel;
+}
+
 void Game::loadTowers()
 {
     this->towers = EngineFacade::engine()->loadTowers();
@@ -200,4 +227,10 @@ ISaveGameManager* Game::getSaveGameManager()
 void Game::setSaveGameManager(ISaveGameManager* saveGameManager)
 {
     this->saveGameManager = saveGameManager;
+}
+
+void Game::setSpeedHack(bool enabled)
+{
+    this->speedHackEnabled = enabled;
+    this->towerManager.setSpeedHack(enabled);
 }

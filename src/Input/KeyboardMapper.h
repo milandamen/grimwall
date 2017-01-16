@@ -13,6 +13,8 @@
 #include "Callbacks/AttackCallback.h"
 #include "Callbacks/InfHealthCallback.h"
 #include "Callbacks/InfManaCallback.h"
+#include "Callbacks/GameSpeedCallback.h"
+#include "Callbacks/InvisibleCallback.h"
 #include "../Domain/IGame.h"
 
 class KeyboardMapper

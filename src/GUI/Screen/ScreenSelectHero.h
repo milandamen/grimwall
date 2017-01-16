@@ -7,11 +7,18 @@
 #include "../../Domain/IGame.h"
 #include "../../Domain/Units/Heroes/Dralas.h"
 #include "../../Domain/Units/Heroes/Zarrku.h"
+#include "../../Domain/Units/Heroes/Horwen.h"
 
 class ScreenSelectHero : public GUI {
 private:
     IGame* game;
     AGUIManager* manager;
+
+    GUIWidgetImage* imgBg {nullptr};
+    GUIWidgetImage* imgChooseYourHero {nullptr};
+    GUIWidgetImageButton* btnDralas {nullptr};
+    GUIWidgetImageButton* btnHorwen {nullptr};
+    GUIWidgetImageButton* btnZarrku {nullptr};
 
 public:
     ScreenSelectHero(IGame* game, AGUIManager* manager);

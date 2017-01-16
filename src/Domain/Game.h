@@ -14,18 +14,13 @@
 #include "SaveGame/SaveGameManager.h"
 #include "UnitFactory.h"
 #include "TowerManager.h"
+#include "../GUI/GUIRepo.h"
+#include "Levels/Level1.h"
+#include "Levels/Level2.h"
+#include "Levels/Level3.h"
+#include "Units/Heroes/Abilities/DeathStrike.h"
 
 #include <vector>
-
-#include "../GUI/GUIRepo.h"
-#include "../GUI/Screen/ScreenMainMenu.h"
-#include "../GUI/Screen/ScreenSelectHero.h"
-#include "../GUI/Screen/ScreenSelectLevel.h"
-#include "../GUI/Screen/ScreenGameOver.h"
-#include "../GUI/Screen/ScreenWon.h"
-#include "../GUI/Screen/ScreenOptions.h"
-#include "../GUI/Screen/ScreenPause.h"
-#include "../GUI/Screen/ScreenGame.h"
 
 
 class Game : public IGame {
@@ -37,6 +32,7 @@ private:
      * Manages the GUI's and prevents duplicates
      */
     GUIRepo* guirepo {nullptr};
+    GUI* activeGUI {nullptr};
 
     UnitManager<AHero>* hero {nullptr};
 
@@ -56,6 +52,8 @@ private:
      * Value that denotes the last time the FPS was updated
      */
     int lastTime {};
+    
+    bool speedHackEnabled {false};
 
     /**
      * Value that denotes the score of the game
@@ -70,6 +68,9 @@ private:
     ISaveGameManager* saveGameManager {nullptr};
     TowerManager towerManager;
 
+    ILevel* currentLevel {nullptr};
+    std::map<std::string, ILevel*> levels;
+
     void initInput();
     void updateFPS();
     void loadTowers();
@@ -82,6 +83,8 @@ public:
     Game();
     ~Game();
     virtual TroupManager* getTroupManager() override;
+    virtual void loadLevel(std::string levelName) override;
+    virtual ILevel* getCurrentLevel() override;
     virtual void setMap(std::string path) override;
     virtual bool isPaused() override;
     virtual void setPaused(bool paused) override;
@@ -93,6 +96,7 @@ public:
     virtual std::vector<UnitManager<ATower>*>* getTowers() override;
     virtual ISaveGameManager* getSaveGameManager() override;
     virtual void setSaveGameManager(ISaveGameManager* saveGameManager) override;
+    virtual void setSpeedHack(bool enabled) override;
 };
 
 

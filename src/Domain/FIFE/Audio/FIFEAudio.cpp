@@ -51,7 +51,12 @@ void FIFEAudio::releaseMap(std::map<std::string, FIFE::SoundEmitter *> *map) {
 }
 
 void FIFEAudio::setVolume(int volume) {
-    musicSoundManager->setVolume(0.01 * volume);
+    this->volume = volume;
+    musicSoundManager->setVolume(0.01 * this->volume);
+}
+
+int FIFEAudio::getVolume() {
+    return this->volume;
 }
 
 FIFE::SoundEmitter* FIFEAudio::getSoundEffect(std::string soundName) {
@@ -63,11 +68,30 @@ FIFE::SoundEmitter* FIFEAudio::getSoundClip(std::string soundName) {
 }
 
 void FIFEAudio::playMusic(std::string asset) {
-    getSoundClip(asset)->play();
+    currentMusic = getSoundClip(asset);
+    currentMusic->play();
 }
 
 void FIFEAudio::playSoundEffect(std::string asset) {
-    getSoundEffect(asset)->play();
+    currentEffect = getSoundEffect(asset);
+    currentEffect->play();
+}
+
+void FIFEAudio::stopMusic() {
+    if(currentMusic != nullptr){
+        currentMusic->stop();
+    }
+}
+
+void FIFEAudio::stopSoundEffect() {
+    if(currentEffect != nullptr) {
+        currentEffect->stop();
+    }
+}
+
+void FIFEAudio::stopAllSound() {
+    stopMusic();
+    stopSoundEffect();
 }
 
 

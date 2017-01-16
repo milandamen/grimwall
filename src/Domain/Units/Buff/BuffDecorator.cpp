@@ -92,3 +92,11 @@ void BuffDecorator::setStatsListener(std::function<void()> delegate) {
     this->updateStatsListener = delegate;
     this->next->setStatsListener(delegate);
 }
+
+bool BuffDecorator::canAttack() {
+    return this->next->canAttack();
+}
+
+void BuffDecorator::setInvisible(bool invisible) {
+    this->next->setInvisible(invisible);
+}

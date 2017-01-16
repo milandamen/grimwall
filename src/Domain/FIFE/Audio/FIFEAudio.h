@@ -20,9 +20,13 @@ namespace fs = boost::filesystem;
 
 class FIFEAudio {
 private:
+    int volume {100};
+
     FIFE::SoundClipManager* musicSoundClipManager;
     FIFE::SoundManager* musicSoundManager;
     FIFE::SoundEmitter* emitter;
+    FIFE::SoundEmitter* currentMusic;
+    FIFE::SoundEmitter* currentEffect;
     FIFE::OggLoader* oggLoader;
 
     std::map<std::string, FIFE::SoundEmitter*> *musicMap;
@@ -34,8 +38,12 @@ public:
     ~FIFEAudio();
 
     void setVolume(int volume);
+    int getVolume();
     void playMusic(std::string asset);
     void playSoundEffect(std::string asset);
+    void stopMusic();
+    void stopSoundEffect();
+    void stopAllSound();
     void releaseMap(std::map<std::string, FIFE::SoundEmitter *> *map);
     FIFE::SoundEmitter* getSoundEffect(std::string soundName);
     FIFE::SoundEmitter* getSoundClip(std::string soundName);

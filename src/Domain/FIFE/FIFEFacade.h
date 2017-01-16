@@ -55,6 +55,7 @@ private:
 
     FIFEMouseListener* mouseListener {nullptr};
 
+    bool initialized {false};
     bool pumpingInitialized {false};
     
     void initView();
@@ -222,6 +223,37 @@ public:
      * Draw a box
      */
     void drawBox(double x1, double y1, double x2, double y2) override;
+
+    /*
+     * Stop playing sound effect
+     */
+    virtual void stopSoundEffect() override;
+
+    /*
+     * Stop playing music&soundEffect
+     */
+    virtual void stopAllMusic() override;
+
+    /*
+     * Stop playing music
+     */
+    virtual void stopMusic() override;
+
+    /**
+     * Gets the current volume
+     */
+    int getVolume() override;
+
+    /**
+     * Change the volume of the player
+     * @param volume The volume to be set
+     */
+    void setVolume(int volume) override;
+
+    /**
+     * Get the spawnLocation for the hero
+     */
+    std::vector<int> getHerospawnPoint() override;
 
 };
 

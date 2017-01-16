@@ -4,6 +4,9 @@
 FIFEChanImageButton::FIFEChanImageButton()
 {
     this->imageButton = new fcn::ImageButton();
+    this->imageButton->addMouseListener(this);
+    this->setForegroundColor(0,0,0,0); // Transparent
+    this->setBackgroundColor(0,0,0,0); // Transparent
 }
 
 FIFEChanImageButton::~FIFEChanImageButton()
@@ -65,6 +68,12 @@ void FIFEChanImageButton::setVisible(bool visible)
 
 fcn::Widget* FIFEChanImageButton::getWidget() {
     return this->imageButton;
+}
+
+void FIFEChanImageButton::mousePressed(fcn::MouseEvent &mouseEvent)
+{
+    this->onClickDelegate();
+    this->onClickDelegateWithWidget(this);
 }
 
 void FIFEChanImageButton::setCaption(std::string asset)

@@ -91,8 +91,16 @@ void FIFEFacade::setActiveGUIManager(AGUIManager* manager) {
 
 void FIFEFacade::setFPSLimit(int fpsLimit)
 {
-    this->engine->getSettings().setFrameLimit(fpsLimit);
-    this->engine->getSettings().setFrameLimitEnabled(true);
+    if (!this->initialized)
+    {
+        this->engine->getSettings().setFrameLimitEnabled(fpsLimit != 0);
+        this->engine->getSettings().setFrameLimit(fpsLimit);
+    }
+    else
+    {
+        this->engine->getRenderBackend()->setFrameLimitEnabled(fpsLimit != 0);
+        this->engine->getRenderBackend()->setFrameLimit(fpsLimit);
+    }
 }
 
 void FIFEFacade::init()
@@ -101,10 +109,11 @@ void FIFEFacade::init()
     this->fifeChan->init();
     //initialize the audio
     this->fifeAudio = new FIFEAudio(engine->getSoundClipManager(), engine->getSoundManager());
-    this->fifeAudio->playMusic("intro");
     this->initInput();
 
     this->engine->getEventManager()->addSdlEventListener(this->fifeChan->getGuiManager());
+    
+    this->initialized = true;
 }
 
 void FIFEFacade::loadMap(std::string path)
@@ -266,8 +275,9 @@ std::string FIFEFacade::createInstance(std::string objectName, std::string insta
                 mapCoords.z = 0.0;
                 FIFE::Location* location {new FIFE::Location(layer)};
                 location->setLayerCoordinates(mapCoords);
-                //Check if position is occupied
-                if(layer->getInstancesAt(*location).size() == 0) {
+                
+                // Check if position is occupied
+                if(layer->getInstancesAt(*location).size() == 0 || layer->getInstancesAt(*location).at(0)->getId() == "spawnLocation") {
                     FIFE::Instance* instance {layer->createInstance(object, mapCoords, instanceName)};
                     FIFE::InstanceVisual::create(instance);
                     return instanceName;
@@ -363,9 +373,61 @@ void FIFEFacade::playMusic(std::string asset) {
     fifeAudio->playMusic(asset);
 }
 
+void FIFEFacade::stopMusic() {
+    fifeAudio->stopMusic();
+}
+
 void FIFEFacade::playSoundEffect(std::string asset) {
     fifeAudio->playSoundEffect(asset);
+}
 
+void FIFEFacade::stopSoundEffect() {
+    fifeAudio->stopSoundEffect();
+}
+
+void FIFEFacade::stopAllMusic() {
+    fifeAudio->stopAllSound();
+}
+
+void FIFEFacade::setVolume(int volume)
+{
+    this->fifeAudio->setVolume(volume);
+}
+
+int FIFEFacade::getVolume()
+{
+    return this->fifeAudio->getVolume();
+}
+
+std::vector<int> FIFEFacade::getHerospawnPoint() {
+    std::vector<int> ret;
+    ret.push_back(0);   // x
+    ret.push_back(0);   // y
+    ret.push_back(0);   // z
+    
+    FIFE::Layer* layer = this->map->getLayer("unitLayer");
+
+    if(layer)
+    {
+        std::vector<FIFE::Instance*> instances = layer->getInstances();
+
+        //get the towers
+        for (unsigned int i = 0; i < instances.size(); ++i)
+        {
+            //select instances with tower in their id
+            if(instances.at(i)->getId() == "spawnLocation")
+            {
+                FIFE::ModelCoordinate heroPoint = instances.at(i)->getLocation().getLayerCoordinates();
+                ret.clear();
+                ret.push_back(heroPoint[0]);
+                ret.push_back(heroPoint[1]);
+                ret.push_back(heroPoint[2]);
+                break;
+            }
+        }
+    }
+
+    return ret;
 }
 
 void FIFEFacade::drawBox(double x1, double y1, double x2, double y2){
