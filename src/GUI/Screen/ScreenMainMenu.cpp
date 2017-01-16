@@ -44,5 +44,6 @@ ScreenMainMenu::~ScreenMainMenu()
 }
 
 void ScreenMainMenu::hasBecomeActive(){
+    EngineFacade::engine()->stopMusic();
     EngineFacade::engine()->playMusic("intro");
 }
