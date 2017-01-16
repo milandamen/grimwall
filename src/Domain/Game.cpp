@@ -54,8 +54,9 @@ Game::Game()
 }
 
 Game::~Game() {
-    for(auto level : this->levels)
+    for(auto level : this->levels){
         delete level.second;
+    }
 
     delete this->hero;
     this->deleteTowers();
@@ -227,6 +228,25 @@ ISaveGameManager* Game::getSaveGameManager()
 void Game::setSaveGameManager(ISaveGameManager* saveGameManager)
 {
     this->saveGameManager = saveGameManager;
+}
+
+void Game::loadGame(std::string fileName){
+    SaveGame* temp = this->saveGameManager->load(fileName);
+    if(temp == nullptr){
+        temp = this->saveGameManager->create(fileName);
+    }
+
+    this->currentSave = temp;
+}
+
+void Game::saveGame(){
+    if(currentSave != nullptr){
+        // Fetch the hero and the level and put it into the save file.
+        this->currentSave->lastUsedHero = this->getHero()->getName();
+        this->currentSave->lastUnlockedLevel = this->currentLevel->getName();
+
+        this->currentSave->save();
+    }
 }
 
 void Game::setSpeedHack(bool enabled)

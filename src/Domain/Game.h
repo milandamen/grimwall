@@ -66,6 +66,8 @@ private:
     KeyboardMapper* keyboardMapper {nullptr};
     
     ISaveGameManager* saveGameManager {nullptr};
+    SaveGame* currentSave {nullptr};
+
     TowerManager towerManager;
 
     ILevel* currentLevel {nullptr};
@@ -96,6 +98,8 @@ public:
     virtual std::vector<UnitManager<ATower>*>* getTowers() override;
     virtual ISaveGameManager* getSaveGameManager() override;
     virtual void setSaveGameManager(ISaveGameManager* saveGameManager) override;
+    virtual void loadGame(std::string fileName) override;
+    virtual void saveGame() override;
     virtual void setSpeedHack(bool enabled) override;
 };
 
