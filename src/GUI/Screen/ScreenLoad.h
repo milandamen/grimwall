@@ -7,13 +7,24 @@
 
 class ScreenLoad : public GUI {
 private:
-IGame* game;
-AGUIManager* manager;
+    IGame* game;
+    AGUIManager* manager;
+
+    GUIWidgetImage* imgBg {nullptr};
+
+    GUIWidgetButton* gameSlot1 {nullptr};
+    GUIWidgetButton* gameSlot2 {nullptr};
+    GUIWidgetButton* gameSlot3 {nullptr};
+
+    GUIWidgetLabel* loadSave {nullptr};
+
+    GUIWidgetImageButton* btnReturn {nullptr};
+
 
 
 public:
-ScreenLoad(IGame* game, AGUIManager* manager);
-~ScreenLoad();
+    ScreenLoad(IGame* game, AGUIManager* manager);
+    ~ScreenLoad();
 };
 
 #endif //GRIMWALL_SCREENLOAD_H

@@ -6,6 +6,13 @@ ScreenMainMenu::ScreenMainMenu(IGame* game, AGUIManager* manager)
 {
     this->imgBg = manager->addImage("assets/gui/menubackground.png", 0, 0, 1024, 786);
 
+    this->btnLoad = manager->addButton("Load and Save", 0, 0);
+    this->btnLoad->setWidth(150);
+    this->btnLoad->setHeight(150);
+    this->btnLoad->onClick([&](){
+        this->game->setUI("Load");
+    });
+
     this->btnCampaign = manager->addImageButton("", "assets/gui/campaignMenuItem.png", 172, 350, 680, 100);
     this->btnCampaign->setForegroundColor(255, 255, 255, 255);
     this->btnCampaign->setBackgroundColor(0, 0, 0, 0);
@@ -33,6 +40,7 @@ ScreenMainMenu::ScreenMainMenu(IGame* game, AGUIManager* manager)
     this->btnExit->onClick([&](){
         this->game->quit();
     });
+
 }
 
 ScreenMainMenu::~ScreenMainMenu()

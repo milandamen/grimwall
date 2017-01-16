@@ -9,19 +9,23 @@ ScreenOptions::ScreenOptions(IGame* game, AGUIManager* manager)
     this->imgMusic = manager->addImage("assets/gui/settingMusic.png", 220, 340, 300, 80);
     this->stnMusic = manager->addImageButton("", "assets/gui/settingOn.png", 560, 340, 160, 80);
     this->stnMusic->onClick([&]() {
-        //if(musicOn)
+        //if(musicOn){
             this->stnMusic->setAsset("assets/gui/settingOff.png");
-        //else
+        //}
+        //else {
             this->stnMusic->setAsset("assets/gui/settingOn.png");
+        //}
     });
 
     this->imgSFX = manager->addImage("assets/gui/settingSFX.png", 220, 440, 300, 80);
     this->stnSFX = manager->addImageButton("", "assets/gui/settingOn.png", 560, 440, 160, 80);
     this->stnSFX->onClick([&]() {
-        //if(sfxOn)
+        //if(sfxOn){
             this->stnSFX->setAsset("assets/gui/settingOff.png");
-        //else
+        //}
+        //else{
             this->stnSFX->setAsset("assets/gui/settingOn.png");
+        //}
     });
 
     this->btnReturn = manager->addImageButton("", "assets/gui/settingReturn.png", 300, 600, 300, 80);
