@@ -28,6 +28,8 @@ Game::Game()
     this->towerManager.setUnits(this->troupManager.getTroups());
     this->towerManager.setHero(hero);
 
+    this->troupManager.setTowers(this->getTowers());
+
     // Game loop
     this->curTime = 0;
     this->lastTime = 0;
@@ -113,9 +115,15 @@ void Game::tick() {
     
     updateLocation(this->hero, this->hero->getName());
 
+
     this->towerManager.tick();
 
-    if (this->hero->getHitPoints() <= 0) {
+    for(unsigned i = 0; i < this->troupManager.getTroups()->size(); ++i){
+        updateLocation(this->troupManager.getTroups()->at(i), this->troupManager.getTroups()->at(i)->getName());
+    }
+    this->troupManager.tick();
+
+    if (this->hero->getHitPoints() <= 0){
         this->lose();
     }
     else if (this->towers.size() <= 0) {
@@ -123,6 +131,12 @@ void Game::tick() {
     }
 
     this->hero->tick();
+
+    EngineFacade::engine()->drawBox(
+            troupManager.sStartX,
+            troupManager.sStartY,
+            troupManager.sEndX,
+            troupManager.sEndY);
 }
 
 void Game::win() {
