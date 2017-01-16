@@ -24,6 +24,13 @@ private:
     int dragX;
     int dragY;
 
+    int initialRdragX = 0;
+    int initialRdragY = 0;
+    int RdragX = 0;
+    int RdragY = 0;
+
+    bool rightMouseDown = false;
+
     int mousePosX;
     int mousePosY;
 

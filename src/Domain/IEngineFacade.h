@@ -143,6 +143,12 @@ public:
      * Play sound effect
      */
     virtual void playSoundEffect(std::string asset) = 0;
+
+    /**
+     * draw a box
+     */
+    virtual void drawBox(double x1, double y1, double x2, double y2) = 0;
+
 };
 
 #endif

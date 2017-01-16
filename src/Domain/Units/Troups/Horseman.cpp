@@ -1,7 +1,7 @@
 #include "Horseman.h"
 
 Horseman::Horseman(std::string name)
-        : ATroup(name, 30, 1000, 2, 40, 5, 1)
+        : ATroup(name, 3, 100, 2, 40, 80, 1)
 {
 
 }

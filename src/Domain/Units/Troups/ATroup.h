@@ -12,7 +12,7 @@ private:
 public:
     ATroup(std::string name, int reach, int attackDelay, int moveSpeed, int power,
                int hitPoints, int visibility);
-    UnitManager<ATower>* target;
+    UnitManager<ATower>* target {nullptr};
 };
 
 
