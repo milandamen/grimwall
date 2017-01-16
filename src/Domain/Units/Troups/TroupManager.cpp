@@ -37,17 +37,19 @@ void TroupManager::setSelectionEnd(double x, double y){
     double downRightx;
     double downRighty;
 
+    double diff = (sEndY - sStartY) / 2;
+
     //upleft to downright
-    upLeftx = sStartX;
+    upLeftx = sStartX - diff;
     upLefty = sStartY;
-    downRightx = sEndX;
+    downRightx = sEndX + diff;
     downRighty = sEndY;
 
     std::cout << "selecting troups between " << upLeftx << "," << upLefty << " and " << downRightx << "," << downRighty << std::endl;
 
 
-    for(unsigned i = 0; i < troups.size(); i++){
-        std::cout << "Troup at " << troups.at(i)->getX() << "," << troups.at(i)->getY() << std::endl;
+    for(unsigned i = 0; i < troups.size(); ++i){
+        std::cout << troups.at(i)->getName() << " at " << troups.at(i)->getX() << "," << troups.at(i)->getY() << std::endl;
         if(troups.at(i)->getX() > upLeftx &&
            troups.at(i)->getX() < downRightx &&
            troups.at(i)->getY() > upLefty &&
@@ -143,7 +145,7 @@ void TroupManager::moveTroups(double x, double y) {
 
     for(unsigned i = 0; i < selectedTroups.size(); ++i) {
         EngineFacade::engine()->move(
-                troups.at(i)->getName(),
+                selectedTroups.at(i)->getBase()->getName(),
                 "unitLayer",
                 x,
                 y,
