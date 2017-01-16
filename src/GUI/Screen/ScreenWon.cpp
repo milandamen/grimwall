@@ -4,21 +4,25 @@
 ScreenWon::ScreenWon(IGame* game, AGUIManager* manager)
         : GUI(manager), game(game)
 {
-
     this->imgBg = manager->addImage("assets/gui/menubackground.png", 0, 0, 1024, 786);
     this->imgLevelCleared = manager->addImage("assets/gui/levelCleared.png", 12, 340, 120, 1000);
 
     this->btnNext = manager->addImageButton("", "assets/gui/btnNextLevel.png", 212, 550, 600, 100);
     this->btnNext->setForegroundColor(255, 255, 255, 255);
     this->btnNext->setBackgroundColor(0, 0, 0, 0);
+}
 
-    //manager->addLabel("Score: " + this->game->getCurrentScore(), 140, 360);
+ScreenWon::~ScreenWon()
+{
+    delete this->imgBg;
+    delete this->imgLevelCleared;
+    delete this->btnNext;
 }
 
 void ScreenWon::hasBecomeActive()
 {
     std::string next = this->game->getCurrentLevel()->getNext();
-    if(next == nullptr) {
+    if(next == "") { // Last level reached!
         this->btnNext->setAsset("assets/gui/exitMenuItem.png");
         this->btnNext->setWidth(680);
         this->btnNext->setX(172);
@@ -31,12 +35,4 @@ void ScreenWon::hasBecomeActive()
             this->game->setPaused(false);
         });
     }
-}
-
-
-ScreenWon::~ScreenWon()
-{
-    delete this->imgBg;
-    delete this->imgLevelCleared;
-    delete this->btnNext;
 }

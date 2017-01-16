@@ -10,8 +10,7 @@ Game::Game()
     EngineFacade::engine()->init();
 
     this->guirepo = new GUIRepo(this);
-
-    EngineFacade::engine()->setActiveGUIManager(this->guirepo->getGUI("MainMenu")->getGuiManager());
+    this->setUI("MainMenu");
 
     this->initInput();
 
@@ -122,12 +121,12 @@ void Game::tick() {
 
 void Game::win() {
     this->paused = true;
-    EngineFacade::engine()->setActiveGUIManager(this->guirepo->getGUI("Won")->getGuiManager());
+    this->setUI("Won");
 }
 
 void Game::lose() {
     this->paused = true;
-    EngineFacade::engine()->setActiveGUIManager(this->guirepo->getGUI("GameOver")->getGuiManager());
+    this->setUI("GameOver");
 
 }
 
