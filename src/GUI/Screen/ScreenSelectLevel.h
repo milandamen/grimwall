@@ -5,12 +5,14 @@
 #include "../GUI.h"
 #include "../AGUIManager.h"
 #include "../../Domain/IGame.h"
+#include "../../Domain/UnitFactory.h"
+
+#include <vector>
 
 class ScreenSelectLevel : public GUI {
 private:
     IGame* game;
     AGUIManager* manager;
-
 public:
     ScreenSelectLevel(IGame* game, AGUIManager* manager);
     ~ScreenSelectLevel();

@@ -13,6 +13,7 @@
 
 #include "Units/UnitManager.hpp"
 #include "Units/Towers/ATower.h"
+#include "view/camera.h"
 
 /**
  * Class to be extended by classes like FIFEFacade
@@ -144,6 +145,22 @@ public:
      */
     virtual void playSoundEffect(std::string asset) = 0;
 
+    /**
+     * Gets the volume
+     */
+    virtual int getVolume() = 0;
+
+    /**
+     * Changes the volume
+     * @param volume The volume to be set
+     */
+    virtual void setVolume(int volume) = 0;
+
+    /**
+     * Get the spawnLocation for the hero
+     */
+     virtual std::vector<int> getHerospawnPoint() = 0;
+
     /*
      * Stop playing music
      */
@@ -158,7 +175,6 @@ public:
      * Stop playing music&soundEffect
      */
     virtual void stopAllMusic() = 0;
-
 };
 
 #endif
