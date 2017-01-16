@@ -35,8 +35,6 @@ Game::Game()
 
         // Check if we are in pause state
         if(!this->paused) {
-            // Run an engine tick for userland code
-            EngineFacade::engine()->tick();
             this->tick();
         }
 
@@ -98,13 +96,22 @@ void Game::setUI(std::string name)
 }
 
 void Game::tick() {
+    // Run an engine tick for userland code
+    EngineFacade::engine()->tick();
+    if (this->speedHackEnabled) {
+        for (int i {0}; i < 3; i++) {
+            EngineFacade::engine()->tick();
+        }
+    }
+    
     updateLocation(this->hero, this->hero->getName());
+
     this->towerManager.tick();
 
-    if (this->hero->getHitPoints() <= 0){
+    if (this->hero->getHitPoints() <= 0) {
         this->lose();
     }
-    else if (this->towers.size() <= 0){
+    else if (this->towers.size() <= 0) {
         this->win();
     }
 
@@ -185,4 +192,10 @@ ISaveGameManager* Game::getSaveGameManager()
 void Game::setSaveGameManager(ISaveGameManager* saveGameManager)
 {
     this->saveGameManager = saveGameManager;
+}
+
+void Game::setSpeedHack(bool enabled)
+{
+    this->speedHackEnabled = enabled;
+    this->towerManager.setSpeedHack(enabled);
 }
