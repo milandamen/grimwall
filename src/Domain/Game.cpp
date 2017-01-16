@@ -21,6 +21,7 @@ Game::Game()
     setSaveGameManager(new SaveGameManager {"TEXT"});
 
     this->towerManager.setTowers(this->getTowers());
+    this->towerManager.setUnits(this->troupManager.getTroups());
     this->towerManager.setHero(hero);
 
     // Game loop
@@ -98,7 +99,7 @@ void Game::setUI(std::string name)
 
 void Game::tick() {
     updateLocation(this->hero, this->hero->getName());
-    this->towerManager.tick(curTime);
+    this->towerManager.tick();
 
     if (this->hero->getHitPoints() <= 0){
         this->lose();
