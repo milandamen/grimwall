@@ -51,7 +51,7 @@ SaveGame* TextSaveGameStrategy::load(std::string file)
     
     try
     {
-        saveGame->lastUnlockedLevel = std::stoi(lines.at(0));
+        saveGame->lastUnlockedLevel = lines.at(0);
         
         if (saveGame->lastUnlockedLevel == "level0")
         {
