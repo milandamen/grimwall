@@ -15,6 +15,8 @@ public:
     virtual ~GUI() = 0;
 
     void setGuiManager();
+    virtual void hasBecomeActive();
+    virtual void hasBecomeInactive();
     AGUIManager* getGuiManager();
 };
 

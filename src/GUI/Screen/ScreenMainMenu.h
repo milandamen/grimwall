@@ -14,6 +14,11 @@ private:
     IGame* game;
     AGUIManager* manager;
 
+    GUIWidgetImage* imgBg {nullptr};
+    GUIWidgetImageButton* btnCampaign {nullptr};
+    GUIWidgetImageButton* btnOptions {nullptr};
+    GUIWidgetImageButton* btnExit {nullptr};
+
 public:
     ScreenMainMenu(IGame* game, AGUIManager* manager);
     ~ScreenMainMenu();
