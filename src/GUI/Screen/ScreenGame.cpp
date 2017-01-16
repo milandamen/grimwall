@@ -45,6 +45,8 @@ ScreenGame::~ScreenGame()
 
 void ScreenGame::hasBecomeActive()
 {
+    EngineFacade::engine()->playMusic("levelMusic");
+
     this->lblHeroName->setCaption(this->game->getHero()->getName());
     this->game->getHero()->setStatsListener([&]() {
         this->updateStats();

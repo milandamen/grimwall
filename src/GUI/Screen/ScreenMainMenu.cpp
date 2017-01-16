@@ -42,3 +42,7 @@ ScreenMainMenu::~ScreenMainMenu()
     delete btnOptions;
     delete btnExit;
 }
+
+void ScreenMainMenu::hasBecomeActive(){
+    EngineFacade::engine()->playMusic("intro");
+}
