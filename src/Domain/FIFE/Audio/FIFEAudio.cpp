@@ -75,10 +75,8 @@ void FIFEAudio::playMusic(std::string asset) {
 }
 
 void FIFEAudio::playSoundEffect(std::string asset) {
-    if(this->currentEffect != getSoundClip(asset)){
         this->currentEffect = getSoundEffect(asset);
         this->currentEffect->play();
-    }
 }
 
 void FIFEAudio::stopMusic() {
