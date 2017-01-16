@@ -1,6 +1,3 @@
-//
-// Created by stephanromer on 1/16/17.
-//
 
 #include "ILevel.h"
 
