@@ -27,6 +27,7 @@ public:
     int getVisibility() override;
     void receiveDamage(int power) override;
     void setInvincible(bool invincible) override;
+    std::vector<std::string> getBuffs() override;
     void setInvisible(bool invisible) override;
 
     double getX() override;
@@ -99,6 +100,11 @@ int UnitManager<UnitType>::getVisibility() {
 }
 
 template <typename UnitType>
+std::vector<std::string> UnitManager<UnitType>::getBuffs() {
+    return unit->getBuffs();
+}
+
+template <typename UnitType>
 void UnitManager<UnitType>::receiveDamage(int power) {
     unit->receiveDamage(power);
 }
@@ -158,6 +164,7 @@ void UnitManager<UnitType>::tick() {
 
 template <typename UnitType>
 void UnitManager<UnitType>::buff(BuffDecorator *decorator) {
+    decorator->setNext(this->unit);
     this->unit = decorator;
     this->unit->setPrevious(this);
 

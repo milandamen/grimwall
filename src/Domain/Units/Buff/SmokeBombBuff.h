@@ -5,13 +5,11 @@
 
 class SmokeBombBuff : public BuffDecorator {
 private:
-    int divisor;
 
 public:
-    SmokeBombBuff(IUnit *inner, int divisor);
+    SmokeBombBuff();
 
-    double getReach();
-
+    int getVisibility();
 };
 
 

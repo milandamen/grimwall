@@ -1,8 +1,12 @@
 #include "RageOfTheUndeadBuff.h"
 
-RageOfTheUndeadBuff::RageOfTheUndeadBuff(IUnit *inner, int multiplier)
-        : BuffDecorator(inner, 300), multiplier{multiplier}
+RageOfTheUndeadBuff::RageOfTheUndeadBuff(int multiplier)
+        : BuffDecorator("Rage of the Undead", 300), multiplier{multiplier}
 {
+}
+
+double RageOfTheUndeadBuff::getSpeed() {
+    return BuffDecorator::getSpeed() * this->multiplier;
 }
 
 int RageOfTheUndeadBuff::getPower() {

@@ -1,9 +1,9 @@
 <?fife type="atlas"?>
-<atlas name="grass.png" namespace="grimwall" width="98" height="48">
-	<image source="grass.png" xpos="0" ypos="0" width="98" height="48"/>
+<atlas name="snow.png" namespace="grimwall" width="98" height="48">
+	<image source="snow.png" xpos="0" ypos="0" width="98" height="48"/>
 </atlas>
 
-<object id="grass" namespace="grimwall" static="1">
-	<image source="grass.png" direction="0" />
+<object id="snow" namespace="grimwall" static="1">
+	<image source="snow.png" direction="0" />
 </object>
 

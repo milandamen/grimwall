@@ -1,0 +1,9 @@
+<?fife type="atlas"?>
+<atlas name="empty.png" namespace="grimwall" width="98" height="48">
+	<image source="empty.png" xpos="0" ypos="0" width="98" height="48"/>
+</atlas>
+
+<object id="empty" namespace="grimwall" static="1">
+	<image source="empty.png" direction="0" />
+</object>
+
