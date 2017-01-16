@@ -160,6 +160,21 @@ public:
      * Get the spawnLocation for the hero
      */
      virtual std::vector<int> getHerospawnPoint() = 0;
+
+    /*
+     * Stop playing music
+     */
+    virtual void stopMusic() = 0;
+
+    /*
+     * Stop playing sound effect
+     */
+    virtual void stopSoundEffect() = 0;
+
+    /*
+     * Stop playing music&soundEffect
+     */
+    virtual void stopAllMusic() = 0;
 };
 
 #endif

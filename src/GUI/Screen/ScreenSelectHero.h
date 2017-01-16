@@ -7,6 +7,7 @@
 #include "../../Domain/IGame.h"
 #include "../../Domain/Units/Heroes/Dralas.h"
 #include "../../Domain/Units/Heroes/Zarrku.h"
+#include "../../Domain/Units/Heroes/Horwen.h"
 
 class ScreenSelectHero : public GUI {
 private:

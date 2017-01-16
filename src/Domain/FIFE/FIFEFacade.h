@@ -218,6 +218,21 @@ public:
      */
     void playSoundEffect(std::string asset) override;
 
+    /*
+     * Stop playing sound effect
+     */
+    virtual void stopSoundEffect() override;
+
+    /*
+     * Stop playing music&soundEffect
+     */
+    virtual void stopAllMusic() override;
+
+    /*
+     * Stop playing music
+     */
+    virtual void stopMusic() override;
+
     /**
      * Gets the current volume
      */
@@ -233,6 +248,7 @@ public:
      * Get the spawnLocation for the hero
      */
     std::vector<int> getHerospawnPoint() override;
+
 };
 
 #endif

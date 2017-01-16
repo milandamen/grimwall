@@ -21,7 +21,7 @@ ScreenSelectHero::ScreenSelectHero(IGame* game, AGUIManager* manager)
         this->game->setHero(new Dralas());
         this->game->setUI("SelectLevel");
     });
-
+    
     this->btnZarrku = manager->addImageButton("", "assets/gui/heroZarrku.png", 304, 575, 700, 180);
     this->btnZarrku->onClick([&]() {
         this->game->setHero(new Zarrku());
