@@ -5,14 +5,16 @@
 #include "AFIFEChanWidget.h"
 #include "../../../../GUI/Widget/GUIWidgetImage.h"
 #include "../../../../GUI/Widget/GUIWidgetButton.h"
-#include <fifechan/sdl/sdlimageloader.hpp>
+#include "../../../../GUI/Widget/GUIWidgetImageButton.h"
 #include <fifechan/image.hpp>
 #include <fifechan/widgets/imagebutton.hpp>
 
-class FIFEChanImageButton : public AFIFEChanWidget, public GUIWidgetImage, public GUIWidgetButton {
+class FIFEChanImageButton : public AFIFEChanWidget, public GUIWidgetImageButton, fcn::MouseListener {
 private:
     fcn::Image* image {nullptr};
     fcn::ImageButton* imageButton {nullptr};
+
+    void mousePressed(fcn::MouseEvent& mouseEvent) override;
 
 public:
     FIFEChanImageButton();

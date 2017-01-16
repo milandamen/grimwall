@@ -9,21 +9,18 @@ Game::Game()
     EngineFacade::engine()->setFPSLimit(60);
     EngineFacade::engine()->init();
 
-    this->guirepo = new GUIRepo();
-    this->guirepo->addGUI("MainMenu", new ScreenMainMenu(this, EngineFacade::engine()->createGUIManager()));
-    this->guirepo->addGUI("GameOver", new ScreenGameOver(this, EngineFacade::engine()->createGUIManager()));
-    this->guirepo->addGUI("Won", new ScreenWon(this, EngineFacade::engine()->createGUIManager()));
-    this->guirepo->addGUI("SelectHero", new ScreenSelectHero(this, EngineFacade::engine()->createGUIManager()));
-    this->guirepo->addGUI("SelectLevel", new ScreenSelectLevel(this, EngineFacade::engine()->createGUIManager()));
-    this->guirepo->addGUI("Options", new ScreenOptions(this, EngineFacade::engine()->createGUIManager()));
-    this->guirepo->addGUI("Pause", new ScreenPause(this, EngineFacade::engine()->createGUIManager()));
-    this->guirepo->addGUI("Game", new ScreenGame(this, EngineFacade::engine()->createGUIManager()));
+    this->guirepo = new GUIRepo(this);
 
     EngineFacade::engine()->setActiveGUIManager(this->guirepo->getGUI("MainMenu")->getGuiManager());
 
     this->initInput();
 
-    this->levels["level1"] = new Level1();
+    ILevel* l = new Level1();
+    this->levels[l->getName()] = l;
+    l = new Level2();
+    this->levels[l->getName()] = l;
+    l = new Level3();
+    this->levels[l->getName()] = l;
 
     this->hero = new UnitManager<AHero>(new Dralas());
     this->hero->getBase()->addAbility(new DeathStrike(this->hero));
@@ -97,8 +94,14 @@ void Game::setHero(AHero *hero)
 
 void Game::setUI(std::string name)
 {
+    if(this->activeGUI != nullptr) {
+        this->activeGUI->hasBecomeInactive();
+    }
+
     GUI *gui = this->guirepo->getGUI(name);
     if (gui != nullptr) {
+        this->activeGUI = gui;
+        gui->hasBecomeActive();
         EngineFacade::engine()->setActiveGUIManager(gui->getGuiManager());
     }
 }
@@ -159,14 +162,19 @@ void Game::updateFPS()
     }
 }
 
-void Game::loadLevel(std::string levelName) {
-    ILevel* l = this->levels[levelName];
-
-    this->setMap(l->getMap());
+void Game::loadLevel(std::string levelName)
+{
+    this->currentLevel = this->levels[levelName];
+    this->setMap(this->currentLevel->getMap());
 
     // TODO: Set hero on spawn location
     std::vector<int> spawnPos = EngineFacade::engine()->getHerospawnPoint();
     EngineFacade::engine()->createInstance(this->getHero()->getName(), this->getHero()->getName(), spawnPos.at(0), spawnPos.at(1));
+}
+
+ILevel* Game::getCurrentLevel()
+{
+    return this->currentLevel;
 }
 
 void Game::loadTowers()

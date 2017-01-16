@@ -12,6 +12,12 @@ private:
     IGame* game;
     AGUIManager* manager;
 
+    GUIWidgetImage* imgBg {nullptr};
+    GUIWidgetImage* imgLevelCleared {nullptr};
+    GUIWidgetImageButton* btnNext {nullptr};
+
+    void hasBecomeActive() override;
+
 public:
     ScreenWon(IGame* game, AGUIManager* manager);
     ~ScreenWon();
