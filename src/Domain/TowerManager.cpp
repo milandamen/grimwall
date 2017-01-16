@@ -19,6 +19,7 @@ void TowerManager::tick() {
 //             || (this->speedHackEnabled && timeSince*3 >= tower->getAttackDelay()))
 
         UnitManager<ATroup>* unit {nullptr};
+        std::vector<UnitManager<ATroup> *>::iterator itUnit {nullptr};
         bool heroIsTarget {false};
         tower->tick();
         //check if tower can attack
@@ -30,24 +31,14 @@ void TowerManager::tick() {
 
             //determine closest target
             double rangeCurrentTarget {100}; //set to value greater than any towers range
-            for(unsigned int t = 0; t <= friendlyUnits->size(); ++t)
+            unsigned int t = 0;
+            for(auto it = friendlyUnits->begin(); it != friendlyUnits->end(); ++it)
             {
                 //calculate distance between unit and tower
 
-                double unitX;
-                double unitY;
+                double unitX {this->friendlyUnits->at(t)->getX()};
+                double unitY {this->friendlyUnits->at(t)->getY()};
 
-                if(t == friendlyUnits->size())
-                {
-                    //checked all troups, now check the hero
-                    unitX = this->hero->getX();
-                    unitY = this->hero->getY();
-                }
-                else
-                {
-                    unitX = this->friendlyUnits->at(t)->getX();
-                    unitY = this->friendlyUnits->at(t)->getY();
-                }
                 double deltaX {std::pow((unitX - tower->getX()), 2.0)};
                 double deltaY {std::pow((unitY - tower->getY()), 2.0)};
 
@@ -59,19 +50,28 @@ void TowerManager::tick() {
                     if(distance < rangeCurrentTarget)
                     {
                         //current unit is closer, set as target
-                        if(t == friendlyUnits->size())
-                        {
-                            //hero is the target
-                            heroIsTarget = true;
-                        }
-                        else
-                        {
-                            rangeCurrentTarget = distance;
-                            unit = friendlyUnits->at(t);
-                        }
+
+                        rangeCurrentTarget = distance;
+                        unit = friendlyUnits->at(t);
+                        itUnit = it;
 
                     }
                 }
+                ++t;
+            }
+            //check hero viability as target
+            double unitX {this->hero->getX()};
+            double unitY {this->hero->getY()};
+
+            double deltaX {std::pow((unitX - tower->getX()), 2.0)};
+            double deltaY {std::pow((unitY - tower->getY()), 2.0)};
+
+            double distance {std::sqrt(deltaX + deltaY)};
+
+            if(distance <= tower->getReach() && distance < rangeCurrentTarget)
+            {
+                //hero is the target
+                heroIsTarget = true;
             }
 
              // obtain a random number from hardware
@@ -107,6 +107,19 @@ void TowerManager::tick() {
                     std::cout << "Unit hp: " << unit->getHitPoints() << std::endl;
                     EngineFacade::engine()->setInstanceAction(tower->getBase()->getId(),"attack", "towerLayer");
                     EngineFacade::engine()->playSoundEffect("defaultTowerShot");
+
+                    //check if unit died
+                    if(unit <= 0)
+                    {
+                        //unit died, remove
+                        if (EngineFacade::engine()->instanceExists(unit->getBase()->getName(), "unitLayer")) {
+                            EngineFacade::engine()->deleteInstance(unit->getBase()->getName(), "unitLayer");
+                        }
+
+                        delete unit;
+                        friendlyUnits->erase(itUnit);
+                    }
+
                 } else
                     EngineFacade::engine()->setInstanceAction(tower->getBase()->getId(),"stand", "towerLayer");
             }
