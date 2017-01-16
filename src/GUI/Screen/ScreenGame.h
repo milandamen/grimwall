@@ -11,16 +11,20 @@ private:
     IGame* game {nullptr};
     AGUIManager* manager {nullptr};
 
-    GUIWidgetButton* rightMenu {nullptr};
-    GUIWidgetContainer* rightMenuContainer {nullptr};
-    GUIWidgetButton* rightMenuBtnSettings {nullptr};
-    GUIWidgetButton* rightMenuBtnQuit {nullptr};
-    GUIWidgetButton* rightMenuBtnPause {nullptr};
+    GUIWidgetContainer* container {nullptr};
+    GUIWidgetLabel* lblHeroName {nullptr};
+    GUIWidgetLabel* lblHeroHP {nullptr};
+    GUIWidgetLabel* lblHeroMP {nullptr};
+    GUIWidgetContainer* pgbHeroHP {nullptr};
+    GUIWidgetContainer* pgbHeroMP {nullptr};
+    GUIWidgetButton* btnPause {nullptr};
 
-    void toggleRightMenu();
-    void togglePauseGame();
-    void showOptions();
+    void updateStats();
     void quitGame();
+    void pause();
+
+    void hasBecomeActive() override;
+    void hasBecomeInactive() override;
 
 public:
     ScreenGame(IGame* game, AGUIManager* manager);

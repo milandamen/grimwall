@@ -13,10 +13,10 @@ FIFECameraScroller::FIFECameraScroller(FIFE::Camera *camera, FIFE::EventManager 
         const FIFE::Rect& viewport = mainCamera->getViewPort();
 
         // calculate borders to activate automatic scrolling
-        scrollAreaTop = static_cast<int>(viewport.h - (viewport.h*scrollActivationPercent));
-        scrollAreaBottom = static_cast<int>(viewport.y + (viewport.h*scrollActivationPercent));
-        scrollAreaRight = static_cast<int>(viewport.w - (viewport.w*scrollActivationPercent));
-        scrollAreaLeft = static_cast<int>(viewport.x + (viewport.w*scrollActivationPercent));
+        scrollAreaTop = static_cast<int>(viewport.h - 200); // (viewport.h*scrollActivationPercent)
+        scrollAreaBottom = static_cast<int>(viewport.y + 20); // (viewport.h*scrollActivationPercent)
+        scrollAreaRight = static_cast<int>(viewport.w - 20); // (viewport.w*scrollActivationPercent)
+        scrollAreaLeft = static_cast<int>(viewport.x + 20); // (viewport.w*scrollActivationPercent)
     }
 }
 
