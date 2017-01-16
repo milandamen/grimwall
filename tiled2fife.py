@@ -2,7 +2,7 @@
 
 import xml.etree.ElementTree as ET
 
-levelname = "level3"
+levelname = "level2"
 namespace = "grimwall"
 tilt = "60"
 rotation = "45"
@@ -139,4 +139,4 @@ camera.set("ref_cell_height", ref_cell_height)
 
 indent(fiferoot)
 fifetree = ET.ElementTree(fiferoot)
-fifetree.write("assets/maps/level3_test_with_towers.xml", encoding="ascii", xml_declaration=True)
+fifetree.write("assets/maps/level2_test.xml", encoding="ascii", xml_declaration=True)
