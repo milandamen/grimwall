@@ -158,6 +158,7 @@ public:
      */
     std::vector<UnitManager<ATower>*> loadTowers() override;
 
+    void setInstanceAction(std::string name, std::string action, std::string layerName) override;
     bool instanceExists(std::string name, std::string layerName) override;
     double getInstanceX(std::string name, std::string layerName) override;
     double getInstanceY(std::string name, std::string layerName) override;
@@ -207,6 +208,15 @@ public:
      */
     void tick() override;
 
+    /**
+     * Play music
+     */
+    void playMusic(std::string asset) override;
+
+    /**
+     * Play sound effect
+     */
+    void playSoundEffect(std::string asset) override;
 };
 
 #endif

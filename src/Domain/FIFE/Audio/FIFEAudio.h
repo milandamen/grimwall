@@ -1,31 +1,44 @@
 #ifndef GRIMWALL_FIFEAUDIO_H
 #define GRIMWALL_FIFEAUDIO_H
 
+#include<stdio.h>
+#include<cstdlib>
+#include<iostream>
+#include<string>
+#include<fstream>
+#include<dirent.h>
+
 #include <audio/soundclipmanager.h>
 #include <audio/soundmanager.h>
 #include <audio/soundclip.h>
 #include <audio/soundemitter.h>
 #include <loaders/native/audio/ogg_loader.h>
+#include <boost/filesystem.hpp>
+#include <boost/algorithm/string.hpp>
+
+namespace fs = boost::filesystem;
 
 class FIFEAudio {
 private:
-    FIFE::SoundClipManager* soundClipManager;
-    FIFE::SoundManager* soundManager;
-    FIFE::SoundEmitter* soundEmitter;
+    FIFE::SoundClipManager* musicSoundClipManager;
+    FIFE::SoundManager* musicSoundManager;
+    FIFE::SoundEmitter* emitter;
     FIFE::OggLoader* oggLoader;
 
-    bool canPlay;
+    std::map<std::string, FIFE::SoundEmitter*> *musicMap;
+    std::map<std::string, FIFE::SoundEmitter*> *effectMap;
 
-    void playMusic();
+    std::map<std::string, FIFE::SoundEmitter*>* loadMusicMaps(std::string musicType);
 public:
-    FIFEAudio(FIFE::SoundClipManager* soundClipManager, FIFE::SoundManager* soundManager);
+    FIFEAudio(FIFE::SoundClipManager* musicSoundClipManager, FIFE::SoundManager* musicSoundManager);
     ~FIFEAudio();
 
-    //set volume, enable/disable music
     void setVolume(int volume);
-    void disableMusic();
-    void enableMusic();
-    void setMusic(std::string asset);
+    void playMusic(std::string asset);
+    void playSoundEffect(std::string asset);
+    void releaseMap(std::map<std::string, FIFE::SoundEmitter *> *map);
+    FIFE::SoundEmitter* getSoundEffect(std::string soundName);
+    FIFE::SoundEmitter* getSoundClip(std::string soundName);
 };
 
 

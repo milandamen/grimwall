@@ -2,6 +2,7 @@
 #define GRIMWALL_IUNIT_H
 
 #include <iostream>
+#include <functional>
 
 class IUnit {
 public:
@@ -14,6 +15,7 @@ public:
     virtual double getSpeed() = 0;
     virtual int getVisibility() = 0;
     virtual void receiveDamage(int power) = 0;
+    virtual void setInvincible(bool invincible) = 0;
 
     virtual double getX() = 0;
     virtual void setX(double x) = 0;
@@ -23,7 +25,10 @@ public:
     virtual void setNext(IUnit *next) = 0;
     virtual void setPrevious(IUnit *previous) = 0;
 
+    virtual bool attack() = 0;
+
     virtual void tick() = 0;
+    virtual void setStatsListener(std::function<void()> delegate) = 0;
 };
 
 

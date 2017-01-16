@@ -42,6 +42,11 @@ void BuffDecorator::receiveDamage(int power) {
     this->next->receiveDamage(power);
 }
 
+void BuffDecorator::setInvincible(bool invincible)
+{
+    this->next->setInvincible(invincible);
+}
+
 double BuffDecorator::getX() {
     return this->next->getX();
 }
@@ -66,6 +71,10 @@ void BuffDecorator::setPrevious(IUnit *previous) {
     this->previous = previous;
 }
 
+bool BuffDecorator::attack() {
+    return this->next->attack();
+}
+
 void BuffDecorator::tick() {
     this->next->tick();
 
@@ -74,6 +83,12 @@ void BuffDecorator::tick() {
         // if the buff has expired, detach the buff from the linked list and self destruct
         this->next->setPrevious(this->previous);
         this->previous->setNext(this->next);
+        this->updateStatsListener();
         delete this;
     }
+}
+
+void BuffDecorator::setStatsListener(std::function<void()> delegate) {
+    this->updateStatsListener = delegate;
+    this->next->setStatsListener(delegate);
 }

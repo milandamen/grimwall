@@ -1,7 +1,7 @@
 #include "FIFEFacade.h"
 
 FIFEFacade::FIFEFacade(IGame* game)
-    : game{game}
+        : game{game}
 {
     this->engine = new FIFE::Engine();
     this->fifeChan = new FIFEChan(this->engine);
@@ -15,7 +15,7 @@ FIFEFacade::FIFEFacade(IGame* game)
     settings.setScreenHeight(768);
     settings.setDefaultFontGlyphs("abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789.,!?-+/():;%&amp;`'*#=[]\"");
     settings.setDefaultFontPath(defaultFontPath.string());
-    
+
     // If you want logging from the engine, uncomment this code:
 //     FIFE::LogManager* logManager {engine->getLogManager()};
 //     logManager->setLogToPrompt(true);
@@ -101,7 +101,7 @@ void FIFEFacade::init()
     this->fifeChan->init();
     //initialize the audio
     this->fifeAudio = new FIFEAudio(engine->getSoundClipManager(), engine->getSoundManager());
-
+    this->fifeAudio->playMusic("intro");
     this->initInput();
 
     this->engine->getEventManager()->addSdlEventListener(this->fifeChan->getGuiManager());
@@ -117,10 +117,10 @@ void FIFEFacade::loadMap(std::string path)
         this->engine->getRenderBackend())
     {
         // create the default loader for the FIFE map format
-        //FIFE::DefaultMapLoader* mapLoader = FIFE::createDefaultMapLoader(engine->getModel(), engine->getVFS(), 
+        //FIFE::DefaultMapLoader* mapLoader = FIFE::createDefaultMapLoader(engine->getModel(), engine->getVFS(),
         //  engine->getImagePool(), engine->getAnimationPool(), engine->getRenderBackend());
         FIFE::MapLoader* mapLoader = new FIFE::MapLoader(this->engine->getModel(), this->engine->getVFS(),
-            this->engine->getImageManager(), this->engine->getRenderBackend());
+                                                         this->engine->getImageManager(), this->engine->getRenderBackend());
 
         fs::path mapPath(path);
 
@@ -170,13 +170,30 @@ void FIFEFacade::render()
 int FIFEFacade::getFPS()
 {
     if (this->engine == nullptr || !this->pumpingInitialized) { return 0; }
-    
+
     return static_cast<int>(1000/this->engine->getTimeManager()->getAverageFrameTime());
 }
 
 int FIFEFacade::getTime()
 {
     return engine->getTimeManager()->getTime();
+}
+
+// Function to animate an instance only once
+void FIFEFacade::setInstanceAction(std::string name, std::string action, std::string layerName = "unitLayer") {
+    // Initial checks if we can actually perform an animation on the instance
+    if (map) {
+        FIFE::Layer *layer = map->getLayer(layerName);
+
+        if (layer) {
+            FIFE::Instance *instance = layer->getInstance(name);
+
+            if (instance) {
+                // End of checks, now perform the animation.
+                instance->actOnce(action);
+            }
+        }
+    }
 }
 
 bool FIFEFacade::instanceExists(std::string name, std::string layerName = "unitLayer") {
@@ -340,4 +357,13 @@ std::vector<UnitManager<ATower>*> FIFEFacade::loadTowers()
     }
 
     return towers;
+}
+
+void FIFEFacade::playMusic(std::string asset) {
+    fifeAudio->playMusic(asset);
+}
+
+void FIFEFacade::playSoundEffect(std::string asset) {
+    fifeAudio->playSoundEffect(asset);
+
 }

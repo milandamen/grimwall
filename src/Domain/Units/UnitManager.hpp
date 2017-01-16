@@ -12,9 +12,12 @@ class UnitManager : public IUnit {
 private:
     UnitType* base {nullptr};
     IUnit* unit {nullptr};
+protected:
+    std::function<void()> updateStatsListener = [](){};
 public:
     UnitManager(UnitType* unit);
     ~UnitManager();
+
     std::string getName() override;
     double getReach() override;
     int getAttackDelay() override;
@@ -23,6 +26,7 @@ public:
     double getSpeed() override;
     int getVisibility() override;
     void receiveDamage(int power) override;
+    void setInvincible(bool invincible) override;
 
     double getX() override;
     void setX(double x) override;
@@ -32,12 +36,16 @@ public:
     void setNext(IUnit *next) override;
     void setPrevious(IUnit *previous) override;
 
+    bool attack() override;
+
     void tick() override;
 
     UnitType* getBase();
     IUnit* getUnit();
 
     void buff(BuffDecorator* decorator);
+
+    void setStatsListener(std::function<void()> delegate) override;
 };
 
 template <typename UnitType>
@@ -93,6 +101,11 @@ void UnitManager<UnitType>::receiveDamage(int power) {
 }
 
 template <typename UnitType>
+void UnitManager<UnitType>::setInvincible(bool invincible) {
+    base->setInvincible(invincible);
+}
+
+template <typename UnitType>
 double UnitManager<UnitType>::getX() {
     return unit->getX();
 }
@@ -110,6 +123,11 @@ double UnitManager<UnitType>::getY() {
 template <typename UnitType>
 void UnitManager<UnitType>::setY(double y) {
     unit->setY(y);
+}
+
+template <typename UnitType>
+bool UnitManager<UnitType>::attack() {
+    return unit->attack();
 }
 
 template <typename UnitType>
@@ -139,6 +157,14 @@ template <typename UnitType>
 void UnitManager<UnitType>::buff(BuffDecorator *decorator) {
     this->unit = decorator;
     this->unit->setPrevious(this);
+
+    this->updateStatsListener();
+}
+
+template <typename UnitType>
+void UnitManager<UnitType>::setStatsListener(std::function<void()> delegate) {
+    this->updateStatsListener = delegate;
+    this->unit->setStatsListener(delegate);
 }
 
 

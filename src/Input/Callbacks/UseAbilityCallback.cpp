@@ -10,5 +10,6 @@ void UseAbilityCallback::execute() {
     if (!this->shouldExecute())
         return;
 
-    this->game->getHero()->getBase()->executeAbility(this->ability);
+    if (this->game->getHero()->getBase()->executeAbility(this->ability))
+        EngineFacade::engine()->setInstanceAction(game->getHero()->getName(), "ability");
 }

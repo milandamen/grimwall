@@ -10,6 +10,8 @@ private:
 protected:
     int duration;
     int time;
+
+    std::function<void()> updateStatsListener = [](){};
 public:
     BuffDecorator(IUnit *next, int duration);
     ~BuffDecorator();
@@ -22,6 +24,7 @@ public:
     double getSpeed();
     int getVisibility();
     void receiveDamage(int power);
+    void setInvincible(bool invincible);
 
     double getX();
     void setX(double x);
@@ -31,7 +34,11 @@ public:
     void setNext(IUnit *next);
     void setPrevious(IUnit *previous);
 
+    bool attack() override;
+
     void tick() override ;
+
+    void setStatsListener(std::function<void()> delegate) override;
 };
 
 

@@ -14,6 +14,7 @@ protected:
     int attackDelay;
     int power;
     int hitPoints;
+    bool invincible {false};
     double speed;
     int visibility;
 
@@ -21,6 +22,10 @@ protected:
     double y{0};
 
     int timeLastAttack {0};
+
+    int attackWait{0};
+
+    std::function<void()> updateStatsListener = [](){};
 public:
     AUnit(std::string name, double reach, int attackDelay, int power, int hitPoints, double speed,
     int visibility);
@@ -34,6 +39,7 @@ public:
     virtual double getSpeed();
     virtual int getVisibility();
     virtual void receiveDamage(int power);
+    virtual void setInvincible(bool invincible);
 
     double getX() override;
     void setX(double x) override;
@@ -43,7 +49,10 @@ public:
     void setNext(IUnit *next);
     void setPrevious(IUnit *previous);
 
+    bool attack() override;
+
     virtual void tick() override;
+    void setStatsListener(std::function<void()> delegate) override;
 
     void setTimeLastAttack(int time);
     int getTimeLastAttack();

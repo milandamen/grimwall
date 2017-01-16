@@ -114,6 +114,7 @@ public:
      */
     virtual void removeInstance(std::string instanceName, std::string layerName = "unitLayer") = 0;
 
+    virtual void setInstanceAction(std::string name, std::string action, std::string layerName = "unitLayer") = 0;
     virtual bool instanceExists(std::string name, std::string layerName = "unitLayer") = 0;
     virtual double getInstanceX(std::string name, std::string layerName = "unitLayer") = 0;
     virtual double getInstanceY(std::string name, std::string layerName = "unitLayer") = 0;
@@ -133,6 +134,15 @@ public:
      */
     virtual std::vector<UnitManager<ATower>*> loadTowers() = 0;
 
+    /**
+     * Play music
+     */
+    virtual void playMusic(std::string asset) = 0;
+
+    /*
+     * Play sound effect
+     */
+    virtual void playSoundEffect(std::string asset) = 0;
 };
 
 #endif

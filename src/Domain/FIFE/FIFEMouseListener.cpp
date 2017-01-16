@@ -33,6 +33,8 @@ void FIFEMouseListener::setCamera(FIFECamera* camera) {
 }
 
 void FIFEMouseListener::mouseReleased(FIFE::MouseEvent& evt) {
+
+
     // only activate the move action if the mouse was pressed and released without dragging
     if (evt.getButton() == FIFE::MouseEvent::RIGHT && prevEventType != FIFE::MouseEvent::DRAGGED)
     {
@@ -44,6 +46,7 @@ void FIFEMouseListener::mouseReleased(FIFE::MouseEvent& evt) {
 }
 
 void FIFEMouseListener::mouseLeftButtonPressed(FIFE::MouseEvent &evt) {
+    EngineFacade::engine()->playSoundEffect("click");
     EngineFacade::engine()->move(this->game->getHero()->getName(), "unitLayer", evt.getX(), evt.getY(), this->game->getHero()->getSpeed());
     setPreviousMouseEvent(evt.getType());
 }

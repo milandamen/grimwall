@@ -9,7 +9,6 @@ FIFEChan::FIFEChan(FIFE::Engine* engine)
 
 FIFEChan::~FIFEChan()
 {
-    delete this->guimanager;
 }
 
 void FIFEChan::init()
