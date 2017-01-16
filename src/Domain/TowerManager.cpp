@@ -89,7 +89,9 @@ void TowerManager::tick() {
                     std::cout << "Hero hp: " << this->hero->getHitPoints() << std::endl;
                     std::cout << "Hero mana: " << this->hero->getBase()->getMana() << std::endl;
                     EngineFacade::engine()->setInstanceAction(tower->getBase()->getId(),"attack", "towerLayer");
-                }
+                } else
+                    EngineFacade::engine()->setInstanceAction(tower->getBase()->getId(),"stand", "towerLayer");
+
             }
             else if(unit)
             {
@@ -103,7 +105,8 @@ void TowerManager::tick() {
 
                     std::cout << "Unit hp: " << unit->getHitPoints() << std::endl;
                     EngineFacade::engine()->setInstanceAction(tower->getBase()->getId(),"attack", "towerLayer");
-                }
+                } else
+                    EngineFacade::engine()->setInstanceAction(tower->getBase()->getId(),"stand", "towerLayer");
             }
         }
     }
