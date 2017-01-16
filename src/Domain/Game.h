@@ -14,18 +14,9 @@
 #include "SaveGame/SaveGameManager.h"
 #include "UnitFactory.h"
 #include "TowerManager.h"
+#include "../GUI/GUIRepo.h"
 
 #include <vector>
-
-#include "../GUI/GUIRepo.h"
-#include "../GUI/Screen/ScreenMainMenu.h"
-#include "../GUI/Screen/ScreenSelectHero.h"
-#include "../GUI/Screen/ScreenSelectLevel.h"
-#include "../GUI/Screen/ScreenGameOver.h"
-#include "../GUI/Screen/ScreenWon.h"
-#include "../GUI/Screen/ScreenOptions.h"
-#include "../GUI/Screen/ScreenPause.h"
-#include "../GUI/Screen/ScreenGame.h"
 
 
 class Game : public IGame {

@@ -20,7 +20,14 @@ ScreenMainMenu::ScreenMainMenu(IGame* game, AGUIManager* manager)
         this->game->setUI("Options");
     });
 
-    this->btnExit = manager->addImageButton("", "assets/gui/exitMenuItem.png", 172, 550, 680, 100);
+    this->btnOptions = manager->addImageButton("", "assets/gui/btnCredits.png", 172, 550, 680, 100);
+    this->btnOptions->setForegroundColor(255, 255, 255, 255);
+    this->btnOptions->setBackgroundColor(0, 0, 0, 0);
+    this->btnOptions->onClick([&](){
+        this->game->setUI("Credits");
+    });
+
+    this->btnExit = manager->addImageButton("", "assets/gui/exitMenuItem.png", 172, 650, 680, 100);
     this->btnExit->setForegroundColor(255, 255, 255, 255);
     this->btnExit->setBackgroundColor(0, 0, 0, 0);
     this->btnExit->onClick([&](){

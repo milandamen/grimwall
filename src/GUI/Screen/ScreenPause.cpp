@@ -16,6 +16,11 @@ ScreenPause::ScreenPause(IGame *game, AGUIManager *manager)
         system("firefox https://www.linux.com/");
     });
 
+    this->btnHelp = manager->addImageButton("", "assets/gui/btnHelp.png", 213, 400, 600, 80);
+    this->btnHelp->onClick([&]() {
+        this->game->setUI("Help");
+    });
+
     this->btnReturn = manager->addImageButton("", "assets/gui/settingReturn.png", 363, 600, 300, 80);
     this->btnReturn->onClick([&]() {
         this->game->setUI("Game");
@@ -27,5 +32,6 @@ ScreenPause::~ScreenPause()
 {
     delete this->fog;
     delete this->btnAd;
+    delete this->btnHelp;
     delete this->btnReturn;
 }

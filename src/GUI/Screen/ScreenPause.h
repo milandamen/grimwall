@@ -17,6 +17,7 @@ private:
 
     GUIWidgetContainer * fog {nullptr};
     GUIWidgetImageButton* btnAd {nullptr};
+    GUIWidgetImageButton* btnHelp {nullptr};
     GUIWidgetImageButton* btnReturn {nullptr};
 
 public:
