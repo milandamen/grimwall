@@ -3,8 +3,10 @@
 
 AUnit::AUnit(std::string name, double reach, int attackDelay, int power, int hitPoints, double speed,
              int visibility)
-        : name{name}, reach{reach}, attackDelay{attackDelay}, power{power}, hitPoints{hitPoints}, speed{speed}, visibility{visibility}
+        : name{name}, reach{reach}, power{power}, hitPoints{hitPoints}, speed{speed}, visibility{visibility}
 {
+    //convert time in ms to nr of ticks @ 60fps
+    this->attackDelay = ((attackDelay/1000)*60);
 }
 
 AUnit::~AUnit() {
