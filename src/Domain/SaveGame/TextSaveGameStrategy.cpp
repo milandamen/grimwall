@@ -53,7 +53,7 @@ SaveGame* TextSaveGameStrategy::load(std::string file)
     {
         saveGame->lastUnlockedLevel = std::stoi(lines.at(0));
         
-        if (saveGame->lastUnlockedLevel == 0)
+        if (saveGame->lastUnlockedLevel == "level0")
         {
             std::cout << "The savegame you are trying to open is corrupt: " << file << std::endl;
             return nullptr;

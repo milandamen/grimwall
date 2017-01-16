@@ -13,7 +13,7 @@ ScreenPause::ScreenPause(IGame *game, AGUIManager *manager)
     });
 
     this->btnSave = manager->addButton("Save Game", 212, 200);
-    this->btnSave->setWidth(400);
+    this->btnSave->setWidth(600);
     this->btnSave->setHeight(125);
     this->btnSave->onClick([&](){
         this->game->saveGame();

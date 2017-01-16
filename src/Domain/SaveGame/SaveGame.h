@@ -12,7 +12,7 @@ private:
     ISaveGameManager* iSaveGameManager {nullptr};
 public:
     std::string file {""};
-    int lastUnlockedLevel {1};
+    std::string lastUnlockedLevel {"level1"};
     std::string lastUsedHero {"Dralas"};
     
     SaveGame(ISaveGameManager* iSaveGameManager);
