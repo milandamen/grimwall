@@ -21,8 +21,6 @@ protected:
     double x{0};
     double y{0};
 
-    int timeLastAttack {0};
-
     int attackWait{0};
 
     std::function<void()> updateStatsListener = [](){};
@@ -41,6 +39,7 @@ public:
     virtual void receiveDamage(int power);
     virtual void setInvincible(bool invincible);
     virtual std::vector<std::string> getBuffs();
+    virtual void setInvisible(bool invisible);
 
     double getX() override;
     void setX(double x) override;
@@ -51,12 +50,10 @@ public:
     void setPrevious(IUnit *previous);
 
     bool attack() override;
+    bool canAttack() override;
 
     virtual void tick() override;
     void setStatsListener(std::function<void()> delegate) override;
-
-    void setTimeLastAttack(int time);
-    int getTimeLastAttack();
 };
 
 

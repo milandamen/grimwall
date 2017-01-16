@@ -27,6 +27,7 @@ public:
     void receiveDamage(int power);
     void setInvincible(bool invincible);
     std::vector<std::string> getBuffs();
+    void setInvisible(bool invisible);
 
     double getX();
     void setX(double x);
@@ -37,6 +38,8 @@ public:
     void setPrevious(IUnit *previous);
 
     bool attack() override;
+
+    bool canAttack() override;
 
     void tick() override ;
 

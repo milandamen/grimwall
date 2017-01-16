@@ -18,6 +18,7 @@ public:
     virtual void receiveDamage(int power) = 0;
     virtual void setInvincible(bool invincible) = 0;
     virtual std::vector<std::string> getBuffs() = 0;
+    virtual void setInvisible(bool invisible) = 0;
 
     virtual double getX() = 0;
     virtual void setX(double x) = 0;
@@ -28,6 +29,7 @@ public:
     virtual void setPrevious(IUnit *previous) = 0;
 
     virtual bool attack() = 0;
+    virtual bool canAttack() = 0;
 
     virtual void tick() = 0;
     virtual void setStatsListener(std::function<void()> delegate) = 0;
