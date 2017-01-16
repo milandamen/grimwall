@@ -1,6 +1,5 @@
-#include <tgmath.h>
 #include "TowerManager.h"
-#include "UnitFactory.h"
+
 
 TowerManager::TowerManager()
 {}
@@ -89,7 +88,9 @@ void TowerManager::tick() {
 
                     std::cout << "Hero hp: " << this->hero->getHitPoints() << std::endl;
                     std::cout << "Hero mana: " << this->hero->getBase()->getMana() << std::endl;
-                }
+                    EngineFacade::engine()->setInstanceAction(tower->getBase()->getId(),"attack", "towerLayer");
+                } else
+                    EngineFacade::engine()->setInstanceAction(tower->getBase()->getId(),"stand", "towerLayer");
 
             }
             else if(unit)
@@ -103,8 +104,9 @@ void TowerManager::tick() {
                     unit->receiveDamage(tower->getPower());
 
                     std::cout << "Unit hp: " << unit->getHitPoints() << std::endl;
-                }
-
+                    EngineFacade::engine()->setInstanceAction(tower->getBase()->getId(),"attack", "towerLayer");
+                } else
+                    EngineFacade::engine()->setInstanceAction(tower->getBase()->getId(),"stand", "towerLayer");
             }
         }
     }

@@ -1,9 +1,15 @@
-<?fife type="atlas"?>
-<atlas name="tower.png" namespace="grimwall" width="98" height="240">
-	<image source="tower.png" xpos="0" ypos="0" width="98" height="240"/>
-</atlas>
-
-<object id="tower" namespace="grimwall" blocking="1" static="1">
-	<image source="tower.png" direction="0" />
+<?fife type="object"?>
+<object blocking="1" id="tower" namespace="grimwall" static="0">
+	<action id="stand">
+		<animation atlas="tower.png" xpos="0" ypos="0"  width="98" height="240">
+			<direction delay="2000" dir="0" frames="7"/>
+		</animation>
+	</action>
+	<action id="attack">
+		<animation atlas="tower_atk_sheet.png" width="98" height="240">
+			<direction delay="130" dir="0" frames="7"/>
+		</animation>
+	</action>
 </object>
+
 

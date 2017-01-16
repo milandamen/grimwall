@@ -16,7 +16,7 @@ void AttackCallback::execute() {
         int power = game->getHero()->getPower();
 
         // Commence the attack animation on the unit.
-        EngineFacade::engine()->setInstanceAction(game->getHero()->getName(), "attack");
+        EngineFacade::engine()->setInstanceAction(game->getHero()->getName(), "attack", "unitLayer");
 
         std::vector<UnitManager<ATower> *> *towers = game->getTowers();
         UnitManager<ATower> *tower;

@@ -2,21 +2,21 @@
 
 FIFEAudio::FIFEAudio(FIFE::SoundClipManager* musicSoundClipManager, FIFE::SoundManager* musicSoundManager)
         : musicSoundClipManager{musicSoundClipManager}, musicSoundManager{musicSoundManager}{
-    oggLoader = new FIFE::OggLoader();
+    this->oggLoader = new FIFE::OggLoader();
 
     //Music
-    musicSoundManager->init();
+    this->musicSoundManager->init();
 
-    musicMap = loadMusicMaps("assets/sounds/music/");
-    effectMap = loadMusicMaps("assets/sounds/effects/");
+    this->musicMap = loadMusicMaps("assets/sounds/music/");
+    this->effectMap = loadMusicMaps("assets/sounds/effects/");
 }
 
 FIFEAudio::~FIFEAudio() {
-    releaseMap(musicMap);
-    releaseMap(effectMap);
-    delete musicMap;
-    delete effectMap;
-    delete oggLoader;
+    this->releaseMap(musicMap);
+    this->releaseMap(effectMap);
+    delete this->musicMap;
+    delete this->effectMap;
+    delete this->oggLoader;
 }
 
 std::map<std::string, FIFE::SoundEmitter*>* FIFEAudio::loadMusicMaps(std::string musicType) {
@@ -32,9 +32,9 @@ std::map<std::string, FIFE::SoundEmitter*>* FIFEAudio::loadMusicMaps(std::string
 
             std::vector<std::string> strs;
             boost::split(strs, i->path().filename().string(), boost::is_any_of("."));
-            emitter = musicSoundManager->createEmitter();
-            emitter->setSoundClip(musicSoundClipManager->load(asset, oggLoader));
-            map->insert(std::make_pair(strs[0], emitter));
+            this->emitter = this->musicSoundManager->createEmitter();
+            this->emitter->setSoundClip(this->musicSoundClipManager->load(asset, this->oggLoader));
+            map->insert(std::make_pair(strs[0], this->emitter));
         }
     }
 
@@ -52,7 +52,7 @@ void FIFEAudio::releaseMap(std::map<std::string, FIFE::SoundEmitter *> *map) {
 
 void FIFEAudio::setVolume(int volume) {
     this->volume = volume;
-    musicSoundManager->setVolume(0.01 * this->volume);
+    this->musicSoundManager->setVolume(0.01 * this->volume);
 }
 
 int FIFEAudio::getVolume() {
@@ -60,38 +60,40 @@ int FIFEAudio::getVolume() {
 }
 
 FIFE::SoundEmitter* FIFEAudio::getSoundEffect(std::string soundName) {
-    return effectMap->at(soundName);
+    return this->effectMap->at(soundName);
 }
 
 FIFE::SoundEmitter* FIFEAudio::getSoundClip(std::string soundName) {
-    return musicMap->at(soundName);
+    return this->musicMap->at(soundName);
 }
 
 void FIFEAudio::playMusic(std::string asset) {
-    currentMusic = getSoundClip(asset);
-    currentMusic->play();
+    if(this->currentMusic != getSoundClip(asset)){
+        this->currentMusic = getSoundClip(asset);
+        this->currentMusic->play();
+    }
 }
 
 void FIFEAudio::playSoundEffect(std::string asset) {
-    currentEffect = getSoundEffect(asset);
-    currentEffect->play();
+    this->currentEffect = getSoundEffect(asset);
+    this->currentEffect->play();
 }
 
 void FIFEAudio::stopMusic() {
-    if(currentMusic != nullptr){
-        currentMusic->stop();
+    if(this->currentMusic != nullptr){
+        this->currentMusic->stop();
     }
 }
 
 void FIFEAudio::stopSoundEffect() {
-    if(currentEffect != nullptr) {
-        currentEffect->stop();
+    if(this->currentEffect != nullptr) {
+        this->currentEffect->stop();
     }
 }
 
 void FIFEAudio::stopAllSound() {
-    stopMusic();
-    stopSoundEffect();
+    this->stopMusic();
+    this->stopSoundEffect();
 }
 
 

@@ -11,5 +11,5 @@ void UseAbilityCallback::execute() {
         return;
 
     if (this->game->getHero()->getBase()->executeAbility(this->ability))
-        EngineFacade::engine()->setInstanceAction(game->getHero()->getName(), "ability");
+        EngineFacade::engine()->setInstanceAction(game->getHero()->getName(), "ability", "unitLayer");
 }
