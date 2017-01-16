@@ -27,6 +27,8 @@ public:
     int getVisibility() override;
     void receiveDamage(int power) override;
     void setInvincible(bool invincible) override;
+    std::vector<std::string> getBuffs() override;
+    void setInvisible(bool invisible) override;
 
     double getX() override;
     void setX(double x) override;
@@ -37,6 +39,8 @@ public:
     void setPrevious(IUnit *previous) override;
 
     bool attack() override;
+
+    bool canAttack() override;
 
     void tick() override;
 
@@ -93,6 +97,11 @@ double UnitManager<UnitType>::getSpeed() {
 template <typename UnitType>
 int UnitManager<UnitType>::getVisibility() {
     return unit->getVisibility();
+}
+
+template <typename UnitType>
+std::vector<std::string> UnitManager<UnitType>::getBuffs() {
+    return unit->getBuffs();
 }
 
 template <typename UnitType>
@@ -155,6 +164,7 @@ void UnitManager<UnitType>::tick() {
 
 template <typename UnitType>
 void UnitManager<UnitType>::buff(BuffDecorator *decorator) {
+    decorator->setNext(this->unit);
     this->unit = decorator;
     this->unit->setPrevious(this);
 
@@ -167,5 +177,14 @@ void UnitManager<UnitType>::setStatsListener(std::function<void()> delegate) {
     this->unit->setStatsListener(delegate);
 }
 
+template <typename UnitType>
+bool UnitManager<UnitType>::canAttack() {
+    return unit->canAttack();
+}
+
+template <typename UnitType>
+void UnitManager<UnitType>::setInvisible(bool invisible){
+    unit->setInvisible(invisible);
+}
 
 #endif //GRIMWALL_UNITMANAGER_H

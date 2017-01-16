@@ -1,7 +1,7 @@
 
 #include "InfHealthCallback.h"
 
-InfHealthCallback::InfHealthCallback(IGame *game)
+InfHealthCallback::InfHealthCallback(IGame* game)
     : KeypressCallback(game, 0)
 {}
 

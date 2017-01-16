@@ -1,10 +1,8 @@
 #include "BuffDecorator.h"
 
-BuffDecorator::BuffDecorator(IUnit *next, int duration)
-    : next{next}, duration{duration}
-{
-    this->next->setPrevious(this);
-}
+BuffDecorator::BuffDecorator(std::string name, int duration)
+    :name{name}, duration{duration}
+{}
 
 BuffDecorator::~BuffDecorator() { }
 
@@ -47,6 +45,12 @@ void BuffDecorator::setInvincible(bool invincible)
     this->next->setInvincible(invincible);
 }
 
+std::vector<std::string> BuffDecorator::getBuffs() {
+    std::vector<std::string> buffs = this->next->getBuffs();
+    buffs.push_back(this->name);
+    return buffs;
+}
+
 double BuffDecorator::getX() {
     return this->next->getX();
 }
@@ -65,6 +69,7 @@ void BuffDecorator::setY(double y) {
 
 void BuffDecorator::setNext(IUnit *next) {
     this->next = next;
+    this->next->setPrevious(this);
 }
 
 void BuffDecorator::setPrevious(IUnit *previous) {
@@ -91,4 +96,12 @@ void BuffDecorator::tick() {
 void BuffDecorator::setStatsListener(std::function<void()> delegate) {
     this->updateStatsListener = delegate;
     this->next->setStatsListener(delegate);
+}
+
+bool BuffDecorator::canAttack() {
+    return this->next->canAttack();
+}
+
+void BuffDecorator::setInvisible(bool invisible) {
+    this->next->setInvisible(invisible);
 }

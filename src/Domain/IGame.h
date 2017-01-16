@@ -7,11 +7,14 @@
 #include "Units/Towers/ATower.h"
 #include "Units/Troups/TroupManager.h"
 #include "SaveGame/ISaveGameManager.h"
+#include "ILevel.h"
 
 class TroupManager;
 
 class IGame{
 public:
+    virtual void loadLevel(std::string levelName) = 0;
+    virtual ILevel* getCurrentLevel() = 0;
     virtual void setMap(std::string path) = 0;
     virtual bool isPaused() = 0;
     virtual void setPaused(bool paused) = 0;
@@ -26,6 +29,7 @@ public:
     virtual void setSaveGameManager(ISaveGameManager* saveGameManager) = 0;
     virtual void saveGame() = 0;
     virtual void loadGame(std::string fileName) = 0;
+    virtual void setSpeedHack(bool enabled) = 0;
 };
 
 #endif

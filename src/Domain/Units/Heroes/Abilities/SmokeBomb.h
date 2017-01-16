@@ -5,14 +5,15 @@
 #include <vector>
 #include "../AAbility.h"
 #include "../../IUnit.h"
+#include "../AHero.h"
+#include "../../UnitManager.hpp"
 
-class SmokeBomb : AAbility{
+class SmokeBomb : public AAbility{
 
 private:
-    std::vector<IUnit*> towers;
-
+    UnitManager<AHero>* hero;
 public:
-    SmokeBomb(std::vector<IUnit*> towers);
+    SmokeBomb(UnitManager<AHero>* hero);
 
     int execute();
 };

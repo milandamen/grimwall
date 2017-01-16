@@ -4,14 +4,14 @@
 
 #include "../AHero.h"
 #include "../AAbility.h"
+#include "../../UnitManager.hpp"
 
-class EvasiveManeuvers : AAbility{
+class EvasiveManeuvers : public AAbility{
 
 private:
-
-
+    UnitManager<AHero>* hero;
 public:
-    EvasiveManeuvers();
+    EvasiveManeuvers(UnitManager<AHero>* hero);
 
     int execute();
 

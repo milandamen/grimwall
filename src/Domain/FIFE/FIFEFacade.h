@@ -55,6 +55,7 @@ private:
 
     FIFEMouseListener* mouseListener {nullptr};
 
+    bool initialized {false};
     bool pumpingInitialized {false};
     
     void initView();
@@ -219,8 +220,8 @@ public:
     void playSoundEffect(std::string asset) override;
 
     /*
- * Stop playing sound effect
- */
+     * Stop playing sound effect
+     */
     virtual void stopSoundEffect() override;
 
     /*
@@ -232,6 +233,23 @@ public:
      * Stop playing music
      */
     virtual void stopMusic() override;
+
+    /**
+     * Gets the current volume
+     */
+    int getVolume() override;
+
+    /**
+     * Change the volume of the player
+     * @param volume The volume to be set
+     */
+    void setVolume(int volume) override;
+
+    /**
+     * Get the spawnLocation for the hero
+     */
+    std::vector<int> getHerospawnPoint() override;
+
 };
 
 #endif

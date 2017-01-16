@@ -2,7 +2,7 @@
 
 import xml.etree.ElementTree as ET
 
-levelname = "level1_remake"
+levelname = "level2"
 namespace = "grimwall"
 tilt = "60"
 rotation = "45"
@@ -22,6 +22,7 @@ for child in root:
     if child.tag == "tileset":
         firstgid = child.attrib["firstgid"]
         if child.attrib["tilecount"] == "1":
+            print(child[0].attrib)
             source = child[0].attrib["source"][:-4] + ".xml"
             sourceSplitted = source.split("/")
             name = sourceSplitted[len(sourceSplitted)-1][:-4]
@@ -115,8 +116,6 @@ for layer in layers:
             t.set("y", str(startY + y))
             t.set("z", "0")
             t.set("r", "0")
-            t.set("blocking", "1")
-            t.set("stackpos", "0")
         
         count += 1
         x = width - int(count / width)
@@ -132,10 +131,9 @@ camera.set("ref_layer_id", layers[0][0])
 camera.set("zoom", "1")
 camera.set("tilt", tilt)
 camera.set("rotation", rotation)
-camera.set("viewport", viewport_x + "," + viewport_y + "," + viewport_width + "," + viewport_height)
 camera.set("ref_cell_width", ref_cell_width)
 camera.set("ref_cell_height", ref_cell_height)
 
 indent(fiferoot)
 fifetree = ET.ElementTree(fiferoot)
-fifetree.write("assets/maps/level1_remake_conv.xml", encoding="ascii", xml_declaration=True)
+fifetree.write("assets/maps/level2_test.xml", encoding="ascii", xml_declaration=True)

@@ -1,7 +1,7 @@
 #include "DeathStrikeBuff.h"
 
-DeathStrikeBuff::DeathStrikeBuff(IUnit *inner, int multiplier)
-        : BuffDecorator(inner, 300), multiplier{multiplier}
+DeathStrikeBuff::DeathStrikeBuff(int multiplier)
+        : BuffDecorator("Death Strike", 300), multiplier{multiplier}
 {}
 
 int DeathStrikeBuff::getPower()

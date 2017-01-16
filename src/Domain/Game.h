@@ -15,6 +15,10 @@
 #include "UnitFactory.h"
 #include "TowerManager.h"
 #include "../GUI/GUIRepo.h"
+#include "Levels/Level1.h"
+#include "Levels/Level2.h"
+#include "Levels/Level3.h"
+#include "Units/Heroes/Abilities/DeathStrike.h"
 
 #include <vector>
 
@@ -48,6 +52,8 @@ private:
      * Value that denotes the last time the FPS was updated
      */
     int lastTime {};
+    
+    bool speedHackEnabled {false};
 
     /**
      * Value that denotes the score of the game
@@ -64,6 +70,9 @@ private:
 
     TowerManager towerManager;
 
+    ILevel* currentLevel {nullptr};
+    std::map<std::string, ILevel*> levels;
+
     void initInput();
     void updateFPS();
     void loadTowers();
@@ -76,6 +85,8 @@ public:
     Game();
     ~Game();
     virtual TroupManager* getTroupManager() override;
+    virtual void loadLevel(std::string levelName) override;
+    virtual ILevel* getCurrentLevel() override;
     virtual void setMap(std::string path) override;
     virtual bool isPaused() override;
     virtual void setPaused(bool paused) override;
@@ -89,6 +100,7 @@ public:
     virtual void setSaveGameManager(ISaveGameManager* saveGameManager) override;
     virtual void loadGame(std::string fileName) override;
     virtual void saveGame() override;
+    virtual void setSpeedHack(bool enabled) override;
 };
 
 

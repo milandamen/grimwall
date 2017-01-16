@@ -51,7 +51,12 @@ void FIFEAudio::releaseMap(std::map<std::string, FIFE::SoundEmitter *> *map) {
 }
 
 void FIFEAudio::setVolume(int volume) {
-    musicSoundManager->setVolume(0.01 * volume);
+    this->volume = volume;
+    musicSoundManager->setVolume(0.01 * this->volume);
+}
+
+int FIFEAudio::getVolume() {
+    return this->volume;
 }
 
 FIFE::SoundEmitter* FIFEAudio::getSoundEffect(std::string soundName) {

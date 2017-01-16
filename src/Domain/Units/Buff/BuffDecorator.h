@@ -5,6 +5,7 @@
 
 class BuffDecorator : public IUnit {
 private:
+    std::string name;
     IUnit *next;
     IUnit *previous;
 protected:
@@ -13,7 +14,7 @@ protected:
 
     std::function<void()> updateStatsListener = [](){};
 public:
-    BuffDecorator(IUnit *next, int duration);
+    BuffDecorator(std::string name, int duration);
     ~BuffDecorator();
 
     std::string getName();
@@ -25,6 +26,8 @@ public:
     int getVisibility();
     void receiveDamage(int power);
     void setInvincible(bool invincible);
+    std::vector<std::string> getBuffs();
+    void setInvisible(bool invisible);
 
     double getX();
     void setX(double x);
@@ -35,6 +38,8 @@ public:
     void setPrevious(IUnit *previous);
 
     bool attack() override;
+
+    bool canAttack() override;
 
     void tick() override ;
 

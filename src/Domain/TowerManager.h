@@ -5,23 +5,29 @@
 #include "Units/UnitManager.hpp"
 #include "Units/Towers/ATower.h"
 #include "Units/Heroes/AHero.h"
+#include "Units/Troups/ATroup.h"
 #include <math.h>
+#include <iostream>
+#include <random>
 
 class TowerManager {
 
 private:
     std::vector<UnitManager<ATower>*>* towers;
-    std::vector<UnitManager<AUnit>*> friendlyUnits;
+    std::vector<UnitManager<ATroup>*>* friendlyUnits;
     UnitManager<AHero>* hero {nullptr};
+    bool speedHackEnabled {false};
+    int speedHackLastTick {};
+    std::random_device rd;
 public:
     TowerManager();
 
-    void tick(int curTime);
+    void tick();
 
     void setTowers(std::vector<UnitManager<ATower>*>* towers);
-    void setUnits(std::vector<UnitManager<AUnit>*> friendlyUnits);
+    void setUnits(std::vector<UnitManager<ATroup>*>* friendlyUnits);
     void setHero(UnitManager<AHero>* hero);
-
+    void setSpeedHack(bool enabled);
 };
 
 

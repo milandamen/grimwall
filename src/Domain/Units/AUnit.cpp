@@ -3,8 +3,10 @@
 
 AUnit::AUnit(std::string name, double reach, int attackDelay, int power, int hitPoints, double speed,
              int visibility)
-        : name{name}, reach{reach}, attackDelay{attackDelay}, power{power}, hitPoints{hitPoints}, speed{speed}, visibility{visibility}
+        : name{name}, reach{reach}, power{power}, hitPoints{hitPoints}, speed{speed}, visibility{visibility}
 {
+    //convert time in ms to nr of ticks @ 60fps
+    this->attackDelay = ((attackDelay/1000)*60);
 }
 
 AUnit::~AUnit() {
@@ -51,6 +53,11 @@ void AUnit::setInvincible(bool invincible)
     this->invincible = invincible;
 }
 
+std::vector<std::string> AUnit::getBuffs() {
+    std::vector<std::string> buffs;
+    return buffs;
+}
+
 double AUnit::getX() {
     return this->x;
 }
@@ -87,14 +94,21 @@ bool AUnit::attack() {
     return false;
 }
 
-void AUnit::setTimeLastAttack(int time) {
-    this->timeLastAttack = time;
-}
-
-int AUnit::getTimeLastAttack() {
-    return this->timeLastAttack;
-}
-
 void AUnit::setStatsListener(std::function<void()> delegate) {
     this->updateStatsListener = delegate;
+}
+
+bool AUnit::canAttack() {
+    return this->attackWait <= 0;
+}
+
+void AUnit::setInvisible(bool invisible) {
+    if(invisible)
+    {
+        this->visibility = 0;
+    }
+    else
+    {
+        this->visibility = 100;
+    }
 }
