@@ -12,7 +12,11 @@ ScreenSelectHero::ScreenSelectHero(IGame* game, AGUIManager* manager)
     this->btnDralas->onClick([&]() {
         this->game->setHero(new Dralas());
         this->game->getHero()->getBase()->addAbility(new DeathStrike(this->game->getHero()));
-        this->game->setUI("SelectLevel");
+
+        this->game->loadLevel("level1");
+        this->game->setPaused(false);
+        this->game->setUI("Game");
+        //this->game->setUI("SelectLevel");
     });
 
     this->btnHorwen = manager->addImageButton("", "assets/gui/heroHorwen.png", 375, 180, 304, 575);

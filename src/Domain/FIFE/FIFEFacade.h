@@ -249,6 +249,15 @@ public:
      */
     std::vector<int> getHerospawnPoint() override;
 
+    /**
+     * Disabled camera
+     */
+    virtual void disableCamera() override;
+
+    /**
+     * (re)Enable camera
+     */
+    virtual void enableCamera() override;
 };
 
 #endif

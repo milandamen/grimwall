@@ -24,6 +24,7 @@ void Game::init()
     this->initInput();
 
     ILevel* l = new Level1();
+    this->currentLevel = l;
     this->levels[l->getName()] = l;
     l = new Level2();
     this->levels[l->getName()] = l;
@@ -165,8 +166,11 @@ void Game::updateFPS()
 
 void Game::loadLevel(std::string levelName)
 {
+
     this->currentLevel = this->levels[levelName];
     this->setMap(this->currentLevel->getMap());
+
+    EngineFacade::engine()->enableCamera();
 
     std::vector<int> spawnPos = EngineFacade::engine()->getHerospawnPoint();
     EngineFacade::engine()->createInstance(this->getHero()->getName(), this->getHero()->getName(), spawnPos.at(0), spawnPos.at(1));

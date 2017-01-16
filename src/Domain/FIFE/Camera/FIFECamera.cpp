@@ -1,8 +1,8 @@
 #include "FIFECamera.h"
 
 FIFECamera::FIFECamera(FIFE::Map *map, FIFE::EventManager* eventManager, FIFE::TimeManager* timeManager)
-    : map{map}, eventManager{eventManager}, timeManager{timeManager} {
-    
+    : map{map}, eventManager{eventManager}, timeManager{timeManager}
+{
     zoomIncrement = 0.95;
     maxZoom = 4;
     minZoom = 0.25;
@@ -10,6 +10,7 @@ FIFECamera::FIFECamera(FIFE::Map *map, FIFE::EventManager* eventManager, FIFE::T
 
 FIFECamera::~FIFECamera()
 {
+    //this->unregisterEvent();
     delete this->cameraScroller;
     // No need to delete the rest as they will be deleted on Engine Destroy()
 }
@@ -33,9 +34,9 @@ void FIFECamera::initView() {
                 renderer->activateAllLayers(this->map);
             }
         }
+
         this->cameraScroller = new FIFECameraScroller(this->mainCamera, this->eventManager, this->timeManager);
     }
-
 }
 
 FIFE::Camera* FIFECamera::camera() const {
@@ -56,7 +57,8 @@ void FIFECamera::zoomIn() {
 }
 
 void FIFECamera::unregisterEvent() {
-    this->cameraScroller->unregisterEvent();
+    if(this->cameraScroller != nullptr)
+        this->cameraScroller->unregisterEvent();
 }
 
 void FIFECamera::zoomOut(){
@@ -73,5 +75,6 @@ void FIFECamera::zoomOut(){
 }
 
 void FIFECamera::updateLocation(int x, int y) {
-    this->cameraScroller->updateLocation(x,y);
+    if(this->cameraScroller != nullptr)
+        this->cameraScroller->updateLocation(x,y);
 }

@@ -93,8 +93,8 @@ void FIFECameraScroller::updateLocation(int x, int y)
         // register ourself as an event handler to make
         // sure we can capture if our window looses focus
         // so we don't keep scrolling in that case
-        timeManager->registerEvent(this);
-        eventManager->addSdlEventListener(this);
+        //timeManager->registerEvent(this);
+        //eventManager->addSdlEventListener(this);
         eventRegistered = true;
 
         // call our internal updater here to kick it off
