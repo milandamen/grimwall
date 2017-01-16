@@ -25,7 +25,6 @@ void FIFEMouseListener::mousePressed(FIFE::MouseEvent& evt) {
 
     if (evt.getButton() == FIFE::MouseEvent::RIGHT)
     {
-        rightMouseDown = true;
         FIFE::ScreenPoint screenPoint(evt.getX(), evt.getY());
         if(this->camera != nullptr) {
             FIFE::ExactModelCoordinate mapCoords = this->camera->camera()->toMapCoordinates(screenPoint, false);
@@ -155,6 +154,7 @@ void FIFEMouseListener::mouseDragged(FIFE::MouseEvent& evt) {
         }
         this->RdragX = evt.getX();
         this->RdragY = evt.getY();
+        rightMouseDown = true;
 
     }
 
