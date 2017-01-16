@@ -15,7 +15,7 @@ void FIFEChan::init()
 {
     this->guimanager->setDefaultFont(
             this->engine->getSettings().getDefaultFontPath(),
-            this->engine->getSettings().getDefaultFontSize(),
+            this->engine->getSettings().getDefaultFontSize() + 8,
             this->engine->getSettings().getDefaultFontGlyphs()
     );
 

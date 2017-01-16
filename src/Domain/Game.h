@@ -58,7 +58,8 @@ private:
     /**
      * Value that denotes the score of the game
      */
-    int score = 0;
+    int score {1000};
+    int scoreCount {0};
     
     /**
      * Handles mapping of key combinations to callbacks
@@ -84,6 +85,7 @@ private:
 public:
     Game();
     ~Game();
+    virtual void init () override;
     virtual TroupManager* getTroupManager() override;
     virtual void loadLevel(std::string levelName) override;
     virtual ILevel* getCurrentLevel() override;

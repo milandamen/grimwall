@@ -32,8 +32,10 @@ void ScreenWon::hasBecomeActive()
         });
     } else {
         this->btnNext->onClick([&]() {
-            this->game->setMap(next);
+            this->game->setPaused(true);
+            this->game->loadLevel(this->game->getCurrentLevel()->getNext());
             this->game->setPaused(false);
+            this->game->setUI("Game");
         });
     }
 }

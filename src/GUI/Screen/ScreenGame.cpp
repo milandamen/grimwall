@@ -14,12 +14,14 @@ ScreenGame::ScreenGame(IGame* game, AGUIManager* manager)
     this->manager->setHeight(200);
 
     this->lblHeroName = manager->createLabel("Dit is tekst A");
-    this->pgbHeroHP = manager->createContainer(200, 20);
+    this->pgbHeroHP = manager->createContainer(200, 40);
     this->pgbHeroHP->setBackgroundColor(0, 255, 0, 255);
     this->lblHeroHP = manager->createLabel("");
-    this->pgbHeroMP = manager->createContainer(200, 20);
+    this->lblHeroHP->setForegroundColor(0, 0, 0, 255);
+    this->pgbHeroMP = manager->createContainer(200, 40);
     this->pgbHeroMP->setBackgroundColor(0, 0, 255, 255);
     this->lblHeroMP = manager->createLabel("");
+    this->lblHeroMP->setForegroundColor(0, 0, 0, 255);
 
     this->lblAbilitie1Name = manager->createLabel("Abilitie Q");
     this->lblAbilitie1Key = manager->createLabel("Q");
@@ -30,36 +32,35 @@ ScreenGame::ScreenGame(IGame* game, AGUIManager* manager)
     this->lblAbilitie4Name = manager->createLabel("Abilitie R");
     this->lblAbilitie4Key = manager->createLabel("R");
 
-    this->btnPause = manager->addButton("Pause", 1024-40, 20);
-    this->btnPause->setWidth(40);
+    this->btnPause = manager->addButton("Pause", 1024-80, 100);
+    this->btnPause->setWidth(60);
     this->btnPause->setHeight(40);
     this->btnPause->onClick([&](){ this->pause(); });
 
-    this->container->addWidget(this->lblAbilitie1Name, 300, 10);
-    this->container->addWidget(this->lblAbilitie1Key, 300, 20);
-    this->container->addWidget(this->lblAbilitie2Name, 400, 10);
-    this->container->addWidget(this->lblAbilitie2Key, 400, 20);
-    this->container->addWidget(this->lblAbilitie3Name, 500, 10);
-    this->container->addWidget(this->lblAbilitie3Key, 500, 20);
-    this->container->addWidget(this->lblAbilitie4Name, 600, 10);
-    this->container->addWidget(this->lblAbilitie4Key, 600, 20);
+    this->container->addWidget(this->lblAbilitie1Name, 250, 10);
+    this->container->addWidget(this->lblAbilitie1Key, 250, 30);
+    this->container->addWidget(this->lblAbilitie2Name, 420, 10);
+    this->container->addWidget(this->lblAbilitie2Key, 420, 30);
+    this->container->addWidget(this->lblAbilitie3Name, 580, 10);
+    this->container->addWidget(this->lblAbilitie3Key, 580, 30);
+    this->container->addWidget(this->lblAbilitie4Name, 800, 10);
+    this->container->addWidget(this->lblAbilitie4Key, 800, 30);
 
     this->container->addWidget(this->lblHeroName, 10, 10);
-    this->container->addWidget(this->pgbHeroHP, 10, 30);
-    this->container->addWidget(this->lblHeroHP, 10, 30);
-    this->container->addWidget(this->pgbHeroMP, 10, 50);
-    this->container->addWidget(this->lblHeroMP, 10, 50);
+    this->container->addWidget(this->pgbHeroHP, 10, 60);
+    this->container->addWidget(this->lblHeroHP, 20, 70);
+    this->container->addWidget(this->pgbHeroMP, 10, 110);
+    this->container->addWidget(this->lblHeroMP, 20, 120);
 }
 
 ScreenGame::~ScreenGame()
 {
-    delete this->container;
     delete this->lblHeroName;
     delete this->pgbHeroHP;
     delete this->lblHeroHP;
     delete this->pgbHeroMP;
     delete this->lblHeroMP;
-
+    delete this->container;
     delete this->lblAbilitie1Name;
     delete this->lblAbilitie1Key;
     delete this->lblAbilitie2Name;
@@ -123,7 +124,7 @@ void ScreenGame::updateStats()
     int i = 0;
     for (auto& ability : this->game->getHero()->getBuffs()) {
         GUIWidgetLabel* lblBuff = manager->createLabel(ability);
-        this->container->addWidget(lblBuff, 750, 10 + (10*i));
+        this->container->addWidget(lblBuff, 250, 100 + (10*i));
         this->lblBuffs.push_back(lblBuff);
         i++;
     }

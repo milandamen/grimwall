@@ -13,8 +13,8 @@ GUIRepo::GUIRepo(IGame* game)
     this->addGUI("Pause", new ScreenPause(game, EngineFacade::engine()->createGUIManager()));
     this->addGUI("Help", new ScreenHelp(game, EngineFacade::engine()->createGUIManager()));
     this->addGUI("Credits", new ScreenCredits(game, EngineFacade::engine()->createGUIManager()));
+    this->addGUI("Highscores", new ScreenHighscores(game, EngineFacade::engine()->createGUIManager()));
     this->addGUI("Game", new ScreenGame(game, EngineFacade::engine()->createGUIManager()));
-    this->addGUI("Loading", new ScreenLoading(game, EngineFacade::engine()->createGUIManager()));
     this->addGUI("Load", new ScreenLoad(game, EngineFacade::engine()->createGUIManager()));
 }
 

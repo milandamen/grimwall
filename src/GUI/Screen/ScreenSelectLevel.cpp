@@ -21,4 +21,6 @@ ScreenSelectLevel::ScreenSelectLevel(IGame* game, AGUIManager* manager)
 }
 
 ScreenSelectLevel::~ScreenSelectLevel()
-{}
+{
+//    delete this->imgBg;
+}

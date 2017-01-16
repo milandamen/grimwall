@@ -118,12 +118,10 @@ void FIFEFacade::init()
 
 void FIFEFacade::loadMap(std::string path)
 {
-    if(this->fifeCamera != nullptr) {
-        delete this->fifeCamera;
-    }
+    if(this->pumpingInitialized)
+        this->engine->finalizePumping();
 
-    if (this->engine->getModel() && this->engine->getVFS() && this->engine->getImageManager() &&
-        this->engine->getRenderBackend())
+    if (this->engine->getModel() && this->engine->getVFS() && this->engine->getImageManager() && this->engine->getRenderBackend())
     {
         // create the default loader for the FIFE map format
         //FIFE::DefaultMapLoader* mapLoader = FIFE::createDefaultMapLoader(engine->getModel(), engine->getVFS(),
@@ -136,15 +134,15 @@ void FIFEFacade::loadMap(std::string path)
         if (mapLoader) {
             // load the map
             this->map = mapLoader->load(mapPath.string());
+            //if(this->fifeCamera != nullptr) this->fifeCamera->unregisterEvent();
             this->fifeCamera = new FIFECamera(this->map, this->engine->getEventManager(), this->engine->getTimeManager());
             this->fifeCamera->initView();
+            this->mouseListener->setCamera(this->fifeCamera);
         }
 
         // done with map loader safe to delete
         delete mapLoader;
     }
-
-    this->mouseListener->setCamera(this->fifeCamera);
 
     if (!this->pumpingInitialized)
     {
@@ -430,8 +428,16 @@ std::vector<int> FIFEFacade::getHerospawnPoint() {
     return ret;
 }
 
+void FIFEFacade::disableCamera()
+{
+    if(this->fifeCamera != nullptr) {
+        delete this->fifeCamera;
+    }
+}
+
+void FIFEFacade::enableCamera()
+{}
+
 void FIFEFacade::drawBox(double x1, double y1, double x2, double y2){
     engine->getRenderBackend()->fillRectangle(FIFE::Point(x1, y1), (x2 - x1), (y2 - y1), 100, 100, 255, 100);
 }
-
-

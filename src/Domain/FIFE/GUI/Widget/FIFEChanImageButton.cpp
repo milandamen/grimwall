@@ -95,6 +95,7 @@ void FIFEChanImageButton::setForegroundColor(int r = 0, int g = 0, int b = 0, in
 void FIFEChanImageButton::setBackgroundColor(int r = 0, int g = 0, int b = 0, int a = 255)
 {
     this->imageButton->setBackgroundColor(fcn::Color(r, g, b, a));
+    this->imageButton->setBaseColor(fcn::Color(r, g, b, a));
 }
 
 void FIFEChanImageButton::setHighlightColor(int r = 0, int g = 0, int b = 0, int a = 255)

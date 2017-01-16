@@ -6,13 +6,25 @@ Game::Game()
     EngineFacade::engine()->setRenderBackend("OpenGL");
     EngineFacade::engine()->setFPSLimit(60);
     EngineFacade::engine()->init();
+}
 
+Game::~Game() {
+    for(auto level : this->levels)
+        delete level.second;
+
+    delete this->hero;
+    this->deleteTowers();
+}
+
+void Game::init()
+{
     this->guirepo = new GUIRepo(this);
     this->setUI("MainMenu");
 
     this->initInput();
 
     ILevel* l = new Level1();
+    this->currentLevel = l;
     this->levels[l->getName()] = l;
     l = new Level2();
     this->levels[l->getName()] = l;
@@ -48,18 +60,9 @@ Game::Game()
         EngineFacade::engine()->render();
         this->curTime = EngineFacade::engine()->getTime();
     }
-    
+
     EngineFacade::destroy();
     delete this->keyboardMapper;
-}
-
-Game::~Game() {
-    for(auto level : this->levels){
-        delete level.second;
-    }
-
-    delete this->hero;
-    this->deleteTowers();
 }
 
 void Game::setMap(std::string path)
@@ -122,12 +125,17 @@ void Game::tick() {
     for(unsigned i = 0; i < this->troupManager.getTroups()->size(); ++i){
         updateLocation(this->troupManager.getTroups()->at(i), this->troupManager.getTroups()->at(i)->getName());
     }
+
     this->troupManager.tick();
+
+    if(++this->scoreCount % 60 == 0) {
+        this->scoreCount = 0;
+        this->score--;
+    }
 
     if (this->hero->getHitPoints() <= 0){
         this->lose();
-    }
-    else if (this->towers.size() <= 0) {
+    } else if (this->towers.size() <= 0) {
         this->win();
     }
 
@@ -184,8 +192,11 @@ void Game::updateFPS()
 
 void Game::loadLevel(std::string levelName)
 {
+
     this->currentLevel = this->levels[levelName];
     this->setMap(this->currentLevel->getMap());
+
+    EngineFacade::engine()->enableCamera();
 
     std::vector<int> spawnPos = EngineFacade::engine()->getHerospawnPoint();
     EngineFacade::engine()->createInstance(this->getHero()->getName(), this->getHero()->getName(), spawnPos.at(0), spawnPos.at(1));
@@ -244,6 +255,7 @@ void Game::saveGame(){
         // Fetch the hero and the level and put it into the save file.
         this->currentSave->lastUsedHero = this->getHero()->getName();
         this->currentSave->lastUnlockedLevel = this->currentLevel->getName();
+        this->currentSave->score = std::to_string(this->getCurrentScore());
 
         this->currentSave->save();
     }

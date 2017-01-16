@@ -180,6 +180,16 @@ public:
      * Stop playing music&soundEffect
      */
     virtual void stopAllMusic() = 0;
+
+    /**
+     * Disabled camera
+     */
+    virtual void disableCamera() = 0;
+
+    /**
+     * (re)Enable camera
+     */
+    virtual void enableCamera() = 0;
 };
 
 #endif

@@ -15,6 +15,7 @@
 #include "../GUI/Screen/ScreenPause.h"
 #include "../GUI/Screen/ScreenHelp.h"
 #include "../GUI/Screen/ScreenCredits.h"
+#include "../GUI/Screen/ScreenHighscores.h"
 #include "../GUI/Screen/ScreenGame.h"
 #include "../GUI/Screen/ScreenLoad.h"
 
