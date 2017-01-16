@@ -15,7 +15,7 @@ ScreenSelectLevel::ScreenSelectLevel(IGame* game, AGUIManager* manager)
         this->game->loadLevel("level1");
 
         this->game->setPaused(false);
-        this->game->setUI("Game");
+        this->game->setUI("Loading");
     });
 }
 
