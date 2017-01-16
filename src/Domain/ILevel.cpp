@@ -4,14 +4,18 @@
 
 #include "ILevel.h"
 
-std::string ILevel::getMap() {
+std::string ILevel::getName()
+{
+    return this->name;
+}
+
+std::string ILevel::getMap()
+{
     return this->map;
 }
 
-int ILevel::getSpawnHeroX() {
-    return this->spawnHeroX;
+std::string ILevel::getNext()
+{
+    return this->next;
 }
 
-int ILevel::getSpawnHeroY() {
-    return this->spawnHeroY;
-}

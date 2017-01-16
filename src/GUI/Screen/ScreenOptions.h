@@ -11,6 +11,13 @@ private:
     IGame* game;
     AGUIManager* manager;
 
+    GUIWidgetImage* imgBg {nullptr};
+    GUIWidgetImage* imgMusic {nullptr};
+    GUIWidgetImageButton* stnMusic {nullptr};
+    GUIWidgetImage* imgSFX {nullptr};
+    GUIWidgetImageButton* stnSFX {nullptr};
+    GUIWidgetImageButton* btnReturn {nullptr};
+
 public:
     ScreenOptions(IGame* game, AGUIManager* manager);
     ~ScreenOptions();

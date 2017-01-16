@@ -4,24 +4,38 @@
 ScreenOptions::ScreenOptions(IGame* game, AGUIManager* manager)
         : GUI(manager), game(game)
 {
-    manager->addImage("assets/gui/heroSelectBackground.png", 0, 0, 1024, 786);
+    this->imgBg = manager->addImage("assets/gui/menubackground.png", 0, 0, 1024, 786);
 
-    GUIWidgetLabel* l = manager->addLabel("Want to change some settings?", 140, 350);
-    l->setWidth(300);
-    l->setHeight(100);
-    l->setBackgroundColor(0,0,0,128);
-    l->setForegroundColor(255,0,0,128);
-
-    GUIWidgetButton* b = manager->addButton("Back", 140, 550);
-    b->setWidth(680);
-    b->setHeight(100);
-    b->onClick([&]() {
-        this->game->setUI("MainMenu");
+    this->imgMusic = manager->addImage("assets/gui/settingMusic.png", 220, 340, 300, 80);
+    this->stnMusic = manager->addImageButton("", "assets/gui/settingOn.png", 560, 340, 160, 80);
+    this->stnMusic->onClick([&]() {
+        //if(musicOn)
+            this->stnMusic->setAsset("assets/gui/settingOff.png");
+        //else
+            this->stnMusic->setAsset("assets/gui/settingOn.png");
     });
 
-    manager->addRadio("Aan", "music", 100, 100, true);
-    manager->addRadio("Uit", "music", 100, 120);
+    this->imgSFX = manager->addImage("assets/gui/settingSFX.png", 220, 440, 300, 80);
+    this->stnSFX = manager->addImageButton("", "assets/gui/settingOn.png", 560, 440, 160, 80);
+    this->stnSFX->onClick([&]() {
+        //if(sfxOn)
+            this->stnSFX->setAsset("assets/gui/settingOff.png");
+        //else
+            this->stnSFX->setAsset("assets/gui/settingOn.png");
+    });
+
+    this->btnReturn = manager->addImageButton("", "assets/gui/settingReturn.png", 300, 600, 300, 80);
+    this->btnReturn->onClick([&]() {
+        this->game->setUI("MainMenu");
+    });
 }
 
 ScreenOptions::~ScreenOptions()
-{}
+{
+    delete imgBg;
+    delete imgMusic;
+    delete stnMusic;
+    delete imgSFX;
+    delete stnMusic;
+    delete btnReturn;
+}
