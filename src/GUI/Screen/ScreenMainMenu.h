@@ -16,6 +16,7 @@ private:
 
     GUIWidgetImage* imgBg {nullptr};
     GUIWidgetImageButton* btnCampaign {nullptr};
+    GUIWidgetImageButton* btnHighscores {nullptr};
     GUIWidgetImageButton* btnOptions {nullptr};
     GUIWidgetImageButton* btnExit {nullptr};
 
