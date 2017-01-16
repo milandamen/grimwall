@@ -80,6 +80,7 @@ private:
 public:
     Game();
     ~Game();
+    virtual void init () override;
     virtual TroupManager* getTroupManager() override;
     virtual void loadLevel(std::string levelName) override;
     virtual ILevel* getCurrentLevel() override;

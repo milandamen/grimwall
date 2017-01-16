@@ -6,7 +6,18 @@ Game::Game()
     EngineFacade::engine()->setRenderBackend("OpenGL");
     EngineFacade::engine()->setFPSLimit(60);
     EngineFacade::engine()->init();
+}
 
+Game::~Game() {
+    for(auto level : this->levels)
+        delete level.second;
+
+    delete this->hero;
+    this->deleteTowers();
+}
+
+void Game::init()
+{
     this->guirepo = new GUIRepo(this);
     this->setUI("MainMenu");
 
@@ -48,17 +59,9 @@ Game::Game()
         EngineFacade::engine()->render();
         this->curTime = EngineFacade::engine()->getTime();
     }
-    
+
     EngineFacade::destroy();
     delete this->keyboardMapper;
-}
-
-Game::~Game() {
-    for(auto level : this->levels)
-        delete level.second;
-
-    delete this->hero;
-    this->deleteTowers();
 }
 
 void Game::setMap(std::string path)
