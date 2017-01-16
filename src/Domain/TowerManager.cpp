@@ -75,6 +75,7 @@ void TowerManager::tick(int curTime) {
                 this->hero->receiveDamage(tower->getPower());
 
                 std::cout << "Unit hp: " << this->hero->getHitPoints() << std::endl;
+                std::cout << "Hero mana: " << this->hero->getBase()->getMana() << std::endl;
                 //update time tower last attacked
                 tower->getBase()->setTimeLastAttack(curTime);
             }

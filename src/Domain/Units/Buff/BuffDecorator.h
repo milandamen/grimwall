@@ -24,6 +24,7 @@ public:
     double getSpeed();
     int getVisibility();
     void receiveDamage(int power);
+    void setInvincible(bool invincible);
 
     double getX();
     void setX(double x);
@@ -32,6 +33,8 @@ public:
 
     void setNext(IUnit *next);
     void setPrevious(IUnit *previous);
+
+    bool attack() override;
 
     void tick() override ;
 

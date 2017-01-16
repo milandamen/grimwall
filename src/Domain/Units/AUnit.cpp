@@ -40,8 +40,15 @@ int AUnit::getVisibility() {
 }
 
 void AUnit::receiveDamage(int power) {
+    if (this->invincible) { return; }
+    
     this->hitPoints -= power;
     this->updateStatsListener();
+}
+
+void AUnit::setInvincible(bool invincible)
+{
+    this->invincible = invincible;
 }
 
 double AUnit::getX() {
@@ -67,7 +74,17 @@ void AUnit::setPrevious(IUnit *previous) {
 }
 
 void AUnit::tick() {
+    if (this->attackWait > 0)
+        this->attackWait--;
+}
 
+bool AUnit::attack() {
+    if (this->attackWait <= 0) {
+        this->attackWait = this->attackDelay;
+        return true;
+    }
+    
+    return false;
 }
 
 void AUnit::setTimeLastAttack(int time) {

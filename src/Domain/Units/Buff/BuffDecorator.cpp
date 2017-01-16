@@ -42,6 +42,11 @@ void BuffDecorator::receiveDamage(int power) {
     this->next->receiveDamage(power);
 }
 
+void BuffDecorator::setInvincible(bool invincible)
+{
+    this->next->setInvincible(invincible);
+}
+
 double BuffDecorator::getX() {
     return this->next->getX();
 }
@@ -64,6 +69,10 @@ void BuffDecorator::setNext(IUnit *next) {
 
 void BuffDecorator::setPrevious(IUnit *previous) {
     this->previous = previous;
+}
+
+bool BuffDecorator::attack() {
+    return this->next->attack();
 }
 
 void BuffDecorator::tick() {

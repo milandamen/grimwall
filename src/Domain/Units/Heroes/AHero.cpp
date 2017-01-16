@@ -19,15 +19,21 @@ std::string AHero::getWeapon() {
     return this->weapon;
 }
 
-void AHero::executeAbility(unsigned int number) {
+bool AHero::executeAbility(unsigned int number) {
     if (number < this->abilities.size() && number >= 0){
         if (this->abilities[number]->getCost() <= this->mana) {
-            this->mana -= this->abilities[number]->getCost();
+            if (!this->infMana) {
+                this->mana -= this->abilities[number]->getCost();
+            }
+            
             this->abilities[number]->execute();
 
             this->updateStatsListener();
+            return true;
         }
     }
+
+    return false;
 }
 
 void AHero::addAbility(AAbility *ability) {
@@ -36,6 +42,11 @@ void AHero::addAbility(AAbility *ability) {
 
 int AHero::getMana() {
     return this->mana;
+}
+
+void AHero::setInfMana(bool infMana)
+{
+    this->infMana = infMana;
 }
 
 void AHero::tick() {

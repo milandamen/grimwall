@@ -11,6 +11,10 @@ ScreenSelectLevel::ScreenSelectLevel(IGame* game, AGUIManager* manager)
 
     bh->onClick([&]() {
         this->game->setMap("assets/maps/level1_remake_conv.xml");
+
+        // TODO: Set hero on spawn location
+        EngineFacade::engine()->createInstance(this->game->getHero()->getName(), this->game->getHero()->getName(), 0, 0);
+
         this->game->setPaused(false);
         this->game->setUI("Game");
     });

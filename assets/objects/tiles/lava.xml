@@ -1,0 +1,9 @@
+<?fife type="atlas"?>
+<atlas name="lava.png" namespace="grimwall" width="98" height="48">
+	<image source="lava.png" xpos="0" ypos="0" width="98" height="48"/>
+</atlas>
+
+<object id="lava" namespace="grimwall" static="1">
+	<image source="lava.png" direction="0" />
+</object>
+
