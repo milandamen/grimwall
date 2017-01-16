@@ -12,6 +12,7 @@ class TroupManager;
 
 class IGame{
 public:
+    virtual void loadLevel(std::string levelName) = 0;
     virtual void setMap(std::string path) = 0;
     virtual bool isPaused() = 0;
     virtual void setPaused(bool paused) = 0;

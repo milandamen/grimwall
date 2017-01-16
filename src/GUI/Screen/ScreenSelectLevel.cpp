@@ -11,12 +11,8 @@ ScreenSelectLevel::ScreenSelectLevel(IGame* game, AGUIManager* manager)
     bh->setHeight(556);
 
     bh->onClick([&]() {
-        this->game->setMap("assets/maps/level1_complete.xml");
-
-        // TODO: Set hero on spawn location
-        std::vector<int> spawnPos = EngineFacade::engine()->getHerospawnPoint();
-
-        EngineFacade::engine()->createInstance(this->game->getHero()->getName(), this->game->getHero()->getName(), spawnPos.at(0), spawnPos.at(1));
+        // load level
+        this->game->loadLevel("level1");
 
         this->game->setPaused(false);
         this->game->setUI("Game");

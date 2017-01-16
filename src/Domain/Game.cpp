@@ -23,6 +23,8 @@ Game::Game()
 
     this->initInput();
 
+    this->levels["level1"] = new Level1();
+
     this->hero = new UnitManager<AHero>(new Dralas());
     this->hero->getBase()->addAbility(new DeathStrike(this->hero));
 
@@ -57,6 +59,9 @@ Game::Game()
 }
 
 Game::~Game() {
+    for(auto level : this->levels)
+        delete level.second;
+
     delete this->hero;
     this->deleteTowers();
 }
@@ -152,6 +157,16 @@ void Game::updateFPS()
         // Update the last time FPS was calculated
         this->lastTime = EngineFacade::engine()->getTime();
     }
+}
+
+void Game::loadLevel(std::string levelName) {
+    ILevel* l = this->levels[levelName];
+
+    this->setMap(l->getMap());
+
+    // TODO: Set hero on spawn location
+    std::vector<int> spawnPos = EngineFacade::engine()->getHerospawnPoint();
+    EngineFacade::engine()->createInstance(this->getHero()->getName(), this->getHero()->getName(), spawnPos.at(0), spawnPos.at(1));
 }
 
 void Game::loadTowers()

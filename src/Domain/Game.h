@@ -14,6 +14,8 @@
 #include "SaveGame/SaveGameManager.h"
 #include "UnitFactory.h"
 #include "TowerManager.h"
+#include "ILevel.h"
+#include "Levels/Level1.h"
 
 #include <vector>
 
@@ -70,6 +72,8 @@ private:
     ISaveGameManager* saveGameManager {nullptr};
     TowerManager towerManager;
 
+    std::map<std::string, ILevel*> levels;
+
     void initInput();
     void updateFPS();
     void loadTowers();
@@ -82,6 +86,7 @@ public:
     Game();
     ~Game();
     virtual TroupManager* getTroupManager() override;
+    virtual void loadLevel(std::string levelName) override;
     virtual void setMap(std::string path) override;
     virtual bool isPaused() override;
     virtual void setPaused(bool paused) override;
