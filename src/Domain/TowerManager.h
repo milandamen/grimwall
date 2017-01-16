@@ -7,6 +7,8 @@
 #include "Units/Heroes/AHero.h"
 #include "Units/Troups/ATroup.h"
 #include <math.h>
+#include <iostream>
+#include <random>
 
 class TowerManager {
 
@@ -14,6 +16,7 @@ private:
     std::vector<UnitManager<ATower>*>* towers;
     std::vector<UnitManager<ATroup>*>* friendlyUnits;
     UnitManager<AHero>* hero {nullptr};
+    std::random_device rd;
 public:
     TowerManager();
 

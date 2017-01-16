@@ -27,6 +27,7 @@ public:
     int getVisibility() override;
     void receiveDamage(int power) override;
     void setInvincible(bool invincible) override;
+    void setInvisible(bool invisible) override;
 
     double getX() override;
     void setX(double x) override;
@@ -172,6 +173,11 @@ void UnitManager<UnitType>::setStatsListener(std::function<void()> delegate) {
 template <typename UnitType>
 bool UnitManager<UnitType>::canAttack() {
     return unit->canAttack();
+}
+
+template <typename UnitType>
+void UnitManager<UnitType>::setInvisible(bool invisible){
+    unit->setInvisible(invisible);
 }
 
 #endif //GRIMWALL_UNITMANAGER_H

@@ -25,6 +25,7 @@ public:
     int getVisibility();
     void receiveDamage(int power);
     void setInvincible(bool invincible);
+    void setInvisible(bool invisible);
 
     double getX();
     void setX(double x);

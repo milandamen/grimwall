@@ -16,6 +16,8 @@ public:
     virtual int getVisibility() = 0;
     virtual void receiveDamage(int power) = 0;
     virtual void setInvincible(bool invincible) = 0;
+    virtual void setInvisible(bool invisible) = 0;
+
 
     virtual double getX() = 0;
     virtual void setX(double x) = 0;

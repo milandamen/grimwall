@@ -96,3 +96,14 @@ void AUnit::setStatsListener(std::function<void()> delegate) {
 bool AUnit::canAttack() {
     return this->attackWait <= 0;
 }
+
+void AUnit::setInvisible(bool invisible) {
+    if(invisible)
+    {
+        this->visibility = 0;
+    }
+    else
+    {
+        this->visibility = 100;
+    }
+}

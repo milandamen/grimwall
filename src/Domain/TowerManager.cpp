@@ -69,23 +69,35 @@ void TowerManager::tick() {
                 }
             }
 
+             // obtain a random number from hardware
+            std::mt19937 eng(rd()); // seed the generator
+            std::uniform_int_distribution<> distr(0, 100);
+            int chance {distr(eng)};
             if(heroIsTarget)
             {
-                tower->attack();
-                this->hero->receiveDamage(tower->getPower());
+                //check visibility
+                if(chance < hero->getVisibility())
+                {
+                    tower->attack();
+                    this->hero->receiveDamage(tower->getPower());
 
-                std::cout << "Hero hp: " << this->hero->getHitPoints() << std::endl;
-                std::cout << "Hero mana: " << this->hero->getBase()->getMana() << std::endl;
+                    std::cout << "Hero hp: " << this->hero->getHitPoints() << std::endl;
+                    std::cout << "Hero mana: " << this->hero->getBase()->getMana() << std::endl;
+                }
 
             }
             else if(unit)
             {
-                tower->attack();
-                //get tower attack
-                //subtract it from unit hp
-                unit->receiveDamage(tower->getPower());
+                if(chance < unit->getVisibility())
+                {
+                    //check visibility
+                    tower->attack();
+                    //get tower attack
+                    //subtract it from unit hp
+                    unit->receiveDamage(tower->getPower());
 
-                std::cout << "Unit hp: " << unit->getHitPoints() << std::endl;
+                    std::cout << "Unit hp: " << unit->getHitPoints() << std::endl;
+                }
 
             }
         }
