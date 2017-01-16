@@ -68,8 +68,10 @@ FIFE::SoundEmitter* FIFEAudio::getSoundClip(std::string soundName) {
 }
 
 void FIFEAudio::playMusic(std::string asset) {
-    currentMusic = getSoundClip(asset);
-    currentMusic->play();
+    if(currentMusic != getSoundClip(asset)){
+        currentMusic = getSoundClip(asset);
+        currentMusic->play();
+    }
 }
 
 void FIFEAudio::playSoundEffect(std::string asset) {

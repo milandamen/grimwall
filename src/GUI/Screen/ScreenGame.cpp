@@ -82,6 +82,7 @@ void ScreenGame::deleteBuffs() {
 
 void ScreenGame::hasBecomeActive()
 {
+    EngineFacade::engine()->stopMusic();
     EngineFacade::engine()->playMusic("levelMusic");
 
     AAbility* ability1 = this->game->getHero()->getBase()->getAbility(0);
