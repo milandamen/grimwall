@@ -1,6 +1,3 @@
-//
-// Created by stephanromer on 1/16/17.
-//
 
 #include "ScreenHighscores.h"
 
@@ -8,7 +5,6 @@ ScreenHighscores::ScreenHighscores(IGame* game,AGUIManager* manager)
         : GUI(manager), game(game)
 {
     this->imgBg = manager->addImage("assets/gui/backgroundMenu.png", 0, 0, 1024, 768);
-
 
     this->lblSlot1 = manager->addLabel("", 172, 300);
     this->lblSlot1->setWidth(200);

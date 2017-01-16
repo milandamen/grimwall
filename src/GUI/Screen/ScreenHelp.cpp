@@ -21,6 +21,5 @@ ScreenHelp::ScreenHelp(IGame* game,AGUIManager* manager)
 ScreenHelp::~ScreenHelp()
 {
     delete this->imgBg;
-    delete this->imgHelp;
     delete this->btnReturn;
 }

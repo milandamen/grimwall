@@ -35,12 +35,12 @@ ScreenGame::ScreenGame(IGame* game, AGUIManager* manager)
 
 ScreenGame::~ScreenGame()
 {
-    delete this->container;
     delete this->lblHeroName;
     delete this->pgbHeroHP;
     delete this->lblHeroHP;
     delete this->pgbHeroMP;
     delete this->lblHeroMP;
+    delete this->container;
 }
 
 void ScreenGame::hasBecomeActive()

@@ -1,6 +1,3 @@
-//
-// Created by stephanromer on 1/16/17.
-//
 
 #ifndef GRIMWALL_SCREENHIGHSCORES_H
 #define GRIMWALL_SCREENHIGHSCORES_H
