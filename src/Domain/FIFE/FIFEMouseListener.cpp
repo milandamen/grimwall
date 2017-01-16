@@ -36,9 +36,9 @@ void FIFEMouseListener::mousePressed(FIFE::MouseEvent& evt) {
 }
 
 void FIFEMouseListener::setCamera(FIFECamera* camera) {
-    if(this->camera == nullptr) {
+    //if(this->camera == nullptr) {
         this->camera = camera;
-    }
+    //}
 }
 
 void FIFEMouseListener::mouseReleased(FIFE::MouseEvent& evt) {
@@ -169,7 +169,9 @@ void FIFEMouseListener::setPreviousMouseEvent(FIFE::MouseEvent::MouseEventType t
 }
 
 void FIFEMouseListener::tick() {
-    camera->updateLocation(mousePosX, mousePosY);
+    if(this->camera != nullptr)
+        camera->updateLocation(mousePosX, mousePosY);
+
     if(rightMouseDown){
         if(initialRdragX < RdragX && initialRdragY < RdragY) {
             EngineFacade::engine()->drawBox(initialRdragX, initialRdragY, RdragX, RdragY);

@@ -16,7 +16,6 @@ private:
     AGUIManager* manager;
 
     GUIWidgetImage* imgBg {nullptr};
-    GUIWidgetImage* imgHelp {nullptr};
     GUIWidgetImageButton* btnReturn {nullptr};
 
 public:

@@ -13,6 +13,7 @@ class TroupManager;
 
 class IGame{
 public:
+    virtual void init() = 0;
     virtual void loadLevel(std::string levelName) = 0;
     virtual ILevel* getCurrentLevel() = 0;
     virtual void setMap(std::string path) = 0;

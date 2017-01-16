@@ -13,9 +13,9 @@ private:
 
     GUIWidgetImage* imgBg {nullptr};
 
-    GUIWidgetButton* gameSlot1 {nullptr};
-    GUIWidgetButton* gameSlot2 {nullptr};
-    GUIWidgetButton* gameSlot3 {nullptr};
+    GUIWidgetImageButton* gameSlot1 {nullptr};
+    GUIWidgetImageButton* gameSlot2 {nullptr};
+    GUIWidgetImageButton* gameSlot3 {nullptr};
 
     GUIWidgetLabel* loadSave {nullptr};
 

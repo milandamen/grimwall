@@ -21,33 +21,39 @@ ScreenSelectHero::ScreenSelectHero(IGame* game, AGUIManager* manager)
     
     this->btnDralas = manager->addImageButton("", "assets/gui/heroDralas.png", 50, 180, 304, 575);
     this->btnDralas->onClick([&]() {
-            this->game->setHero(new Dralas());
-            this->game->getHero()->getBase()->addAbility(new DeathStrike(this->game->getHero()));
-            this->game->getHero()->getBase()->addAbility(new BoneStorm(this->game->getTowers()));
-            this->game->getHero()->getBase()->addAbility(new RageOfTheUndead(this->game->getTroupManager()->getTroups()));
-            this->game->getHero()->getBase()->addAbility(new WorldOfTheUndead(this->game->getHero()));
-            this->game->setUI("SelectLevel");
-        });
+        this->game->setHero(new Dralas());
+        this->game->getHero()->getBase()->addAbility(new DeathStrike(this->game->getHero()));
+        this->game->getHero()->getBase()->addAbility(new BoneStorm(this->game->getTowers()));
+        this->game->getHero()->getBase()->addAbility(new RageOfTheUndead(this->game->getTroupManager()->getTroups()));
+        this->game->getHero()->getBase()->addAbility(new WorldOfTheUndead(this->game->getHero()));
+        this->game->loadLevel(this->game->getCurrentLevel()->getName());
+        this->game->setUI("Game");
+        this->game->setPaused(false);
+    });
 
     this->btnHorwen = manager->addImageButton("", "assets/gui/heroHorwen.png", 375, 180, 304, 575);
     this->btnHorwen->onClick([&]() {
-            this->game->setHero(new Horwen());
-            this->game->getHero()->getBase()->addAbility(new StrikeOfReflection(this->game->getHero()));
-            this->game->getHero()->getBase()->addAbility(new Rage(this->game->getHero()));
-            this->game->getHero()->getBase()->addAbility(new Execution(this->game->getHero(), this->game->getTowers()));
-            this->game->getHero()->getBase()->addAbility(new ShieldOfJustice(this->game->getHero()));
-            this->game->setUI("SelectLevel");
-        });
+        this->game->setHero(new Horwen());
+        this->game->getHero()->getBase()->addAbility(new StrikeOfReflection(this->game->getHero()));
+        this->game->getHero()->getBase()->addAbility(new Rage(this->game->getHero()));
+        this->game->getHero()->getBase()->addAbility(new Execution(this->game->getHero(), this->game->getTowers()));
+        this->game->getHero()->getBase()->addAbility(new ShieldOfJustice(this->game->getHero()));
+        this->game->loadLevel(this->game->getCurrentLevel()->getName());
+        this->game->setUI("Game");
+        this->game->setPaused(false);
+    });
 
     this->btnZarrku = manager->addImageButton("", "assets/gui/heroZarrku.png", 700, 180, 304, 575);
     this->btnZarrku->onClick([&]() {
-            this->game->setHero(new Zarrku());
-            this->game->getHero()->getBase()->addAbility(new Bomb(this->game->getHero(), this->game->getTowers()));
-            this->game->getHero()->getBase()->addAbility(new Stealth(this->game->getHero()));
-            this->game->getHero()->getBase()->addAbility(new EvasiveManeuvers(this->game->getHero()));
-            this->game->getHero()->getBase()->addAbility(new SmokeBomb(this->game->getHero()));
-            this->game->setUI("SelectLevel");
-        });
+        this->game->setHero(new Zarrku());
+        this->game->getHero()->getBase()->addAbility(new Bomb(this->game->getHero(), this->game->getTowers()));
+        this->game->getHero()->getBase()->addAbility(new Stealth(this->game->getHero()));
+        this->game->getHero()->getBase()->addAbility(new EvasiveManeuvers(this->game->getHero()));
+        this->game->getHero()->getBase()->addAbility(new SmokeBomb(this->game->getHero()));
+        this->game->loadLevel(this->game->getCurrentLevel()->getName());
+        this->game->setUI("Game");
+        this->game->setPaused(false);
+    });
 }
 
 ScreenSelectHero::~ScreenSelectHero()

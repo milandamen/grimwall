@@ -11,6 +11,7 @@ class SaveGame
 private:
     ISaveGameManager* iSaveGameManager {nullptr};
 public:
+    std::string score {""};
     std::string file {""};
     std::string lastUnlockedLevel {"level1"};
     std::string lastUsedHero {"Dralas"};
