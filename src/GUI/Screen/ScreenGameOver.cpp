@@ -22,3 +22,8 @@ ScreenGameOver::~ScreenGameOver()
     delete this->imgGameOver;
     delete this->btnExit;
 }
+
+void ScreenGameOver::hasBecomeActive() {
+    EngineFacade::engine()->stopMusic();
+    EngineFacade::engine()->playSoundEffect("gameOver");
+}

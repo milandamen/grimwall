@@ -21,6 +21,7 @@ ScreenWon::~ScreenWon()
 
 void ScreenWon::hasBecomeActive()
 {
+    EngineFacade::engine()->playSoundEffect("finishLevel");
     std::string next = this->game->getCurrentLevel()->getNext();
     if(next == "") { // Last level reached!
         this->btnNext->setAsset("assets/gui/exitMenuItem.png");

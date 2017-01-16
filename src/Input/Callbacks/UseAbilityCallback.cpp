@@ -10,6 +10,9 @@ void UseAbilityCallback::execute() {
     if (!this->shouldExecute())
         return;
 
-    if (this->game->getHero()->getBase()->executeAbility(this->ability))
+    if (this->game->getHero()->getBase()->executeAbility(this->ability)){
+        EngineFacade::engine()->playSoundEffect("buffSound");
         EngineFacade::engine()->setInstanceAction(game->getHero()->getName(), "ability", "unitLayer");
+    }
+
 }
