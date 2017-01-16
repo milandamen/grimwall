@@ -7,14 +7,11 @@ ScreenPause::ScreenPause(IGame *game, AGUIManager *manager)
     this->fog->setBackgroundColor(0, 0, 0, 128);
 
     this->btnAd = manager->addImageButton("", "assets/ads/advert.png", 212, 50, 600, 70);
-    this->btnAd->setBackgroundColor(0, 0, 0, 0);
     this->btnAd->onClick([](){
         system("firefox https://www.linux.com/");
     });
 
-    this->btnSave = manager->addButton("Save Game", 212, 200);
-    this->btnSave->setWidth(600);
-    this->btnSave->setHeight(125);
+    this->btnSave = manager->addImageButton("", "assets/gui/btnSaveGame.png", 172, 200, 680, 100);
     this->btnSave->onClick([&](){
         this->game->saveGame();
     });

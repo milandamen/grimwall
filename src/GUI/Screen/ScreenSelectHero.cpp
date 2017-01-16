@@ -52,7 +52,7 @@ ScreenSelectHero::ScreenSelectHero(IGame* game, AGUIManager* manager)
         this->game->getHero()->getBase()->addAbility(new SmokeBomb(this->game->getHero()));
         this->game->loadLevel(this->game->getCurrentLevel()->getName());
         this->game->setUI("Game");
-        this->game->setPaused(true);
+        this->game->setPaused(false);
     });
 }
 

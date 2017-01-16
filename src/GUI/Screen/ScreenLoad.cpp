@@ -3,37 +3,31 @@
 ScreenLoad::ScreenLoad(IGame* game, AGUIManager* manager)
         : GUI(manager), game(game)
 {
-    imgBg = manager->addImage("assets/gui/menubackground.png", 0, 0, 1024, 786);
+    this->imgBg = manager->addImage("assets/gui/menubackground.png", 0, 0, 1024, 786);
 
-    gameSlot1 = manager->addButton("SLOT 1", 230, 325);
-    gameSlot1->setWidth(150);
-    gameSlot1->setHeight(150);
-    gameSlot1->onClick([&](){
+    this->gameSlot1 = manager->addImageButton("", "assets/gui/btnSlot1.png", 62, 400, 300, 100);
+    this->gameSlot1->onClick([&](){
         this->game->loadGame("slot1.sav");
         this->game->setUI("SelectHero");
     });
 
-    gameSlot2 = manager->addButton("SLOT 2", 440, 325);
-    gameSlot2->setWidth(150);
-    gameSlot2->setHeight(150);
-    gameSlot2->onClick([&](){
+    this->gameSlot2 = manager->addImageButton("", "assets/gui/btnSlot2.png", 362, 400, 300, 100);
+    this->gameSlot2->onClick([&](){
         this->game->loadGame("slot2.sav");
         this->game->setUI("SelectHero");
     });
 
-    gameSlot3 = manager->addButton("SLOT 3", 650, 325);
-    gameSlot3->setWidth(150);
-    gameSlot3->setHeight(150);
-    gameSlot3->onClick([&](){
+    this->gameSlot3 = manager->addImageButton("", "assets/gui/btnSlot3.png", 662, 400, 300, 100);
+    this->gameSlot3->onClick([&](){
         this->game->loadGame("slot3.sav");
         this->game->setUI("SelectHero");
     });
 
 
-    loadSave = manager->addLabel("Load/Save", 50, 100);
+    this->loadSave = manager->addLabel("Load/Save", 50, 100);
 
-    btnReturn = manager->addImageButton("", "assets/gui/settingReturn.png", 230, 600, 570, 80);
-    btnReturn->onClick([&]() {
+    this->btnReturn = manager->addImageButton("", "assets/gui/settingReturn.png", 230, 600, 570, 80);
+    this->btnReturn->onClick([&]() {
         this->game->setUI("MainMenu");
     });
 }
