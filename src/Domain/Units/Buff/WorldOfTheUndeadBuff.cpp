@@ -2,8 +2,8 @@
 
 #include "WorldOfTheUndeadBuff.h"
 
-WorldOfTheUndeadBuff::WorldOfTheUndeadBuff(IUnit *inner, int multiplier)
-        : BuffDecorator(inner, 500), multiplier{multiplier}
+WorldOfTheUndeadBuff::WorldOfTheUndeadBuff(int multiplier)
+        : BuffDecorator("World of the Undead", 500), multiplier{multiplier}
 {
 }
 

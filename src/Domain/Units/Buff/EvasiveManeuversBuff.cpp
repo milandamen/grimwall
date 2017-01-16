@@ -2,8 +2,8 @@
 
 #include "EvasiveManeuversBuff.h"
 
-EvasiveManeuversBuff::EvasiveManeuversBuff(IUnit *inner, int multplier)
-        : BuffDecorator{inner, 300}, multiplier{multplier}
+EvasiveManeuversBuff::EvasiveManeuversBuff(int multplier)
+        : BuffDecorator("Evasive Maneuvers", 30), multiplier{multplier}
 {}
 
 double EvasiveManeuversBuff::getSpeed()
@@ -13,5 +13,5 @@ double EvasiveManeuversBuff::getSpeed()
 
 int EvasiveManeuversBuff::getVisibility()
 {
-    return 0;
+    return 50;
 }

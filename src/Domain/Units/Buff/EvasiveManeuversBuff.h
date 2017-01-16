@@ -11,7 +11,7 @@ private:
     int multiplier;
 
 public:
-    EvasiveManeuversBuff(IUnit *inner, int multplier);
+    EvasiveManeuversBuff(int multplier);
 
     double getSpeed();
     int getVisibility();

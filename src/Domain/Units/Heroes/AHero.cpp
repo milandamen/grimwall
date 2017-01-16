@@ -40,6 +40,13 @@ void AHero::addAbility(AAbility *ability) {
     this->abilities.push_back(ability);
 }
 
+AAbility* AHero::getAbility(unsigned int number) {
+    if (number < this->abilities.size() && number >= 0)
+        return this->abilities[number];
+
+    return nullptr;
+}
+
 int AHero::getMana() {
     return this->mana;
 }

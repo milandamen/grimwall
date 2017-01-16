@@ -13,7 +13,7 @@ int BoneStorm::execute()
     UnitManager<ATower> *tower;
     for (std::vector<UnitManager<ATower> *>::iterator it = towers->begin(); it != towers->end(); ++it) {
         tower = *it;
-        tower->buff(new BoneStormBuff(tower->getUnit(), 2));
+        tower->buff(new BoneStormBuff(2));
     }
     return 1;
 }

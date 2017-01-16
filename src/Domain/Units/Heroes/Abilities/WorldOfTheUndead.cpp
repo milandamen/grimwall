@@ -6,7 +6,7 @@ WorldOfTheUndead::WorldOfTheUndead(UnitManager<AHero>* hero)
 {}
 
 int WorldOfTheUndead::execute() {
-    this->hero->buff(new WorldOfTheUndeadBuff(this->hero->getUnit(), 2));
+    this->hero->buff(new WorldOfTheUndeadBuff(2));
 
     return 1;
 }

@@ -11,7 +11,7 @@ int RageOfTheUndead::execute() {
     UnitManager<ATroup> *troup;
     for (std::vector<UnitManager<ATroup> *>::iterator it = troups->begin(); it != troups->end(); ++it) {
         troup = *it;
-        troup->buff(new RageOfTheUndeadBuff(troup->getUnit(), 2));
+        troup->buff(new RageOfTheUndeadBuff(2));
     }
     return 1;
 }

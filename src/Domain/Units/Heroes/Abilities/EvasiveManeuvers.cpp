@@ -7,6 +7,6 @@ EvasiveManeuvers::EvasiveManeuvers(UnitManager<AHero>* hero)
 
 int EvasiveManeuvers::execute()
 {
-    this->hero->buff(new EvasiveManeuversBuff(this->hero->getUnit(), 2));
+    this->hero->buff(new EvasiveManeuversBuff(2));
     return 1;
 }

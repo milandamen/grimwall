@@ -10,7 +10,7 @@ class WorldOfTheUndeadBuff : public BuffDecorator {
 private:
     int multiplier;
 public:
-    WorldOfTheUndeadBuff(IUnit *inner, int multiplier);
+    WorldOfTheUndeadBuff(int multiplier);
     double getSpeed() override;
     int getAttackDelay() override;
 };

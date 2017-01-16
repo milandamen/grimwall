@@ -1,7 +1,7 @@
 #include "StealthBuff.h"
 
-StealthBuff::StealthBuff(IUnit *inner, int multplier)
-        : BuffDecorator{inner, 3000}, multiplier{multplier}
+StealthBuff::StealthBuff(int multiplier)
+        : BuffDecorator("Stealth", 300), multiplier{multiplier}
 {}
 
 double StealthBuff::getSpeed()
@@ -11,5 +11,5 @@ double StealthBuff::getSpeed()
 
 int StealthBuff::getVisibility()
 {
-    return 0;
+    return 15;
 }

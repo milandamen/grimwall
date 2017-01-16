@@ -9,7 +9,7 @@ SmokeBomb::SmokeBomb(UnitManager<AHero>* hero)
 
 int SmokeBomb::execute()
 {
-    this->hero->buff(new SmokeBombBuff(this->hero->getUnit()));
+    this->hero->buff(new SmokeBombBuff());
     return 1;
 
 }

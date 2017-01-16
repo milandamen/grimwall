@@ -8,6 +8,6 @@ DeathStrike::DeathStrike(UnitManager<AHero>* hero)
 }
 
 int DeathStrike::execute() {
-    hero->buff(new DeathStrikeBuff(hero->getUnit(), 2));
+    hero->buff(new DeathStrikeBuff(2));
     return 1;
 }

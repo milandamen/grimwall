@@ -21,10 +21,28 @@ ScreenGame::ScreenGame(IGame* game, AGUIManager* manager)
     this->pgbHeroMP->setBackgroundColor(0, 0, 255, 255);
     this->lblHeroMP = manager->createLabel("");
 
+    this->lblAbilitie1Name = manager->createLabel("Abilitie Q");
+    this->lblAbilitie1Key = manager->createLabel("Q");
+    this->lblAbilitie2Name = manager->createLabel("Abilitie W");
+    this->lblAbilitie2Key = manager->createLabel("W");
+    this->lblAbilitie3Name = manager->createLabel("Abilitie E");
+    this->lblAbilitie3Key = manager->createLabel("E");
+    this->lblAbilitie4Name = manager->createLabel("Abilitie R");
+    this->lblAbilitie4Key = manager->createLabel("R");
+
     this->btnPause = manager->addButton("Pause", 1024-40, 20);
     this->btnPause->setWidth(40);
     this->btnPause->setHeight(40);
     this->btnPause->onClick([&](){ this->pause(); });
+
+    this->container->addWidget(this->lblAbilitie1Name, 300, 10);
+    this->container->addWidget(this->lblAbilitie1Key, 300, 20);
+    this->container->addWidget(this->lblAbilitie2Name, 400, 10);
+    this->container->addWidget(this->lblAbilitie2Key, 400, 20);
+    this->container->addWidget(this->lblAbilitie3Name, 500, 10);
+    this->container->addWidget(this->lblAbilitie3Key, 500, 20);
+    this->container->addWidget(this->lblAbilitie4Name, 600, 10);
+    this->container->addWidget(this->lblAbilitie4Key, 600, 20);
 
     this->container->addWidget(this->lblHeroName, 10, 10);
     this->container->addWidget(this->pgbHeroHP, 10, 30);
@@ -41,10 +59,41 @@ ScreenGame::~ScreenGame()
     delete this->lblHeroHP;
     delete this->pgbHeroMP;
     delete this->lblHeroMP;
+
+    delete this->lblAbilitie1Name;
+    delete this->lblAbilitie1Key;
+    delete this->lblAbilitie2Name;
+    delete this->lblAbilitie2Key;
+    delete this->lblAbilitie3Name;
+    delete this->lblAbilitie3Key;
+    delete this->lblAbilitie4Name;
+    delete this->lblAbilitie4Key;
+
+    this->deleteBuffs();
+}
+
+void ScreenGame::deleteBuffs() {
+    for (auto& ability : this->lblBuffs) {
+        delete ability;
+    }
+
+    this->lblBuffs.clear();
 }
 
 void ScreenGame::hasBecomeActive()
 {
+    AAbility* ability1 = this->game->getHero()->getBase()->getAbility(0);
+    this->lblAbilitie1Name->setCaption(ability1->getName() + " (" + std::to_string(ability1->getCost()) + ")");
+
+    AAbility* ability2 = this->game->getHero()->getBase()->getAbility(1);
+    this->lblAbilitie2Name->setCaption(ability2->getName() + " (" + std::to_string(ability2->getCost()) + ")");
+
+    AAbility* ability3 = this->game->getHero()->getBase()->getAbility(2);
+    this->lblAbilitie3Name->setCaption(ability3->getName() + " (" + std::to_string(ability3->getCost()) + ")");
+
+    AAbility* ability4 = this->game->getHero()->getBase()->getAbility(3);
+    this->lblAbilitie4Name->setCaption(ability4->getName() + " (" + std::to_string(ability4->getCost()) + ")");
+
     this->lblHeroName->setCaption(this->game->getHero()->getName());
     this->game->getHero()->setStatsListener([&]() {
         this->updateStats();
@@ -66,6 +115,16 @@ void ScreenGame::updateStats()
     this->lblHeroHP->setCaption("HP: "+std::to_string(hp));
     this->pgbHeroMP->setWidth(mp);
     this->lblHeroMP->setCaption("Mana: "+std::to_string(mp));
+
+    this->deleteBuffs();
+    int i = 0;
+    for (auto& ability : this->game->getHero()->getBuffs()) {
+        GUIWidgetLabel* lblBuff = manager->createLabel(ability);
+        this->container->addWidget(lblBuff, 750, 10 + (10*i));
+        this->lblBuffs.push_back(lblBuff);
+        i++;
+    }
+
 }
 
 void ScreenGame::pause()

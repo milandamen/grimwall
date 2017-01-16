@@ -9,7 +9,7 @@ private:
     int multiplier;
 
 public:
-    StealthBuff(IUnit *inner, int multplier);
+    StealthBuff(int multiplier);
 
     double getSpeed();
     int getVisibility();

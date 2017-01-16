@@ -8,6 +8,10 @@
 #include "../../Domain/Units/Heroes/Abilities/Stealth.h"
 #include "../../Domain/Units/Heroes/Abilities/EvasiveManeuvers.h"
 #include "../../Domain/Units/Heroes/Abilities/SmokeBomb.h"
+#include "../../Domain/Units/Heroes/Abilities/StrikeOfReflection.h"
+#include "../../Domain/Units/Heroes/Abilities/Rage.h"
+#include "../../Domain/Units/Heroes/Abilities/Execution.h"
+#include "../../Domain/Units/Heroes/Abilities/ShieldOfJustice.h"
 
 ScreenSelectHero::ScreenSelectHero(IGame* game, AGUIManager* manager)
         : GUI(manager), game(game)
@@ -38,6 +42,10 @@ ScreenSelectHero::ScreenSelectHero(IGame* game, AGUIManager* manager)
         bh->setBackgroundColor(0, 0, 0, 0);
         bh->onClick([&]() {
             this->game->setHero(new Horwen());
+            this->game->getHero()->getBase()->addAbility(new StrikeOfReflection(this->game->getHero()));
+            this->game->getHero()->getBase()->addAbility(new Rage(this->game->getHero()));
+            this->game->getHero()->getBase()->addAbility(new Execution(this->game->getHero(), this->game->getTowers()));
+            this->game->getHero()->getBase()->addAbility(new ShieldOfJustice(this->game->getHero()));
             this->game->setUI("SelectLevel");
         });
 

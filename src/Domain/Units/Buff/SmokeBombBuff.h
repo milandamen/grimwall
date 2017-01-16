@@ -7,7 +7,7 @@ class SmokeBombBuff : public BuffDecorator {
 private:
 
 public:
-    SmokeBombBuff(IUnit *inner);
+    SmokeBombBuff();
 
     int getVisibility();
 };

@@ -1,6 +1,5 @@
 #include "Stealth.h"
 #include "../../Buff/StealthBuff.h"
-#include "../../Buff/StealthVisibilityBuff.h"
 
 Stealth::Stealth(UnitManager<AHero>* hero)
         : AAbility("Stealth", 75), hero{hero}
@@ -8,6 +7,6 @@ Stealth::Stealth(UnitManager<AHero>* hero)
 
 int Stealth::execute()
 {
-    this->hero->buff(new StealthBuff(this->hero->getUnit(), 2));
+    this->hero->buff(new StealthBuff(2));
     return 1;
 }

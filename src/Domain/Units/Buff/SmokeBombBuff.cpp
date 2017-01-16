@@ -1,9 +1,9 @@
 #include "SmokeBombBuff.h"
 
-SmokeBombBuff::SmokeBombBuff(IUnit *inner)
-        : BuffDecorator{inner, 5000}
+SmokeBombBuff::SmokeBombBuff()
+        : BuffDecorator("Smoke Bomb", 500)
 {}
 
 int SmokeBombBuff::getVisibility() {
-    return 0;
+    return 5;
 }
