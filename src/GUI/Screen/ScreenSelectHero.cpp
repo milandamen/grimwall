@@ -27,8 +27,7 @@ ScreenSelectHero::ScreenSelectHero(IGame* game, AGUIManager* manager)
         bh->setForegroundColor(255, 255, 255, 255);
         bh->setBackgroundColor(0, 0, 0, 0);
         bh->onClick([&]() {
-            std::cout << "Horwen does not exist, Dralas instead.";
-            this->game->setHero(new Dralas());
+            this->game->setHero(new Horwen());
             this->game->setUI("SelectLevel");
         });
 
