@@ -192,7 +192,7 @@ void Game::updateFPS()
 
 void Game::loadLevel(std::string levelName)
 {
-
+    this->troupManager.reset();
     this->currentLevel = this->levels[levelName];
     this->setMap(this->currentLevel->getMap());
 

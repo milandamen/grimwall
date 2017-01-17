@@ -48,6 +48,8 @@ public:
 
     void tick();
 
+    void reset();
+
 };
 
 

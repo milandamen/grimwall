@@ -223,3 +223,8 @@ void TroupManager::tick(){
         }
     }
 }
+
+void TroupManager::reset(){
+    selectedTroups.clear();
+    troups.clear();
+}
