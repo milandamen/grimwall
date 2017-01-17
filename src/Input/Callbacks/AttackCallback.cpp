@@ -28,20 +28,8 @@ void AttackCallback::execute() {
 
             if (xDiff < reach && yDiff < reach) {
                 tower->receiveDamage(power);
-
-                if (tower->getHitPoints() <= 0) {
-                    if (EngineFacade::engine()->instanceExists(tower->getBase()->getId(), "towerLayer")) {
-                        EngineFacade::engine()->deleteInstance(tower->getBase()->getId(), "towerLayer");
-                    }
-
-                    delete tower;
-                    towers->erase(it);
-                } else {
-                    ++it;
-                }
-            } else {
-                ++it;
             }
+            ++it;
         }
     }
 }
