@@ -83,6 +83,9 @@ void ScreenGame::deleteBuffs() {
 
 void ScreenGame::hasBecomeActive()
 {
+    EngineFacade::engine()->stopMusic();
+    EngineFacade::engine()->playMusic("levelMusic");
+
     AAbility* ability1 = this->game->getHero()->getBase()->getAbility(0);
     this->lblAbilitie1Name->setCaption(ability1->getName() + " (" + std::to_string(ability1->getCost()) + ")");
 

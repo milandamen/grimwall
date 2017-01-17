@@ -36,8 +36,8 @@
 			<direction delay="130" dir="315" frames="9"/>
 		</animation>
 	</action>
-	<action id="talk">
-		<animation atlas="talk.png" height="96" width="96">
+	<action id="attack">
+		<animation atlas="attack.png" height="96" width="96">
 			<direction delay="130" dir="0" frames="7"/>
 			<direction delay="130" dir="45" frames="7"/>
 			<direction delay="130" dir="90" frames="7"/>

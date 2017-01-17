@@ -1,7 +1,7 @@
 #include "Longbowman.h"
 
 Longbowman::Longbowman(std::string name)
-        : ATroup(name, 15, 100, 2, 40, 80, 1)
+        : ATroup(name, 5, 1200, 2, 3, 30, 1)
 {
 
 }

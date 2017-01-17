@@ -12,8 +12,8 @@
 			<direction delay="2000" dir="315" frames="1"/>
 		</animation>
 	</action>
-	<action id="pray">
-		<animation atlas="pray.png" height="96" width="96">
+	<action id="attack">
+		<animation atlas="attack.png" height="96" width="96">
 			<direction delay="130" dir="0" frames="9"/>
 			<direction delay="130" dir="45" frames="9"/>
 			<direction delay="130" dir="90" frames="9"/>

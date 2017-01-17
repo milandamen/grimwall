@@ -1,10 +1,13 @@
 #include "TroupManager.h"
 
+class Flit;
+
 TroupManager::TroupManager(){
 
 }
 
 TroupManager::~TroupManager(){
+    selectedTroups.clear();
     for(unsigned i = 0; i < troups.size(); ++i){
         delete troups.at(i);
     }
@@ -93,36 +96,8 @@ void TroupManager::attackTarget(){
 
             if (distance <= troups.at(i)->getReach()) {
                 if(troups.at(i)->attack()) {
+                    EngineFacade::engine()->setInstanceAction(troups.at(i)->getBase()->getName(), "attack", "unitLayer");
                     troups.at(i)->getBase()->target->receiveDamage(troups.at(i)->getPower());
-
-                    if (troups.at(i)->getBase()->target->getHitPoints() <= 0) {
-                        if (EngineFacade::engine()->instanceExists(troups.at(i)->getBase()->target->getBase()->getId(),
-                                                                   "towerLayer")) {
-                            EngineFacade::engine()->deleteInstance(troups.at(i)->getBase()->target->getBase()->getId(),
-                                                                   "towerLayer");
-                        }
-
-                        UnitManager<ATower> *tower;
-                        for (std::vector<UnitManager<ATower> *>::iterator it = towers->begin(); it != towers->end();) {
-                            tower = *it;
-                            if (tower->getBase()->getId() == troups.at(i)->getBase()->target->getBase()->getId()){
-                                for(unsigned b = 0; b < troups.size(); ++b) {
-                                    if(troups.at(b)->getBase()->target != nullptr) {
-                                        if (troups.at(b)->getBase()->target->getBase()->getId() ==
-                                            tower->getBase()->getId()) {
-                                            troups.at(b)->getBase()->target = nullptr;
-                                        }
-                                    }
-                                }
-                                delete tower;
-                                towers->erase(it);
-                                return;
-                            }
-                            else {
-                                ++it;
-                            }
-                        }
-                    }
                 }
             }
         }
@@ -130,7 +105,6 @@ void TroupManager::attackTarget(){
 }
 
 void TroupManager::moveTroups(double x, double y) {
-
     for(unsigned i = 0; i < selectedTroups.size(); ++i) {
         EngineFacade::engine()->move(
                 selectedTroups.at(i)->getBase()->getName(),
@@ -198,8 +172,54 @@ void TroupManager::createCatapult(std::string instanceName, double x, double y){
 }
 
 void TroupManager::tick(){
+
+    UnitManager<ATroup> *troup;
+    for (std::vector<UnitManager<ATroup> *>::iterator it = troups.begin(); it != troups.end();) {
+        troup = *it;
+        if(troup->getHitPoints() <= 0){
+            if (EngineFacade::engine()->instanceExists(troup->getBase()->getName(), "unitLayer")) {
+                EngineFacade::engine()->deleteInstance(troup->getBase()->getName(), "unitLayer");
+            }
+            UnitManager<ATroup> *selTroup;
+            for (std::vector<UnitManager<ATroup> *>::iterator its = selectedTroups.begin(); its != selectedTroups.end();) {
+                selTroup = *its;
+                if(selTroup->getBase()->getName() == troup->getBase()->getName()){
+                    selectedTroups.erase(its);
+                }
+                ++its;
+            }
+            troups.erase(it);
+            delete troup;
+        }
+        else {
+            ++it;
+        }
+    }
+
     for(unsigned i = 0; i < troups.size(); ++i){
         troups.at(i)->tick();
     }
     attackTarget();
+
+    UnitManager<ATower> *tower;
+    for (std::vector<UnitManager<ATower> *>::iterator it = towers->begin(); it != towers->end();) {
+        tower = *it;
+        if (tower->getHitPoints() <= 0) {
+            if (EngineFacade::engine()->instanceExists(tower->getBase()->getId(), "towerLayer")) {
+                EngineFacade::engine()->deleteInstance(tower->getBase()->getId(), "towerLayer");
+            }
+            for (unsigned i = 0; i < troups.size(); ++i) {
+                if(troups.at(i)->getBase()->target != nullptr) {
+                    if (troups.at(i)->getBase()->target->getBase()->getId() == tower->getBase()->getId()) {
+                        troups.at(i)->getBase()->target = nullptr;
+                    }
+                }
+            }
+            towers->erase(it);
+            delete tower;
+        }
+        else {
+            ++it;
+        }
+    }
 }

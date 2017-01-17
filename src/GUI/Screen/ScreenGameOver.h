@@ -16,6 +16,8 @@ private:
     GUIWidgetImage* imgGameOver {nullptr};
     GUIWidgetImageButton* btnExit {nullptr};
 
+    void hasBecomeActive() override;
+
 public:
     ScreenGameOver(IGame* game, AGUIManager* manager);
     ~ScreenGameOver();

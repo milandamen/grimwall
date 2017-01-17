@@ -16,7 +16,7 @@ void AttackCallback::execute() {
         int power = game->getHero()->getPower();
 
         // Commence the attack animation on the unit.
-        EngineFacade::engine()->setInstanceAction(game->getHero()->getName(), "attack");
+        EngineFacade::engine()->setInstanceAction(game->getHero()->getName(), "attack", "unitLayer");
 
         std::vector<UnitManager<ATower> *> *towers = game->getTowers();
         UnitManager<ATower> *tower;
@@ -28,20 +28,8 @@ void AttackCallback::execute() {
 
             if (xDiff < reach && yDiff < reach) {
                 tower->receiveDamage(power);
-
-                if (tower->getHitPoints() <= 0) {
-                    if (EngineFacade::engine()->instanceExists(tower->getBase()->getId(), "towerLayer")) {
-                        EngineFacade::engine()->deleteInstance(tower->getBase()->getId(), "towerLayer");
-                    }
-
-                    delete tower;
-                    towers->erase(it);
-                } else {
-                    ++it;
-                }
-            } else {
-                ++it;
             }
+            ++it;
         }
     }
 }
