@@ -51,6 +51,18 @@ int AHero::getMana() {
     return this->mana;
 }
 
+bool AHero::summon(){
+    if (this->mana >= 55) {
+        if (!this->infMana) {
+            this->mana -= 55;
+        }
+        return true;
+    }
+    else {
+        return false;
+    }
+}
+
 void AHero::setInfMana(bool infMana)
 {
     this->infMana = infMana;
@@ -61,7 +73,7 @@ void AHero::tick() {
 
     this->manaRegenTimeout--;
     if (this->manaRegenTimeout == 0) {
-        this->manaRegenTimeout = 60;
+        this->manaRegenTimeout = 20;
 
         if (this->mana < 100) {
             this->mana++;

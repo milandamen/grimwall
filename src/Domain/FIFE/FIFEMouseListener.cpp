@@ -76,13 +76,13 @@ void FIFEMouseListener::mouseLeftButtonPressed(FIFE::MouseEvent &evt) {
 }
 
 void FIFEMouseListener::mouseRightButtonPressed(FIFE::MouseEvent &evt) {
+    game->getTroupManager()->moveTroups(evt.getX(), evt.getY());
     // pass game->getTowers() to ensure SOC with troup manager
     FIFE::ScreenPoint screenPoint(evt.getX(), evt.getY());
     if(this->camera != nullptr) {
         FIFE::ExactModelCoordinate mapCoords = this->camera->camera()->toMapCoordinates(screenPoint, false);
         game->getTroupManager()->targetEnemy(mapCoords.x, mapCoords.y, game->getTowers());
     }
-    game->getTroupManager()->moveTroups(evt.getX(), evt.getY());
     setPreviousMouseEvent(evt.getType());
 }
 

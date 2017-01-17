@@ -1,7 +1,7 @@
 #include "Crossbowman.h"
 
 Crossbowman::Crossbowman(std::string name)
-        : ATroup(name, 10, 80, 2, 80, 40, 1)
+        : ATroup(name, 4, 800, 2, 3, 30, 1)
 {
 
 }

@@ -1,7 +1,7 @@
 #include "Catapult.h"
 
 Catapult::Catapult(std::string name)
-        : ATroup(name, 20, 800, 2, 300, 120, 1)
+        : ATroup(name, 7, 4000, 2, 10, 50, 1)
 {
 
 }

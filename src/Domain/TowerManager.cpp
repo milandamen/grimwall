@@ -108,18 +108,6 @@ void TowerManager::tick() {
                     EngineFacade::engine()->setInstanceAction(tower->getBase()->getId(),"attack", "towerLayer");
                     EngineFacade::engine()->playSoundEffect("defaultTowerShot");
 
-                    //check if unit died
-                    if(unit <= 0)
-                    {
-                        //unit died, remove
-                        if (EngineFacade::engine()->instanceExists(unit->getBase()->getName(), "unitLayer")) {
-                            EngineFacade::engine()->deleteInstance(unit->getBase()->getName(), "unitLayer");
-                        }
-
-                        delete unit;
-                        friendlyUnits->erase(itUnit);
-                    }
-
                 } else
                     EngineFacade::engine()->setInstanceAction(tower->getBase()->getId(),"stand", "towerLayer");
             }

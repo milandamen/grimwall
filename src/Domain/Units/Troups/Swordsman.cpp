@@ -1,7 +1,7 @@
 #include "Swordsman.h"
 
 Swordsman::Swordsman(std::string name)
-        : ATroup(name, 3, 50, 2, 20, 200, 1)
+        : ATroup(name, 1, 800, 2, 2, 40, 1)
 {
 
 }
