@@ -21,20 +21,8 @@ int Bomb::execute()
 
         if (xDiff < 2 && yDiff < 2) {
             tower->receiveDamage(750);
-
-            if (tower->getHitPoints() <= 0) {
-                if (EngineFacade::engine()->instanceExists(tower->getBase()->getId(), "towerLayer")) {
-                    EngineFacade::engine()->deleteInstance(tower->getBase()->getId(), "towerLayer");
-                }
-
-                delete tower;
-                towers->erase(it);
-            } else {
-                ++it;
-            }
-        } else {
-            ++it;
         }
+        ++it;
     }
     return 1;
 }

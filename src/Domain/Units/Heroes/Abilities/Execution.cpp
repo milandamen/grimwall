@@ -22,24 +22,15 @@ int Execution::execute() {
         double yDiff = std::abs(tower->getY() - y);
 
         if (xDiff < reach && yDiff < reach) {
-            if (tower->getHitPoints() <= 500)
+            if (tower->getHitPoints() <= 500) {
                 tower->receiveDamage(500);
-            else
-                tower->receiveDamage(power*2);
-
-            if (tower->getHitPoints() <= 0) {
-                if (EngineFacade::engine()->instanceExists(tower->getBase()->getId(), "towerLayer")) {
-                    EngineFacade::engine()->deleteInstance(tower->getBase()->getId(), "towerLayer");
-                }
-
-                delete tower;
-                towers->erase(it);
-            } else {
-                ++it;
             }
-        } else {
-            ++it;
+            else {
+                tower->receiveDamage(power * 2);
+            }
+
         }
+        ++it;
     }
 
     return 1;
