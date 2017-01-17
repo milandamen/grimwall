@@ -215,6 +215,7 @@ void TroupManager::tick(){
                 if(selTroup->getBase()->getName() == troup->getBase()->getName()){
                     selectedTroups.erase(its);
                 }
+                ++its;
             }
             troups.erase(it);
             delete troup;
